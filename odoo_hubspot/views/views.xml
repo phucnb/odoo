@@ -31,7 +31,7 @@
                                         <field name="export_company" nolabel="1"/>
                                     </group>
                                 </group>
-                                <!--
+                                
                                 <group col="4">
                                     <group>
                                         <strong>Contacts</strong>
@@ -43,6 +43,7 @@
                                         <field name="export_contact" nolabel="1"/>
                                     </group>
                                 </group>
+
                                 <group col="4">
                                     <group>
                                         <strong>Deals</strong>
@@ -61,7 +62,7 @@
                                     <group>
                                         <field name="import_ticket" nolabel="1"/>
                                     </group>
-                                </group> -->
+                                </group>
                             </div>
                         </group> 
                         <group col="10">
