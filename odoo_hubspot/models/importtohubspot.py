@@ -148,11 +148,61 @@ class HubspotImportIntegration(models.Model):
         self.env.cr.commit()
 
     def read_file(self, file_name):
+        lines = []
+        if file_name == 'contacts':
+            lines = ['aapt_ar_','associated_company','business_unit','contact_import_list_name','county','demo',
+                    'did_they_go_to_a_new_school_district_company_','iacp','lead_type','middle_name','nadp','napt',
+                    'no_longer_at_school_district_company','planned_retirement_date','population',
+                    'product_i_m_interested_in','purchased_list_july','purchasing_influence','remove','reports_to',
+                    'request_a_demo','role','s247_secondary_company','service_surveillance_owner','state_or_province',
+                    'state_or_region','surveillance_247_area_code','surveillance_247_district_name',
+                    'surveillance_247_district_website_domain','territory','what_school_district_company_did_they_go_',
+                    'what_type_of_support','why_not_at_school_district_company_','years_with_company',
+                    'zoom_webinar_attendance_average_duration','zoom_webinar_attendance_count','zoom_webinar_joinlink',
+                    'zoom_webinar_registration_count','aasbo_az_','address2','asta_al_','casbo_ca_','nickname',
+                    'casto_ca_','full_name','accounting_contact_full_name','cgcs','accounting_email','cptc_cn_',
+                    'crtc_wa_','purchasing_contact_full_name','cspta_co_','purchasing_email','ctaa',
+                    'division_cf_contact','fpta_ctd','internal_id_customer','gapt_ga_','last_rma_email_date',
+                    'customer_rating','gcapt_tx_','famtec_customer','iapt_il_','famtec_sales_rep','iapt_id_',
+                    'bus_garage','ipta_ia_','kspta_ks_','mapt_mi_','mapt_mo_','mnapt_mn_','n247_dvr_total','as_of_date',
+                    'msboa_mn_','cameras','napt_na_','external_camera','ncpta_nc_','ncst','special_instructions',
+                    'area_code','nsba_na_','job_title_secondary','nsta_mid','nsta_summer','unique_identifier',
+                    'nsta_national','solution_currently_installed','oapt_oh_','oapt_ok_','oasbo_on_','oasbo_osba',
+                    'opta_or_','osbma_oh_','sbx','scapt_sc_','sesptc','stai_in_','stn','taa_az_','tapt_tn_','tapt_tx_',
+                    'transfinder','tsd','uapt_ut_','vapt_va_','wapt_wa_','wpta_wy_','wsba_wi_','wvapt_wv_',
+                    'chapter_meeting_1','sts_of_nj']
+        elif file_name == 'companies':
+            lines = [
+                'bid_potential','bid_status','business_vertical','business_vertical_other_','camera_system',
+                'camera_system_other_','cameras','competitor','contacted_with','contract_expires','contracted_services',
+                'customer_rating','dealer_sold_through','e360_cameras','external_camera','fleet_maintenance_system',
+                'fleet_maintenance_system_other_','fleet_size_s247','gps','gps_vendor','gps_vendor_other_','how_many_lots_',
+                'issr','n247_bus_saleman','n247s_lifecycle_stage','nadp','netsuite_refresh','company_type','number_of_buses',
+                'number_of_sales_personnel','number_of_special_needs_students_transported','number_of_students_transported',
+                'number_of_total_students','of_buses','of_cameras_per_bus','of_students_total','of_students_transported',
+                'parent_portal','parent_portal_other_','parent_portal_system','preferred_camera_vendor','preferred_camera_vendor_cloned_',
+                'previous_camera_system','products','prospect_status_s247','purchase_date','purchased_list_july','remove','rfp_date_posted',
+                'routing','routing_solution','routing_solution_other_','rsm','s247_contact_email',
+                's247_county','s247_first_name','s247_last_name','s247_lead_contact','s247_pre_post_salutation','s247_title',
+                'sales_rep','school_year_budget_begins','school_year_start','service_agreement','service_surveillance_owner',
+                'sic_code','stop_arm_camera_s_','student_count','student_information_system','student_information_system_other_',
+                'student_tracking','student_tracking_system','student_tracking_system_other_','surveillance_247_company_domain',
+                'surveillance_247_district','system','td_fleet_monitor','territory','territory_coverage','touchdown',
+                'touchdown_cloud_services_amount','touchdown_cloud_services_renewal_date','touchdown_install_date','wireless','wireless_s247',
+                'internal_id','new_id','lot_1_address','status','fleet_size','lot_2_address','netsuite_customer','netsuite_status',
+                'bid_awarded_year','bus_garage','full_name','n247_dvr_total','special_instructions','area_code','vendor',
+                'dealer_sub_type','unique_identifier','opportunity_number','contractor','minitrack','erie_1_boces','bid_reference',
+            ]
+        elif file_name == 'deals':
+            lines = [
+                'deal_entered_current_deal_stage', 'dealers_quoting_this_deal', 'end_user', 'isr',
+                'lost_reason_notes', 'n247s_lifecycle_stage', 'opportunity_link', 'product_s_considered',
+                'sales_order', 'state', 'opportunity_number'
+            ]
+
         property_url = ''
-        with open('{}_fields.txt'.format(file_name), 'r') as file:
-            lines = file.readlines()
-            for line in lines:
-                property_url = property_url + '&properties=' + line.rstrip()
+        for line in lines:
+            property_url = property_url + '&properties=' + line
         return property_url
 
     def add_properties(self, odoo_obj, hubspot_obj, name):
@@ -177,34 +227,110 @@ class HubspotImportIntegration(models.Model):
                         'previous_camera_system']
         elif name == 'deals':
             m2m_list = ['dealers_quoting_this_deal', 'product_s_considered']
-        with open('{}_fields.txt'.format(name), 'r') as file:
-            lines = file.readlines()
-            for line in lines:
-                field = line.rstrip()
-                if hubspot_obj.get(field):
-                    if field in m2m_list:
+
+        else:
+            print("hello")
+
+        lines = []
+        if name == 'contacts':
+            lines = ['aapt_ar_', 'associated_company', 'business_unit', 'contact_import_list_name', 'county', 'demo',
+                     'did_they_go_to_a_new_school_district_company_', 'iacp', 'lead_type', 'middle_name', 'nadp',
+                     'napt',
+                     'no_longer_at_school_district_company', 'planned_retirement_date', 'population',
+                     'product_i_m_interested_in', 'purchased_list_july', 'purchasing_influence', 'remove', 'reports_to',
+                     'request_a_demo', 'role', 's247_secondary_company', 'service_surveillance_owner',
+                     'state_or_province',
+                     'state_or_region', 'surveillance_247_area_code', 'surveillance_247_district_name',
+                     'surveillance_247_district_website_domain', 'territory',
+                     'what_school_district_company_did_they_go_',
+                     'what_type_of_support', 'why_not_at_school_district_company_', 'years_with_company',
+                     'zoom_webinar_attendance_average_duration', 'zoom_webinar_attendance_count',
+                     'zoom_webinar_joinlink',
+                     'zoom_webinar_registration_count', 'aasbo_az_', 'address2', 'asta_al_', 'casbo_ca_', 'nickname',
+                     'casto_ca_', 'full_name', 'accounting_contact_full_name', 'cgcs', 'accounting_email', 'cptc_cn_',
+                     'crtc_wa_', 'purchasing_contact_full_name', 'cspta_co_', 'purchasing_email', 'ctaa',
+                     'division_cf_contact', 'fpta_ctd', 'internal_id_customer', 'gapt_ga_', 'last_rma_email_date',
+                     'customer_rating', 'gcapt_tx_', 'famtec_customer', 'iapt_il_', 'famtec_sales_rep', 'iapt_id_',
+                     'bus_garage', 'ipta_ia_', 'kspta_ks_', 'mapt_mi_', 'mapt_mo_', 'mnapt_mn_', 'n247_dvr_total',
+                     'as_of_date',
+                     'msboa_mn_', 'cameras', 'napt_na_', 'external_camera', 'ncpta_nc_', 'ncst', 'special_instructions',
+                     'area_code', 'nsba_na_', 'job_title_secondary', 'nsta_mid', 'nsta_summer', 'unique_identifier',
+                     'nsta_national', 'solution_currently_installed', 'oapt_oh_', 'oapt_ok_', 'oasbo_on_', 'oasbo_osba',
+                     'opta_or_', 'osbma_oh_', 'sbx', 'scapt_sc_', 'sesptc', 'stai_in_', 'stn', 'taa_az_', 'tapt_tn_',
+                     'tapt_tx_',
+                     'transfinder', 'tsd', 'uapt_ut_', 'vapt_va_', 'wapt_wa_', 'wpta_wy_', 'wsba_wi_', 'wvapt_wv_',
+                     'chapter_meeting_1', 'sts_of_nj']
+        elif name == 'companies':
+            lines = [
+                'bid_potential', 'bid_status', 'business_vertical', 'business_vertical_other_', 'camera_system',
+                'camera_system_other_', 'cameras', 'competitor', 'contacted_with', 'contract_expires',
+                'contracted_services',
+                'customer_rating', 'dealer_sold_through', 'e360_cameras', 'external_camera', 'fleet_maintenance_system',
+                'fleet_maintenance_system_other_', 'fleet_size_s247', 'gps', 'gps_vendor', 'gps_vendor_other_',
+                'how_many_lots_',
+                'issr', 'n247_bus_saleman', 'n247s_lifecycle_stage', 'nadp', 'netsuite_refresh', 'company_type',
+                'number_of_buses',
+                'number_of_sales_personnel', 'number_of_special_needs_students_transported',
+                'number_of_students_transported',
+                'number_of_total_students', 'of_buses', 'of_cameras_per_bus', 'of_students_total',
+                'of_students_transported',
+                'parent_portal', 'parent_portal_other_', 'parent_portal_system', 'preferred_camera_vendor',
+                'preferred_camera_vendor_cloned_',
+                'previous_camera_system', 'products', 'prospect_status_s247', 'purchase_date', 'purchased_list_july',
+                'remove', 'rfp_date_posted',
+                'routing', 'routing_solution', 'routing_solution_other_', 'rsm', 's247_contact_email',
+                's247_county', 's247_first_name', 's247_last_name', 's247_lead_contact', 's247_pre_post_salutation',
+                's247_title',
+                'sales_rep', 'school_year_budget_begins', 'school_year_start', 'service_agreement',
+                'service_surveillance_owner',
+                'sic_code', 'stop_arm_camera_s_', 'student_count', 'student_information_system',
+                'student_information_system_other_',
+                'student_tracking', 'student_tracking_system', 'student_tracking_system_other_',
+                'surveillance_247_company_domain',
+                'surveillance_247_district', 'system', 'td_fleet_monitor', 'territory', 'territory_coverage',
+                'touchdown',
+                'touchdown_cloud_services_amount', 'touchdown_cloud_services_renewal_date', 'touchdown_install_date',
+                'wireless', 'wireless_s247',
+                'internal_id', 'new_id', 'lot_1_address', 'status', 'fleet_size', 'lot_2_address', 'netsuite_customer',
+                'netsuite_status',
+                'bid_awarded_year', 'bus_garage', 'full_name', 'n247_dvr_total', 'special_instructions', 'area_code',
+                'vendor',
+                'dealer_sub_type', 'unique_identifier', 'opportunity_number', 'contractor', 'minitrack', 'erie_1_boces',
+                'bid_reference',
+            ]
+        elif name == 'deals':
+            lines = [
+                'deal_entered_current_deal_stage', 'dealers_quoting_this_deal', 'end_user', 'isr',
+                'lost_reason_notes', 'n247s_lifecycle_stage', 'opportunity_link', 'product_s_considered',
+                'sales_order', 'state', 'opportunity_number'
+            ]
+        else:
+            print("Hello")
+        for line in lines:
+            if hubspot_obj.get(line):
+                if line in m2m_list:
+                    odoo_obj.update({
+                        line: [[6, 0, self.add_m2m_values(hubspot_obj[line]['value'])]]
+                    })
+                else:
+                    if line in date_fields:
+                        date_convert = hubspot_obj[line]['value']
+                        date_value = datetime.datetime.fromtimestamp(int(date_convert[:-3]))
                         odoo_obj.update({
-                            field: [[6, 0, self.add_m2m_values(hubspot_obj[field]['value'])]]
+                            line: date_value
                         })
                     else:
-                        if field in date_fields:
-                            date_convert = hubspot_obj[field]['value']
-                            date_value = datetime.datetime.fromtimestamp(int(date_convert[:-3]))
-                            odoo_obj.update({
-                                field: date_value
-                            })
-                        else:
-                            if hubspot_obj[field]['value'] != 'false':
-                                state_fields = ['state_or_province', 'state_or_region']
-                                if field in state_fields:
-                                    odoo_state = self.env['res.country.state'].search([('name', '=', hubspot_obj[field]['value'])])
-                                    odoo_obj.update({
-                                        field: odoo_state.id if odoo_state else None
-                                    })
-                                else:
-                                    odoo_obj.update({
-                                        field: hubspot_obj[field]['value'] if hubspot_obj[field]['value'] else None
-                                    })
+                        if hubspot_obj[line]['value'] != 'false':
+                            state_fields = ['state_or_province', 'state_or_region']
+                            if line in state_fields:
+                                odoo_state = self.env['res.country.state'].search([('name', '=', hubspot_obj[line]['value'])])
+                                odoo_obj.update({
+                                    line: odoo_state.id if odoo_state else None
+                                })
+                            else:
+                                odoo_obj.update({
+                                    line: hubspot_obj[line]['value'] if hubspot_obj[line]['value'] else None
+                                })
 
     def add_m2m_values(self, values):
         value_ids = []
@@ -347,10 +473,11 @@ class HubspotImportIntegration(models.Model):
                     'Accept': 'application/json',
                     'connection': 'keep-Alive'
                 }
+                properties = self.read_file('companies')
                 has_more = True
                 while has_more:
                     parameters = urllib.parse.urlencode(parameter_dict)
-                    get_url = get_all_companies_url + parameters
+                    get_url = get_all_companies_url + parameters + properties
                     r = requests.get(url=get_url, headers=headers)
                     response_dict = json.loads(r.text)
                     hubspot_ids.extend(self.create_companies(response_dict['companies'], hubspot_keys, Auto))
@@ -493,7 +620,7 @@ class HubspotImportIntegration(models.Model):
                         if deal['properties']['closedate']['value'] != "":
                             close_date = datetime.datetime.fromtimestamp(int(deal['properties']['closedate']['value'][:-3]))
                     if not odoo_deal:
-                        self.env['crm.lead'].create({
+                        deal_values = {
                             'hubspot_id': str(deal['dealId']),
                             'name': deal['properties']['dealname']['value'],
                             'planned_revenue': deal['properties']['amount']['value'] if 'amount' in deal['properties'].keys() else None,
@@ -501,7 +628,10 @@ class HubspotImportIntegration(models.Model):
                             'date_deadline': close_date if close_date else None,
                             'hs_deal_contacts': [[6, 0, contacts]] if contacts else None,
                             'hs_deal_companies': companies[0] if companies else None,
-                        })
+                        }
+
+                        self.add_properties(deal_values, deal, 'companies')
+                        self.env['res.partner'].create(deal_values)
                     else:
                         odoo_deal.write({
                             'hubspot_id': str(deal['dealId']),

@@ -19,7 +19,30 @@
                             </div>
                         </group>
                         <group>
-                            <div>
+                            <div class="content-group">
+                                <group col="4">
+
+                                    <group>
+                                        <label for="degrees" style="font-size:16px" string="Modules"/>
+                                    </group>
+                                    <group>
+
+                                        <span for="degrees">
+                                            <label for="degrees" style="font-size:16px" string="Import"/>
+                                            <label for="degrees" style="font-size:12px"
+                                                   string="from Hubspot into Odoo"/>
+
+                                        </span>
+                                    </group>
+                                    <group>
+
+                                        <span for="degrees">
+                                            <label for="degrees" style="font-size:16px" string="Export"/>
+                                            <label for="degrees" style="font-size:12px"
+                                                   string="from Odoo into Hubspot"/>
+                                        </span>
+                                    </group>
+                                </group>
                                 <group col="4">
                                     <group>
                                         <strong>Companies</strong>
@@ -31,7 +54,6 @@
                                         <field name="export_company" nolabel="1"/>
                                     </group>
                                 </group>
-                                
                                 <group col="4">
                                     <group>
                                         <strong>Contacts</strong>
@@ -43,7 +65,6 @@
                                         <field name="export_contact" nolabel="1"/>
                                     </group>
                                 </group>
-
                                 <group col="4">
                                     <group>
                                         <strong>Deals</strong>
@@ -64,7 +85,7 @@
                                     </group>
                                 </group>
                             </div>
-                        </group> 
+                        </group>
                         <group col="10">
                             <field name="auto_sync" string="Auto Scheduler"/>
                             <field name="interval_number" on_change="check_number"
@@ -116,7 +137,7 @@
             <field name="view_mode">form</field>
             <field name="res_id" ref="odoo_hubspot.my_record_02"/>
             <field name="target">inline</field>
-        </record> 
+        </record>
 
         <record model="ir.ui.view" id=">res_config_settings_view_form">
             <field name="name">res.config.settings.view.form.inherit.base.setup</field>
@@ -193,8 +214,18 @@
             </field>
         </record>
 
+        <record model="ir.actions.act_window" id="credentials_action">
+            <field name="name">res_config_settings</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module':'odoo_hubspot'}</field>
+        </record>
+
         <menuitem id="hubspot_root" name="Hubspot" web_icon="odoo_hubspot,static/description/icon.png"/>
-    
-        <menuitem id="hubspot_import_integration" name="Hubspot Menu" parent="hubspot_root" action="hubspot_action" sequence="2"/>
+        <menuitem id="hubspot_credentials" name="Hubspot Credentials" parent="hubspot_root" action="credentials_action"
+                  sequence="20"/>
+        <menuitem id="hubspot_import_integration" name="Hubspot Menu" parent="hubspot_root" action="hubspot_action"
+                  sequence="2"/>
     </data>
 </odoo>
