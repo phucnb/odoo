@@ -160,9 +160,9 @@ class HubspotImportIntegration(models.Model):
                     'what_type_of_support','why_not_at_school_district_company_','years_with_company',
                     'zoom_webinar_attendance_average_duration','zoom_webinar_attendance_count','zoom_webinar_joinlink',
                     'zoom_webinar_registration_count','aasbo_az_','address2','asta_al_','casbo_ca_','nickname',
-                    'casto_ca_','accounting_contact_full_name','cgcs','accounting_email','cptc_cn_',
+                    'casto_ca_','full_name','accounting_contact_full_name','cgcs','accounting_email','cptc_cn_',
                     'crtc_wa_','purchasing_contact_full_name','cspta_co_','purchasing_email','ctaa',
-                    'division_cf_contact','fpta_ctd','gapt_ga_','last_rma_email_date',
+                    'division_cf_contact','fpta_ctd','internal_id_customer','gapt_ga_','last_rma_email_date',
                     'customer_rating','gcapt_tx_','famtec_customer','iapt_il_','famtec_sales_rep','iapt_id_',
                     'bus_garage','ipta_ia_','kspta_ks_','mapt_mi_','mapt_mo_','mnapt_mn_','n247_dvr_total','as_of_date',
                     'msboa_mn_','cameras','napt_na_','external_camera','ncpta_nc_','ncst','special_instructions',
@@ -177,9 +177,9 @@ class HubspotImportIntegration(models.Model):
                 'camera_system_other_','cameras','competitor','contacted_with','contract_expires','contracted_services',
                 'customer_rating','dealer_sold_through','e360_cameras','external_camera','fleet_maintenance_system',
                 'fleet_maintenance_system_other_','fleet_size_s247','gps','gps_vendor','gps_vendor_other_','how_many_lots_',
-                'issr','n247_bus_saleman','n247s_lifecycle_stage','nadp','netsuite_refresh','company_type',
-                'number_of_sales_personnel','number_of_special_needs_students_transported',
-                'of_buses','of_cameras_per_bus','of_students_total','of_students_transported',
+                'issr','n247_bus_saleman','n247s_lifecycle_stage','nadp','netsuite_refresh','company_type','number_of_buses',
+                'number_of_sales_personnel','number_of_special_needs_students_transported','number_of_students_transported',
+                'number_of_total_students','of_buses','of_cameras_per_bus','of_students_total','of_students_transported',
                 'parent_portal','parent_portal_other_','parent_portal_system','preferred_camera_vendor','preferred_camera_vendor_cloned_',
                 'previous_camera_system','products','prospect_status_s247','purchase_date','purchased_list_july','remove','rfp_date_posted',
                 'routing','routing_solution','routing_solution_other_','rsm','s247_contact_email',
@@ -190,7 +190,7 @@ class HubspotImportIntegration(models.Model):
                 'surveillance_247_district','system','td_fleet_monitor','territory','territory_coverage','touchdown',
                 'touchdown_cloud_services_amount','touchdown_cloud_services_renewal_date','touchdown_install_date','wireless','wireless_s247',
                 'internal_id','new_id','lot_1_address','status','fleet_size','lot_2_address','netsuite_customer','netsuite_status',
-                'bid_awarded_year','bus_garage','n247_dvr_total','special_instructions','area_code','vendor',
+                'bid_awarded_year','bus_garage','full_name','n247_dvr_total','special_instructions','area_code','vendor',
                 'dealer_sub_type','unique_identifier','opportunity_number','contractor','minitrack','erie_1_boces','bid_reference',
             ]
         elif file_name == 'deals':
@@ -247,9 +247,9 @@ class HubspotImportIntegration(models.Model):
                      'zoom_webinar_attendance_average_duration', 'zoom_webinar_attendance_count',
                      'zoom_webinar_joinlink',
                      'zoom_webinar_registration_count', 'aasbo_az_', 'address2', 'asta_al_', 'casbo_ca_', 'nickname',
-                     'casto_ca_', 'accounting_contact_full_name', 'cgcs', 'accounting_email', 'cptc_cn_',
+                     'casto_ca_', 'full_name', 'accounting_contact_full_name', 'cgcs', 'accounting_email', 'cptc_cn_',
                      'crtc_wa_', 'purchasing_contact_full_name', 'cspta_co_', 'purchasing_email', 'ctaa',
-                     'division_cf_contact', 'fpta_ctd', 'gapt_ga_', 'last_rma_email_date',
+                     'division_cf_contact', 'fpta_ctd', 'internal_id_customer', 'gapt_ga_', 'last_rma_email_date',
                      'customer_rating', 'gcapt_tx_', 'famtec_customer', 'iapt_il_', 'famtec_sales_rep', 'iapt_id_',
                      'bus_garage', 'ipta_ia_', 'kspta_ks_', 'mapt_mi_', 'mapt_mo_', 'mnapt_mn_', 'n247_dvr_total',
                      'as_of_date',
@@ -269,8 +269,10 @@ class HubspotImportIntegration(models.Model):
                 'fleet_maintenance_system_other_', 'fleet_size_s247', 'gps', 'gps_vendor', 'gps_vendor_other_',
                 'how_many_lots_',
                 'issr', 'n247_bus_saleman', 'n247s_lifecycle_stage', 'nadp', 'netsuite_refresh', 'company_type',
+                'number_of_buses',
                 'number_of_sales_personnel', 'number_of_special_needs_students_transported',
-                'of_buses', 'of_cameras_per_bus', 'of_students_total',
+                'number_of_students_transported',
+                'number_of_total_students', 'of_buses', 'of_cameras_per_bus', 'of_students_total',
                 'of_students_transported',
                 'parent_portal', 'parent_portal_other_', 'parent_portal_system', 'preferred_camera_vendor',
                 'preferred_camera_vendor_cloned_',
@@ -291,7 +293,7 @@ class HubspotImportIntegration(models.Model):
                 'wireless', 'wireless_s247',
                 'internal_id', 'new_id', 'lot_1_address', 'status', 'fleet_size', 'lot_2_address', 'netsuite_customer',
                 'netsuite_status',
-                'bid_awarded_year', 'bus_garage', 'n247_dvr_total', 'special_instructions', 'area_code',
+                'bid_awarded_year', 'bus_garage', 'full_name', 'n247_dvr_total', 'special_instructions', 'area_code',
                 'vendor',
                 'dealer_sub_type', 'unique_identifier', 'opportunity_number', 'contractor', 'minitrack', 'erie_1_boces',
                 'bid_reference',
@@ -437,20 +439,10 @@ class HubspotImportIntegration(models.Model):
                             'phone': profile['phone']['value'] if 'phone' in profile.keys() else '',
                         }
                         self.add_properties(contact_values, profile, 'contacts')
-                        self.env['res.partner'].create(contact_values)
-                    # else:
-                    #     odoo_partner.write({
-                    #         'name': name,
-                    #         'hs_first_name': profile['firstname']['value'] if 'firstname' in profile else '',
-                    #         'hs_last_name': profile['lastname']['value'] if 'lastname' in profile else '',
-                    #         'email': profile['email']['value'] if 'email' in profile.keys() else '',
-                    #         'website': profile['website']['value'] if 'website' in profile.keys() else '',
-                    #         'city': profile['city']['value'] if 'city' in profile.keys() else '',
-                    #         'zip': profile['zip']['value'] if 'zip' in profile.keys() else '',
-                    #         'parent_id': odoo_company.id if odoo_company else None,
-                    #         'hubspot_id': str(contact['vid']),
-                    #         'phone': profile['phone']['value'] if 'phone' in profile.keys() else '',
-                    #     })
+                        new_contact = self.env['res.partner'].create(contact_values)
+                        self.get_contact_engagements(new_contact, hubspot_keys)
+                    else:
+                        self.get_contact_engagements(odoo_partner, hubspot_keys)
                     self.env.cr.commit()
                     hubspot_ids.append(contact['vid'])
             return hubspot_ids
@@ -665,8 +657,6 @@ class HubspotImportIntegration(models.Model):
             if not odoo_partner:
                 odoo_partner = self.env['res.partner'].create({
                     'name': name,
-                    'hs_first_name': profile['firstname']['value'] if 'firstname' in profile else '',
-                    'hs_last_name': profile['lastname']['value'] if 'lastname' in profile else '',
                     'email': profile['email']['value'] if 'email' in profile.keys() else '',
                     'website': profile['website']['value'] if 'website' in profile.keys() else '',
                     'city': profile['city']['value'] if 'city' in profile.keys() else '',
@@ -677,8 +667,6 @@ class HubspotImportIntegration(models.Model):
             else:
                 odoo_partner.write({
                     'name': name,
-                    'hs_first_name': profile['firstname']['value'] if 'firstname' in profile else '',
-                    'hs_last_name': profile['lastname']['value'] if 'lastname' in profile else '',
                     'email': profile['email']['value'] if 'email' in profile.keys() else '',
                     'website': profile['website']['value'] if 'website' in profile.keys() else '',
                     'city': profile['city']['value'] if 'city' in profile.keys() else '',
@@ -841,6 +829,203 @@ class HubspotImportIntegration(models.Model):
             return hubspot_ids
         except Exception as e:
             raise ValidationError(_(str(e)))
+
+    def get_contact_engagements(self, odoo_contact, hubspot_keys):
+        try:
+
+            url = 'https://api.hubapi.com/engagements/v1/engagements/associated/CONTACT/{0}/paged?hapikey={1}'.format(
+                odoo_contact.hubspot_id, hubspot_keys)
+            # url = 'https://api.hubapi.com/engagements/v1/engagements/paged?hapikey={}'.format(API_KEY)
+            response = requests.get(url)
+            res_data = json.loads(response.content.decode("utf-8"))
+            engagements = res_data['results']
+            for engagement in engagements:
+                engagement_data = engagement['engagement']
+                odoo_message = self.env['mail.message'].search([('engagement_id', '=', engagement_data['id'])])
+                odoo_activity = self.env['mail.activity'].search([('engagement_id', '=', engagement_data['id'])])
+                if odoo_message or odoo_activity:
+                    continue
+                association_data = engagement['associations']
+                meta_data = engagement['metadata']
+                if engagement_data['type'] == 'EMAIL' and len(meta_data['from']) > 0:
+                    try:
+                        author = self.env['res.partner'].search([('email', '=', meta_data['from'])])
+                        author_id = None
+                        if author:
+                            author_id = author.id
+                        else:
+                            author_id = self.env.user.id
+                        odoo_comment = self.env['mail.message'].create({
+                            'engagement_id': engagement_data['id'],
+                            'message_type': 'email',
+                            'body': meta_data['text'].encode().decode('unicode-escape'),
+                            'create_date': datetime.datetime.fromtimestamp(int(str(engagement_data['createdAt'])[:-3])),
+                            'display_name': author.name if author.name else None,
+                            'email_from': meta_data['from'],  # comment.author.email if comment.author.email else None,
+                            'author_id': author_id,
+                            'model': 'res.partner',
+                            'res_id': odoo_contact.id
+                        })
+                    except:
+                        pass
+                elif engagement_data['type'] == 'NOTE':
+                    try:
+                        print(odoo_contact.name)
+                        author = self.env.user
+                        author_id = self.env.user.id
+                        odoo_comment = self.env['mail.message'].create({
+                            'engagement_id': engagement_data['id'],
+                            'message_type': 'notification',
+                            'body': engagement_data['bodyPreview'],
+                            'create_date': datetime.datetime.fromtimestamp(int(str(engagement_data['createdAt'])[:-3])),
+                            'display_name': author.name if author.name else None,
+                            'author_id': author_id,
+                            'model': 'res.partner',
+                            'res_id': odoo_contact.id
+                        })
+                        # print(odoo_comment.name)
+                    except:
+                        pass
+                elif engagement_data['type'] == 'TASK':
+                    try:
+                        if meta_data['status'] != 'COMPLETED':
+                            print(odoo_contact.name)
+                            activity_type = self.env['mail.activity.type'].search([('name', '=', 'Todo')])
+                            partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
+                            self.env['mail.activity'].create({
+                                'engagement_id': engagement_data['id'],
+                                'res_id': odoo_contact.id,
+                                'activity_type_id': activity_type.id,
+                                'summary': meta_data['subject'],
+                                'hubspot_status': meta_data['status'],
+                                'note': meta_data['body'] if meta_data.get('body') else None,
+                                'forObjectType': meta_data['forObjectType'],
+                                'res_model_id': partner_model.id,
+                                'date_deadline': datetime.datetime.fromtimestamp(
+                                    int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
+                                    'completionDate') else datetime.datetime.now()
+                            })
+                            self.env.cr.commit()
+                        else:
+                            print('message created for task', odoo_contact.name)
+                            author = odoo_contact
+                            author_id = None
+                            if author:
+                                author_id = author.id
+                            else:
+                                author_id = self.env.user.id
+                            odoo_comment = self.env['mail.message'].create({
+                                'engagement_id': engagement_data['id'],
+                                'message_type': 'comment',
+                                # 'from': odoo_contact.email,
+                                'body': meta_data['body'] if meta_data.get('body') else meta_data['subject'],
+                                'create_date': datetime.datetime.fromtimestamp(
+                                    int(str(engagement_data['createdAt'])[:-3])),
+                                'display_name': author.name if author.name else None,
+                                'author_id': author_id,
+                                'model': 'res.partner',
+                                'res_id': odoo_contact.id
+                            })
+                    except:
+                        pass
+                elif engagement_data['type'] == 'CALL':
+                    try:
+                        if meta_data['status'] != 'COMPLETED':
+                            print(odoo_contact.name)
+                            activity_type = self.env['mail.activity.type'].search([('name', '=', 'Call')])
+                            partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
+                            self.env['mail.activity'].create({
+                                'engagement_id': engagement_data['id'],
+                                'res_id': odoo_contact.id,
+                                'activity_type_id': activity_type.id,
+                                'summary': meta_data['subject'] if meta_data.get('subject') else meta_data[
+                                    'body'] if meta_data.get('body') else None,
+                                'hubspot_status': meta_data['status'],
+                                'note': meta_data['body'] if meta_data.get('body') else None,
+                                'toNumber': meta_data['toNumber'] if meta_data.get('toNumber') else None,
+                                'fromNumber': meta_data['fromNumber'] if meta_data.get('fromNumber') else None,
+                                'durationMilliseconds': str(meta_data['durationMilliseconds']) if meta_data.get(
+                                    'durationMilliseconds') else None,
+                                'recordingUrl': meta_data['recordingUrl'] if meta_data.get('recordingUrl') else None,
+                                'disposition': meta_data['disposition'] if meta_data.get('disposition') else None,
+                                'res_model_id': partner_model.id,
+                                'date_deadline': datetime.datetime.fromtimestamp(
+                                    int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
+                                    'completionDate') else datetime.datetime.now()
+                            })
+                            self.env.cr.commit()
+                        else:
+                            print('message created for call', odoo_contact.name)
+                            author = odoo_contact
+                            author_id = None
+                            if author:
+                                author_id = author.id
+                            else:
+                                author_id = self.env.user.id
+                            odoo_comment = self.env['mail.message'].create({
+                                'message_type': 'comment',
+                                'engagement_id': engagement_data['id'],
+                                'body': meta_data['body'] if meta_data.get('body') else meta_data['subject'],
+                                'create_date': datetime.datetime.fromtimestamp(
+                                    int(str(engagement_data['createdAt'])[:-3])),
+                                'display_name': author.name if author.name else None,
+                                'author_id': author_id,
+                                'model': 'res.partner',
+                                'res_id': odoo_contact.id
+                            })
+                    except:
+                        pass
+
+                elif engagement_data['type'] == 'MEETING':
+                    try:
+                        end_time = datetime.datetime.fromtimestamp(int(str(meta_data['endTime'])[:-3]))
+                        if end_time > datetime.datetime.now():
+                            print(odoo_contact.name)
+                            activity_type = self.env['mail.activity.type'].search([('name', '=', 'Meeting')])
+                            partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
+                            self.env['mail.activity'].create({
+                                'engagement_id': engagement_data['id'],
+                                'res_id': odoo_contact.id,
+                                'activity_type_id': activity_type.id,
+                                'summary': meta_data['title'] if meta_data.get('title') else meta_data[
+                                    'body'] if meta_data.get('body') else None,
+                                'note': meta_data['body'] if meta_data.get('body') else None,
+                                'startTime': datetime.datetime.fromtimestamp(
+                                    int(str(meta_data['startTime'])[:-3])) if meta_data.get(
+                                    'startTime') else datetime.datetime.now(),
+                                'endTime': datetime.datetime.fromtimestamp(
+                                    int(str(meta_data['endTime'])[:-3])) if meta_data.get(
+                                    'endTime') else datetime.datetime.now(),
+                                'res_model_id': partner_model.id,
+                                'date_deadline': datetime.datetime.fromtimestamp(
+                                    int(str(meta_data['endTime'])[:-3])) if meta_data.get(
+                                    'endTime') else datetime.datetime.now()
+                            })
+                            self.env.cr.commit()
+                        else:
+                            print('message created for call', odoo_contact.name)
+                            author = odoo_contact
+                            author_id = None
+                            if author:
+                                author_id = author.id
+                            else:
+                                author_id = self.env.user.id
+                            odoo_comment = self.env['mail.message'].create({
+                                'engagement_id': engagement_data['id'],
+                                'message_type': 'comment',
+                                'body': meta_data['body'] if meta_data.get('body') else meta_data['title'],
+                                'create_date': datetime.datetime.fromtimestamp(
+                                    int(str(engagement_data['createdAt'])[:-3])),
+                                'display_name': author.name if author.name else None,
+                                'author_id': author_id,
+                                'model': 'res.partner',
+                                'res_id': odoo_contact.id
+                            })
+                    except:
+                        pass
+        except:
+            pass
+
 
 
 class SyncHistory(models.Model):
