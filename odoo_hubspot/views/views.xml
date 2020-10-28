@@ -108,7 +108,7 @@
                             <button name="sync" string="Sync Data" type="object" icon="fa-refresh"/>
                         </group>
 
-                        <!-- <notebook colspan="3">
+                        <notebook colspan="3">
                             <page string="Import History" autofocus="autofocus">
                                 <group>
                                     <field name="history_line" mode="tree">
@@ -123,7 +123,7 @@
                                     </field>
                                 </group>
                             </page>
-                        </notebook> -->
+                        </notebook>
                     </sheet>
                 </form>
             </field>
