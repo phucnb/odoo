@@ -127,7 +127,7 @@
                     </sheet>
                 </form>
             </field>
-        </record>
+        </record> -->
 
         <record model="ir.actions.act_window" id="hubspot_action">
             <field name="name">hubspot_import_integration</field>
@@ -135,7 +135,7 @@
             <field name="view_mode">form</field>
             <field name="res_id" ref="odoo_hubspot.my_record_02"/>
             <field name="target">inline</field>
-        </record> -->
+        </record> 
 
         <record model="ir.ui.view" id=">res_config_settings_view_form">
             <field name="name">res.config.settings.view.form.inherit.base.setup</field>
@@ -212,8 +212,8 @@
             </field>
         </record>
 
-        <!-- <menuitem id="hubspot_root" name="Hubspot" web_icon="odoo_hubspot,static/description/icon.png"/>
+        <menuitem id="hubspot_root" name="Hubspot" web_icon="odoo_hubspot,static/description/icon.png"/>
     
-        <menuitem id="hubspot_import_integration" name="Hubspot Menu" parent="hubspot_root" action="hubspot_action" sequence="2"/> -->
+        <menuitem id="hubspot_import_integration" name="Hubspot Menu" parent="hubspot_root" action="hubspot_action" sequence="2"/>
     </data>
 </odoo>
