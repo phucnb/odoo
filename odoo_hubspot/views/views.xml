@@ -14,7 +14,7 @@
             <field name="target">inline</field>
         </record>
         
-        <!-- <record model="ir.ui.view" id="hubspot_import_form_view">
+        <record model="ir.ui.view" id="hubspot_import_form_view">
             <field name="name">HubspotImportIntegration.form</field>
             <field name="model">hubspot.import.integration</field>
             <field name="arch" type="xml">
@@ -226,6 +226,6 @@
         <menuitem id="hubspot_credentials" name="Hubspot Credentials" parent="hubspot_root" action="credentials_action"
                   sequence="20"/>
         <menuitem id="hubspot_import_integration" name="Hubspot Menu" parent="hubspot_root" action="hubspot_action"
-                  sequence="2"/> -->
+                  sequence="2"/>
     </data>
 </odoo>
