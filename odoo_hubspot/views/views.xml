@@ -6,7 +6,7 @@
         </record>
     </data>
     <data>
-        <!-- <record model="ir.ui.view" id="hubspot_import_form_view">
+        <record model="ir.ui.view" id="hubspot_import_form_view">
             <field name="name">HubspotImportIntegration.form</field>
             <field name="model">hubspot.import.integration</field>
             <field name="arch" type="xml">
@@ -84,7 +84,7 @@
                                 </group>
                             </div>
                         </group>
-                        <group col="10">
+                        <!-- <group col="10">
                             <field name="auto_sync" string="Auto Scheduler"/>
                             <field name="interval_number" on_change="check_number"
                                    attrs="{'invisible':[('auto_sync','=',False)]}" class="oe_inline"
@@ -106,9 +106,9 @@
 
                         <group style="text-align:center;">
                             <button name="sync" string="Sync Data" type="object" icon="fa-refresh"/>
-                        </group>
+                        </group> -->
 
-                        <notebook colspan="3">
+                        <!-- <notebook colspan="3">
                             <page string="Import History" autofocus="autofocus">
                                 <group>
                                     <field name="history_line" mode="tree">
@@ -123,11 +123,11 @@
                                     </field>
                                 </group>
                             </page>
-                        </notebook>
+                        </notebook> -->
                     </sheet>
                 </form>
             </field>
-        </record> -->
+        </record>
 
         <record model="ir.actions.act_window" id="hubspot_action">
             <field name="name">hubspot_import_integration</field>
