@@ -2,6 +2,12 @@ from odoo import models, fields, api
 
 
 class CustomActivity(models.Model):
+    _inherit = 'mail.message'
+
+    engagement_id = fields.Char()
+
+
+class CustomActivity(models.Model):
     _inherit = 'mail.activity'
 
     engagement_id = fields.Char()
