@@ -18,7 +18,7 @@
                                 <hr/>
                             </div>
                         </group>
-                        <group>
+                        <!-- <group>
                             <div class="content-group">
                                 <group col="4">
                                     <group>
@@ -83,8 +83,8 @@
                                     </group>
                                 </group>
                             </div>
-                        </group>
-                        <!-- <group col="10">
+                        </group> -->
+                        <group col="10">
                             <field name="auto_sync" string="Auto Scheduler"/>
                             <field name="interval_number" on_change="check_number"
                                    attrs="{'invisible':[('auto_sync','=',False)]}" class="oe_inline"
@@ -106,7 +106,7 @@
 
                         <group style="text-align:center;">
                             <button name="sync" string="Sync Data" type="object" icon="fa-refresh"/>
-                        </group> -->
+                        </group>
 
                         <!-- <notebook colspan="3">
                             <page string="Import History" autofocus="autofocus">
