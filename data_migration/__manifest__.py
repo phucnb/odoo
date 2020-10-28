@@ -26,7 +26,8 @@
     'data': [
         'security/ir.model.access.csv',
         'views/contact_fields.xml',
-        'views/company_fields.xml'
+        'views/company_fields.xml',
+        'views/deals.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

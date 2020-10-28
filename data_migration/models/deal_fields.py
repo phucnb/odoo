@@ -32,6 +32,9 @@ PRODUCTS_CONSIDERED = [
 class DealFields(models.Model):
     _inherit = 'crm.lead'
 
+    hubspot_id = fields.Char('Hubspot Id')
+    hs_deal_contacts = fields.Many2many('res.partner', 'deal_contact_rel', 'partner_id', 'deal_id', 'Contacts')
+    hs_deal_companies = fields.Many2one('res.partner', 'Company')
     n247s_lifecycle_stage = fields.Selection(S247_LIFECYCLE_STAGE, "247S Lifecycle Stage")
     dealers_quoting_this_deal = fields.Many2many('get.values', 'dealers_quoting_this_deal_values',
                                                  'dealers_quoting_this_deal', 'value', 'Dealers quoting this deal',

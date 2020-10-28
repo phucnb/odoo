@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="Lead_form_inherit">
+            <field name="name">lead.form.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <field name="team_id" position="after">
+                    <field name="n247s_lifecycle_stage"  attrs="{'invisible': [('type', '=', 'lead')]}"/>
+                    <field name="hs_deal_contacts" attrs="{'invisible': [('type', '=', 'lead')]}"/>
+                    <field name="hs_deal_companies" attrs="{'invisible': [('type', '=', 'lead')]}"/>
+                    <field name="dealers_quoting_this_deal" widget="many2many_tags"/>
+                    <field name="product_s_considered" widget="many2many_tags"/>
+                    <field name="end_user"  attrs="{'invisible': [('type', '=', 'lead')]}"/>
+                    <field name="isr" attrs="{'invisible': [('type', '=', 'lead')]}"/>
+                    <field name="lost_reason_notes" attrs="{'invisible': [('type', '=', 'lead')]}"/>
+                    <field name="opportunity_number"  attrs="{'invisible': [('type', '=', 'lead')]}"/>
+                    <field name="opportunity_link" attrs="{'invisible': [('type', '=', 'lead')]}"/>
+                    <field name="state" attrs="{'invisible': [('type', '=', 'lead')]}"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mail_activity_form_inherit">
+            <field name="name">mail.activity.form.inherit</field>
+            <field name="model">mail.activity</field>
+            <field name="inherit_id" ref="mail.mail_activity_view_form_popup"/>
+            <field name="arch" type="xml">
+            <xpath expr="//field[@name='note']" position="before">
+                    <group>
+                        <group>
+                            <field name="hubspot_status"/>
+                        </group>
+                        <group>
+                            <field name="forObjectType"/>
+                            <field name="toNumber"/>
+                        </group>
+                        <group>
+                            <field name="fromNumber"/>
+                            <field name="durationMilliseconds"/>
+                        </group>
+                        <group>
+                            <field name="recordingUrl"/>
+                            <field name="disposition"/>
+                        </group>
+                        <group>
+                            <field name="startTime"/>
+                            <field name="endTime"/>
+                        </group>
+                    </group>
+            </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+
