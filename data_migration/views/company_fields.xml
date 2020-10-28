@@ -17,21 +17,21 @@
                     <page string='Cameras' attrs="{'invisible':[('is_company','=',False)]}">
                         <group>
                             <group>
-                                <field name="previous_camera_system" />
+                                <field name="previous_camera_system" widget="many2many_tags"/>
                             </group>
                         </group>
                     </page>
                     <page string='School District Information' attrs="{'invisible':[('is_company','=',False)]}">
                         <group>
                             <group>
-                                <field name="camera_system" />
+                                <field name="camera_system" widget="many2many_tags"/>
                                 <field name="camera_system_other_" />
                                 <field name="contract_expires" />
                                 <field name="contracted_services" />
                             </group>
                             <group>
                                 <field name="contracted_with" />
-                                <field name="dealer_sold_through" />
+                                <field name="dealer_sold_through" widget="many2many_tags"/>
                                 <field name="fleet_maintenance_system" />
                                 <field name="fleet_maintenance_system_other_" />
                             </group>
@@ -76,7 +76,7 @@
                     <page string='Touchdown' attrs="{'invisible':[('is_company','=',False)]}">
                         <group>
                             <group>
-                                <field name="how_many_lots_" />
+                                <field name="how_many_lots_" widget="many2many_tags"/>
                                 <field name="lot_1_address" />
                                 <field name="lot_2_address" />
                                 <field name="purchase_date" />
@@ -114,9 +114,8 @@
                                 <field name="cameras" />
                             </group>
                             <group>
-                                <field name="competitor" />
+                                <field name="competitor" widget="many2many_tags"/>
                                 <field name="contractor" />
-                                <field name="customer_rating" />
                                 <field name="dealer_sub_type" />
                             </group>
                         </group>
@@ -182,9 +181,7 @@
                         </group>
                         <group>
                             <group>
-                                <field name="system" />
-                                <field name="territory" />
-                                <field name="company_types" />
+                                <field name="system" widget="many2many_tags" />
                                 <field name="unique_identifier" />
                                 <field name="vendor" />
                             </group>
