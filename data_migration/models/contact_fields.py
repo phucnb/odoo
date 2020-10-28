@@ -41,12 +41,6 @@ INFLUENCE = [
     ('5', '5'),
 ]
 
-OPTIONS = [
-    ('2015', '2015'), ('2016', '2016'), ('2017', '2017'),
-    ('2018', '2018'), ('2019', '2019'), ('2020', '2020'),
-    ('2021', '2021'), ('2022', '2022'), ('2023', '2023')
-]
-
 AREA_CODE = [
     ('607', '607'), ('585', '585'), ('719', '719'),
     ('845', '845'), ('518', '518'), ('516', '516'),
@@ -228,6 +222,9 @@ class ContactFields(models.Model):
     purchasing_contact_full_name = fields.Char("Purchasing contact fullname")
     purchasing_email = fields.Char("Purchasing email")
     last_rma_email_date = fields.Date("Last rma email date")
+    request_a_demo = fields.Date('Resquest a demo')
+    state_or_province = fields.Many2one('res.country.state', 'State or Province')
+    state_or_region = fields.Many2one('res.country.state', 'State or Region')
 
 
 class GetValues(models.Model):
