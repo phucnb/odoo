@@ -19,8 +19,8 @@
                             </div>
                         </group>
                         <group>
-                            <div class="content-group">
-                                <group col="4">
+                            <div>
+                                <group>
                                     <group>
                                         <label style="font-size:16px" string="Modules"/>
                                     </group>
