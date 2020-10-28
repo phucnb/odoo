@@ -40,7 +40,7 @@
                                                    string="from Odoo into Hubspot"/>
                                         </span>
                                     </group>
-                                </group>
+                                </group> -->
                                 <group col="4">
                                     <group>
                                         <strong>Companies</strong>
@@ -83,7 +83,7 @@
                                     </group>
                                 </group>
                             </div>
-                        </group> -->
+                        </group> 
                         <group col="10">
                             <field name="auto_sync" string="Auto Scheduler"/>
                             <field name="interval_number" on_change="check_number"
