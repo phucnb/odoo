@@ -20,26 +20,7 @@
                         </group>
                         <group>
                             <div>
-                                <group>
-                                    <group>
-                                        <label style="font-size:16px" string="Modules"/>
-                                    </group>
-                                    <group>
-                                        <span>
-                                            <label style="font-size:16px" string="Import"/>
-                                            <label style="font-size:12px"
-                                                   string="from Hubspot into Odoo"/>
-                                        </span>
-                                    </group>
-                                    <group>
-                                        <span>
-                                            <label style="font-size:16px" string="Export"/>
-                                            <label style="font-size:12px"
-                                                   string="from Odoo into Hubspot"/>
-                                        </span>
-                                    </group>
-                                </group>
-                                <!-- <group col="4">
+                                <group col="4">
                                     <group>
                                         <strong>Companies</strong>
                                     </group>
@@ -50,6 +31,7 @@
                                         <field name="export_company" nolabel="1"/>
                                     </group>
                                 </group>
+                                <!--
                                 <group col="4">
                                     <group>
                                         <strong>Contacts</strong>
