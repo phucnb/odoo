@@ -18,7 +18,7 @@
                                 <hr/>
                             </div>
                         </group>
-                        <!-- <group>
+                        <group>
                             <div class="content-group">
                                 <group col="4">
                                     <group>
@@ -40,8 +40,8 @@
                                                    string="from Odoo into Hubspot"/>
                                         </span>
                                     </group>
-                                </group> -->
-                                <group col="4">
+                                </group>
+                                <!-- <group col="4">
                                     <group>
                                         <strong>Companies</strong>
                                     </group>
@@ -81,7 +81,7 @@
                                     <group>
                                         <field name="import_ticket" nolabel="1"/>
                                     </group>
-                                </group>
+                                </group> -->
                             </div>
                         </group> 
                         <group col="10">
