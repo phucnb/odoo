@@ -5,7 +5,7 @@
             <field name="field_name">Hubspot</field>
         </record>
     </data>
-    <data>
+    <!-- <data>
         <record model="ir.ui.view" id="hubspot_import_form_view">
             <field name="name">HubspotImportIntegration.form</field>
             <field name="model">hubspot.import.integration</field>
@@ -21,12 +21,10 @@
                         <group>
                             <div class="content-group">
                                 <group col="4">
-
                                     <group>
                                         <label for="degrees" style="font-size:16px" string="Modules"/>
                                     </group>
                                     <group>
-
                                         <span for="degrees">
                                             <label for="degrees" style="font-size:16px" string="Import"/>
                                             <label for="degrees" style="font-size:12px"
@@ -227,5 +225,5 @@
                   sequence="20"/>
         <menuitem id="hubspot_import_integration" name="Hubspot Menu" parent="hubspot_root" action="hubspot_action"
                   sequence="2"/>
-    </data>
+    </data> -->
 </odoo>
