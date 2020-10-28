@@ -40,7 +40,8 @@ NUMBER_OF_CAMERAS_PER_BUS = [
 TOUCHDOWN = [
     ('No', 'No'),
     ('Local', 'Local'),
-    ('Cloud Services', 'Cloud Services')
+    ('Cloud Services', 'Cloud Services'),
+    ('true', 'true')
 ]
 
 FLEET_SIZE = [
@@ -70,7 +71,7 @@ SERVICE_PLAN = [
 ]
 
 OPTIONS = [
-    ('Yes', 'Yes'), ('No', 'No'), ('Looking', 'Looking')
+    ('Yes', 'Yes'), ('No', 'No'), ('Looking', 'Looking'), ('MiniTRACK', 'MiniTRACK'), ('Speed & Mapping', 'Speed & Mapping')
 ]
 
 GPS_VENDORS = [
@@ -85,7 +86,7 @@ STUDENT_INFO_SYSTEM = [
     ('Infinite Campus', 'Infinite Campus'),
     ('Power School', 'Power School'), ('Skyward', 'Skyward'),
     ('E-school', 'E-school'), ('School Tool', 'School Tool'),
-    ('Unknown', 'Unknown')
+    ('Unkown', 'Unknown')
 ]
 
 STUDENT_TRACK_PRO = [
@@ -112,9 +113,13 @@ ROUTING_SOLUTION = [
 ]
 
 FLEET_MAIN_SYSTEM = [
-    ('Servicefinder', 'Servicefinder'), ('Fleetmatics', 'Fleetmatics')    ,
-    ('Dolphin', 'Dolphin'), ('RTA', 'RTA'), ('Seon', 'Seon'),
-    ('Versatrans', 'Versatrans'), ('Unknown', 'Unknown'),
+    ('Servicefinder', 'Servicefinder'),
+    ('Fleetmatics', 'Fleetmatics'),
+    ('Dolphin', 'Dolphin'),
+    ('RTA', 'RTA'),
+    ('Seon', 'Seon'),
+    ('Versatrans', 'Versatrans'),
+    ('Unkown', 'Unknown'),
     ('Other', 'Other')
 ]
 
@@ -168,7 +173,8 @@ Customer_Rating = [
     ('Client S247', 'Client S247'), ('Dealer', 'Dealer'),
     ('Indiana Prospect', 'Indiana Prospect'),
     ('Indiana Service Client', 'Indiana Service Client'),
-    ('New Client', 'New Client'), ('Trade Show', 'Trade Show')
+    ('New Client', 'New Client'), ('Trade Show', 'Trade Show'),
+    ('CURRENT CLIENT', 'Current Client')
 ]
 
 DEALER_SUB_TYPE = [
@@ -184,7 +190,7 @@ EXTERNAL_CAMERA = [
 
 ISSR = [
     ('Antavia Cooper', 'Antavia Cooper'),
-    ('Brian Sapp', 'Brian Sapp'), ('Ross Evart', 'Ross Evart'),
+    ('Brian Sapp', 'Brian Sapp'), ('Damon Whitlock', 'Ross Evart'),
     ('Kristi Keaton', 'Kristi Keaton'), ('Lora Pirie-Stafford', 'Lora Pirie-Stafford'),
     ('NE ISSR unnamed', 'NE ISSR unnamed'), ('Carlos Ithier', 'Carlos Ithier'),
     ('Christina Graham', 'Christina Graham'), ('Syreeta Hill', 'Syreeta Hill'),
@@ -237,11 +243,11 @@ VENDOR = [
 
 WIRELESS = [
     ('Touchdown I', 'Touchdown I'),
-    ('Touchdown II', 'Touchdown II'),
+    ('TOUCHDOWN II', 'Touchdown II'),
     ('Touchdown II (50)', 'Touchdown II (50)'),
     ('Touchdown II (100)', 'Touchdown II (100)'),
     ('Quoted Touchdown II', 'Quoted Touchdown II'),
-    ('Mini Smart Server', 'Mini Smart Server')
+    ('Mini Smart Server', 'Mini Smart Server'),
 ]
 
 
@@ -278,7 +284,7 @@ class CustomCompany(models.Model):
     business_vertical = fields.Selection(BUSINESS_VERTICAL, 'Business Vertical')
     business_vertical_other_ = fields.Char("Business Vertical(Other)")
     cameras = fields.Selection(CAMERAS, 'Cameras')
-    company_types = fields.Selection(COMPANY_TYPE, 'Company Type')
+    company_type = fields.Selection(selection_add=COMPANY_TYPE)
     competitor = fields.Many2many('get.values', 'competitor_values', 'competitor', 'value', 'Competitor', help='Please add/select the name of competitor e.g. Seon, AT, Pro-Vision etc') #multiple
     contractor = fields.Char("Contractor")
     customer_rating = fields.Selection(Customer_Rating, 'Customer Rating')
@@ -289,6 +295,7 @@ class CustomCompany(models.Model):
     nadp = fields.Selection(NADP, 'NADP')
     netsuite_customer = fields.Char("NetSuite Customer")
     netsuite_refresh = fields.Char("NetSuite Refresh")
+    netsuite_status = fields.Char("NetSuite Status")
     netsuite = fields.Char("NetSuite Status")
     number_of_sales_personnel = fields.Integer("Number of sales personnel")
     of_students_total = fields.Integer("# of total students")
@@ -302,7 +309,7 @@ class CustomCompany(models.Model):
     preferred_camera_vendor_cloned_ = fields.Char('Preferred Camera Vendor Other')
     previous_camera_system = fields.Many2many('get.values', 'previous_camera_system_values', 'previous_camera_system', 'value', 'Previous Camera System', help='Please add/select the name of previous camera system e.g. AngelTrax, Seon, Gatekeeper etc') #multiple
     products = fields.Selection(PRODUCTS, 'Products')
-    purchase_date = fields.Date('Purchase Date')
+    purchase_date = fields.Char('Purchase Date')
     purchased_list_july = fields.Boolean('Purchased List-July')
     remove = fields.Char('Remove')
     rfp_date_posted = fields.Char('RFP & date due')
@@ -335,7 +342,7 @@ class CustomCompany(models.Model):
     student_tracking = fields.Selection(OPTIONS, 'Student Tracking')
     student_tracking_system = fields.Selection(STUDENT_TRACK_PRO, 'Student Tracking Provider')
     student_tracking_system_other_ = fields.Char("Student Tracking Provides(Other)")
-    service_surveillance_owner = fields.Char("Surveillance-247 Owner")
+    service_surveillance_owner = fields.Many2one('res.users', "Surveillance-247 Owner")
     system = fields.Many2many('get.values', 'system_values', 'system', 'value',
                               'System', help='Please add/select the name of system')
     # territory_coverage = fields.Char("Territory Coverage") # Multiple states selection
