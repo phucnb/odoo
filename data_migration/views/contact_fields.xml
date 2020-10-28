@@ -178,9 +178,7 @@
                 <field name="vat" position="after">
                     <field name="n247_dvr_total" />
                     <field name="area_code" />
-                    <field name="territory" />
                     <field name="special_instructions"/>
-                    <field name="customer_rating" />
                 </field>
             </field>
         </record>
