@@ -303,7 +303,7 @@ class HubspotImportIntegration(models.Model):
                 'sales_order', 'state', 'opportunity_number'
             ]
         else:
-            print("Hello")
+            print("Hellossss")
         for line in lines:
             if hubspot_obj.get(line):
                 if line in m2m_list:
