@@ -14,8 +14,8 @@
                     <sheet>
                         <button name="import_contacts" string="import contacts" type="object"/>
                         <button name="import_companies" string="import companies" type="object"/>
-                        <button name="" string="import deals" type="object"/>
-                        <button name="" string="import tickets" type="object"/>
+                        <button name="import_deals" string="import deals" type="object"/>
+                        <button name="import_tickets" string="import tickets" type="object"/>
                     </sheet>
                 </form>
             </field>

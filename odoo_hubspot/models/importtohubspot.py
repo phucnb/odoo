@@ -407,7 +407,7 @@ class HubspotImportIntegration(models.Model):
         except Exception as e:
             pass
 
-    def import_deals(self, Auto):
+    def import_deals(self,):
         icpsudo = self.env['ir.config_parameter'].sudo()
         hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
         hubspot_ids = []
@@ -430,7 +430,7 @@ class HubspotImportIntegration(models.Model):
                     get_url = get_all_deals_url + parameters + deal_properties
                     r = requests.get(url=get_url, headers=headers)
                     response_dict = json.loads(r.text)
-                    hubspot_ids.extend(self.create_deals(response_dict['deals'], hubspot_keys, Auto))
+                    hubspot_ids.extend(self.create_deals(response_dict['deals'], hubspot_keys))
                     has_more = response_dict['hasMore']
                     parameter_dict['offset'] = response_dict['offset']
                 # return hubspot_ids
@@ -438,7 +438,7 @@ class HubspotImportIntegration(models.Model):
                 _logger.error(e)
                 raise ValidationError(_(str(e)))
 
-    def create_deals(self, deals, hubspot_keys, Auto):
+    def create_deals(self, deals, hubspot_keys):
         try:
             hubspot_ids = []
             close_date = None
@@ -447,16 +447,8 @@ class HubspotImportIntegration(models.Model):
             for deal in deals:
                 deal_date = deal['properties']['hs_createdate']['value']
                 created_date = datetime.datetime.fromtimestamp(int(deal_date[:-3]))
-                if Auto:
-                    if self.start and self.end:
-                        end_date = self.end
-                        start_date = self.start
-                    else:
-                        end_date = datetime.datetime.now()
-                        start_date = end_date - datetime.timedelta(days=1)
-                else:
-                    start_date = self.start
-                    end_date = self.end
+                start_date = self.start
+                end_date = self.end
 
                 if start_date <= created_date <= end_date:
                     contacts = []
