@@ -445,7 +445,7 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.append(contact['vid'])
             return hubspot_ids
         except Exception as e:
-            print("contact name: " + name +" and exception is: " + e)
+            print(e)
             pass
 
     def import_companies(self, Auto):
