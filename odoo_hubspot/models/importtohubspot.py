@@ -29,123 +29,7 @@ class HubspotImportIntegration(models.Model):
     import_contact = fields.Boolean('Import contacts',strore=True)
     import_deal = fields.Boolean('Import deals',strore=True)
     import_ticket = fields.Boolean('Import tickets',strore=True)
-
-    export_contact = fields.Boolean(string='Export contacts')
-    export_company = fields.Boolean(string='Export companies')
-    export_deal = fields.Boolean(string='Export deals')
-
     custom_date_range = fields.Boolean(string='Custom Date Range Sync')
-    auto_sync = fields.Boolean(string='Auto Sync',strore=True)
-    interval_number = fields.Integer(string='Execute Every', default=1,strore=True)
-    interval_unit = fields.Selection([
-        ('minutes', 'Minutes'),
-        ('hours', 'Hours'),
-        ('days', 'Days'),
-        ('weeks', 'Weeks'),
-        ('months', 'Months')], 'Type', default='minutes', strore=True)
-    history_line = fields.One2many('sync.history', 'sync_id', copy=True)
-
-    def sync(self):
-        res_key = self.env['res.config.settings'].search([('hubspot_key', '!=', None)])
-        if not res_key:
-            raise ValidationError('Please! Enter Hubspot key...')
-        else:
-            try:
-                if self.import_company or self.import_contact or self.import_deal or self.import_ticket:
-                    if self.custom_date_range:
-                        self.import_data(False)
-                    if self.auto_sync:
-                        scheduler = self.env['ir.cron'].search([('name', '=', 'Import Scheduler')])
-                        if not scheduler:
-                            scheduler = self.env['ir.cron'].search([('name', '=', 'Import Scheduler'),
-                                                                    ('active', '=', False)])
-                        scheduler.active = self.auto_sync
-                        scheduler.interval_number = self.interval_number
-                        scheduler.interval_type = self.interval_unit
-                if self.export_company or self.export_contact or self.export_deal:
-                    if self.custom_date_range:
-                        self.export_data(False)
-                    if self.auto_sync:
-                        scheduler = self.env['ir.cron'].search([('name', '=', 'Export Scheduler')])
-                        if not scheduler:
-                            scheduler = self.env['ir.cron'].search([('name', '=', 'Export Scheduler'),
-                                                                    ('active', '=', False)])
-                        scheduler.active = self.auto_sync
-                        scheduler.interval_number = self.interval_number
-                        scheduler.interval_type = self.interval_unit
-                if not self.import_contact and not self.import_company and not self.import_deal and not \
-                        self.import_ticket and not self.export_company and not self.export_contact and not \
-                        self.export_deal:
-                    raise osv.except_osv("Execution Details!", "No Option Checked.")
-            except Exception as e:
-                _logger.error(e)
-                raise ValidationError(_(str(e)))
-
-    @api.model
-    def auto_import_data(self):
-        self.import_data(True)
-
-    @api.model
-    def auto_export_data(self):
-        self.export_data(True)
-
-    def import_data(self, Auto):
-        data_dictionary = {}
-        if Auto:
-            self = self.env['hubspot.import.integration'].search([])[0]
-
-        if self.import_company:
-            data_dictionary["companies"] = self.import_companies(Auto)
-        if self.import_contact:
-            data_dictionary["contacts"] = self.import_contacts(Auto)
-        if self.import_deal:
-            data_dictionary["deals"] = self.import_deals(Auto)
-        if self.import_ticket:
-            data_dictionary["tickets"] = self.import_tickets()
-
-        no_of_companies = len(data_dictionary.get("companies", []))
-        no_of_contacts = len(data_dictionary.get("contacts", []))
-        no_of_deals = len(data_dictionary.get('deals', []))
-        no_of_tickets = len(data_dictionary.get('tickets', []))
-
-        if no_of_companies + no_of_contacts + no_of_deals + no_of_tickets:
-            self.sync_history(no_of_companies, no_of_contacts, no_of_deals, no_of_tickets, "Import")
-        else:
-            raise osv.except_osv(_("Sync Details!"), _("No new sync needed. Data already synced."))
-
-    def export_data(self, Auto):
-        data_dictionary = {}
-        if Auto:
-            self = self.env['hubspot.import.integration'].search([])[0]
-
-        if self.export_company:
-            data_dictionary["companies"] = self.export_companies()
-        if self.export_contact:
-            data_dictionary["contacts"] = self.export_contacts()
-        if self.export_deal:
-            data_dictionary["deals"] = self.export_deals()
-
-        no_of_companies = len(data_dictionary.get("companies", []))
-        no_of_contacts = len(data_dictionary.get("contacts", []))
-        no_of_deals = len(data_dictionary.get('deals', []))
-
-        if no_of_companies + no_of_contacts + no_of_deals:
-            self.sync_history(no_of_companies, no_of_contacts, no_of_deals, 0, "Export")
-        else:
-            raise osv.except_osv(_("Sync Details!"), _("No new sync needed. Data already synced."))
-
-    def sync_history(self, no_of_companies, no_of_contacts, no_of_deals, no_of_tickets, nature):
-        sync_history = self.env["sync.history"]
-        sync_history.create({
-            "no_of_companies": no_of_companies,
-            "no_of_contacts": no_of_contacts,
-            "no_of_deals": no_of_deals,
-            "no_of_tickets": no_of_tickets,
-            "sync_nature": nature,
-            "sync_date": datetime.datetime.now(),
-            "sync_id": 1,
-        })
-        self.env.cr.commit()
 
     def read_file(self, file_name):
         lines = []
@@ -342,7 +226,7 @@ class HubspotImportIntegration(models.Model):
             value_ids.append(odoo_value.id)
         return value_ids
 
-    def import_contacts(self, Auto):
+    def import_contacts(self):
         icpsudo = self.env['ir.config_parameter'].sudo()
         hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
         hubspot_ids = []
@@ -363,15 +247,15 @@ class HubspotImportIntegration(models.Model):
                     get_url = get_all_contacts_url + parameters + properties
                     r = requests.get(url=get_url, headers=headers)
                     response_dict = json.loads(r.text)
-                    hubspot_ids.extend(self.create_contacts(response_dict['contacts'], hubspot_keys, Auto))
+                    hubspot_ids.extend(self.create_contacts(response_dict['contacts'], hubspot_keys))
                     has_more = response_dict['has-more']
                     parameter_dict['vidOffset'] = response_dict['vid-offset']
-                return hubspot_ids
+                # return hubspot_ids
             except Exception as e:
                 _logger.error(e)
                 raise ValidationError(_(str(e)))
 
-    def create_contacts(self, contacts, hubspot_keys, Auto):
+    def create_contacts(self, contacts, hubspot_keys):
         try:
             hubspot_ids = []
             get_single_contact_url = "https://api.hubapi.com/contacts/v1/contact/vid/"
@@ -388,16 +272,8 @@ class HubspotImportIntegration(models.Model):
                 profile = json.loads(r.text)['properties']
                 contact_date = profile['createdate']['value']
                 created_date = datetime.datetime.fromtimestamp(int(contact_date[:-3]))
-                if Auto:
-                    if self.start and self.end:
-                        end_date = self.end
-                        start_date = self.start
-                    else:
-                        end_date = datetime.datetime.now()
-                        start_date = end_date - datetime.timedelta(days=1)
-                else:
-                    start_date = self.start
-                    end_date = self.end
+                start_date = self.start
+                end_date = self.end
 
                 if start_date <= created_date <= end_date:
                     if 'associatedcompanyid' in profile and not profile['associatedcompanyid']['value'] == '':
@@ -447,7 +323,7 @@ class HubspotImportIntegration(models.Model):
         except Exception as e:
             pass
 
-    def import_companies(self, Auto):
+    def import_companies(self):
         icpsudo = self.env['ir.config_parameter'].sudo()
         hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
         hubspot_ids = []
@@ -468,15 +344,15 @@ class HubspotImportIntegration(models.Model):
                     get_url = get_all_companies_url + parameters + properties
                     r = requests.get(url=get_url, headers=headers)
                     response_dict = json.loads(r.text)
-                    hubspot_ids.extend(self.create_companies(response_dict['companies'], hubspot_keys, Auto))
+                    hubspot_ids.extend(self.create_companies(response_dict['companies'], hubspot_keys))
                     has_more = response_dict['has-more']
                     parameter_dict['offset'] = response_dict['offset']
-                return hubspot_ids
+                # return hubspot_ids
             except Exception as e:
                 _logger.error(e)
                 raise ValidationError(_(str(e)))
 
-    def create_companies(self, companies, hubspot_keys, Auto):
+    def create_companies(self, companies, hubspot_keys):
         try:
             hubspot_ids = []
             get_single_company_url = "https://api.hubapi.com/companies/v2/companies/"
@@ -491,16 +367,9 @@ class HubspotImportIntegration(models.Model):
                 company_profile = json.loads(company_response.content.decode('utf-8'))['properties']
                 contact_date = company_profile['createdate']['value']
                 created_date = datetime.datetime.fromtimestamp(int(contact_date[:-3]))
-                if Auto:
-                    if self.start and self.end:
-                        end_date = self.end
-                        start_date = self.start
-                    else:
-                        end_date = datetime.datetime.now()
-                        start_date = end_date - datetime.timedelta(days=1)
-                else:
-                    start_date = self.start
-                    end_date = self.end
+
+                start_date = self.start
+                end_date = self.end
 
                 if start_date <= created_date <= end_date:
                     odoo_company = self.env['res.partner'].search([('hubspot_id', '=', str(company['companyId']))])
@@ -564,7 +433,7 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.extend(self.create_deals(response_dict['deals'], hubspot_keys, Auto))
                     has_more = response_dict['hasMore']
                     parameter_dict['offset'] = response_dict['offset']
-                return hubspot_ids
+                # return hubspot_ids
             except Exception as e:
                 _logger.error(e)
                 raise ValidationError(_(str(e)))
@@ -1023,29 +892,3 @@ class HubspotImportIntegration(models.Model):
                         pass
         except:
             pass
-
-
-
-class SyncHistory(models.Model):
-    _name = 'sync.history'
-    _order = 'sync_date desc'
-
-    field_name = fields.Char('sync_history')
-    sync_id = fields.Many2one('hubspot.import.integration', string='Partner Reference', required=True, ondelete='cascade',
-                              index=True, copy=False)
-    sync_date = fields.Datetime(_('Sync Date'), readonly=True, required=True, default=fields.Datetime.now)
-    no_of_companies = fields.Integer(_('Companies'), readonly=True)
-    no_of_contacts = fields.Integer(_('Contacts'), readonly=True)
-    no_of_deals = fields.Integer(_('Deals'), readonly=True)
-    no_of_tickets = fields.Integer(_('Tickets'), readonly=True)
-    sync_nature = fields.Char(_('Type'), readonly=True)
-    document_link = fields.Char(_('Document Link'), readonly=True)
-
-    def sync_data(self):
-        client_action = {
-            'type': 'ir.actions.act_url',
-            'name': "log_file",
-            'target': 'new',
-            'url': self.document_link
-        }
-        return client_action
