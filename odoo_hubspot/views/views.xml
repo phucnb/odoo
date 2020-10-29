@@ -6,11 +6,11 @@
         </record>
     </data>
     <data>
-<!--        <record model="ir.ui.view" id="hubspot_import_form_view">-->
-<!--            <field name="name">HubspotImportIntegration.form</field>-->
-<!--            <field name="model">hubspot.import.integration</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <form create="false">-->
+        <record model="ir.ui.view" id="hubspot_import_form_view">
+            <field name="name">HubspotImportIntegration.form</field>
+            <field name="model">hubspot.import.integration</field>
+            <field name="arch" type="xml">
+                <form>
 <!--                    <sheet>-->
 <!--                        <group>-->
 <!--                            <div>-->
@@ -23,9 +23,9 @@
 <!--                        <button name="" string="import deals" type="object"/>-->
 <!--                        <button name="" string="import tickets" type="object"/>-->
 <!--                    </sheet>-->
-<!--                </form>-->
-<!--            </field>-->
-<!--        </record>-->
+                </form>
+            </field>
+        </record>
 
         <record model="ir.actions.act_window" id="hubspot_action">
             <field name="name">hubspot_import_integration</field>
