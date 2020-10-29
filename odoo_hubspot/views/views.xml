@@ -16,6 +16,10 @@
                         <button name="import_companies" string="import companies" type="object"/>
                         <button name="import_deals" string="import deals" type="object"/>
                         <button name="import_tickets" string="import tickets" type="object"/>
+                        <button name="get_company_engagements" string="import company engagements" type="object"/>
+                        <button name="get_lead_engagements" string="import lead engagements" type="object"/>
+                        <button name="get_ticket_engagements" string="import tickets engagements" type="object"/>
+                        <button name="get_contact_engagements" string="import contacts engagements" type="object"/>
                     </sheet>
                 </form>
             </field>
