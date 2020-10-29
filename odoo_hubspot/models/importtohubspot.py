@@ -445,7 +445,8 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.append(contact['vid'])
             return hubspot_ids
         except Exception as e:
-            raise ValidationError(_(str(e)))
+            print("contact name: " + name +" and exception is: " + e)
+            pass
 
     def import_companies(self, Auto):
         icpsudo = self.env['ir.config_parameter'].sudo()
