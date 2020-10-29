@@ -344,8 +344,7 @@ class HubspotImportIntegration(models.Model):
                     parameter_dict['offset'] = response_dict['offset']
                 # return hubspot_ids
             except Exception as e:
-                _logger.error(e)
-                raise ValidationError(_(str(e)))
+                pass
 
     def create_companies(self, companies, hubspot_keys):
         try:
