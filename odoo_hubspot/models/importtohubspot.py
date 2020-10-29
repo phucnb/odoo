@@ -455,9 +455,9 @@ class HubspotImportIntegration(models.Model):
                     deal_values = {
                         'hubspot_id': str(deal['dealId']),
                         'name': deal['properties']['dealname']['value'],
-                        'planned_revenue': deal['properties']['amount']['value'] if 'amount' in deal['properties'].keys() else None,
+                        'expected_revenue': deal['properties']['amount']['value'] if 'amount' in deal['properties'].keys() else None,
                         'stage_id': deal_stage.id if deal_stage else self.env['crm.stage'].search([('name', '=', 'New')]).id,
-                        'date_deadline': close_date if close_date else None,
+                        'date_closed': close_date if close_date else None,
                         'hs_deal_contacts': [[6, 0, contacts]] if contacts else None,
                         'hs_deal_companies': companies[0] if companies else None,
                         'type': 'opportunity'
@@ -469,9 +469,9 @@ class HubspotImportIntegration(models.Model):
                     odoo_deal.write({
                         'hubspot_id': str(deal['dealId']),
                         'name': deal['properties']['dealname']['value'],
-                        'planned_revenue': deal['properties']['amount']['value'] if 'amount' in deal['properties'].keys() else None,
+                        'expected_revenue': deal['properties']['amount']['value'] if 'amount' in deal['properties'].keys() else None,
                         'stage_id': deal_stage.id if deal_stage else self.env['crm.stage'].search([('name', '=', 'New')]).id,
-                        'date_deadline': close_date,
+                        'date_closed': close_date,
                         'hs_deal_contacts': [[6, 0, contacts]] if contacts else None,
                         'hs_deal_companies': companies[0] if companies else None,
                         'type': 'opportunity'
