@@ -21,7 +21,6 @@
                         <group>
                             <div class="content-group">
                                 <group col="4">
-
                                     <group>
                                         <label for="degrees" style="font-size:16px" string="Modules"/>
                                     </group>
