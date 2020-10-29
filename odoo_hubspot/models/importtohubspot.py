@@ -174,7 +174,7 @@ class HubspotImportIntegration(models.Model):
         elif file_name == 'companies':
             lines = [
                 'bid_potential','bid_status','business_vertical','business_vertical_other_','camera_system',
-                'camera_system_other_','cameras','competitor','contacted_with','contract_expires','contracted_services',
+                'camera_system_other_','cameras','competitor','contract_expires','contracted_services',
                 'customer_rating','dealer_sold_through','e360_cameras','external_camera','fleet_maintenance_system',
                 'fleet_maintenance_system_other_','fleet_size_s247','gps','gps_vendor','gps_vendor_other_','how_many_lots_',
                 'issr','n247_bus_saleman','n247s_lifecycle_stage','nadp','netsuite_refresh','company_type',
@@ -263,7 +263,7 @@ class HubspotImportIntegration(models.Model):
         elif name == 'companies':
             lines = [
                 'bid_potential', 'bid_status', 'business_vertical', 'business_vertical_other_', 'camera_system',
-                'camera_system_other_', 'cameras', 'competitor', 'contacted_with', 'contract_expires',
+                'camera_system_other_', 'cameras', 'competitor', 'contract_expires',
                 'contracted_services',
                 'customer_rating', 'dealer_sold_through', 'e360_cameras', 'external_camera', 'fleet_maintenance_system',
                 'fleet_maintenance_system_other_', 'fleet_size_s247', 'gps', 'gps_vendor', 'gps_vendor_other_',
@@ -536,7 +536,7 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.append(company['companyId'])
             return hubspot_ids
         except Exception as e:
-            raise ValidationError(_(str(e)))
+            pass
 
     def import_deals(self, Auto):
         icpsudo = self.env['ir.config_parameter'].sudo()
