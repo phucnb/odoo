@@ -310,9 +310,6 @@ class HubspotImportIntegration(models.Model):
                     }
                     self.add_properties(contact_values, profile, 'contacts')
                     new_contact = self.env['res.partner'].create(contact_values)
-                    self.get_contact_engagements(new_contact, hubspot_keys)
-                else:
-                    self.get_contact_engagements(odoo_partner, hubspot_keys)
                 self.env.cr.commit()
                 hubspot_ids.append(contact['vid'])
             return hubspot_ids
@@ -329,8 +326,8 @@ class HubspotImportIntegration(models.Model):
         else:
             try:
                 get_all_companies_url = "https://api.hubapi.com/companies/v2/companies/paged?"
-                if self.last_offset:
-                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'offset': int(self.last_offset)}
+                if self.company_last_offset:
+                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'offset': int(self.company_last_offset)}
                 else:
                     parameter_dict = {'hapikey': hubspot_keys, 'limit': 250}
                 headers = {
@@ -347,7 +344,7 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.extend(self.create_companies(response_dict['companies'], hubspot_keys))
                     has_more = response_dict['has-more']
                     parameter_dict['offset'] = response_dict['offset']
-                    self.last_offset = response_dict['offset']
+                    self.company_last_offset = response_dict['offset']
                 # return hubspot_ids
             except Exception as e:
                 _logger.error(e)
