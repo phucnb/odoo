@@ -244,8 +244,8 @@ VENDOR = [
 WIRELESS = [
     ('TOUCHDOWN I', 'Touchdown I'),
     ('TOUCHDOWN II', 'Touchdown II'),
-    ('TOUCHDOWN II (50)', 'Touchdown II (50)'),
-    ('TOUCHDOWN II (100)', 'Touchdown II (100)'),
+    ('Touchdown II (50)', 'Touchdown II (50)'),
+    ('Touchdown II (100)', 'Touchdown II (100)'),
     ('Quoted Touchdown II', 'Quoted Touchdown II'),
     ('Mini Smart Server', 'Mini Smart Server'),
     ('NO', 'NO')
