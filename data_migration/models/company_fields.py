@@ -248,6 +248,7 @@ WIRELESS = [
     ('TOUCHDOWN II (100)', 'Touchdown II (100)'),
     ('Quoted Touchdown II', 'Quoted Touchdown II'),
     ('Mini Smart Server', 'Mini Smart Server'),
+    ('NO', 'NO')
 ]
 
 

@@ -463,7 +463,7 @@ class HubspotImportIntegration(models.Model):
                         'type': 'opportunity'
                     }
 
-                    self.add_properties(deal_values, deal, 'companies')
+                    self.add_properties(deal_values, deal, 'deals')
                     self.env['crm.lead'].create(deal_values)
                 else:
                     odoo_deal.write({
