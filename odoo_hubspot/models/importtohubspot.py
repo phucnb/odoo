@@ -33,7 +33,7 @@ class HubspotImportIntegration(models.Model):
         lines = []
         if file_name == 'contacts':
             lines = ['aapt_ar_','associated_company','business_unit','contact_import_list_name','county','demo',
-                    'did_they_go_to_a_new_school_district_company_','iacp','lead_type','middle_name','nadp','napt',
+                    'did_they_go_to_a_new_school_district_company_','iacp','lead_type','nadp','napt',
                     'no_longer_at_school_district_company','planned_retirement_date','population',
                     'product_i_m_interested_in','purchased_list_july','purchasing_influence','remove','reports_to',
                     'request_a_demo','role','s247_secondary_company','state_or_province',
@@ -116,7 +116,7 @@ class HubspotImportIntegration(models.Model):
         lines = []
         if name == 'contacts':
             lines = ['aapt_ar_', 'associated_company', 'business_unit', 'contact_import_list_name', 'county', 'demo',
-                     'did_they_go_to_a_new_school_district_company_', 'iacp', 'lead_type', 'middle_name', 'nadp',
+                     'did_they_go_to_a_new_school_district_company_', 'iacp', 'lead_type', 'nadp',
                      'napt',
                      'no_longer_at_school_district_company', 'planned_retirement_date', 'population',
                      'product_i_m_interested_in', 'purchased_list_july', 'purchasing_influence', 'remove', 'reports_to',
