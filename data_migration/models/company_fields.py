@@ -288,7 +288,8 @@ class CustomCompany(models.Model):
     company_type = fields.Selection(selection_add=COMPANY_TYPE)
     competitor = fields.Many2many('get.values', 'competitor_values', 'competitor', 'value', 'Competitor', help='Please add/select the name of competitor e.g. Seon, AT, Pro-Vision etc') #multiple
     contractor = fields.Char("Contractor")
-    customer_rating = fields.Selection(Customer_Rating, 'Customer Rating')
+    # customer_rating = fields.Selection(Customer_Rating, 'Customer Rating')
+    customer_rating = fields.Char('Customer Rating')
     dealer_sub_type = fields.Selection(DEALER_SUB_TYPE, 'Dealer Sub-Type')
     external_camera = fields.Selection(EXTERNAL_CAMERA, 'External Camera')
     issr = fields.Selection(ISSR, 'ISSR')
