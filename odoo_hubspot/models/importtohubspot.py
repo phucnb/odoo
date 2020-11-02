@@ -96,7 +96,7 @@ class HubspotImportIntegration(models.Model):
             m2m_list = [
                 'asta_al_', 'aasbo_az_', 'aapt_ar_',
                 'wvapt_wv_', 'wsba_wi_', 'wpta_wy_', 'wapt_wa_', 'vapt_va_', 'uapt_ut_',
-                'tsd', 'transfinder', 'tapt_tx_', 'tapt_tn_', 'taa_az_', 'sts_nj', 'stn',
+                'tsd', 'transfinder', 'tapt_tx_', 'tapt_tn_', 'taa_az_', 'sts_of_nj', 'stn',
                 'stai_in_', 'sesptc', 'scapt_sc_', 'sbx', 'osbma_oh_', 'opta_or_', 'oasbo_osba',
                 'oasbo_on_', 'oapt_ok_', 'oapt_oh_', 'nsta_summer', 'nsta_national', 'nsta_mid',
                 'nsba_na_', 'ncst', 'ncpta_nc_', 'napt_na_', 'napt', 'msboa_mn_', 'mnapt_mn_',
