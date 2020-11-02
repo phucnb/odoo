@@ -26,6 +26,7 @@ class HubspotImportIntegration(models.Model):
     import_deal = fields.Boolean('Import deals',strore=True)
     import_ticket = fields.Boolean('Import tickets',strore=True)
     custom_date_range = fields.Boolean(string='Custom Date Range Sync')
+    last_offset = fields.Char("offset")
 
     def read_file(self, file_name):
         lines = []
@@ -323,7 +324,10 @@ class HubspotImportIntegration(models.Model):
         else:
             try:
                 get_all_companies_url = "https://api.hubapi.com/companies/v2/companies/paged?"
-                parameter_dict = {'hapikey': hubspot_keys, 'limit': 250}
+                if self.last_offset:
+                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'offset': int(self.last_offset)}
+                else:
+                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250}
                 headers = {
                     'Accept': 'application/json',
                     'connection': 'keep-Alive'
