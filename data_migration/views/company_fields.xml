@@ -185,9 +185,6 @@
                                 <field name="unique_identifier" />
                                 <field name="vendor" />
                             </group>
-                            <group>
-<!--                                 <field name="wireless" />
- -->                            </group>
                         </group>
                     </page>
                 </xpath>
