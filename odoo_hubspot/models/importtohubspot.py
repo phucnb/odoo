@@ -26,7 +26,8 @@ class HubspotImportIntegration(models.Model):
     import_deal = fields.Boolean('Import deals',strore=True)
     import_ticket = fields.Boolean('Import tickets',strore=True)
     custom_date_range = fields.Boolean(string='Custom Date Range Sync')
-    last_offset = fields.Char("offset")
+    company_last_offset = fields.Char("Company offset")
+    contact_last_offset = fields.Char("Contact Offset")
 
     def read_file(self, file_name):
         lines = []
@@ -231,7 +232,10 @@ class HubspotImportIntegration(models.Model):
         else:
             try:
                 get_all_contacts_url = "https://api.hubapi.com/contacts/v1/lists/all/contacts/all?"
-                parameter_dict = {'hapikey': hubspot_keys, 'count': 250}
+                if self.contact_last_offset:
+                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'vidOffset': int(self.contact_last_offset)}
+                else:
+                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250}
                 headers = {
                     'Accept': 'application/json',
                     'connection': 'keep-Alive'
@@ -246,6 +250,7 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.extend(self.create_contacts(response_dict['contacts'], hubspot_keys))
                     has_more = response_dict['has-more']
                     parameter_dict['vidOffset'] = response_dict['vid-offset']
+                    self.contact_last_offset = response_dict['vid-offset']
                 # return hubspot_ids
             except Exception as e:
                 _logger.error(e)
