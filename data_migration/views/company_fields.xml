@@ -186,8 +186,8 @@
                                 <field name="vendor" />
                             </group>
                             <group>
-                                <field name="wireless" />
-                            </group>
+<!--                                 <field name="wireless" />
+ -->                            </group>
                         </group>
                     </page>
                 </xpath>

@@ -354,7 +354,7 @@ class CustomCompany(models.Model):
     touchdown_install_date = fields.Date("Touchdown Install Date")
     unique_identifier = fields.Char("Unique Identifier")
     vendor = fields.Selection(VENDOR, "Vendor")
-    wireless = fields.Selection(WIRELESS, "Wireless")
+    # wireless = fields.Selection(WIRELESS, "Wireless")
     td_fleet_monitor = fields.Boolean('TD Fleet Monitor')
 
 
