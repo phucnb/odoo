@@ -95,7 +95,7 @@
                         </group>
                         <group>
                             <group>
-                                <field name="sts_nj" widget="many2many_tags" />
+                                <field name="sts_of_nj" widget="many2many_tags" />
                                 <field name="taa_az_" widget="many2many_tags"/>
                                 <field name="tapt_tn_" widget="many2many_tags"/>
                                 <field name="tapt_tx_" widget="many2many_tags"/>
