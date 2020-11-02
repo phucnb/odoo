@@ -293,7 +293,7 @@ class CustomCompany(models.Model):
     external_camera = fields.Selection(EXTERNAL_CAMERA, 'External Camera')
     issr = fields.Selection(ISSR, 'ISSR')
     minitrack = fields.Boolean('MiniTRACK')
-    nadp = fields.Selection(NADP, 'NADP')
+    # nadp = fields.Selection(NADP, 'NADP')
     netsuite_customer = fields.Char("NetSuite Customer")
     netsuite_refresh = fields.Char("NetSuite Refresh")
     netsuite_status = fields.Char("NetSuite Status")

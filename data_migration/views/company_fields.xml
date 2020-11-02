@@ -128,8 +128,8 @@
                                 <field name="minitrack" />
                             </group>
                             <group>
-                                <field name="nadp" />
-                                <field name="netsuite_customer" />
+<!--                                 <field name="nadp" />
+ -->                                <field name="netsuite_customer" />
                                 <field name="netsuite_refresh" />
                                 <field name="number_of_special_needs_students_transported" />
                             </group>

@@ -33,7 +33,7 @@ class HubspotImportIntegration(models.Model):
         lines = []
         if file_name == 'contacts':
             lines = ['aapt_ar_','associated_company','business_unit','demo',
-                    'did_they_go_to_a_new_school_district_company_','iacp','lead_type','nadp','napt',
+                    'did_they_go_to_a_new_school_district_company_','iacp','lead_type','napt',
                     'no_longer_at_school_district_company','planned_retirement_date','population',
                     'product_i_m_interested_in','purchased_list_july','purchasing_influence','remove','reports_to',
                     'request_a_demo','role','s247_secondary_company','state_or_province',
@@ -59,7 +59,7 @@ class HubspotImportIntegration(models.Model):
                 'camera_system_other_','cameras','competitor','contract_expires','contracted_services',
                 'dealer_sold_through','e360_cameras','external_camera','fleet_maintenance_system',
                 'fleet_maintenance_system_other_','fleet_size_s247','gps','gps_vendor','gps_vendor_other_','how_many_lots_',
-                'issr','n247_bus_saleman','n247s_lifecycle_stage','nadp','netsuite_refresh','company_type',
+                'issr','n247_bus_saleman','n247s_lifecycle_stage','netsuite_refresh','company_type',
                 'number_of_sales_personnel','number_of_special_needs_students_transported',
                 'of_buses','of_cameras_per_bus','of_students_total','of_students_transported',
                 'parent_portal','parent_portal_other_','parent_portal_system','preferred_camera_vendor','preferred_camera_vendor_cloned_',
@@ -116,7 +116,7 @@ class HubspotImportIntegration(models.Model):
         lines = []
         if name == 'contacts':
             lines = ['aapt_ar_', 'associated_company', 'business_unit', 'demo',
-                     'did_they_go_to_a_new_school_district_company_', 'iacp', 'lead_type', 'nadp',
+                     'did_they_go_to_a_new_school_district_company_', 'iacp', 'lead_type',
                      'napt',
                      'no_longer_at_school_district_company', 'planned_retirement_date', 'population',
                      'product_i_m_interested_in', 'purchased_list_july', 'purchasing_influence', 'remove', 'reports_to',
@@ -150,7 +150,7 @@ class HubspotImportIntegration(models.Model):
                 'dealer_sold_through', 'e360_cameras', 'external_camera', 'fleet_maintenance_system',
                 'fleet_maintenance_system_other_', 'fleet_size_s247', 'gps', 'gps_vendor', 'gps_vendor_other_',
                 'how_many_lots_',
-                'issr', 'n247_bus_saleman', 'n247s_lifecycle_stage', 'nadp', 'netsuite_refresh', 'company_type',
+                'issr', 'n247_bus_saleman', 'n247s_lifecycle_stage', 'netsuite_refresh', 'company_type',
                 'number_of_sales_personnel', 'number_of_special_needs_students_transported',
                 'of_buses', 'of_cameras_per_bus', 'of_students_total',
                 'of_students_transported',

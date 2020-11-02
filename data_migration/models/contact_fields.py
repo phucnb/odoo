@@ -160,7 +160,7 @@ class ContactFields(models.Model):
     mnapt_mn_ = fields.Many2many('get.values', 'mnapt_mn_values', 'mnapt_mn', 'value', "MNAPT(MN)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
     military_status = fields.Char("Military Status")
     msboa_mn_ = fields.Many2many('get.values', 'msboa_mn_values', 'msboa_mn', 'value', "MSBOA(MN)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    nadp = fields.Char("NADP")
+    # nadp = fields.Char("NADP")
     napt = fields.Many2many('get.values', 'napt_values', 'napt', 'value', "NAPT", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
     napt_na_ = fields.Many2many('get.values', 'napt_na_values', 'napt_na', 'value', "NAPT(NA)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
     ncpta_nc_ = fields.Many2many('get.values', 'ncpta_nc_values', 'ncpta_nc', 'value', "NCPTA(NC)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
