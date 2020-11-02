@@ -202,7 +202,7 @@ class ContactFields(models.Model):
     special_instructions = fields.Char("Special Instructions")
     stai_in_ = fields.Many2many('get.values', 'stai_in_values', 'stai_in', 'value', "STAI(IN)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
     stn = fields.Many2many('get.values', 'stn_values', 'stn', 'value', "STN", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    sts_nj = fields.Many2many('get.values', 'sts_nj_values', 'sts_nj', 'value', "STS of NJ", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
+    sts_of_nj = fields.Many2many('get.values', 'sts_nj_values', 'sts_nj', 'value', "STS of NJ", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
     taa_az_ = fields.Many2many('get.values', 'taa_az_values', 'taa_az', 'value', "TAA(AZ)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
     tapt_tn_ = fields.Many2many('get.values', 'tapt_tn_values', 'tapt_tn', 'value', "TAPT(TN)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
     tapt_tx_ = fields.Many2many('get.values', 'tapt_tx_values', 'tapt_tx', 'value', "TAPT(TX)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
