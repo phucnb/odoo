@@ -342,6 +342,7 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.extend(self.create_companies(response_dict['companies'], hubspot_keys))
                     has_more = response_dict['has-more']
                     parameter_dict['offset'] = response_dict['offset']
+                    self.last_offset = response_dict['offset']
                 # return hubspot_ids
             except Exception as e:
                 _logger.error(e)
