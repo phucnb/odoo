@@ -343,7 +343,7 @@ class CustomCompany(models.Model):
     student_tracking = fields.Selection(OPTIONS, 'Student Tracking')
     student_tracking_system = fields.Selection(STUDENT_TRACK_PRO, 'Student Tracking Provider')
     student_tracking_system_other_ = fields.Char("Student Tracking Provides(Other)")
-    service_surveillance_owner = fields.Many2one('res.users', "Surveillance-247 Owner")
+    # service_surveillance_owner = fields.Many2one('res.users', "Surveillance-247 Owner")
     system = fields.Many2many('get.values', 'system_values', 'system', 'value',
                               'System', help='Please add/select the name of system')
     # territory_coverage = fields.Char("Territory Coverage") # Multiple states selection

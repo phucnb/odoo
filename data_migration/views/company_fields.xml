@@ -176,7 +176,6 @@
                                 <field name="sic_code" />
                                 <field name="status" />
                                 <field name="student_count" />
-                                <field name="service_surveillance_owner" />
                             </group>
                         </group>
                         <group>
