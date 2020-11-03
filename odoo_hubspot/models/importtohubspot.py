@@ -81,6 +81,10 @@ class HubspotImportIntegration(models.Model):
                 'lost_reason_notes', 'n247s_lifecycle_stage', 'opportunity_link', 'product_s_considered',
                 'sales_order', 'state', 'opportunity_number'
             ]
+        elif file_name == 'tickets':
+        	lines = ['assigned_company', 'cs_number', 'support_request', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
+     				's247_product', 'touchdown'
+     		]
 
         property_url = ''
         for line in lines:
@@ -110,6 +114,8 @@ class HubspotImportIntegration(models.Model):
         elif name == 'deals':
             m2m_list = ['dealers_quoting_this_deal', 'product_s_considered']
 
+        elif name == 'tickets':
+        	m2m_list = ['s247_product']
         else:
             print("hello")
 
@@ -183,6 +189,10 @@ class HubspotImportIntegration(models.Model):
                 'lost_reason_notes', 'n247s_lifecycle_stage', 'opportunity_link', 'product_s_considered',
                 'sales_order', 'state', 'opportunity_number'
             ]
+        elif name == 'tickets':
+        	lines = ['assigned_company', 'cs_number', 'support_request', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
+     				's247_product', 'touchdown'
+     		]
         else:
             print("Hellossss")
         for line in lines:
@@ -588,16 +598,17 @@ class HubspotImportIntegration(models.Model):
                     'Accept': 'application/json',
                     'connection': 'keep-Alive'
                 }
+                properties = self.read_file('tickets')
                 has_more = True
                 while has_more:
                     parameters = urllib.parse.urlencode(parameter_dict)
-                    get_url = get_all_tickets_url + parameters + data
+                    get_url = get_all_tickets_url+ properties + parameters + data
                     r = requests.get(url=get_url, headers=headers)
                     response_dict = json.loads(r.text)
                     hubspot_ids.extend(self.create_tickets(response_dict['objects'], hubspot_keys))
                     has_more = response_dict['hasMore']
                     parameter_dict['offset'] = response_dict['offset']
-                return hubspot_ids
+                # return hubspot_ids
             except Exception as e:
                 _logger.error(e)
                 raise ValidationError(_(str(e)))
@@ -653,7 +664,7 @@ class HubspotImportIntegration(models.Model):
 
                 odoo_ticket = self.env['helpdesk.ticket'].search([('hubspot_id', '=', str(ticket['objectId']))])
                 if not odoo_ticket:
-                    self.env['helpdesk.ticket'].create({
+                    ticket_values = {
                         'hubspot_id': str(ticket['objectId']),
                         'name': ticket['properties']['subject']['value'] if 'subject' in ticket['properties'] else " ",
                         'priority': priority,
@@ -662,18 +673,20 @@ class HubspotImportIntegration(models.Model):
                         'tag_ids': [[6, 0, tag_ids]],
                         'hs_ticket_contacts': [[6, 0, contacts]] if contacts else None,
                         'hs_ticket_company':  companies[0] if companies else None,
-                    })
-                else:
-                    odoo_ticket.write({
-                        'hubspot_id': str(ticket['objectId']),
-                        'name': ticket['properties']['subject']['value'] if 'subject' in ticket['properties'] else " ",
-                        'priority': priority,
-                        'stage_id': odoo_stage.id,
-                        'ticket_type_id': odoo_type.id,
-                        'tag_ids': [[6, 0, tag_ids]],
-                        'hs_ticket_contacts': [[6, 0, contacts]] if contacts else None,
-                        'hs_ticket_company': companies[0] if companies else None,
-                    })
+                    }
+                    self.add_properties(ticket_values, ticket['properties'], 'tickets')
+                    self.env['helpdesk.ticket'].create(company_values)
+                # else:
+                #     odoo_ticket.write({
+                #         'hubspot_id': str(ticket['objectId']),
+                #         'name': ticket['properties']['subject']['value'] if 'subject' in ticket['properties'] else " ",
+                #         'priority': priority,
+                #         'stage_id': odoo_stage.id,
+                #         'ticket_type_id': odoo_type.id,
+                #         'tag_ids': [[6, 0, tag_ids]],
+                #         'hs_ticket_contacts': [[6, 0, contacts]] if contacts else None,
+                #         'hs_ticket_company': companies[0] if companies else None,
+                #     })
                 self.env.cr.commit()
                 hubspot_ids.append(ticket['objectId'])
             return hubspot_ids
