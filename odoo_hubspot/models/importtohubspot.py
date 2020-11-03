@@ -641,8 +641,13 @@ class HubspotImportIntegration(models.Model):
                         odoo_type = self.env['helpdesk.ticket.type'].create({
                             'name': ticket['properties']['source_type']['value'],
                         })
+                odoo_stage = None
                 if 'hs_pipeline_stage' in ticket['properties']:
-                    odoo_stage = self.env['helpdesk.stage'].search([('hubspot_id', '=', ticket['properties']['hs_pipeline_stage']['value'])])
+                    odoo_stage = self.env['helpdesk.stage'].search([('name', '=', ticket['properties']['hs_pipeline_stage']['value'])])
+                    if not odoo_stage:
+                    	odoo_stage = self.env['helpdesk.stage'].create({
+                    		'name': ticket['properties']['hs_pipeline_stage']['value'],
+                    	})
                 if 'hs_ticket_category' in ticket['properties']:
                     tags = ticket['properties']['hs_ticket_category']['value'].split(';')
                     for tag in tags:
@@ -668,7 +673,7 @@ class HubspotImportIntegration(models.Model):
                         'hubspot_id': str(ticket['objectId']),
                         'name': ticket['properties']['subject']['value'] if 'subject' in ticket['properties'] else " ",
                         'priority': priority,
-                        'stage_id': odoo_stage.id,
+                        'stage_id': odoo_stage.id if odoo_stage else None,
                         'ticket_type_id': odoo_type.id,
                         'tag_ids': [[6, 0, tag_ids]],
                         'hs_ticket_contacts': [[6, 0, contacts]] if contacts else None,
