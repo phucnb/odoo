@@ -602,7 +602,7 @@ class HubspotImportIntegration(models.Model):
                 has_more = True
                 while has_more:
                     parameters = urllib.parse.urlencode(parameter_dict)
-                    get_url = get_all_tickets_url+ properties + parameters + data
+                    get_url = get_all_tickets_url + parameters + data + properties
                     r = requests.get(url=get_url, headers=headers)
                     response_dict = json.loads(r.text)
                     hubspot_ids.extend(self.create_tickets(response_dict['objects'], hubspot_keys))
