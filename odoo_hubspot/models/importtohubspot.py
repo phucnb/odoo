@@ -680,7 +680,7 @@ class HubspotImportIntegration(models.Model):
                         'hs_ticket_company':  companies[0] if companies else None,
                     }
                     self.add_properties(ticket_values, ticket['properties'], 'tickets')
-                    self.env['helpdesk.ticket'].create(company_values)
+                    self.env['helpdesk.ticket'].create(ticket_values)
                 # else:
                 #     odoo_ticket.write({
                 #         'hubspot_id': str(ticket['objectId']),
