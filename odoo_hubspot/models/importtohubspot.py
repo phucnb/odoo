@@ -82,7 +82,7 @@ class HubspotImportIntegration(models.Model):
                 'sales_order', 'state', 'opportunity_number'
             ]
         elif file_name == 'tickets':
-        	lines = ['assigned_company', 'cs_number', 'support_request', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
+        	lines = ['assigned_company', 'cs_number', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
      				's247_product', 'touchdown'
      		]
 
@@ -190,7 +190,7 @@ class HubspotImportIntegration(models.Model):
                 'sales_order', 'state', 'opportunity_number'
             ]
         elif name == 'tickets':
-        	lines = ['assigned_company', 'cs_number', 'support_request', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
+        	lines = ['assigned_company', 'cs_number', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
      				's247_product', 'touchdown'
      		]
         else:
