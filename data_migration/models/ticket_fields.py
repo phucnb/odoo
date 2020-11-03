@@ -70,3 +70,5 @@ class TicketFields(models.Model):
                                     help='Please add/select S247 products e.g. 1080p Cam, DHD, DHD2, Dual Stop Arm Cam,'
                                          ' HD Cam, SD Cam, Shield Cam, Stop Arm Cam and Touchdown') #multiple
     touchdown = fields.Char("Touchdown")
+    hs_ticket_contacts = fields.Many2many('res.partner', 'ticket_partner_rel', 'partner_id', 'ticket_id', 'Contacts')
+    hs_ticket_company = fields.Many2one('res.partner', 'Company')
