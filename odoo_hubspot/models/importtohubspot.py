@@ -28,6 +28,7 @@ class HubspotImportIntegration(models.Model):
     custom_date_range = fields.Boolean(string='Custom Date Range Sync')
     company_last_offset = fields.Char("Company offset")
     contact_last_offset = fields.Char("Contact Offset")
+    ticket_last_offset = fields.Char("Ticket Offset")
 
     def read_file(self, file_name):
         lines = []
@@ -593,7 +594,10 @@ class HubspotImportIntegration(models.Model):
                        "&properties=hs_ticket_category&properties=hubspot_owner_id" \
                        "&properties=source_type&properties=hs_createdate&properties=createdate" \
                        "&properties=hs_lastmodifieddate"
-                parameter_dict = {'hapikey': hubspot_keys, 'limit': 250}
+                if self.ticket_last_offset:
+                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'offset': int(self.ticket_last_offset)}
+                else:
+                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250}
                 headers = {
                     'Accept': 'application/json',
                     'connection': 'keep-Alive'
@@ -608,6 +612,7 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.extend(self.create_tickets(response_dict['objects'], hubspot_keys))
                     has_more = response_dict['hasMore']
                     parameter_dict['offset'] = response_dict['offset']
+                    self.ticket_last_offset = response_dict['offset']
                 # return hubspot_ids
             except Exception as e:
                 _logger.error(e)
