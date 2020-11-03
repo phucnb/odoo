@@ -6,9 +6,7 @@
             <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
             <field name="arch" type="xml">
                 <field name="tag_ids" position="after">
-                    <field name="hs_ticket_company">
-                        <field name="name" />
-                    </field>
+                    <field name="hs_ticket_company"/>
                     <field name="assigned_company"/>
                     <field name="cs_number"/>
                     <field name="support_request"/>
@@ -16,9 +14,7 @@
                     <field name="pw_resolution"/>
                 </field>
                 <field name="email_cc" position="after">
-                    <field name="hs_ticket_contacts">
-                        <field name="name" />
-                    </field>
+                    <field name="hs_ticket_contacts"/>
                     <field name="rn_number"/>
                     <field name="s247_resolution"/>
                     <field name="s247_product" widget="many2many_tags"/>
