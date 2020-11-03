@@ -9,7 +9,7 @@
                     <field name="hs_ticket_company"/>
                     <field name="assigned_company"/>
                     <field name="cs_number"/>
-                    <field name="support_request"/>
+<!--                    <field name="support_request"/>-->
                     <field name="product"/>
                     <field name="pw_resolution"/>
                 </field>

@@ -61,7 +61,7 @@ class TicketFields(models.Model):
     hubspot_id = fields.Char('Hubspot Id')
     assigned_company = fields.Char("Assigned Company")
     cs_number = fields.Char("CS number")
-    support_request = fields.Selection(SUPPORT_REQUEST, "Phone Support Time")
+    # support_request = fields.Selection(SUPPORT_REQUEST, "Phone Support Time")
     product = fields.Selection(PRODUCT, 'Product')
     pw_resolution = fields.Selection(PW_RESOLUTION, 'PW Resolution')
     rn_number = fields.Char("RN number")
