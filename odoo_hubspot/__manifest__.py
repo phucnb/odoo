@@ -23,6 +23,5 @@
         'security/ir.model.access.csv',
         'views/hubspotwizard.xml',
         'views/views.xml',
-        'data/scheduler.xml',
     ],
 }

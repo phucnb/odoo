@@ -83,9 +83,8 @@ class HubspotImportIntegration(models.Model):
                 'sales_order', 'state', 'opportunity_number'
             ]
         elif file_name == 'tickets':
-        	lines = ['assigned_company', 'cs_number', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
-     				's247_product', 'touchdown'
-     		]
+            lines = ['assigned_company', 'cs_number', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
+                     's247_product', 'touchdown']
 
         property_url = ''
         for line in lines:
@@ -114,9 +113,8 @@ class HubspotImportIntegration(models.Model):
                         'previous_camera_system']
         elif name == 'deals':
             m2m_list = ['dealers_quoting_this_deal', 'product_s_considered']
-
         elif name == 'tickets':
-        	m2m_list = ['s247_product']
+            m2m_list = ['s247_product']
         else:
             print("hello")
 
@@ -191,9 +189,8 @@ class HubspotImportIntegration(models.Model):
                 'sales_order', 'state', 'opportunity_number'
             ]
         elif name == 'tickets':
-        	lines = ['assigned_company', 'cs_number', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
-     				's247_product', 'touchdown'
-     		]
+            lines = ['assigned_company', 'cs_number', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
+                     's247_product', 'touchdown']
         else:
             print("Hellossss")
         for line in lines:
