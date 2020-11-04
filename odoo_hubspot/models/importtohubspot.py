@@ -1611,36 +1611,36 @@ class HubspotImportIntegration(models.Model):
         except:
             pass
 
-    def create_owners(self):
-        icpsudo = self.env['ir.config_parameter'].sudo()
-        hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
-        if not hubspot_keys:
-            raise ValidationError('Please! Enter Hubspot key...')
-        else:
-            try:
-                get_all_owners_url = "https://api.hubapi.com/owners/v2/owners?"
-                parameter_dict = {'hapikey': hubspot_keys}
-                headers = {
-                    'Accept': 'application/json',
-                    'connection': 'keep-Alive'
-                }
-                parameters = urllib.parse.urlencode(parameter_dict)
-                get_url = get_all_owners_url + parameters
-                r = requests.get(url=get_url, headers=headers)
-                owners = json.loads(r.text)
-                for owner in owners:
-                    odoo_user = self.env['res.users'].search([('hubspot_id', '=', owner['ownerId'])])
-                    if not odoo_user:
-                        first_name = owner['firstName'] if owner['firstName'] else ''
-                        last_name = owner['lastName'] if owner['lastName'] else ''
-                        name = first_name + ' ' + last_name
-                        self.env['res.users'].create({
-                            'hubspot_id': owner['ownerId'],
-                            'name': name,
-                            'login': owner['email'] if owner['email'] else None,
-                            'email': owner['email'] if owner['email'] else None,
-                        })
-                    self.env.cr.commit()
-            except Exception as e:
-                _logger.error(e)
-                raise ValidationError(_(str(e)))
+    # def create_owners(self):
+    #     icpsudo = self.env['ir.config_parameter'].sudo()
+    #     hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
+    #     if not hubspot_keys:
+    #         raise ValidationError('Please! Enter Hubspot key...')
+    #     else:
+    #         try:
+    #             get_all_owners_url = "https://api.hubapi.com/owners/v2/owners?"
+    #             parameter_dict = {'hapikey': hubspot_keys}
+    #             headers = {
+    #                 'Accept': 'application/json',
+    #                 'connection': 'keep-Alive'
+    #             }
+    #             parameters = urllib.parse.urlencode(parameter_dict)
+    #             get_url = get_all_owners_url + parameters
+    #             r = requests.get(url=get_url, headers=headers)
+    #             owners = json.loads(r.text)
+    #             for owner in owners:
+    #                 odoo_user = self.env['res.users'].search([('hubspot_id', '=', owner['ownerId'])])
+    #                 if not odoo_user:
+    #                     first_name = owner['firstName'] if owner['firstName'] else ''
+    #                     last_name = owner['lastName'] if owner['lastName'] else ''
+    #                     name = first_name + ' ' + last_name
+    #                     self.env['res.users'].create({
+    #                         'hubspot_id': owner['ownerId'],
+    #                         'name': name,
+    #                         'login': owner['email'] if owner['email'] else None,
+    #                         'email': owner['email'] if owner['email'] else None,
+    #                     })
+    #                 self.env.cr.commit()
+    #         except Exception as e:
+    #             _logger.error(e)
+    #             raise ValidationError(_(str(e)))
