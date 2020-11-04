@@ -73,3 +73,9 @@ class Integration(models.TransientModel):
         except Exception as e:
             _logger.error(e)
             raise ValidationError(_(str(e)))
+
+
+class InheritUsers(models.Model):
+    _inherit = 'res.users'
+
+    hubspot_id = fields.Char("Hubspot Id")
