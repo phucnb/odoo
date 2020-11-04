@@ -1639,6 +1639,10 @@ class HubspotImportIntegration(models.Model):
                             'login': owner['email'] if owner['email'] else None,
                             'email': owner['email'] if owner['email'] else None,
                         })
+                    else:
+                        odoo_user.write({
+                            'hubspot_id': owner['ownerId']
+                        })
                     self.env.cr.commit()
             except Exception as e:
                 _logger.error(e)
