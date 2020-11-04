@@ -959,7 +959,7 @@ class HubspotImportIntegration(models.Model):
                             continue
                         try:
                             print('Creating Email Engagement against the lead', odoo_lead.name)
-                            author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])
+                            author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])[0]
 
                             odoo_comment = self.env['mail.message'].create({
                                 'engagement_id': engagement_data['id'],
