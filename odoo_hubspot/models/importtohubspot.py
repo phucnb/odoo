@@ -1629,13 +1629,12 @@ class HubspotImportIntegration(models.Model):
                 r = requests.get(url=get_url, headers=headers)
                 owners = json.loads(r.text)
                 for owner in owners:
-                    odoo_user = self.env['res.users'].search([('hubspot_id', '=', owner['ownerId'])])
+                    odoo_user = self.env['res.users'].search([('email', '=', owner['email'])])
                     if not odoo_user:
                         first_name = owner['firstName'] if owner['firstName'] else ''
                         last_name = owner['lastName'] if owner['lastName'] else ''
                         name = first_name + ' ' + last_name
                         self.env['res.users'].create({
-                            'hubspot_id': owner['ownerId'],
                             'name': name,
                             'login': owner['email'] if owner['email'] else None,
                             'email': owner['email'] if owner['email'] else None,

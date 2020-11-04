@@ -75,7 +75,7 @@ class Integration(models.TransientModel):
             raise ValidationError(_(str(e)))
 
 
-class InheritUsers(models.Model):
-    _inherits = 'res.users'
-
-    hubspot_id = fields.Char("Hubspot Id")
+# class InheritUsers(models.Model):
+#     _inherit = 'res.users'
+#
+#     hubspot_id = fields.Char("Hubspot Id")
