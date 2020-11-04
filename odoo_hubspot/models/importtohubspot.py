@@ -956,18 +956,10 @@ class HubspotImportIntegration(models.Model):
                     meta_data = engagement['metadata']
                     if engagement_data['type'] == 'EMAIL':
                         if not meta_data.get('from'):
-                            if self.env.user.email:
-                                meta_data['from'] = self.env.user.email
-                            else:
-                                continue
-                        if len(meta_data['from']) == 0:
-                            if self.env.user.email:
-                                meta_data['from'] = self.env.user.email
-                            else:
-                                continue
+                            continue
                         try:
                             print('Creating Email Engagement against the lead', odoo_lead.name)
-                            author = self.env['res.partner'].search([('email', '=', meta_data['from'])])
+                            author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])
                             author_id = None
                             if author:
                                 author_id = author.id
