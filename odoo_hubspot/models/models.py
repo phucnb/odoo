@@ -76,6 +76,6 @@ class Integration(models.TransientModel):
 
 
 class InheritUsers(models.Model):
-    _inherit = 'res.users'
+    _inherits = 'res.users'
 
     hubspot_id = fields.Char("Hubspot Id")
