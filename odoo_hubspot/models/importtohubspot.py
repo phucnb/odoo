@@ -1666,9 +1666,12 @@ class HubspotImportIntegration(models.Model):
                                 if not os.path.isdir('engagement_files'):
                                     os.mkdir('engagement_files')
                                 if file_url:
-                                    urllib.request.urlretrieve(file_url,
-                                                               'engagement_files/' + file_name + '.' + res_data[
-                                                                   'extension'])
+                                    try:
+                                        urllib.request.urlretrieve(file_url,
+                                                                   'engagement_files/' + file_name + '.' + res_data[
+                                                                       'extension'])
+                                    except Exception as e:
+                                        print(e)
                                     a = 1
                                     f = open('engagement_files/' + file_name + '.' + res_data['extension'], "rb")
                                     data = base64.b64encode(f.read())
