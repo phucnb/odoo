@@ -1671,7 +1671,7 @@ class HubspotImportIntegration(models.Model):
                                                                    'extension'])
                                     a = 1
                                     f = open('engagement_files/' + file_name + '.' + res_data['extension'], "rb")
-                                    data = data = base64.b64encode(f.read())
+                                    data = base64.b64encode(f.read())
                                     self.env['ir.attachment'].create({'name': file_name + '.' + res_data['extension'],
                                                                       'datas': data,
                                                                       'res_model': 'crm.lead',
