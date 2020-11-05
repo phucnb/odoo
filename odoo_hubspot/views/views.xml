@@ -21,6 +21,7 @@
                         <button name="get_ticket_engagements" string="import tickets engagements" type="object"/>
                         <button name="get_contact_engagements" string="import contacts engagements" type="object"/>
                         <button name="create_owners" string="import owners" type="object"/>
+                        <button name="get_lead_attachments" string="Import Deals Attachments" type="object"/>
                     </sheet>
                 </form>
             </field>

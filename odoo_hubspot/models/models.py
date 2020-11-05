@@ -73,3 +73,9 @@ class Integration(models.TransientModel):
         except Exception as e:
             _logger.error(e)
             raise ValidationError(_(str(e)))
+
+
+class CustomActivity(models.Model):
+    _inherit = 'ir.attachment'
+
+    hubspot_id = fields.Char()
