@@ -1671,6 +1671,8 @@ class HubspotImportIntegration(models.Model):
                                                                    'engagement_files/' + file_name + '.' + res_data[
                                                                        'extension'])
                                     except Exception as e:
+                                        if e.code == 404:
+                                            continue
                                         raise ValidationError(str(e))
                                     a = 1
                                     f = open('engagement_files/' + file_name + '.' + res_data['extension'], "rb")
