@@ -1671,7 +1671,7 @@ class HubspotImportIntegration(models.Model):
                                                                    'engagement_files/' + file_name + '.' + res_data[
                                                                        'extension'])
                                     except Exception as e:
-                                        print(e)
+                                        raise ValidationError(str(e))
                                     a = 1
                                     f = open('engagement_files/' + file_name + '.' + res_data['extension'], "rb")
                                     data = base64.b64encode(f.read())
@@ -1684,6 +1684,6 @@ class HubspotImportIntegration(models.Model):
                                     self.env.cr.commit()
                                     print(odoo_lead.name)
                             except Exception as e:
-                                pass
+                                raise ValidationError(str(e))
         except Exception as e:
-            pass
+            raise ValidationError(str(e))
