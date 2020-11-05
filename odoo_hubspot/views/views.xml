@@ -24,6 +24,7 @@
                         <button name="get_lead_attachments" string="Import Deals Attachments" type="object"/>
                         <button name="get_contact_attachments" string="Import Contacts Attachments" type="object"/>
                         <button name="get_company_attachments" string="Import Companies Attachments" type="object"/>
+                        <button name="get_ticket_attachments" string="Import Tickets Attachments" type="object"/>
                     </sheet>
                 </form>
             </field>
