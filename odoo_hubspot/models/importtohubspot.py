@@ -1677,7 +1677,7 @@ class HubspotImportIntegration(models.Model):
                                                                       'res_model': 'crm.lead',
                                                                       'res_id': odoo_lead.id, })
                                     f.close()
-                                    os.remove('engagement_files/' + file_name + '.' + res_data['extension'])
+                                    # os.remove('engagement_files/' + file_name + '.' + res_data['extension'])
                                     self.env.cr.commit()
                                     print(odoo_lead.name)
                             except Exception as e:
