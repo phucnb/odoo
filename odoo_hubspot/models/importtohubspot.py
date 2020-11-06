@@ -279,6 +279,7 @@ class HubspotImportIntegration(models.Model):
             for contact in contacts:
                 odoo_company = None
                 odoo_country = None
+                state_id = None
                 contact_url = get_single_contact_url + str(contact['vid']) + '/profile?hapikey=' + hubspot_keys
                 r = requests.get(url=contact_url, headers=headers)
                 profile = json.loads(r.text)['properties']
@@ -291,6 +292,15 @@ class HubspotImportIntegration(models.Model):
                         company_profile = json.loads(company_response.content.decode('utf-8'))['properties']
                         if 'country' in company_profile.keys():
                             odoo_country = self.env['res.country'].search([('name', '=', company_profile['country']['value'])]).id
+                        if company_profile.get('state', None):
+                            state = company_profile['state']
+                            if state.get('value', None):
+                                state_code = state['value']
+                                odoo_state = self.env['res.country.state'].search(
+                                    [('code', '=', state_code), ('country_id', '=', odoo_country)]
+                                )
+                                if len(odoo_state) == 1:
+                                    state_id = odoo_state.id
                         company_values = {
                             'name': company_profile['name']['value'] if 'name' in company_profile.keys() else '',
                             'website': company_profile['website']['value'] if 'website' in company_profile.keys() else '',
@@ -308,19 +318,24 @@ class HubspotImportIntegration(models.Model):
                 last_name = profile['lastname']['value'] if 'lastname' in profile else ''
                 name = first_name + ' ' + last_name
                 odoo_partner = self.env['res.partner'].search([('hubspot_id', '=', str(contact['vid']))])
+
+                contact_values = {
+                    'name': name,
+                    'email': profile['email']['value'] if 'email' in profile.keys() else '',
+                    'website': profile['website']['value'] if 'website' in profile.keys() else '',
+                    'city': profile['city']['value'] if 'city' in profile.keys() else '',
+                    'zip': profile['zip']['value'] if 'zip' in profile.keys() else '',
+                    'parent_id': odoo_company.id if odoo_company else None,
+                    'hubspot_id': str(contact['vid']),
+                    'phone': profile['phone']['value'] if 'phone' in profile.keys() else '',
+                    'country_id': odoo_country if odoo_country else None,
+                    'state_id': state_id,
+                }
+                self.add_properties(contact_values, profile, 'contacts')
                 if not odoo_partner:
-                    contact_values = {
-                        'name': name,
-                        'email': profile['email']['value'] if 'email' in profile.keys() else '',
-                        'website': profile['website']['value'] if 'website' in profile.keys() else '',
-                        'city': profile['city']['value'] if 'city' in profile.keys() else '',
-                        'zip': profile['zip']['value'] if 'zip' in profile.keys() else '',
-                        'parent_id': odoo_company.id if odoo_company else None,
-                        'hubspot_id': str(contact['vid']),
-                        'phone': profile['phone']['value'] if 'phone' in profile.keys() else '',
-                    }
-                    self.add_properties(contact_values, profile, 'contacts')
                     new_contact = self.env['res.partner'].create(contact_values)
+                else:
+                    odoo_partner.write(contact_values)
                 self.env.cr.commit()
                 hubspot_ids.append(contact['vid'])
             return hubspot_ids
@@ -373,6 +388,7 @@ class HubspotImportIntegration(models.Model):
                 if company['companyId'] == 1100176440:
                     print("here")
                 odoo_country = None
+                state_id = None
                 get_url = get_single_company_url + str(company['companyId']) + '?hapikey=' + hubspot_keys
                 company_response = requests.get(url=get_url, headers=headers)
                 company_profile = json.loads(company_response.content.decode('utf-8'))['properties']
@@ -380,6 +396,15 @@ class HubspotImportIntegration(models.Model):
                 odoo_company = self.env['res.partner'].search([('hubspot_id', '=', str(company['companyId']))])
                 if 'country' in company_profile.keys():
                     odoo_country = self.env['res.country'].search([('name', '=', company_profile['country']['value'])]).id
+                if company_profile.get('state', None):
+                    state = company_profile['state']
+                    if state.get('value', None):
+                        state_code = state['value']
+                        odoo_state = self.env['res.country.state'].search(
+                            [('code', '=', state_code), ('country_id', '=', odoo_country)]
+                        )
+                        if len(odoo_state) == 1:
+                            state_id = odoo_state.id
                 if not odoo_company:
                     company_values = {
                         'name': company_profile['name']['value'] if 'name' in company_profile.keys() else '',
@@ -389,23 +414,25 @@ class HubspotImportIntegration(models.Model):
                         'phone': company_profile['phone']['value'] if 'phone' in company_profile.keys() else '',
                         'zip': company_profile['zip']['value'] if 'zip' in company_profile.keys() else '',
                         'country_id': odoo_country if odoo_country else None,
+                        'state_id': state_id,
                         'hubspot_id': str(company['companyId']),
                         'is_company': True,
                     }
                     self.add_properties(company_values, company_profile, 'companies')
                     self.env['res.partner'].create(company_values)
-                # else:
-                #     odoo_company.write({
-                #         'name': company_profile['name']['value'] if 'name' in company_profile.keys() else '',
-                #         'website': company_profile['website']['value'] if 'website' in company_profile.keys() else '',
-                #         'street': company_profile['address']['value'] if 'address' in company_profile.keys() else '',
-                #         'city': company_profile['city']['value'] if 'city' in company_profile.keys() else '',
-                #         'phone': company_profile['phone']['value'] if 'phone' in company_profile.keys() else '',
-                #         'zip': company_profile['zip']['value'] if 'zip' in company_profile.keys() else '',
-                #         'country_id': odoo_country if odoo_country else None,
-                #         'hubspot_id': str(company['companyId']),
-                #         'is_company': True,
-                #     })
+                else:
+                    odoo_company.write({
+                        'name': company_profile['name']['value'] if 'name' in company_profile.keys() else '',
+                        'website': company_profile['website']['value'] if 'website' in company_profile.keys() else '',
+                        'street': company_profile['address']['value'] if 'address' in company_profile.keys() else '',
+                        'city': company_profile['city']['value'] if 'city' in company_profile.keys() else '',
+                        'phone': company_profile['phone']['value'] if 'phone' in company_profile.keys() else '',
+                        'zip': company_profile['zip']['value'] if 'zip' in company_profile.keys() else '',
+                        'country_id': odoo_country if odoo_country else None,
+                        'state_id': state_id,
+                        'hubspot_id': str(company['companyId']),
+                        'is_company': True,
+                    })
                 self.env.cr.commit()
                 hubspot_ids.append(company['companyId'])
             return hubspot_ids
