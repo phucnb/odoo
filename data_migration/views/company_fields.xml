@@ -6,7 +6,7 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//page[1]" position='before'>
-                    <page string='Dealers' attrs="{'invisible':[('is_company','=',True)]}">
+                    <page string='Dealers' attrs="{'invisible':[('is_company','=',False)]}">
                         <group>
                             <group>
                                 <field name="number_of_sales_personnel" />
@@ -14,14 +14,14 @@
                             </group>
                         </group>
                     </page>
-                    <page string='Cameras' attrs="{'invisible':[('is_company','=',True)]}">
+                    <page string='Cameras' attrs="{'invisible':[('is_company','=',False)]}">
                         <group>
                             <group>
                                 <field name="previous_camera_system" widget="many2many_tags"/>
                             </group>
                         </group>
                     </page>
-                    <page string='School District Information' attrs="{'invisible':[('is_company','=',True)]}">
+                    <page string='School District Information' attrs="{'invisible':[('is_company','=',False)]}">
                         <group>
                             <group>
                                 <field name="camera_system" widget="many2many_tags"/>
@@ -73,7 +73,7 @@
                             </group>
                         </group>
                     </page>
-                    <page string='Touchdown' attrs="{'invisible':[('is_company','=',True)]}">
+                    <page string='Touchdown' attrs="{'invisible':[('is_company','=',False)]}">
                         <group>
                             <group>
                                 <field name="how_many_lots_" widget="many2many_tags"/>
@@ -90,7 +90,7 @@
                             </group>
                         </group>
                     </page>
-                    <page string='Company Information' attrs="{'invisible':[('is_company','=',True)]}">
+                    <page string='Company Information' attrs="{'invisible':[('is_company','=',False)]}">
                         <group>
                             <group>
                                 <field name="of_students_total" />
