@@ -784,6 +784,7 @@ class HubspotImportIntegration(models.Model):
                                 'model': 'res.partner',
                                 'res_id': odoo_company.id
                             })
+                            self.env.cr.commit()
                         except Exception as e:
                             print(e)
                             a = 1
@@ -804,6 +805,7 @@ class HubspotImportIntegration(models.Model):
                                 'model': 'res.partner',
                                 'res_id': odoo_company.id
                             })
+                            self.env.cr.commit()
                             # print(odoo_comment.name)
                         except Exception as e:
                             print(e)
@@ -850,6 +852,7 @@ class HubspotImportIntegration(models.Model):
                                     'model': 'res.partner',
                                     'res_id': odoo_company.id
                                 })
+                                self.env.cr.commit()
                         except Exception as e:
                             print(e)
                             a = 1
@@ -902,6 +905,7 @@ class HubspotImportIntegration(models.Model):
                                     'model': 'res.partner',
                                     'res_id': odoo_company.id
                                 })
+                                self.env.cr.commit()
                         except Exception as e:
                             print(e)
                             a = 1
@@ -953,6 +957,7 @@ class HubspotImportIntegration(models.Model):
                                     'model': 'res.partner',
                                     'res_id': odoo_company.id
                                 })
+                                self.env.cr.commit()
                         except Exception as e:
                             print(e)
                             a = 1
