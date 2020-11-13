@@ -1,3 +1,4 @@
+#test
 from odoo import _, api, fields, models
 
 class CustomState(models.Model):
