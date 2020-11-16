@@ -297,7 +297,7 @@ class CustomCompany(models.Model):
     netsuite_customer = fields.Char("NetSuite Customer")
     netsuite_refresh = fields.Char("NetSuite Refresh")
     netsuite_status = fields.Char("NetSuite Status")
-    netsuite = fields.Char("NetSuite Status")
+    netsuite = fields.Char("NetSuite")
     number_of_sales_personnel = fields.Integer("Number of sales personnel")
     of_students_total = fields.Integer("# of total students")
     of_students_transported = fields.Integer("# of students transported")
@@ -355,5 +355,13 @@ class CustomCompany(models.Model):
     unique_identifier = fields.Char("Unique Identifier")
     vendor = fields.Selection(VENDOR, "Vendor")
     td_fleet_monitor = fields.Boolean('TD Fleet Monitor')
+
+    @api.model
+    def _compute_opportunity_count(self):
+        for partner in self:
+            if partner.is_company:
+                partner.opportunity_count = self.env['crm.lead'].search_count([('hs_deal_companies', '=', partner.id)])
+            else:
+                partner.opportunity_count = self.env['crm.lead'].search_count([('hs_deal_contacts', '=', partner.id)])
 
 
