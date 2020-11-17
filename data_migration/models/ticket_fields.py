@@ -66,9 +66,9 @@ class TicketFields(models.Model):
     pw_resolution = fields.Selection(PW_RESOLUTION, 'PW Resolution')
     rn_number = fields.Char("RN number")
     s247_resolution = fields.Char('S247 Resolution')
-    s247_product = fields.Many2many('get.values', 's247_product_values', 's247_product', 'value', 'S247 Product',
-                                    help='Please add/select S247 products e.g. 1080p Cam, DHD, DHD2, Dual Stop Arm Cam,'
-                                         ' HD Cam, SD Cam, Shield Cam, Stop Arm Cam and Touchdown') #multiple
+    s247_product = fields.One2many('helpdesk.ticket_s247_product', 'ticket_id', 'S247 Product',
+                                   help='Please add/select S247 products e.g. 1080p Cam, DHD, DHD2, '
+                                        'Dual Stop Arm Cam, HD Cam, SD Cam, Shield Cam, Stop Arm Cam and Touchdown')
     touchdown = fields.Char("Touchdown")
     hs_ticket_contacts = fields.Many2many('res.partner', 'ticket_partner_rel', 'partner_id', 'ticket_id', 'Contacts')
     hs_ticket_company = fields.Many2one('res.partner', 'Company')

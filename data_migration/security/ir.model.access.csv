@@ -1,5 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_get_values,access.get.values,model_get_values,base.group_user,1,1,1,1
+
+
 access_res_partner_dealer_sold_through,access.res.partner_dealer_sold_through,model_res_partner_dealer_sold_through,base.group_user,1,1,1,1
 access_res_partner_system,access.res.partner_system,model_res_partner_system,base.group_user,1,1,1,1
 access_res_partner_camera_system,access.res.partner_camera_system,model_res_partner_camera_system,base.group_user,1,1,1,1
@@ -11,3 +13,5 @@ access_res_partner_previous_camera_system,access.res.partner_previous_camera_sys
 access_crm_lead_dealers_quoting_this_deal,access.crm.lead_dealers_quoting_this_deal,model_crm_lead_dealers_quoting_this_deal,base.group_user,1,1,1,1
 access_crm_lead_product_s_considered,access.crm.lead_product_s_considered,model_crm_lead_product_s_considered,base.group_user,1,1,1,1
 
+
+access_helpdesk_ticket_s247_product,access.helpdesk.ticket_s247_product,model_helpdesk_ticket_s247_product,base.group_user,1,1,1,1
