@@ -19,8 +19,113 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+
+        <record model="ir.ui.view" id="system_form_view">
+            <field name="name">system.form</field>
+            <field name="model">res.partner_system</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="name" string="Enter Value"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="system_action">
+            <field name="name">system</field>
+            <field name="res_model">res.partner_system</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.ui.view" id="camera_system_form_view">
+            <field name="name">camera_system.form</field>
+            <field name="model">res.partner_camera_system</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="name" string="Enter Value"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="camera_system_action">
+            <field name="name">camera_system</field>
+            <field name="res_model">res.partner_camera_system</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.ui.view" id="how_many_lots__form_view">
+            <field name="name">how_many_lots_.form</field>
+            <field name="model">res.partner_how_many_lots_</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="name" string="Enter Value"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="how_many_lots__action">
+            <field name="name">how_many_lots_</field>
+            <field name="res_model">res.partner_how_many_lots_</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.ui.view" id="competitor_form_view">
+            <field name="name">competitor.form</field>
+            <field name="model">res.partner_competitor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="name" string="Enter Value"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="competitor_action">
+            <field name="name">competitor</field>
+            <field name="res_model">res.partner_competitor</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.ui.view" id="previous_camera_system_form_view">
+            <field name="name">previous_camera_system.form</field>
+            <field name="model">res.partner_previous_camera_system</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="name" string="Enter Value"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="previous_camera_system_action">
+            <field name="name">previous_camera_system</field>
+            <field name="res_model">res.partner_previous_camera_system</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
         <menuitem id="company_values" name="Companies" parent="hubspot_root" sequence="5"/>
         <menuitem id="dealer_sold_through" name="Dealer Sold Through" parent="company_values"
                   action="dealer_sold_through_action"/>
+        <menuitem id="system" name="System" parent="company_values"
+                  action="system_action"/>
+        <menuitem id="camera_system" name="Camera System" parent="company_values"
+                  action="camera_system_action"/>
+        <menuitem id="how_many_lots_" name="How many Lots" parent="company_values"
+                  action="how_many_lots__action"/>
+        <menuitem id="competitor" name="Competitor" parent="company_values"
+                  action="competitor_action"/>
+        <menuitem id="previous_camera_system" name="Previous Camera System" parent="company_values"
+                  action="previous_camera_system_action"/>
     </data>
 </odoo>
