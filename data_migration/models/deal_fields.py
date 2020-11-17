@@ -45,7 +45,7 @@ class DealFields(models.Model):
     lost_reason_notes = fields.Text("Lost Reason Notes")
     opportunity_number = fields.Char("Opportunity Number")
     opportunity_link = fields.Char("Opportunity Link")
-    product_s_considered = fields.Many2many('crm.lead_product_s_considered', 'opportunity_id', 'Products Considered',
+    product_s_considered = fields.One2many('crm.lead_product_s_considered', 'opportunity_id', 'Products Considered',
                                             help='Please add/select the considered products e.g. ZeusPT, ZeusHD, '
                                                  'Touchdown™, GPS, G-Force, IP Cameras w/SARAH4\'s, Stop Arm Cameras,'
                                                  'Demo, Install, TRS')
