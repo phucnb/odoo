@@ -255,7 +255,7 @@ WIRELESS = [
 class CustomCompany(models.Model):
     _inherit = 'res.partner'
 
-    dealer_sold_through = fields.Many2many('get.values', 'dealer_sold_through_values', 'dealer_sold_through', 'value', 'Dealer Sold Through', help='Please add from where dealer sold through?') #multiple
+    dealer_sold_through = fields.One2many('res.partner_dealer_sold_through', 'partner_id', 'Dealer Sold Through', help='Please add from where dealer sold through?') #multiple
     camera_system = fields.Many2many('get.values', 'camera_system_values', 'camera_system', 'value', 'Camera System', help='Please add/select 247Security, Angletrax, Gatekeeper, Provision, REI, Safety Vision, Seon, Other') #multiple
     camera_system_other_ = fields.Char('Camera System Other')
     of_cameras_per_bus = fields.Selection(NUMBER_OF_CAMERAS_PER_BUS, 'Number of camera per bus')
