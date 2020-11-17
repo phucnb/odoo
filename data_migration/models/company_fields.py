@@ -364,4 +364,14 @@ class CustomCompany(models.Model):
             else:
                 partner.opportunity_count = self.env['crm.lead'].search_count([('hs_deal_contacts', '=', partner.id)])
 
-
+    @api.model
+    def action_view_opportunity(self):
+        '''
+        This function returns an action that displays the opportunities from partner.
+        '''
+        action = self.env.ref('crm.crm_lead_opportunities').read()[0]
+        if self.is_company:
+            action['domain'] = [('hs_deal_companies', '=', self.id)]
+        else:
+            action['domain'] = [('hs_deal_contacts', '=', self.id)]
+        return action
