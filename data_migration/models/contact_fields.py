@@ -107,31 +107,46 @@ class ContactFields(models.Model):
     did_they_go_to_a_new_school_district_company_ = fields.Boolean("Did they go to a new school/district/company?")
     what_school_district_company_did_they_go_ = fields.Char("What school/district/company did they go?")
     n247_dvr_total = fields.Char("247 DVR Total")
-    security_blog_email_subs = fields.Selection(SECURITY_BLOG_EMAIL_SUBSCRIPTION, "247Security Blog Email Subscription", help="Please select/add years e.g 2015, 2016 ...")
-    aapt_ar_ = fields.Many2many('get.values', 'aaptr_ar_values', 'aaptr_ar', 'value', "AAPT(AR)", help="Please select/add years e.g 2015, 2016 ...")
-    aasbo_az_ = fields.Many2many('get.values', 'aasbo_az_values', 'aasbo_az', 'value', "AASBO(AZ)", help="Please select/add years e.g 2015, 2016 ...")
+    security_blog_email_subs = fields.Selection(SECURITY_BLOG_EMAIL_SUBSCRIPTION, "247Security Blog Email Subscription",
+                                                help="Please select/add years e.g 2015, 2016 ...")
+    aapt_ar_ = fields.One2many('res.partner_aapt_ar_', 'partner_id', "AAPT(AR)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    aasbo_az_ = fields.One2many('res.partner_aasbo_az_', 'partner_id', "AASBO(AZ)",
+                                help="Please select/add years e.g 2015, 2016 ...")
     accounting_contact_full_name = fields.Char("Accounting Contact Full Name")
     accounting_email = fields.Char("Accounting Email")
     address2 = fields.Char("Address2")
     annual_revenue = fields.Char("Annual Revenue")
     area_code = fields.Selection(AREA_CODE, "Area Code")
     as_of_date = fields.Char("As of Date")
-    asta_al_ = fields.Many2many('get.values', 'asta_al_values', 'asta_al', 'value', "ASTA(AL)", help="Please select/add years e.g 2015, 2016 ...")
+    asta_al_ = fields.One2many('res.partner_asta_al_', 'partner_id', "ASTA(AL)",
+                               help="Please select/add years e.g 2015, 2016 ...")
     average_zoom_webinar_att_duration = fields.Integer("Average Zoom webinar attendance duration")
     bus_garage = fields.Char("Bus Garage")
-    business_unit = fields.Many2many('get.values', 'business_unit_values', 'business_unit', 'value', "Business Unit", help='Please select/add 247Security or Surveillance 247 or both')
-    buying_role = fields.Many2many('get.values', 'buying_role_values', 'buying_role', 'value', "Buying Role", help='Please select/add Blocker, Budget Holder, Champion, Decision Maker, End User, Executive Sponsor, Influencer, Legal & Compliance, Other')
+    business_unit = fields.One2many('res.partner_business_unit', 'partner_id', "Business Unit",
+                                    help='Please select/add 247Security or Surveillance 247 or both')
+    buying_role = fields.One2many('res.partner_buying_role', 'partner_id', "Buying Role",
+                                  help='Please select/add Blocker, Budget Holder, Champion, Decision Maker, '
+                                       'End User, Executive Sponsor, Influencer, Legal & Compliance, Other')
     cameras = fields.Char("Cameras")
     campaign_of_last_booking_in_meetings_tool = fields.Char("Campaign of last booking in meetings tool")
-    casbo_ca_ = fields.Many2many('get.values', 'casbo_ca_values', 'casbo_ca', 'value', "CASBO(CA)", help="Please select/add years e.g 2015, 2016 ...")
-    casto_ca_ = fields.Many2many('get.values', 'casto_ca_values', 'casto_ca', 'value', "CASTO(CA)", help="Please select/add years e.g 2015, 2016 ...")
-    cgcs = fields.Many2many('get.values', 'cgcs_values', 'cgcs', 'value', "CGCS", help="Please select/add years e.g 2015, 2016 ...")
-    chapter_meeting_1 = fields.Many2many('get.values', 'chapter_meeting_1_values', 'chapter_meeting_1', 'value', "Chapter Meeting-1", help="Please select/add years e.g 2015, 2016 ...")
+    casbo_ca_ = fields.One2many('res.partner_casbo_ca_', 'partner_id', "CASBO(CA)",
+                                help="Please select/add years e.g 2015, 2016 ...")
+    casto_ca_ = fields.One2many('res.partner_casto_ca_', 'partner_id', "CASTO(CA)",
+                                help="Please select/add years e.g 2015, 2016 ...")
+    cgcs = fields.One2many('res.partner_cgcs', 'partner_id', "CGCS",
+                           help="Please select/add years e.g 2015, 2016 ...")
+    chapter_meeting_1 = fields.One2many('res.partner_chapter_meeting_1', 'partner_id', "Chapter Meeting-1",
+                                        help="Please select/add years e.g 2015, 2016 ...")
     company_size = fields.Char("Company Size")
-    cptc_cn_ = fields.Many2many('get.values', 'cptc_cn_values', 'cptc_cn', 'value', "CPTC(CN)", help="Please select/add years e.g 2015, 2016 ...")
-    crtc_wa_ = fields.Many2many('get.values', 'crtc_wa_values', 'crtc_wa', 'value', "CRTC(WA)", help="Please select/add years e.g 2015, 2016 ...")
-    cspta_co_ = fields.Many2many('get.values', 'cspta_co_values', 'cspta_co', 'value', "CSPTA(CO)", help="Please select/add years e.g 2015, 2016 ...")
-    ctaa = fields.Many2many('get.values', 'ctaa_values', 'ctaa', 'value', "CTAA", help="Please select/add years e.g 2015, 2016 ...")
+    cptc_cn_ = fields.One2many('res.partner_cptc_cn_', 'partner_id', "CPTC(CN)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    crtc_wa_ = fields.One2many('res.partner_crtc_wa_', 'partner_id', "CRTC(WA)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    cspta_co_ = fields.One2many('res.partner_cspta_co_', 'partner_id', "CSPTA(CO)",
+                                help="Please select/add years e.g 2015, 2016 ...")
+    ctaa = fields.One2many('res.partner_ctaa', 'partner_id', "CTAA",
+                           help="Please select/add years e.g 2015, 2016 ...")
     date_of_last_meeting_booked_in_meetings_tool = fields.Date("Date of last meeting booked in meetings tool")
     days_to_close = fields.Char("Days to close")
     degree = fields.Char("Degree")
@@ -141,42 +156,66 @@ class ContactFields(models.Model):
     famtec_customer = fields.Char("FAMTEC Customer")
     famtec_sales_rep = fields.Char("FAMTEC Sales Rep")
     field_of_study = fields.Char("Field of study")
-    fpta_ctd = fields.Many2many('get.values', 'fpta_ctd_values', 'fpta_ctd', 'value', "FPTA/CTD", help="Please select/add years e.g 2015, 2016 ...")
-    gapt_ga_ =fields.Many2many('get.values', 'gapt_ga_values', 'gapt_ga', 'value', "GAPT(GA)", help="Please select/add years e.g 2015, 2016 ...")
-    gcapt_tx_ = fields.Many2many('get.values', 'gcapt_tx_values', 'gcapt_tx', 'value', "GCAPT(TX)", help="Please select/add years e.g 2015, 2016 ...")
-    iapt_id_ = fields.Many2many('get.values', 'iapt_id_values', 'iapt_id', 'value', "IAPT(ID)", help="Please select/add years e.g 2015, 2016 ...")
-    iapt_il_ = fields.Many2many('get.values', 'iapt_il_values', 'iapt_il', 'value', "IAPT(IL)", help="Please select/add years e.g 2015, 2016 ...")
+    fpta_ctd = fields.One2many('res.partner_fpta_ctd', 'partner_id', "FPTA/CTD",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    gapt_ga_ = fields.One2many('res.partner_gapt_ga_', 'partner_id', "GAPT(GA)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    gcapt_tx_ = fields.One2many('res.partner_gcapt_tx_', 'partner_id', "GCAPT(TX)",
+                                help="Please select/add years e.g 2015, 2016 ...")
+    iapt_id_ = fields.One2many('res.partner_iapt_id_', 'partner_id', "IAPT(ID)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    iapt_il_ = fields.One2many('res.partner_iapt_il_', 'partner_id', "IAPT(IL)",
+                               help="Please select/add years e.g 2015, 2016 ...")
     iacp = fields.Selection(IACP, "IACP")
     ip_city = fields.Char("IP City")
     ip_country = fields.Char("IP Country")
     ip_country_code = fields.Char("IP Country Code")
     ip_state_region = fields.Char("IP State/Region")
     ip_state_region_code = fields.Char("IP State/Region Code")
-    ipta_ia_ = fields.Many2many('get.values', 'ipta_ia_values', 'ipta_ia', 'value', "IPTA(IA)", help="Please select/add years e.g 2015, 2016 ...") # SELECT MULTIPLE
-    kspta_ks_ = fields.Many2many('get.values', 'kspta_ks_values', 'kspta_ks', 'value', "KSPTA(KS)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
+    ipta_ia_ = fields.One2many('res.partner_ipta_ia_', 'partner_id', "IPTA(IA)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    kspta_ks_ = fields.One2many('res.partner_kspta_ks_', 'partner_id', "KSPTA(KS)",
+                                help="Please select/add years e.g 2015, 2016 ...")
     last_registered_zoom_webinar = fields.Char("Last registered Zoom webinar")
-    mapt_mi_ = fields.Many2many('get.values', 'mapt_mi_values', 'mapt_mi', 'value', "MAPT(MI)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    mapt_mo_ = fields.Many2many('get.values', 'mapt_mo_values', 'mapt_mo', 'value', "MAPT(MO)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    mnapt_mn_ = fields.Many2many('get.values', 'mnapt_mn_values', 'mnapt_mn', 'value', "MNAPT(MN)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
+    mapt_mi_ = fields.One2many('res.partner_mapt_mi_', 'partner_id', "MAPT(MI)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    mapt_mo_ = fields.One2many('res.partner_mapt_mo_', 'partner_id', "MAPT(MO)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    mnapt_mn_ = fields.One2many('res.partner_mnapt_mn_', 'partner_id', "MNAPT(MN)",
+                                help="Please select/add years e.g 2015, 2016 ...")
     military_status = fields.Char("Military Status")
-    msboa_mn_ = fields.Many2many('get.values', 'msboa_mn_values', 'msboa_mn', 'value', "MSBOA(MN)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
+    msboa_mn_ = fields.One2many('res.partner_msboa_mn_', 'partner_id', "MSBOA(MN)",
+                                help="Please select/add years e.g 2015, 2016 ...")
     # nadp = fields.Char("NADP")
-    napt = fields.Many2many('get.values', 'napt_values', 'napt', 'value', "NAPT", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    napt_na_ = fields.Many2many('get.values', 'napt_na_values', 'napt_na', 'value', "NAPT(NA)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    ncpta_nc_ = fields.Many2many('get.values', 'ncpta_nc_values', 'ncpta_nc', 'value', "NCPTA(NC)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    ncst = fields.Many2many('get.values', 'ncst_values', 'ncst', 'value', "NCST", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
+    napt = fields.One2many('res.partner_napt', 'partner_id', "NAPT",
+                           help="Please select/add years e.g 2015, 2016 ...")
+    napt_na_ = fields.One2many('res.partner_napt_na_', 'partner_id', "NAPT(NA)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    ncpta_nc_ = fields.One2many('res.partner_ncpta_nc_', 'partner_id', "NCPTA(NC)",
+                                help="Please select/add years e.g 2015, 2016 ...")
+    ncst = fields.One2many('res.partner_ncst', 'partner_id', "NCST",
+                           help="Please select/add years e.g 2015, 2016 ...")
     now_in_workflow = fields.Boolean("Now in Workflow")
     now_in_sequence = fields.Boolean("Now in Sequence")
-    nsba_na_ = fields.Many2many('get.values', 'nsba_na_values', 'nsba_na', 'value', "NSBA(NA)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    nsta_mid = fields.Many2many('get.values', 'nsta_mid_values', 'nsta_mid', 'value', "NSTA-mid", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    nsta_national = fields.Many2many('get.values', 'nsta_national_values', 'nsta_national', 'value', "NSTA-national", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    nsta_summer = fields.Many2many('get.values', 'nsta_summer_values', 'nsta_summer', 'value', "NSTA-summer", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
+    nsba_na_ = fields.One2many('res.partner_nsba_na_', 'partner_id', "NSBA(NA)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    nsta_mid = fields.One2many('res.partner_nsta_mid', 'partner_id', "NSTA-mid",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    nsta_national = fields.One2many('res.partner_nsta_national', 'partner_id', "NSTA-national",
+                                    help="Please select/add years e.g 2015, 2016 ...")
+    nsta_summer = fields.One2many('res.partner_nsta_summer', 'partner_id', "NSTA-summer",
+                                  help="Please select/add years e.g 2015, 2016 ...")
     no_of_employees = fields.Selection(NO_OF_EMPLOYEES, 'No of Employees')
-    oapt_oh_ = fields.Many2many('get.values', 'oapt_oh_values', 'oapt_oh', 'value', "OAPT(OH)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    oapt_ok_ = fields.Many2many('get.values', 'oapt_ok_values', 'oapt_ok', 'value', "OAPT(OK)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    oasbo_on_ = fields.Many2many('get.values', 'oasbo_on_values', 'oasbo_on', 'value', "OASBO(ON)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    oasbo_osba = fields.Many2many('get.values', 'oasbo_osba_values', 'oasbo_osba', 'value', "OASBO(OSBA)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    opta_or_ = fields.Many2many('get.values', 'opta_or_values', 'opta_or', 'value', "OPTA(OR)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
+    oapt_oh_ = fields.One2many('res.partner_oapt_oh_', 'partner_id', "OAPT(OH)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    oapt_ok_ = fields.One2many('res.partner_oapt_ok_', 'partner_id', "OAPT(OK)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    oasbo_on_ = fields.One2many('res.partner_oasbo_on_', 'partner_id', "OASBO(ON)",
+                                help="Please select/add years e.g 2015, 2016 ...")
+    oasbo_osba = fields.One2many('res.partner_oasbo_osba', 'partner_id', "OASBO(OSBA)",
+                                 help="Please select/add years e.g 2015, 2016 ...")
+    opta_or_ = fields.One2many('res.partner_opta_or_', 'partner_id', "OPTA(OR)",
+                               help="Please select/add years e.g 2015, 2016 ...")
     opted_out_of_email_marketing = fields.Boolean("Opted out of email marketing information")
     opted_out_of_email_security_blog_sub = fields.Boolean("Opted out of email: 247Security Blog Subscription")
     opted_out_of_email_customer_Service = fields.Boolean("Opted out of email: Customer Service Communication")
@@ -187,7 +226,8 @@ class ContactFields(models.Model):
     original_source = fields.Selection(ORIGINAL_SOURCE, "Original Source")
     original_source_dd_1 = fields.Char("Original Source drill-down 1")
     original_source_dd_2 = fields.Char("Original Source drill-down 2")
-    osbma_oh_ = fields.Many2many('get.values', 'osbma_oh_values', 'osbma_oh', 'value', "OSBMA(OH)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
+    osbma_oh_ = fields.One2many('res.partner_osbma_oh_', 'partner_id', "OSBMA(OH)",
+                                help="Please select/add years e.g 2015, 2016 ...")
     persona = fields.Selection(PERSONA, "Persona")
     population = fields.Char("Population")
     product_i_m_interested_in = fields.Selection(PRODUCT_INTERESTED, "Product I'm interested in")
@@ -195,26 +235,47 @@ class ContactFields(models.Model):
     surveillance_247_district_website_domain = fields.Char("S247 District Website Domain")
     surveillance_247_area_code = fields.Char("S247 Area Code")
     s247_secondary_company = fields.Char("S247 Secondary Company")
-    sbx = fields.Many2many('get.values', 'sbx_values', 'sbx', 'value', "SBX", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    scapt_sc_ = fields.Many2many('get.values', 'scapt_sc_values', 'scapt_sc', 'value', "SCAPT(SC)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    solution_currently_installed = fields.Many2many('get.values', 'solution_currently_installed_values', 'solution_currently_installed', 'value', "Solution Currently Installed", help="Please select/add GateKeeper, Angel Trax, Seon, Safety Vision, Pro Vision, Other")  # SELECT MULTIPLE
-    sesptc = fields.Many2many('get.values', 'sesptc_values', 'sesptc', 'value', "SESPTC", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
+    sbx = fields.One2many('res.partner_sbx', 'partner_id', "SBX",
+                          help="Please select/add years e.g 2015, 2016 ...")
+    scapt_sc_ = fields.One2many('res.partner_scapt_sc_', 'partner_id', "SCAPT(SC)",
+                                help="Please select/add years e.g 2015, 2016 ...")
+    # solution_currently_installed = fields.One2many('res.partner_previous_camera_system', 'partner_id',
+    #                                                "Solution Currently Installed",
+    #                                                help="Please select/add GateKeeper, Angel Trax, Seon, "
+    #                                                     "Safety Vision, Pro Vision, Other")
+    sesptc = fields.One2many('res.partner_sesptc', 'partner_id', "SESPTC",
+                             help="Please select/add years e.g 2015, 2016 ...")
     special_instructions = fields.Char("Special Instructions")
-    stai_in_ = fields.Many2many('get.values', 'stai_in_values', 'stai_in', 'value', "STAI(IN)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    stn = fields.Many2many('get.values', 'stn_values', 'stn', 'value', "STN", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    sts_of_nj = fields.Many2many('get.values', 'sts_nj_values', 'sts_nj', 'value', "STS of NJ", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    taa_az_ = fields.Many2many('get.values', 'taa_az_values', 'taa_az', 'value', "TAA(AZ)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    tapt_tn_ = fields.Many2many('get.values', 'tapt_tn_values', 'tapt_tn', 'value', "TAPT(TN)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    tapt_tx_ = fields.Many2many('get.values', 'tapt_tx_values', 'tapt_tx', 'value', "TAPT(TX)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    transfinder = fields.Many2many('get.values', 'transfinder_values', 'transfinder', 'value', "Transfinder", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    tsd = fields.Many2many('get.values', 'tsd_values', 'tsd', 'value', "TSD", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    uapt_ut_ = fields.Many2many('get.values', 'uapt_ut_values', 'uapt_ut', 'value', "UAPT(UT)", help="Please select/add years e.g 2015, 2016 ...") # SELECT MULTIPLE
-    vapt_va_ = fields.Many2many('get.values', 'vapt_va_values', 'vapt_va', 'value', "VAPT(VA)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    wapt_wa_ = fields.Many2many('get.values', 'wapt_wa_values', 'wapt_wa', 'value', "WAPT(WA)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    wpta_wy_ = fields.Many2many('get.values', 'wpta_wy_values', 'wpta_wy', 'value', "WPTA(WY)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    wsba_wi_ = fields.Many2many('get.values', 'wsba_wi_values', 'wsba_wi', 'value', "WSBA(WI)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    wvapt_wv_ = fields.Many2many('get.values', 'wvapt_wv_values', 'wvapt_wv', 'value', "WVAPT(WV)", help="Please select/add years e.g 2015, 2016 ...")  # SELECT MULTIPLE
-    what_type_of_support = fields.Many2many('get.values', 'what_type_of_support_values', 'what_type_of_support', 'value', "What type of support?", help="Please select/add Software or Hardware or both")  # SELECT MULTIPLE
+    stai_in_ = fields.One2many('res.partner_stai_in_', 'partner_id', "STAI(IN)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    stn = fields.One2many('res.partner_stn', 'partner_id', "STN",
+                          help="Please select/add years e.g 2015, 2016 ...")
+    sts_of_nj = fields.One2many('res.partner_sts_of_nj', 'partner_id', "STS of NJ",
+                                help="Please select/add years e.g 2015, 2016 ...")
+    taa_az_ = fields.One2many('res.partner_taa_az_', 'partner_id', "TAA(AZ)",
+                              help="Please select/add years e.g 2015, 2016 ...")
+    tapt_tn_ = fields.One2many('res.partner_tapt_tn_', 'partner_id', "TAPT(TN)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    tapt_tx_ = fields.One2many('res.partner_tapt_tx_', 'partner_id', "TAPT(TX)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    transfinder = fields.One2many('res.partner_transfinder', 'partner_id', "Transfinder",
+                                  help="Please select/add years e.g 2015, 2016 ...")
+    tsd = fields.One2many('res.partner_tsd', 'partner_id', "TSD",
+                          help="Please select/add years e.g 2015, 2016 ...")
+    uapt_ut_ = fields.One2many('res.partner_uapt_ut_', 'partner_id', "UAPT(UT)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    vapt_va_ = fields.One2many('res.partner_vapt_va_', 'partner_id', "VAPT(VA)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    wapt_wa_ = fields.One2many('res.partner_wapt_wa_', 'partner_id', "WAPT(WA)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    wpta_wy_ = fields.One2many('res.partner_wpta_wy_', 'partner_id', "WPTA(WY)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    wsba_wi_ = fields.One2many('res.partner_wsba_wi_', 'partner_id', "WSBA(WI)",
+                               help="Please select/add years e.g 2015, 2016 ...")
+    wvapt_wv_ = fields.One2many('res.partner_wvapt_wv_', 'partner_id', "WVAPT(WV)",
+                                help="Please select/add years e.g 2015, 2016 ...")
+    what_type_of_support = fields.One2many('res.partner_what_type_of_support', 'partner_id', "What type of support?",
+                                           help="Please select/add Software or Hardware or both")
     zoom_webinar_attendance_average_duration = fields.Char("Zoom webinar attendance average duration")
     zoom_webinar_attendance_count = fields.Integer("Zoom webinar attendance count")
     zoom_webinar_joinlink = fields.Char("Zoom webinar joinlink")
