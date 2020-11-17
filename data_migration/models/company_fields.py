@@ -255,12 +255,16 @@ WIRELESS = [
 class CustomCompany(models.Model):
     _inherit = 'res.partner'
 
-    dealer_sold_through = fields.One2many('res.partner_dealer_sold_through', 'partner_id', 'Dealer Sold Through', help='Please add from where dealer sold through?') #multiple
-    camera_system = fields.Many2many('get.values', 'camera_system_values', 'camera_system', 'value', 'Camera System', help='Please add/select 247Security, Angletrax, Gatekeeper, Provision, REI, Safety Vision, Seon, Other') #multiple
+    dealer_sold_through = fields.One2many('res.partner_dealer_sold_through', 'partner_id', 'Dealer Sold Through',
+                                          help='Please add from where dealer sold through?')
+    camera_system = fields.One2many('res.partner_camera_system', 'partner_id', 'Camera System',
+                                    help='Please add/select 247Security, Angletrax, Gatekeeper, '
+                                         'Provision, REI, Safety Vision, Seon, Other')
     camera_system_other_ = fields.Char('Camera System Other')
     of_cameras_per_bus = fields.Selection(NUMBER_OF_CAMERAS_PER_BUS, 'Number of camera per bus')
     e360_cameras = fields.Selection(OPTIONS, 'E360 cameras')
-    how_many_lots_ = fields.Many2many('get.values', 'how_many_lots_values', 'how_many_lots_', 'value', 'How many lots', help='Please add/select number of lots e.g. lot1, lot2, lot3...') #multiple
+    how_many_lots_ = fields.One2many('res.partner_how_many_lots_', 'partner_id', 'How many lots',
+                                     help='Please add/select number of lots e.g. lot1, lot2, lot3...')
     lot_1_address = fields.Text("Lot1 Address")
     lot_2_address = fields.Text("Lot2 Address")
     bus_garage = fields.Char("Bus Garage")
@@ -286,7 +290,8 @@ class CustomCompany(models.Model):
     business_vertical_other_ = fields.Char("Business Vertical(Other)")
     cameras = fields.Selection(CAMERAS, 'Cameras')
     company_type = fields.Selection(selection_add=COMPANY_TYPE)
-    competitor = fields.Many2many('get.values', 'competitor_values', 'competitor', 'value', 'Competitor', help='Please add/select the name of competitor e.g. Seon, AT, Pro-Vision etc') #multiple
+    competitor = fields.One2many('res.partner_competitor', 'partner_id', 'Competitor',
+                                 help='Please add/select the name of competitor e.g. Seon, AT, Pro-Vision etc')
     contractor = fields.Char("Contractor")
     # customer_rating = fields.Selection(Customer_Rating, 'Customer Rating')
     dealer_sub_type = fields.Selection(DEALER_SUB_TYPE, 'Dealer Sub-Type')
@@ -308,7 +313,9 @@ class CustomCompany(models.Model):
     parent_portal_system = fields.Selection(OPTIONS, 'Parent Portal System')
     preferred_camera_vendor = fields.Selection(OPTIONS2, 'Preferred Camera Vendor')
     preferred_camera_vendor_cloned_ = fields.Char('Preferred Camera Vendor Other')
-    previous_camera_system = fields.Many2many('get.values', 'previous_camera_system_values', 'previous_camera_system', 'value', 'Previous Camera System', help='Please add/select the name of previous camera system e.g. AngelTrax, Seon, Gatekeeper etc') #multiple
+    previous_camera_system = fields.One2many('res.partner_previous_camera_system', 'partner_id', 'Previous Camera System',
+                                             help='Please add/select the name of previous camera system '
+                                                  'e.g. AngelTrax, Seon, Gatekeeper etc')
     products = fields.Selection(PRODUCTS, 'Products')
     purchase_date = fields.Char('Purchase Date')
     purchased_list_july = fields.Boolean('Purchased List-July')
@@ -344,8 +351,8 @@ class CustomCompany(models.Model):
     student_tracking_system = fields.Selection(STUDENT_TRACK_PRO, 'Student Tracking Provider')
     student_tracking_system_other_ = fields.Char("Student Tracking Provides(Other)")
     # service_surveillance_owner = fields.Many2one('res.users', "Surveillance-247 Owner")
-    system = fields.Many2many('get.values', 'system_values', 'system', 'value',
-                              'System', help='Please add/select the name of system')
+    system = fields.One2many('res.partner_previous_camera_system', 'partner_id', 'System',
+                             help='Please add/select the name of system')
     # territory_coverage = fields.Char("Territory Coverage") # Multiple states selection
     territory = fields.Selection(TERRITORY, "Territory")
     touchdown = fields.Selection(TOUCHDOWN, "Touchdown")

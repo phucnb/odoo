@@ -1,3 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_get_values,access.get.values,model_get_values,base.group_user,1,1,1,1
 access_res_partner_dealer_sold_through,access.res.partner_dealer_sold_through,model_res_partner_dealer_sold_through,base.group_user,1,1,1,1
+access_res_partner_system,access.res.partner_system,model_res_partner_system,base.group_user,1,1,1,1
+access_res_partner_camera_system,access.res.partner_camera_system,model_res_partner_camera_system,base.group_user,1,1,1,1
+access_res_partner_how_many_lots_,access.res.partner_how_many_lots_,model_res_partner_how_many_lots_,base.group_user,1,1,1,1
+access_res_partner_competitor,access.res.partner_competitor,model_res_partner_competitor,base.group_user,1,1,1,1
+access_res_partner_previous_camera_system,access.res.partner_previous_camera_system,model_res_partner_previous_camera_system,base.group_user,1,1,1,1
