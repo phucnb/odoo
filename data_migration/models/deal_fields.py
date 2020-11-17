@@ -36,8 +36,7 @@ class DealFields(models.Model):
     hs_deal_contacts = fields.Many2many('res.partner', 'deal_contact_rel', 'partner_id', 'deal_id', 'Contacts')
     hs_deal_companies = fields.Many2one('res.partner', 'Company')
     n247s_lifecycle_stage = fields.Selection(S247_LIFECYCLE_STAGE, "247S Lifecycle Stage")
-    dealers_quoting_this_deal = fields.Many2many('get.values', 'dealers_quoting_this_deal_values',
-                                                 'dealers_quoting_this_deal', 'value', 'Dealers quoting this deal',
+    dealers_quoting_this_deal = fields.One2many('crm.lead_dealers_quoting_this_deal', 'partner_id', 'Dealers quoting this deal',
                                                  help='Please add/select the dealers quoting e.g. A-Z Bus Sales, '
                                                       'Bryson, KLC, Midwest Transit, Rush') #multiple
     end_user = fields.Char("End-User")
@@ -45,8 +44,7 @@ class DealFields(models.Model):
     lost_reason_notes = fields.Text("Lost Reason Notes")
     opportunity_number = fields.Char("Opportunity Number")
     opportunity_link = fields.Char("Opportunity Link")
-    product_s_considered = fields.Many2many('get.values', 'product_s_considered_values',
-                                            'product_s_considered', 'value', 'Products Considered',
+    product_s_considered = fields.Many2many('crm.lead_product_s_considered', 'partner_id', 'Products Considered',
                                             help='Please add/select the considered products e.g. ZeusPT, ZeusHD, '
                                                  'Touchdown™, GPS, G-Force, IP Cameras w/SARAH4\'s, Stop Arm Cameras,'
                                                  'Demo, Install, TRS') #multiple

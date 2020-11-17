@@ -6,3 +6,8 @@ access_res_partner_camera_system,access.res.partner_camera_system,model_res_part
 access_res_partner_how_many_lots_,access.res.partner_how_many_lots_,model_res_partner_how_many_lots_,base.group_user,1,1,1,1
 access_res_partner_competitor,access.res.partner_competitor,model_res_partner_competitor,base.group_user,1,1,1,1
 access_res_partner_previous_camera_system,access.res.partner_previous_camera_system,model_res_partner_previous_camera_system,base.group_user,1,1,1,1
+
+
+access_crm_lead_dealers_quoting_this_deal,access.crm.lead_dealers_quoting_this_deal,model_crm_lead_dealers_quoting_this_deal,base.group_user,1,1,1,1
+access_crm_lead_product_s_considered,access.crm.lead_product_s_considered,model_crm_lead_product_s_considered,base.group_user,1,1,1,1
+
