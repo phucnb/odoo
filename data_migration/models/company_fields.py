@@ -364,7 +364,7 @@ class CustomCompany(models.Model):
             else:
                 partner.opportunity_count = self.env['crm.lead'].search_count([('hs_deal_contacts', '=', partner.id)])
 
-    @api.model
+    # @api.model
     def action_view_opportunity(self):
         '''
         This function returns an action that displays the opportunities from partner.
