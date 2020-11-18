@@ -765,12 +765,8 @@ class HubspotImportIntegration(models.Model):
                                 continue
                         try:
                             print('Creating Email Engagement against the company', odoo_company.name)
-                            author = self.env['res.partner'].search([('email', '=', meta_data['from'])])
-                            author_id = None
-                            if author:
-                                author_id = author.id
-                            else:
-                                author_id = self.env.user.id
+                            author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])[0]
+
                             odoo_comment = self.env['mail.message'].create({
                                 'engagement_id': engagement_data['id'],
                                 'message_type': 'email',
@@ -780,7 +776,7 @@ class HubspotImportIntegration(models.Model):
                                 'display_name': author.name if author.name else None,
                                 'email_from': meta_data['from'],
                                 # comment.author.email if comment.author.email else None,
-                                'author_id': author_id,
+                                'author_id': author.id if author else None,
                                 'model': 'res.partner',
                                 'res_id': odoo_company.id
                             })
@@ -792,8 +788,8 @@ class HubspotImportIntegration(models.Model):
                     elif engagement_data['type'] == 'NOTE':
                         try:
                             print('Creating Note Engagement against the company', odoo_company.name)
-                            author = self.env.user
-                            author_id = self.env.user.id
+                            author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
+                            author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
                             odoo_comment = self.env['mail.message'].create({
                                 'engagement_id': engagement_data['id'],
                                 'message_type': 'notification',
@@ -816,6 +812,7 @@ class HubspotImportIntegration(models.Model):
                             print('Creating TASK Engagement against the company', odoo_company.name)
                             if meta_data['status'] != 'COMPLETED':
                                 print(odoo_company.name)
+                                user_id = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
                                 activity_type = self.env['mail.activity.type'].search([('name', '=', 'Todo')])
                                 partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
                                 self.env['mail.activity'].create({
@@ -829,17 +826,14 @@ class HubspotImportIntegration(models.Model):
                                     'res_model_id': partner_model.id,
                                     'date_deadline': datetime.datetime.fromtimestamp(
                                         int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
-                                        'completionDate') else datetime.datetime.now()
+                                        'completionDate') else datetime.datetime.now(),
+                                    'user_id': user_id.id if user_id else None
                                 })
                                 self.env.cr.commit()
                             else:
                                 print('message created for task', odoo_company.name)
-                                author = odoo_company
-                                author_id = None
-                                if author:
-                                    author_id = author.id
-                                else:
-                                    author_id = self.env.user.id
+                                author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
+                                author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'comment',
@@ -862,6 +856,8 @@ class HubspotImportIntegration(models.Model):
                             print('Creating Call Engagement against the company', odoo_company.name)
                             if meta_data['status'] != 'COMPLETED':
                                 print(odoo_company.name)
+                                user_id = self.env['res.users'].search(
+                                    [('hubspot_id', '=', engagement_data['ownerId'])])
                                 activity_type = self.env['mail.activity.type'].search([('name', '=', 'Call')])
                                 partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
                                 self.env['mail.activity'].create({
@@ -882,17 +878,14 @@ class HubspotImportIntegration(models.Model):
                                     'res_model_id': partner_model.id,
                                     'date_deadline': datetime.datetime.fromtimestamp(
                                         int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
-                                        'completionDate') else datetime.datetime.now()
+                                        'completionDate') else datetime.datetime.now(),
+                                    'user_id': user_id.id if user_id else None
                                 })
                                 self.env.cr.commit()
                             else:
                                 print('message created for call', odoo_company.name)
-                                author = odoo_company
-                                author_id = None
-                                if author:
-                                    author_id = author.id
-                                else:
-                                    author_id = self.env.user.id
+                                author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
+                                author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
                                 odoo_comment = self.env['mail.message'].create({
                                     'message_type': 'comment',
                                     'engagement_id': engagement_data['id'],
@@ -917,6 +910,8 @@ class HubspotImportIntegration(models.Model):
                             end_time = datetime.datetime.fromtimestamp(int(str(meta_data['endTime'])[:-3]))
                             if end_time > datetime.datetime.now():
                                 print(odoo_company.name)
+                                user_id = self.env['res.users'].search(
+                                    [('hubspot_id', '=', engagement_data['ownerId'])])
                                 activity_type = self.env['mail.activity.type'].search([('name', '=', 'Meeting')])
                                 partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
                                 self.env['mail.activity'].create({
@@ -935,17 +930,14 @@ class HubspotImportIntegration(models.Model):
                                     'res_model_id': partner_model.id,
                                     'date_deadline': datetime.datetime.fromtimestamp(
                                         int(str(meta_data['endTime'])[:-3])) if meta_data.get(
-                                        'endTime') else datetime.datetime.now()
+                                        'endTime') else datetime.datetime.now(),
+                                    'user_id': user_id.id if user_id else None
                                 })
                                 self.env.cr.commit()
                             else:
                                 print('message created for call', odoo_company.name)
-                                author = odoo_company
-                                author_id = None
-                                if author:
-                                    author_id = author.id
-                                else:
-                                    author_id = self.env.user.id
+                                author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
+                                author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'comment',
@@ -1431,43 +1423,40 @@ class HubspotImportIntegration(models.Model):
                         continue
                     association_data = engagement['associations']
                     meta_data = engagement['metadata']
-                    if not meta_data.get('from'):
-                        if self.env.user.email:
-                            meta_data['from'] = self.env.user.email
-                        else:
-                            continue
-                        if len(meta_data['from']) == 0:
+                    if engagement_data['type'] == 'EMAIL':
+                        if not meta_data.get('from'):
                             if self.env.user.email:
                                 meta_data['from'] = self.env.user.email
                             else:
                                 continue
-                        try:
-                            author = self.env['res.partner'].search([('email', '=', meta_data['from'])])
-                            author_id = None
-                            if author:
-                                author_id = author.id
-                            else:
-                                author_id = self.env.user.id
-                            odoo_comment = self.env['mail.message'].create({
-                                'engagement_id': engagement_data['id'],
-                                'message_type': 'email',
-                                'body': meta_data['text'] if meta_data.get('text') else '',
-                                'create_date': datetime.datetime.fromtimestamp(
-                                    int(str(engagement_data['createdAt'])[:-3])),
-                                'display_name': author.name if author.name else None,
-                                'email_from': meta_data['from'],
-                                # comment.author.email if comment.author.email else None,
-                                'author_id': author_id,
-                                'model': 'res.partner',
-                                'res_id': odoo_contact.id
-                            })
-                        except:
-                            pass
+                            if len(meta_data['from']) == 0:
+                                if self.env.user.email:
+                                    meta_data['from'] = self.env.user.email
+                                else:
+                                    continue
+                            try:
+                                author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])[0]
+
+                                odoo_comment = self.env['mail.message'].create({
+                                    'engagement_id': engagement_data['id'],
+                                    'message_type': 'email',
+                                    'body': meta_data['text'] if meta_data.get('text') else '',
+                                    'create_date': datetime.datetime.fromtimestamp(
+                                        int(str(engagement_data['createdAt'])[:-3])),
+                                    'display_name': author.name if author.name else None,
+                                    'email_from': meta_data['from'],
+                                    # comment.author.email if comment.author.email else None,
+                                    'author_id': author.id if author else None,
+                                    'model': 'res.partner',
+                                    'res_id': odoo_contact.id
+                                })
+                            except:
+                                pass
                     elif engagement_data['type'] == 'NOTE':
                         try:
                             print(odoo_contact.name)
-                            author = self.env.user
-                            author_id = self.env.user.id
+                            author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
+                            author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
                             odoo_comment = self.env['mail.message'].create({
                                 'engagement_id': engagement_data['id'],
                                 'message_type': 'notification',
@@ -1488,6 +1477,7 @@ class HubspotImportIntegration(models.Model):
                         try:
                             if meta_data['status'] != 'COMPLETED':
                                 print(odoo_contact.name)
+                                user_id = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
                                 activity_type = self.env['mail.activity.type'].search([('name', '=', 'Todo')])
                                 partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
                                 self.env['mail.activity'].create({
@@ -1501,17 +1491,14 @@ class HubspotImportIntegration(models.Model):
                                     'res_model_id': partner_model.id,
                                     'date_deadline': datetime.datetime.fromtimestamp(
                                         int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
-                                        'completionDate') else datetime.datetime.now()
+                                        'completionDate') else datetime.datetime.now(),
+                                    'user_id': user_id.id if user_id else None
                                 })
                                 self.env.cr.commit()
                             else:
                                 print('message created for task', odoo_contact.name)
-                                author = odoo_contact
-                                author_id = None
-                                if author:
-                                    author_id = author.id
-                                else:
-                                    author_id = self.env.user.id
+                                author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
+                                author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'comment',
@@ -1530,6 +1517,8 @@ class HubspotImportIntegration(models.Model):
                         try:
                             if meta_data['status'] != 'COMPLETED':
                                 print(odoo_contact.name)
+                                user_id = self.env['res.users'].search(
+                                    [('hubspot_id', '=', engagement_data['ownerId'])])
                                 activity_type = self.env['mail.activity.type'].search([('name', '=', 'Call')])
                                 partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
                                 self.env['mail.activity'].create({
@@ -1550,17 +1539,14 @@ class HubspotImportIntegration(models.Model):
                                     'res_model_id': partner_model.id,
                                     'date_deadline': datetime.datetime.fromtimestamp(
                                         int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
-                                        'completionDate') else datetime.datetime.now()
+                                        'completionDate') else datetime.datetime.now(),
+                                    'user_id': user_id.id if user_id else None
                                 })
                                 self.env.cr.commit()
                             else:
                                 print('message created for call', odoo_contact.name)
-                                author = odoo_contact
-                                author_id = None
-                                if author:
-                                    author_id = author.id
-                                else:
-                                    author_id = self.env.user.id
+                                author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
+                                author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
                                 odoo_comment = self.env['mail.message'].create({
                                     'message_type': 'comment',
                                     'engagement_id': engagement_data['id'],
@@ -1581,6 +1567,8 @@ class HubspotImportIntegration(models.Model):
                             end_time = datetime.datetime.fromtimestamp(int(str(meta_data['endTime'])[:-3]))
                             if end_time > datetime.datetime.now():
                                 print(odoo_contact.name)
+                                user_id = self.env['res.users'].search(
+                                    [('hubspot_id', '=', engagement_data['ownerId'])])
                                 activity_type = self.env['mail.activity.type'].search([('name', '=', 'Meeting')])
                                 partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
                                 self.env['mail.activity'].create({
@@ -1599,17 +1587,14 @@ class HubspotImportIntegration(models.Model):
                                     'res_model_id': partner_model.id,
                                     'date_deadline': datetime.datetime.fromtimestamp(
                                         int(str(meta_data['endTime'])[:-3])) if meta_data.get(
-                                        'endTime') else datetime.datetime.now()
+                                        'endTime') else datetime.datetime.now(),
+                                    'user_id': user_id.id if user_id else None
                                 })
                                 self.env.cr.commit()
                             else:
                                 print('message created for call', odoo_contact.name)
-                                author = odoo_contact
-                                author_id = None
-                                if author:
-                                    author_id = author.id
-                                else:
-                                    author_id = self.env.user.id
+                                author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
+                                author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'comment',
