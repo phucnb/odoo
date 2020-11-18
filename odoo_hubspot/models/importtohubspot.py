@@ -1541,7 +1541,7 @@ class HubspotImportIntegration(models.Model):
                                     'date_deadline': datetime.datetime.fromtimestamp(
                                         int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
                                         'completionDate') else datetime.datetime.now(),
-                                    'user_id': user_id.id if user_id else None
+                                    'user_id': user_id.id if user_id else self.env.user.id
                                 })
                                 self.env.cr.commit()
                             else:
