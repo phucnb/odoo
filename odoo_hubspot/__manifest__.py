@@ -23,6 +23,7 @@
         'security/ir.model.access.csv',
         'views/hubspotwizard.xml',
         'views/views.xml',
-        'views/companyone2manymodels.xml'
+        'views/companyone2manymodels.xml',
+        'views/dealone2manymodels.xml'
     ],
 }
