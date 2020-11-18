@@ -1452,162 +1452,162 @@ class HubspotImportIntegration(models.Model):
                                 })
                             except:
                                 pass
-                    elif engagement_data['type'] == 'NOTE':
-                        try:
-                            print(odoo_contact.name)
-                            author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
-                            author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
-                            odoo_comment = self.env['mail.message'].create({
-                                'engagement_id': engagement_data['id'],
-                                'message_type': 'notification',
-                                'body': engagement_data['bodyPreview'] if engagement_data.get('bodyPreview') else None,
-                                'create_date': datetime.datetime.fromtimestamp(
-                                    int(str(engagement_data['createdAt'])[:-3])),
-                                'display_name': author.name if author.name else None,
-                                'author_id': author_id,
-                                'model': 'res.partner',
-                                'res_id': odoo_contact.id
-                            })
-                            # print(odoo_comment.name)
-                        except Exception as e:
-                            print(e)
-                            a = 1
-                            pass
-                    elif engagement_data['type'] == 'TASK':
-                        try:
-                            if meta_data['status'] != 'COMPLETED':
-                                print(odoo_contact.name)
-                                user_id = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
-                                activity_type = self.env['mail.activity.type'].search([('name', '=', 'Todo')])
-                                partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
-                                self.env['mail.activity'].create({
-                                    'engagement_id': engagement_data['id'],
-                                    'res_id': odoo_contact.id,
-                                    'activity_type_id': activity_type.id,
-                                    'summary': meta_data['subject'],
-                                    'hubspot_status': meta_data['status'],
-                                    'note': meta_data['body'] if meta_data.get('body') else None,
-                                    'forObjectType': meta_data['forObjectType'],
-                                    'res_model_id': partner_model.id,
-                                    'date_deadline': datetime.datetime.fromtimestamp(
-                                        int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
-                                        'completionDate') else datetime.datetime.now(),
-                                    'user_id': user_id.id if user_id else None
-                                })
-                                self.env.cr.commit()
-                            else:
-                                print('message created for task', odoo_contact.name)
-                                author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
-                                author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
-                                odoo_comment = self.env['mail.message'].create({
-                                    'engagement_id': engagement_data['id'],
-                                    'message_type': 'comment',
-                                    # 'from': odoo_contact.email,
-                                    'body': meta_data['body'] if meta_data.get('body') else meta_data['subject'],
-                                    'create_date': datetime.datetime.fromtimestamp(
-                                        int(str(engagement_data['createdAt'])[:-3])),
-                                    'display_name': author.name if author.name else None,
-                                    'author_id': author_id,
-                                    'model': 'res.partner',
-                                    'res_id': odoo_contact.id
-                                })
-                        except:
-                            pass
-                    elif engagement_data['type'] == 'CALL':
-                        try:
-                            if meta_data['status'] != 'COMPLETED':
-                                print(odoo_contact.name)
-                                user_id = self.env['res.users'].search(
-                                    [('hubspot_id', '=', engagement_data['ownerId'])])
-                                activity_type = self.env['mail.activity.type'].search([('name', '=', 'Call')])
-                                partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
-                                self.env['mail.activity'].create({
-                                    'engagement_id': engagement_data['id'],
-                                    'res_id': odoo_contact.id,
-                                    'activity_type_id': activity_type.id,
-                                    'summary': meta_data['subject'] if meta_data.get('subject') else meta_data[
-                                        'body'] if meta_data.get('body') else None,
-                                    'hubspot_status': meta_data['status'],
-                                    'note': html2text.html2text(meta_data['body']) if meta_data.get('body') else None,
-                                    'toNumber': meta_data['toNumber'] if meta_data.get('toNumber') else None,
-                                    'fromNumber': meta_data['fromNumber'] if meta_data.get('fromNumber') else None,
-                                    'durationMilliseconds': str(meta_data['durationMilliseconds']) if meta_data.get(
-                                        'durationMilliseconds') else None,
-                                    'recordingUrl': meta_data['recordingUrl'] if meta_data.get(
-                                        'recordingUrl') else None,
-                                    'disposition': meta_data['disposition'] if meta_data.get('disposition') else None,
-                                    'res_model_id': partner_model.id,
-                                    'date_deadline': datetime.datetime.fromtimestamp(
-                                        int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
-                                        'completionDate') else datetime.datetime.now(),
-                                    'user_id': user_id.id if user_id else None
-                                })
-                                self.env.cr.commit()
-                            else:
-                                print('message created for call', odoo_contact.name)
-                                author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
-                                author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
-                                odoo_comment = self.env['mail.message'].create({
-                                    'message_type': 'comment',
-                                    'engagement_id': engagement_data['id'],
-                                    'body': html2text.html2text(meta_data['body']) if meta_data.get('body') else
-                                    meta_data['subject'],
-                                    'create_date': datetime.datetime.fromtimestamp(
-                                        int(str(engagement_data['createdAt'])[:-3])),
-                                    'display_name': author.name if author.name else None,
-                                    'author_id': author_id,
-                                    'model': 'res.partner',
-                                    'res_id': odoo_contact.id
-                                })
-                        except:
-                            pass
-
-                    elif engagement_data['type'] == 'MEETING':
-                        try:
-                            end_time = datetime.datetime.fromtimestamp(int(str(meta_data['endTime'])[:-3]))
-                            if end_time > datetime.datetime.now():
-                                print(odoo_contact.name)
-                                user_id = self.env['res.users'].search(
-                                    [('hubspot_id', '=', engagement_data['ownerId'])])
-                                activity_type = self.env['mail.activity.type'].search([('name', '=', 'Meeting')])
-                                partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
-                                self.env['mail.activity'].create({
-                                    'engagement_id': engagement_data['id'],
-                                    'res_id': odoo_contact.id,
-                                    'activity_type_id': activity_type.id,
-                                    'summary': meta_data['title'] if meta_data.get('title') else meta_data[
-                                        'body'] if meta_data.get('body') else None,
-                                    'note': meta_data['body'] if meta_data.get('body') else None,
-                                    'startTime': datetime.datetime.fromtimestamp(
-                                        int(str(meta_data['startTime'])[:-3])) if meta_data.get(
-                                        'startTime') else datetime.datetime.now(),
-                                    'endTime': datetime.datetime.fromtimestamp(
-                                        int(str(meta_data['endTime'])[:-3])) if meta_data.get(
-                                        'endTime') else datetime.datetime.now(),
-                                    'res_model_id': partner_model.id,
-                                    'date_deadline': datetime.datetime.fromtimestamp(
-                                        int(str(meta_data['endTime'])[:-3])) if meta_data.get(
-                                        'endTime') else datetime.datetime.now(),
-                                    'user_id': user_id.id if user_id else None
-                                })
-                                self.env.cr.commit()
-                            else:
-                                print('message created for call', odoo_contact.name)
-                                author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
-                                author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
-                                odoo_comment = self.env['mail.message'].create({
-                                    'engagement_id': engagement_data['id'],
-                                    'message_type': 'comment',
-                                    'body': meta_data['body'] if meta_data.get('body') else meta_data['title'],
-                                    'create_date': datetime.datetime.fromtimestamp(
-                                        int(str(engagement_data['createdAt'])[:-3])),
-                                    'display_name': author.name if author.name else None,
-                                    'author_id': author_id,
-                                    'model': 'res.partner',
-                                    'res_id': odoo_contact.id
-                                })
-                        except:
-                            pass
+                    # elif engagement_data['type'] == 'NOTE':
+                    #     try:
+                    #         print(odoo_contact.name)
+                    #         author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
+                    #         author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
+                    #         odoo_comment = self.env['mail.message'].create({
+                    #             'engagement_id': engagement_data['id'],
+                    #             'message_type': 'notification',
+                    #             'body': engagement_data['bodyPreview'] if engagement_data.get('bodyPreview') else None,
+                    #             'create_date': datetime.datetime.fromtimestamp(
+                    #                 int(str(engagement_data['createdAt'])[:-3])),
+                    #             'display_name': author.name if author.name else None,
+                    #             'author_id': author_id,
+                    #             'model': 'res.partner',
+                    #             'res_id': odoo_contact.id
+                    #         })
+                    #         # print(odoo_comment.name)
+                    #     except Exception as e:
+                    #         print(e)
+                    #         a = 1
+                    #         pass
+                    # elif engagement_data['type'] == 'TASK':
+                    #     try:
+                    #         if meta_data['status'] != 'COMPLETED':
+                    #             print(odoo_contact.name)
+                    #             user_id = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
+                    #             activity_type = self.env['mail.activity.type'].search([('name', '=', 'Todo')])
+                    #             partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
+                    #             self.env['mail.activity'].create({
+                    #                 'engagement_id': engagement_data['id'],
+                    #                 'res_id': odoo_contact.id,
+                    #                 'activity_type_id': activity_type.id,
+                    #                 'summary': meta_data['subject'],
+                    #                 'hubspot_status': meta_data['status'],
+                    #                 'note': meta_data['body'] if meta_data.get('body') else None,
+                    #                 'forObjectType': meta_data['forObjectType'],
+                    #                 'res_model_id': partner_model.id,
+                    #                 'date_deadline': datetime.datetime.fromtimestamp(
+                    #                     int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
+                    #                     'completionDate') else datetime.datetime.now(),
+                    #                 'user_id': user_id.id if user_id else None
+                    #             })
+                    #             self.env.cr.commit()
+                    #         else:
+                    #             print('message created for task', odoo_contact.name)
+                    #             author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
+                    #             author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
+                    #             odoo_comment = self.env['mail.message'].create({
+                    #                 'engagement_id': engagement_data['id'],
+                    #                 'message_type': 'comment',
+                    #                 # 'from': odoo_contact.email,
+                    #                 'body': meta_data['body'] if meta_data.get('body') else meta_data['subject'],
+                    #                 'create_date': datetime.datetime.fromtimestamp(
+                    #                     int(str(engagement_data['createdAt'])[:-3])),
+                    #                 'display_name': author.name if author.name else None,
+                    #                 'author_id': author_id,
+                    #                 'model': 'res.partner',
+                    #                 'res_id': odoo_contact.id
+                    #             })
+                    #     except:
+                    #         pass
+                    # elif engagement_data['type'] == 'CALL':
+                    #     try:
+                    #         if meta_data['status'] != 'COMPLETED':
+                    #             print(odoo_contact.name)
+                    #             user_id = self.env['res.users'].search(
+                    #                 [('hubspot_id', '=', engagement_data['ownerId'])])
+                    #             activity_type = self.env['mail.activity.type'].search([('name', '=', 'Call')])
+                    #             partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
+                    #             self.env['mail.activity'].create({
+                    #                 'engagement_id': engagement_data['id'],
+                    #                 'res_id': odoo_contact.id,
+                    #                 'activity_type_id': activity_type.id,
+                    #                 'summary': meta_data['subject'] if meta_data.get('subject') else meta_data[
+                    #                     'body'] if meta_data.get('body') else None,
+                    #                 'hubspot_status': meta_data['status'],
+                    #                 'note': html2text.html2text(meta_data['body']) if meta_data.get('body') else None,
+                    #                 'toNumber': meta_data['toNumber'] if meta_data.get('toNumber') else None,
+                    #                 'fromNumber': meta_data['fromNumber'] if meta_data.get('fromNumber') else None,
+                    #                 'durationMilliseconds': str(meta_data['durationMilliseconds']) if meta_data.get(
+                    #                     'durationMilliseconds') else None,
+                    #                 'recordingUrl': meta_data['recordingUrl'] if meta_data.get(
+                    #                     'recordingUrl') else None,
+                    #                 'disposition': meta_data['disposition'] if meta_data.get('disposition') else None,
+                    #                 'res_model_id': partner_model.id,
+                    #                 'date_deadline': datetime.datetime.fromtimestamp(
+                    #                     int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
+                    #                     'completionDate') else datetime.datetime.now(),
+                    #                 'user_id': user_id.id if user_id else None
+                    #             })
+                    #             self.env.cr.commit()
+                    #         else:
+                    #             print('message created for call', odoo_contact.name)
+                    #             author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
+                    #             author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
+                    #             odoo_comment = self.env['mail.message'].create({
+                    #                 'message_type': 'comment',
+                    #                 'engagement_id': engagement_data['id'],
+                    #                 'body': html2text.html2text(meta_data['body']) if meta_data.get('body') else
+                    #                 meta_data['subject'],
+                    #                 'create_date': datetime.datetime.fromtimestamp(
+                    #                     int(str(engagement_data['createdAt'])[:-3])),
+                    #                 'display_name': author.name if author.name else None,
+                    #                 'author_id': author_id,
+                    #                 'model': 'res.partner',
+                    #                 'res_id': odoo_contact.id
+                    #             })
+                    #     except:
+                    #         pass
+                    #
+                    # elif engagement_data['type'] == 'MEETING':
+                    #     try:
+                    #         end_time = datetime.datetime.fromtimestamp(int(str(meta_data['endTime'])[:-3]))
+                    #         if end_time > datetime.datetime.now():
+                    #             print(odoo_contact.name)
+                    #             user_id = self.env['res.users'].search(
+                    #                 [('hubspot_id', '=', engagement_data['ownerId'])])
+                    #             activity_type = self.env['mail.activity.type'].search([('name', '=', 'Meeting')])
+                    #             partner_model = self.env['ir.model'].search([('model', '=', 'res.partner')])
+                    #             self.env['mail.activity'].create({
+                    #                 'engagement_id': engagement_data['id'],
+                    #                 'res_id': odoo_contact.id,
+                    #                 'activity_type_id': activity_type.id,
+                    #                 'summary': meta_data['title'] if meta_data.get('title') else meta_data[
+                    #                     'body'] if meta_data.get('body') else None,
+                    #                 'note': meta_data['body'] if meta_data.get('body') else None,
+                    #                 'startTime': datetime.datetime.fromtimestamp(
+                    #                     int(str(meta_data['startTime'])[:-3])) if meta_data.get(
+                    #                     'startTime') else datetime.datetime.now(),
+                    #                 'endTime': datetime.datetime.fromtimestamp(
+                    #                     int(str(meta_data['endTime'])[:-3])) if meta_data.get(
+                    #                     'endTime') else datetime.datetime.now(),
+                    #                 'res_model_id': partner_model.id,
+                    #                 'date_deadline': datetime.datetime.fromtimestamp(
+                    #                     int(str(meta_data['endTime'])[:-3])) if meta_data.get(
+                    #                     'endTime') else datetime.datetime.now(),
+                    #                 'user_id': user_id.id if user_id else None
+                    #             })
+                    #             self.env.cr.commit()
+                    #         else:
+                    #             print('message created for call', odoo_contact.name)
+                    #             author = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])])
+                    #             author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
+                    #             odoo_comment = self.env['mail.message'].create({
+                    #                 'engagement_id': engagement_data['id'],
+                    #                 'message_type': 'comment',
+                    #                 'body': meta_data['body'] if meta_data.get('body') else meta_data['title'],
+                    #                 'create_date': datetime.datetime.fromtimestamp(
+                    #                     int(str(engagement_data['createdAt'])[:-3])),
+                    #                 'display_name': author.name if author.name else None,
+                    #                 'author_id': author_id,
+                    #                 'model': 'res.partner',
+                    #                 'res_id': odoo_contact.id
+                    #             })
+                    #     except:
+                    #         pass
         except:
             pass
 
