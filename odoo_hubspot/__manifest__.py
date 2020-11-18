@@ -24,6 +24,7 @@
         'views/hubspotwizard.xml',
         'views/views.xml',
         'views/companyone2manymodels.xml',
-        'views/dealone2manymodels.xml'
+        'views/dealone2manymodels.xml',
+        'views/ticketone2manymodels.xml'
     ],
 }
