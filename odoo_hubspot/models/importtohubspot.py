@@ -1405,14 +1405,11 @@ class HubspotImportIntegration(models.Model):
         try:
             icpsudo = self.env['ir.config_parameter'].sudo()
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
-            contacts = self.env['res.partner'].search(
-                [('hubspot_id', '!=', False), ('is_company', '=', False)]
-            )
+            contacts = self.env['res.partner'].search([('hubspot_id', '!=', False), ('is_company', '=', False)])
 
             for odoo_contact in contacts:
-
-                get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/CONTACT/{0}/paged?".format(
-                    odoo_contact.hubspot_id)
+                get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
+                                                "CONTACT/{0}/paged?".format(odoo_contact.hubspot_id)
                 parameter_dict = {'hapikey': hubspot_keys, 'limit': 250}
                 headers = {
                     'Accept': 'application/json',
