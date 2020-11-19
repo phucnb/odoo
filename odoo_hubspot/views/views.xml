@@ -26,9 +26,6 @@
                         <button name="get_company_attachments" string="Import Companies Attachments" type="object"/>
                         <button name="get_ticket_attachments" string="Import Tickets Attachments" type="object"/>
                     </sheet>
-                    <sheet>
-                        <field name="contact_count" />
-                    </sheet>
                 </form>
             </field>
         </record>
