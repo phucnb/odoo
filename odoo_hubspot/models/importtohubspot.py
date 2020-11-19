@@ -32,6 +32,7 @@ class HubspotImportIntegration(models.Model):
     company_last_offset = fields.Char("Company offset")
     contact_last_offset = fields.Char("Contact Offset")
     ticket_last_offset = fields.Char("Ticket Offset")
+    contact_count = fields.Integer("Contacts")
 
     def read_file(self, file_name):
         lines = []
@@ -1716,62 +1717,63 @@ class HubspotImportIntegration(models.Model):
         try:
             icpsudo = self.env['ir.config_parameter'].sudo()
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
-            contacts = self.env['res.partner'].search(
+            contacts = self.env['res.partner'].search_count(
                 [('hubspot_id', '!=', False), ('company_type', '=', 'person')]
             )
-            for odoo_contact in contacts:
-                url = 'https://api.hubapi.com/engagements/v1/engagements/associated/CONTACT/{0}/paged?hapikey={1}'.format(
-                    odoo_contact.hubspot_id, hubspot_keys)
-                response = requests.get(url)
-                res_data = json.loads(response.content.decode("utf-8"))
-                engagements = res_data['results']
-                for engagement in engagements:
-                    attachments = engagement['attachments']
-                    if len(attachments):
-                        for attachment in attachments:
-                            try:
-                                odoo_attachment = self.env['ir.attachment'].search(
-                                    [('hubspot_id', '=', str(attachment['id']))]
-                                )
-                                attachment_url = 'https://api.hubapi.com/filemanager/api/v2/files/{0}/?hapikey={1}'.format(
-                                    attachment['id'], hubspot_keys
-                                )
-                                response = requests.get(attachment_url)
-                                res_data = json.loads(response.content.decode("utf-8"))
-                                file_name = 'default'
-                                if res_data.get('name'):
-                                    file_name = res_data['name']
-                                file_url = None
-                                file_url = res_data.get('url', None)
-                                if not os.path.isdir('engagement_files'):
-                                    os.mkdir('engagement_files')
-                                if file_url:
-                                    try:
-                                        urllib.request.urlretrieve(file_url, 'engagement_files/' + file_name + '.' + res_data['extension'])
-                                    except Exception as e:
-                                        if e.code == 404:
-                                            with open('contact.txt', 'a+') as file:
-                                                file.write('\n')
-                                                file.write('{} -> {} \n{}'.format(
-                                                    odoo_contact.name, file_name, file_url)
-                                                )
-                                    if odoo_attachment:
-                                        continue
-                                    a = 1
-                                    f = open('engagement_files/' + file_name + '.' + res_data['extension'], "rb")
-                                    data = data = base64.b64encode(f.read())
-                                    self.env['ir.attachment'].create({'name': file_name + '.' + res_data['extension'],
-                                                                      'datas': data,
-                                                                      'res_model': 'res.partner',
-                                                                      'res_id': odoo_contact.id, })
-                                    f.close()
-                                    os.remove('engagement_files/' + file_name + '.' + res_data['extension'])
-                                    self.env.cr.commit()
-                                    print(odoo_contact.name)
-                                if odoo_attachment:
-                                    continue
-                            except Exception as e:
-                                 pass
+            self.contact_count = contacts
+            # for odoo_contact in contacts:
+            #     url = 'https://api.hubapi.com/engagements/v1/engagements/associated/CONTACT/{0}/paged?hapikey={1}'.format(
+            #         odoo_contact.hubspot_id, hubspot_keys)
+            #     response = requests.get(url)
+            #     res_data = json.loads(response.content.decode("utf-8"))
+            #     engagements = res_data['results']
+            #     for engagement in engagements:
+            #         attachments = engagement['attachments']
+            #         if len(attachments):
+            #             for attachment in attachments:
+            #                 try:
+            #                     odoo_attachment = self.env['ir.attachment'].search(
+            #                         [('hubspot_id', '=', str(attachment['id']))]
+            #                     )
+            #                     attachment_url = 'https://api.hubapi.com/filemanager/api/v2/files/{0}/?hapikey={1}'.format(
+            #                         attachment['id'], hubspot_keys
+            #                     )
+            #                     response = requests.get(attachment_url)
+            #                     res_data = json.loads(response.content.decode("utf-8"))
+            #                     file_name = 'default'
+            #                     if res_data.get('name'):
+            #                         file_name = res_data['name']
+            #                     file_url = None
+            #                     file_url = res_data.get('url', None)
+            #                     if not os.path.isdir('engagement_files'):
+            #                         os.mkdir('engagement_files')
+            #                     if file_url:
+            #                         try:
+            #                             urllib.request.urlretrieve(file_url, 'engagement_files/' + file_name + '.' + res_data['extension'])
+            #                         except Exception as e:
+            #                             if e.code == 404:
+            #                                 with open('contact.txt', 'a+') as file:
+            #                                     file.write('\n')
+            #                                     file.write('{} -> {} \n{}'.format(
+            #                                         odoo_contact.name, file_name, file_url)
+            #                                     )
+            #                         if odoo_attachment:
+            #                             continue
+            #                         a = 1
+            #                         f = open('engagement_files/' + file_name + '.' + res_data['extension'], "rb")
+            #                         data = data = base64.b64encode(f.read())
+            #                         self.env['ir.attachment'].create({'name': file_name + '.' + res_data['extension'],
+            #                                                           'datas': data,
+            #                                                           'res_model': 'res.partner',
+            #                                                           'res_id': odoo_contact.id, })
+            #                         f.close()
+            #                         os.remove('engagement_files/' + file_name + '.' + res_data['extension'])
+            #                         self.env.cr.commit()
+            #                         print(odoo_contact.name)
+            #                     if odoo_attachment:
+            #                         continue
+            #                 except Exception as e:
+            #                      pass
         except Exception as e:
             pass
 
