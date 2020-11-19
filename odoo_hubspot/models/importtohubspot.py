@@ -1405,7 +1405,9 @@ class HubspotImportIntegration(models.Model):
         try:
             icpsudo = self.env['ir.config_parameter'].sudo()
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
-            contacts = self.env['res.partner'].search([('hubspot_id', '!=', False), ('is_company', '=', False)])
+            contacts = self.env['res.partner'].search([('hubspot_id', '!=', False),
+                                                       ('is_company', '=', False),
+                                                       ('engagement_done', '=', False)])
 
             for odoo_contact in contacts:
                 get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
@@ -1616,6 +1618,11 @@ class HubspotImportIntegration(models.Model):
                                 pass
                     has_more = res_data['hasMore']
                     parameter_dict['offset'] = res_data['offset']
+
+                odoo_contact.write({
+                    'engagement_done': True,
+                })
+                self.env.cr.commit()
         except:
             pass
 

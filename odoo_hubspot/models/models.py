@@ -79,3 +79,9 @@ class CustomAttachment(models.Model):
     _inherit = 'ir.attachment'
 
     hubspot_id = fields.Char()
+
+
+class InheritPartner(models.Model):
+    _inherit = 'res.partner'
+
+    engagement_done = fields.Boolean("Engagements Fetched")
