@@ -1410,7 +1410,7 @@ class HubspotImportIntegration(models.Model):
             for odoo_contact in contacts:
                 get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
                                                 "CONTACT/{0}/paged?".format(odoo_contact.hubspot_id)
-                parameter_dict = {'hapikey': hubspot_keys, 'limit': 250}
+                parameter_dict = {'hapikey': hubspot_keys, 'limit': 100}
                 headers = {
                     'Accept': 'application/json',
                     'connection': 'keep-Alive'
