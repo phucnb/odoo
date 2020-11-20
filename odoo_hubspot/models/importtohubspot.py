@@ -29,9 +29,9 @@ class HubspotImportIntegration(models.Model):
     import_deal = fields.Boolean('Import deals', store=True)
     import_ticket = fields.Boolean('Import tickets', store=True)
     custom_date_range = fields.Boolean(string='Custom Date Range Sync')
-    company_last_offsets = fields.Char("Company offset")
-    contact_last_offsets = fields.Char("Contact Offset")
-    ticket_last_offsets = fields.Char("Ticket Offset")
+    company_last_offsetss = fields.Char("Company offset")
+    contact_last_offsetss = fields.Char("Contact Offset")
+    ticket_last_offsetss = fields.Char("Ticket Offset")
 
     def read_file(self, file_name):
         lines = []
@@ -264,8 +264,8 @@ class HubspotImportIntegration(models.Model):
         else:
             try:
                 get_all_contacts_url = "https://api.hubapi.com/contacts/v1/lists/all/contacts/all?"
-                if self.contact_last_offsets:
-                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'vidOffset': int(self.contact_last_offsets)}
+                if self.contact_last_offsetss:
+                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'vidOffset': int(self.contact_last_offsetss)}
                 else:
                     parameter_dict = {'hapikey': hubspot_keys, 'limit': 250}
                 headers = {
@@ -282,7 +282,7 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.extend(self.create_contacts(response_dict['contacts'], hubspot_keys))
                     has_more = response_dict['has-more']
                     parameter_dict['vidOffset'] = response_dict['vid-offset']
-                    self.contact_last_offsets = response_dict['vid-offset']
+                    self.contact_last_offsetss = response_dict['vid-offset']
                 # return hubspot_ids
             except Exception as e:
                 _logger.error(e)
@@ -373,8 +373,8 @@ class HubspotImportIntegration(models.Model):
         else:
             try:
                 get_all_companies_url = "https://api.hubapi.com/companies/v2/companies/paged?"
-                if self.company_last_offsets:
-                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'offset': int(self.company_last_offsets)}
+                if self.company_last_offsetss:
+                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'offset': int(self.company_last_offsetss)}
                 else:
                     parameter_dict = {'hapikey': hubspot_keys, 'limit': 250}
                 headers = {
@@ -391,7 +391,7 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.extend(self.create_companies(response_dict['companies'], hubspot_keys))
                     has_more = response_dict['has-more']
                     parameter_dict['offset'] = response_dict['offset']
-                    self.company_last_offsets = response_dict['offset']
+                    self.company_last_offsetss = response_dict['offset']
                 # return hubspot_ids
             except Exception as e:
                 _logger.error(e)
@@ -625,8 +625,8 @@ class HubspotImportIntegration(models.Model):
                        "&properties=hs_ticket_category&properties=hubspot_owner_id" \
                        "&properties=source_type&properties=hs_createdate&properties=createdate" \
                        "&properties=hs_lastmodifieddate"
-                if self.ticket_last_offsets:
-                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'offset': int(self.ticket_last_offsets)}
+                if self.ticket_last_offsetss:
+                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'offset': int(self.ticket_last_offsetss)}
                 else:
                     parameter_dict = {'hapikey': hubspot_keys, 'limit': 250}
                 headers = {
@@ -643,7 +643,7 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.extend(self.create_tickets(response_dict['objects'], hubspot_keys))
                     has_more = response_dict['hasMore']
                     parameter_dict['offset'] = response_dict['offset']
-                    self.ticket_last_offsets = response_dict['offset']
+                    self.ticket_last_offsetss = response_dict['offset']
                 # return hubspot_ids
             except Exception as e:
                 _logger.error(e)
