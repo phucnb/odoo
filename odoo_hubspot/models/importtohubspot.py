@@ -495,13 +495,13 @@ class HubspotImportIntegration(models.Model):
                 if len(deal['associations']['associatedCompanyIds']) > 0:
                     companies = self.get_companies(deal['associations']['associatedCompanyIds'], hubspot_keys)
                 odoo_deal = self.env['crm.lead'].search([('hubspot_id', '=', str(deal['dealId']))])
-                if 'dealstage' in deal['properties'].keys():
-                    deal_stage = self.env['crm.stage'].search([('name', '=', deal['properties']['dealstage']['value'])])
-                    if not deal_stage:
-                        deal_stage = self.env['crm.stage'].create({
-                            'name': deal['properties']['dealstage']['value'],
-                            'display_name': deal['properties']['dealstage']['value'],
-                        })
+                # if 'dealstage' in deal['properties'].keys():
+                #     deal_stage = self.env['crm.stage'].search([('name', '=', deal['properties']['dealstage']['value'])])
+                #     if not deal_stage:
+                #         deal_stage = self.env['crm.stage'].create({
+                #             'name': deal['properties']['dealstage']['value'],
+                #             'display_name': deal['properties']['dealstage']['value'],
+                #         })
                 if 'closedate' in deal['properties'].keys():
                     if deal['properties']['closedate']['value'] != "":
                         close_date = datetime.datetime.fromtimestamp(int(deal['properties']['closedate']['value'][:-3]))
@@ -511,8 +511,8 @@ class HubspotImportIntegration(models.Model):
                     'name': deal['properties']['dealname']['value'],
                     'expected_revenue': deal['properties']['amount']['value'] if 'amount' in deal[
                         'properties'].keys() else None,
-                    'stage_id': deal_stage.id if deal_stage else self.env['crm.stage'].search(
-                        [('name', '=', 'New')]).id,
+                    # 'stage_id': deal_stage.id if deal_stage else self.env['crm.stage'].search(
+                    #     [('name', '=', 'New')]).id,
                     'date_closed': close_date if close_date else None,
                     'hs_deal_contacts': [[6, 0, contacts]] if contacts else None,
                     'hs_deal_companies': companies[0] if companies else None,
@@ -678,12 +678,12 @@ class HubspotImportIntegration(models.Model):
                             'name': ticket['properties']['source_type']['value'],
                         })
                 odoo_stage = None
-                if 'hs_pipeline_stage' in ticket['properties']:
-                    odoo_stage = self.env['helpdesk.stage'].search([('name', '=', ticket['properties']['hs_pipeline_stage']['value'])])
-                    if not odoo_stage:
-                        odoo_stage = self.env['helpdesk.stage'].create({
-                            'name': ticket['properties']['hs_pipeline_stage']['value'],
-                        })
+                # if 'hs_pipeline_stage' in ticket['properties']:
+                #     odoo_stage = self.env['helpdesk.stage'].search([('name', '=', ticket['properties']['hs_pipeline_stage']['value'])])
+                #     if not odoo_stage:
+                #         odoo_stage = self.env['helpdesk.stage'].create({
+                #             'name': ticket['properties']['hs_pipeline_stage']['value'],
+                #         })
                 if 'hs_ticket_category' in ticket['properties']:
                     tags = ticket['properties']['hs_ticket_category']['value'].split(';')
                     for tag in tags:
@@ -708,7 +708,7 @@ class HubspotImportIntegration(models.Model):
                     'hubspot_id': str(ticket['objectId']),
                     'name': ticket['properties']['subject']['value'] if 'subject' in ticket['properties'] else " ",
                     'priority': priority,
-                    'stage_id': odoo_stage.id if odoo_stage else None,
+                    # 'stage_id': odoo_stage.id if odoo_stage else None,
                     'ticket_type_id': odoo_type.id,
                     'tag_ids': [[6, 0, tag_ids]],
                     'hs_ticket_contacts': [[6, 0, contacts]] if contacts else None,
