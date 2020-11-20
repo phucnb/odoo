@@ -10,7 +10,7 @@
                         <group>
                             <group>
                                 <field name="number_of_sales_personnel" />
-<!--                                <field name="territory_coverage" />-->
+                                <field name="territory_coverage" widget="many2many_tags"/>
                             </group>
                         </group>
                     </page>
@@ -128,8 +128,8 @@
                                 <field name="minitrack" />
                             </group>
                             <group>
-<!--                                 <field name="nadp" />
- -->                                <field name="netsuite_customer" />
+                                <field name="web_technologies" widget="many2many_tags"/>
+                                <field name="netsuite_customer" />
                                 <field name="netsuite_refresh" />
                                 <field name="number_of_special_needs_students_transported" />
                             </group>

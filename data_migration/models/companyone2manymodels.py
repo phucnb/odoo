@@ -41,3 +41,17 @@ class PreviousCameraSystem(models.Model):
 
     partner_id = fields.Many2one('res.partner', 'Partner Id')
     name = fields.Char("Value")
+
+
+class WebTechnologies(models.Model):
+    _name = 'res.partner_web_technologies'
+
+    partner_id = fields.Many2one('res.partner', 'Partner Id')
+    name = fields.Char("Value")
+
+
+class TerritoriesCoverage(models.Model):
+    _name = 'res.partner_territory_coverage'
+
+    partner_id = fields.Many2one('res.partner', 'Partner Id')
+    name = fields.Char("Value")

@@ -353,7 +353,6 @@ class CustomCompany(models.Model):
     # service_surveillance_owner = fields.Many2one('res.users', "Surveillance-247 Owner")
     system = fields.One2many('res.partner_previous_camera_system', 'partner_id', 'System',
                              help='Please add/select the name of system')
-    # territory_coverage = fields.Char("Territory Coverage") # Multiple states selection
     territory = fields.Selection(TERRITORY, "Territory")
     touchdown = fields.Selection(TOUCHDOWN, "Touchdown")
     touchdown_cloud_services_amount = fields.Char("Touchdown Cloud Services Amount")
@@ -362,6 +361,8 @@ class CustomCompany(models.Model):
     unique_identifier = fields.Char("Unique Identifier")
     vendor = fields.Selection(VENDOR, "Vendor")
     td_fleet_monitor = fields.Boolean('TD Fleet Monitor')
+    web_technologies = fields.One2many('res.partner_web_technologies', 'partner_id', 'Web Technologies')
+    territory_coverage = fields.One2many('res.partner_territory_coverage', 'partner_id', 'Territory Coverage')
 
     @api.model
     def _compute_opportunity_count(self):
@@ -371,7 +372,6 @@ class CustomCompany(models.Model):
             else:
                 partner.opportunity_count = self.env['crm.lead'].search_count([('hs_deal_contacts', '=', partner.id)])
 
-    # @api.model
     def action_view_opportunity(self):
         '''
         This function returns an action that displays the opportunities from partner.
