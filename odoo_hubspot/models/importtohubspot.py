@@ -1070,7 +1070,7 @@ class HubspotImportIntegration(models.Model):
                                             'completionDate') else datetime.datetime.now(),
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'user_id': user_id.id if user_id else None
+                                        'user_id': user_id.id if user_id else self.env.user.id
                                     })
                                     self.env.cr.commit()
                                 else:
@@ -1123,7 +1123,7 @@ class HubspotImportIntegration(models.Model):
                                             'completionDate') else datetime.datetime.now(),
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'user_id': user_id.id if user_id else None
+                                        'user_id': user_id.id if user_id else self.env.user.id
                                     })
                                     self.env.cr.commit()
                                 else:
@@ -1176,7 +1176,7 @@ class HubspotImportIntegration(models.Model):
                                             'endTime') else datetime.datetime.now(),
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'user_id': user_id.id if user_id else None
+                                        'user_id': user_id.id if user_id else self.env.user.id
                                     })
                                     self.env.cr.commit()
                                 else:
