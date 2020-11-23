@@ -199,7 +199,7 @@
                                 <field name="num_contacted_notes"/>
                                 <field name="engagements_last_meeting_booked_source" />
                                 <field name="total_revenue" />
-                                <field name="wireless" />
+<!--                                <field name="wireless" />-->
                                 <field name="founded_year" />
                             </group>
                         </group>
