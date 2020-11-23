@@ -406,45 +406,45 @@ class HubspotImportIntegration(models.Model):
                 'connection': 'keep-Alive'
             }
             for company in companies:
-                if company['companyId'] == 1100176440:
-                    print("here")
                 odoo_country = None
                 state_id = None
                 get_url = get_single_company_url + str(company['companyId']) + '?hapikey=' + hubspot_keys
                 company_response = requests.get(url=get_url, headers=headers)
-                company_profile = json.loads(company_response.content.decode('utf-8'))['properties']
+                company_data = json.loads(company_response.content.decode('utf-8'))
+                if 'properties' in company_data:
+                    company_profile = company_data['properties']
 
-                odoo_company = self.env['res.partner'].search([('hubspot_id', '=', str(company['companyId']))])
-                if 'country' in company_profile.keys():
-                    odoo_country = self.env['res.country'].search([('name', '=', company_profile['country']['value'])]).id
-                if company_profile.get('state', None):
-                    state = company_profile['state']
-                    if state.get('value', None):
-                        state_code = state['value']
-                        odoo_state = self.env['res.country.state'].search(
-                            [('code', '=', state_code), ('country_id', '=', odoo_country)]
-                        )
-                        if len(odoo_state) == 1:
-                            state_id = odoo_state.id
-                company_values = {
-                    'name': company_profile['name']['value'] if 'name' in company_profile.keys() else '',
-                    'website': company_profile['website']['value'] if 'website' in company_profile.keys() else '',
-                    'street': company_profile['address']['value'] if 'address' in company_profile.keys() else '',
-                    'city': company_profile['city']['value'] if 'city' in company_profile.keys() else '',
-                    'phone': company_profile['phone']['value'] if 'phone' in company_profile.keys() else '',
-                    'zip': company_profile['zip']['value'] if 'zip' in company_profile.keys() else '',
-                    'country_id': odoo_country if odoo_country else None,
-                    'state_id': state_id,
-                    'hubspot_id': str(company['companyId']),
-                    'is_company': True,
-                }
-                self.add_properties(company_values, company_profile, 'companies', 'res.partner')
-                if not odoo_company:
-                    self.env['res.partner'].create(company_values)
-                else:
-                    odoo_company.write(company_values)
-                self.env.cr.commit()
-                hubspot_ids.append(company['companyId'])
+                    odoo_company = self.env['res.partner'].search([('hubspot_id', '=', str(company['companyId']))])
+                    if 'country' in company_profile.keys():
+                        odoo_country = self.env['res.country'].search([('name', '=', company_profile['country']['value'])]).id
+                    if company_profile.get('state', None):
+                        state = company_profile['state']
+                        if state.get('value', None):
+                            state_code = state['value']
+                            odoo_state = self.env['res.country.state'].search(
+                                [('code', '=', state_code), ('country_id', '=', odoo_country)]
+                            )
+                            if len(odoo_state) == 1:
+                                state_id = odoo_state.id
+                    company_values = {
+                        'name': company_profile['name']['value'] if 'name' in company_profile.keys() else '',
+                        'website': company_profile['website']['value'] if 'website' in company_profile.keys() else '',
+                        'street': company_profile['address']['value'] if 'address' in company_profile.keys() else '',
+                        'city': company_profile['city']['value'] if 'city' in company_profile.keys() else '',
+                        'phone': company_profile['phone']['value'] if 'phone' in company_profile.keys() else '',
+                        'zip': company_profile['zip']['value'] if 'zip' in company_profile.keys() else '',
+                        'country_id': odoo_country if odoo_country else None,
+                        'state_id': state_id,
+                        'hubspot_id': str(company['companyId']),
+                        'is_company': True,
+                    }
+                    self.add_properties(company_values, company_profile, 'companies', 'res.partner')
+                    if not odoo_company:
+                        self.env['res.partner'].create(company_values)
+                    else:
+                        odoo_company.write(company_values)
+                    self.env.cr.commit()
+                    hubspot_ids.append(company['companyId'])
             return hubspot_ids
         except Exception as e:
             _logger.error(e)
