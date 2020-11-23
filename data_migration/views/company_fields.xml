@@ -223,25 +223,25 @@
                             </group>
                         </group>
                     </page>
-<!--                    <page string='Web Analytics History' attrs="{'invisible':[('is_company','=',False)]}">-->
-<!--                        <group>-->
-<!--                            <group>-->
-<!--                                <field name="hs_analytics_first_touch_converting_campaign " />-->
-<!--                                <field name="hs_analytics_num_page_views" />-->
-<!--                                <field name="hs_analytics_num_visits" />-->
-<!--                            </group>-->
-<!--                        </group>-->
-<!--                    </page>-->
-<!--                    <page string='Target Account Information' attrs="{'invisible':[('is_company','=',False)]}">-->
-<!--                        <group>-->
-<!--                            <group>-->
-<!--                                <field name="hs_ideal_customer_profile " />-->
-<!--                                <field name="hs_num_contacts_with_buying_roles"/>-->
-<!--                                <field name="hs_num_decision_makers"/>-->
-<!--                                <field name="numberofemployees"/>-->
-<!--                            </group>-->
-<!--                        </group>-->
-<!--                    </page>-->
+                    <page string='Web Analytics History' attrs="{'invisible':[('is_company','=',False)]}">
+                        <group>
+                            <group>
+                                <field name="hs_analytics_first_touch_converting_campaign " />
+                                <field name="hs_analytics_num_page_views" />
+                                <field name="hs_analytics_num_visits" />
+                            </group>
+                        </group>
+                    </page>
+                    <page string='Target Account Information' attrs="{'invisible':[('is_company','=',False)]}">
+                        <group>
+                            <group>
+                                <field name="hs_ideal_customer_profile " />
+                                <field name="hs_num_contacts_with_buying_roles"/>
+                                <field name="hs_num_decision_makers"/>
+                                <field name="numberofemployees"/>
+                            </group>
+                        </group>
+                    </page>
                 </xpath>
             </field>
         </record>
