@@ -251,6 +251,8 @@ WIRELESS = [
     ('NO', 'NO')
 ]
 
+CUSTOMER_PROFILE = [('tier_1', 'Tier 1'), ('tier_2', 'Tier 2'), ('tier_3', 'Tier 3')]
+
 
 class CustomCompany(models.Model):
     _inherit = 'res.partner'
@@ -296,12 +298,10 @@ class CustomCompany(models.Model):
     competitor = fields.Many2many('res.partner_competitor', 'partner_id_competitor_id', 'partner_id', 'competitor_id',
                                   help='Please add/select the name of competitor e.g. Seon, AT, Pro-Vision etc')
     contractor = fields.Char("Contractor")
-    # customer_rating = fields.Selection(Customer_Rating, 'Customer Rating')
     dealer_sub_type = fields.Selection(DEALER_SUB_TYPE, 'Dealer Sub-Type')
     external_camera = fields.Selection(EXTERNAL_CAMERA, 'External Camera')
     issr = fields.Selection(ISSR, 'ISSR')
     minitrack = fields.Boolean('MiniTRACK')
-    # nadp = fields.Selection(NADP, 'NADP')
     netsuite_customer = fields.Char("NetSuite Customer")
     netsuite_refresh = fields.Char("NetSuite Refresh")
     netsuite_status = fields.Char("NetSuite Status")
@@ -370,6 +370,34 @@ class CustomCompany(models.Model):
                                         'partner_id', 'web_technologies_id', 'Web Technologies')
     territory_coverage = fields.Many2many('res.partner_territory_coverage', 'partner_id_territory_coverage_id',
                                           'partner_id', 'territory_coverage_id', 'Territory Coverage')
+
+    about_us = fields.Char("About Us")
+    closedate = fields.Date("Close Date")
+    customer_rating = fields.Selection(Customer_Rating, 'Customer Rating')
+    description = fields.Text("Description")
+    facebook_company_page = fields.Char("Facebook Company Page")
+    facebookfans = fields.Integer("Facebook Fans")
+    first_conversion_event_name = fields.Char("First Conversion")
+    first_conversion_date = fields.Date("First Conversion Date")
+    hs_analytics_first_touch_converting_campaign = fields.Char("First Touch Converting Campaign")
+    hs_ideal_customer_profile = fields.Selection(CUSTOMER_PROFILE, "Ideal Customer Profile Tier")
+    is_public = fields.Boolean("Is Public")
+    nadp = fields.Selection(NADP, 'NADP')
+    hs_num_contacts_with_buying_roles = fields.Integer("Number of contacts with a buying role",
+                                                       compute='_buying_role_count')
+    hs_num_decision_makers = fields.Char("Number of decision makers", compute='_decision_maker_count')
+    numberofemployees = fields.Integer("Number of Employees")
+    num_conversion_events = fields.Integer("Number of Form Submissions")
+    hs_num_open_deals = fields.Integer("Number of open deals", compute='_count_open_deals')
+    hs_analytics_num_page_views = fields.Integer("Number of page views")
+    hs_analytics_num_visits = fields.Integer("Number of Sessions")
+    num_contacted_notes = fields.Integer("Number of times contacted")
+    recent_conversion_event_name = fields.Char("Recent Conversion")
+    recent_conversion_date = fields.Date("Recent Conversion Date")
+    engagements_last_meeting_booked_source = fields.Char("Source of last booking in meetings tool")
+    total_revenue = fields.Integer("Total Revenue")
+    wireless = fields.Selection(WIRELESS, "Wireless")
+    founded_year = fields.Char("Year Founded")
 
     @api.model
     def _compute_opportunity_count(self):

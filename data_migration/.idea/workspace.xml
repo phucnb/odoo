@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="47652d1c-0534-4654-9aba-c7bcffd79ff9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/company_fields.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/company_fields.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/company_fields.xml" beforeDir="false" afterPath="$PROJECT_DIR$/views/company_fields.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../odoo_hubspot/models/importtohubspot.py" beforeDir="false" afterPath="$PROJECT_DIR$/../odoo_hubspot/models/importtohubspot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
