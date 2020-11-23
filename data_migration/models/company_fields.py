@@ -395,7 +395,7 @@ class CustomCompany(models.Model):
     recent_conversion_event_name = fields.Char("Recent Conversion")
     recent_conversion_date = fields.Date("Recent Conversion Date")
     engagements_last_meeting_booked_source = fields.Char("Source of last booking in meetings tool")
-    total_revenue = fields.Integer("Total Revenue")
+    total_revenue = fields.Float("Total Revenue")
     wireless = fields.Selection(WIRELESS, "Wireless")
     founded_year = fields.Char("Year Founded")
 
