@@ -29,7 +29,7 @@ class HubspotImportIntegration(models.Model):
     import_deal = fields.Boolean('Import deals', store=True)
     import_ticket = fields.Boolean('Import tickets', store=True)
     custom_date_range = fields.Boolean(string='Custom Date Range Sync')
-    company_last_offsetss = fields.Char("Company offset")
+    company_last_ofset = fields.Char("Company offset")
     contact_last_offsetss = fields.Char("Contact Offset")
     ticket_last_offsetss = fields.Char("Ticket Offset")
 
@@ -373,8 +373,8 @@ class HubspotImportIntegration(models.Model):
         else:
             try:
                 get_all_companies_url = "https://api.hubapi.com/companies/v2/companies/paged?"
-                if self.company_last_offsetss:
-                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'offset': int(self.company_last_offsetss)}
+                if self.company_last_ofset:
+                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'offset': int(self.company_last_ofset)}
                 else:
                     parameter_dict = {'hapikey': hubspot_keys, 'limit': 250}
                 headers = {
@@ -391,7 +391,7 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.extend(self.create_companies(response_dict['companies'], hubspot_keys))
                     has_more = response_dict['has-more']
                     parameter_dict['offset'] = response_dict['offset']
-                    self.company_last_offsetss = response_dict['offset']
+                    self.company_last_ofset = response_dict['offset']
                 # return hubspot_ids
             except Exception as e:
                 _logger.error(e)
