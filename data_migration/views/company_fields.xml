@@ -90,120 +90,120 @@
                             </group>
                         </group>
                     </page>
-<!--                    <page string='Company Information' attrs="{'invisible':[('is_company','=',False)]}">-->
-<!--                        <group>-->
-<!--                            <group>-->
-<!--                                <field name="of_students_total" />-->
-<!--                                <field name="of_students_transported" />-->
-<!--                                <field name="n247_bus_saleman" />-->
-<!--                                <field name="n247s_lifecycle_stage" />-->
-<!--                            </group>-->
-<!--                            <group>-->
-<!--                                <field name="annual_revenue" />-->
-<!--                                <field name="bid_awarded_year" />-->
-<!--                                <field name="bid_potential" />-->
-<!--                                <field name="bid_reference" />-->
-<!--                            </group>-->
-<!--                        </group>-->
-<!--                        <group>-->
-<!--                            <group>-->
-<!--                                <field name="bid_status" />-->
-<!--                                <field name="bus_garage" />-->
-<!--                                <field name="business_vertical" />-->
-<!--                                <field name="business_vertical_other_" />-->
-<!--                                <field name="cameras" />-->
-<!--                            </group>-->
-<!--                            <group>-->
-<!--                                <field name="competitor" widget="many2many_tags"/>-->
-<!--                                <field name="contractor" />-->
-<!--                                <field name="dealer_sub_type" />-->
-<!--                            </group>-->
-<!--                        </group>-->
-<!--                        <group>-->
-<!--                            <group>-->
-<!--                                <field name="e360_cameras" />-->
-<!--                                <field name="erie_1_boces" />-->
-<!--                                <field name="fleet_size" />-->
-<!--                                <field name="issr" />-->
-<!--                                <field name="minitrack" />-->
-<!--                            </group>-->
-<!--                            <group>-->
-<!--                                <field name="web_technologies" widget="many2many_tags"/>-->
-<!--                                <field name="netsuite_customer" />-->
-<!--                                <field name="netsuite_refresh" />-->
-<!--                                <field name="number_of_special_needs_students_transported" />-->
-<!--                            </group>-->
-<!--                        </group>-->
-<!--                        <group>-->
-<!--                            <group>-->
-<!--                                <field name="opportunity_number" />-->
-<!--                                <field name="parent_portal_system" />-->
-<!--                                <field name="products" />-->
-<!--                                <field name="purchased_list_july" />-->
-<!--                                <field name="rfp_date_posted" />-->
-<!--                            </group>-->
-<!--                            <group>-->
-<!--                                <field name="rsm" />-->
-<!--                                <field name="remove" />-->
-<!--                                <field name="routing" />-->
-<!--                                <field name="fleet_size_s247" />-->
-<!--                            </group>-->
-<!--                        </group>-->
-<!--                        <group>-->
-<!--                            <group>-->
-<!--                                <field name="surveillance_247_company_domain" />-->
-<!--                                <field name="s247_contact_email" />-->
-<!--                                <field name="s247_county" />-->
-<!--                                <field name="surveillance_247_district" />-->
-<!--                                <field name="s247_first_name" />-->
-<!--                            </group>-->
-<!--                            <group>-->
-<!--                                <field name="s247_last_name" />-->
-<!--                                <field name="s247_lead_contact" />-->
-<!--                                <field name="s247_pre_post_salutation" />-->
-<!--                                <field name="prospect_status_s247" />-->
-<!--                            </group>-->
-<!--                        </group>-->
-<!--                        <group>-->
-<!--                            <group>-->
-<!--                                <field name="s247_title" />-->
-<!--                                <field name="wireless_s247" />-->
-<!--                                <field name="sales_rep" />-->
-<!--                                <field name="school_year_budget_begins" />-->
-<!--                                <field name="service_agreement" />-->
-<!--                            </group>-->
-<!--                            <group>-->
-<!--                                <field name="sic_code" />-->
-<!--                                <field name="status" />-->
-<!--                                <field name="student_count" />-->
-<!--                            </group>-->
-<!--                        </group>-->
-<!--                        <group>-->
-<!--                            <group>-->
-<!--                                <field name="system" widget="many2many_tags" />-->
-<!--                                <field name="unique_identifier" />-->
-<!--                                <field name="vendor" />-->
-<!--                                <field name="about_us" />-->
-<!--                                <field name="closedate" />-->
-<!--                            </group>-->
-<!--                            <group>-->
-<!--                                <field name="customer_rating"/>-->
-<!--                                <field name="description" />-->
-<!--                                <field name="is_public" />-->
-<!--                                <field name="nadp" />-->
-<!--                                <field name="hs_num_open_deals" />-->
-<!--                            </group>-->
-<!--                        </group>-->
-<!--                        <group>-->
-<!--                            <group>-->
-<!--                                <field name="num_contacted_notes"/>-->
-<!--                                <field name="engagements_last_meeting_booked_source" />-->
-<!--                                <field name="total_revenue" />-->
-<!--                                <field name="wireless" />-->
-<!--                                <field name="founded_year" />-->
-<!--                            </group>-->
-<!--                        </group>-->
-<!--                    </page>-->
+                    <page string='Company Information' attrs="{'invisible':[('is_company','=',False)]}">
+                        <group>
+                            <group>
+                                <field name="of_students_total" />
+                                <field name="of_students_transported" />
+                                <field name="n247_bus_saleman" />
+                                <field name="n247s_lifecycle_stage" />
+                            </group>
+                            <group>
+                                <field name="annual_revenue" />
+                                <field name="bid_awarded_year" />
+                                <field name="bid_potential" />
+                                <field name="bid_reference" />
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="bid_status" />
+                                <field name="bus_garage" />
+                                <field name="business_vertical" />
+                                <field name="business_vertical_other_" />
+                                <field name="cameras" />
+                            </group>
+                            <group>
+                                <field name="competitor" widget="many2many_tags"/>
+                                <field name="contractor" />
+                                <field name="dealer_sub_type" />
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="e360_cameras" />
+                                <field name="erie_1_boces" />
+                                <field name="fleet_size" />
+                                <field name="issr" />
+                                <field name="minitrack" />
+                            </group>
+                            <group>
+                                <field name="web_technologies" widget="many2many_tags"/>
+                                <field name="netsuite_customer" />
+                                <field name="netsuite_refresh" />
+                                <field name="number_of_special_needs_students_transported" />
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="opportunity_number" />
+                                <field name="parent_portal_system" />
+                                <field name="products" />
+                                <field name="purchased_list_july" />
+                                <field name="rfp_date_posted" />
+                            </group>
+                            <group>
+                                <field name="rsm" />
+                                <field name="remove" />
+                                <field name="routing" />
+                                <field name="fleet_size_s247" />
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="surveillance_247_company_domain" />
+                                <field name="s247_contact_email" />
+                                <field name="s247_county" />
+                                <field name="surveillance_247_district" />
+                                <field name="s247_first_name" />
+                            </group>
+                            <group>
+                                <field name="s247_last_name" />
+                                <field name="s247_lead_contact" />
+                                <field name="s247_pre_post_salutation" />
+                                <field name="prospect_status_s247" />
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="s247_title" />
+                                <field name="wireless_s247" />
+                                <field name="sales_rep" />
+                                <field name="school_year_budget_begins" />
+                                <field name="service_agreement" />
+                            </group>
+                            <group>
+                                <field name="sic_code" />
+                                <field name="status" />
+                                <field name="student_count" />
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="system" widget="many2many_tags" />
+                                <field name="unique_identifier" />
+                                <field name="vendor" />
+                                <field name="about_us" />
+                                <field name="closedate" />
+                            </group>
+                            <group>
+                                <field name="customer_rating"/>
+                                <field name="description" />
+                                <field name="is_public" />
+                                <field name="nadp" />
+                                <field name="hs_num_open_deals" />
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="num_contacted_notes"/>
+                                <field name="engagements_last_meeting_booked_source" />
+                                <field name="total_revenue" />
+                                <field name="wireless" />
+                                <field name="founded_year" />
+                            </group>
+                        </group>
+                    </page>
 <!--                    <page string='Social Media Information' attrs="{'invisible':[('is_company','=',False)]}">-->
 <!--                        <group>-->
 <!--                            <group>-->
