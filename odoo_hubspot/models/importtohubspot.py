@@ -98,7 +98,8 @@ class HubspotImportIntegration(models.Model):
         m2m_list = []
         date_fields = ['contract_expires', 'school_year_budget_begins', 'school_year_start',
                        'touchdown_cloud_services_renewal_date', 'touchdown_install_date', 'date_of_birth',
-                       'planned_retirement_date', 'last_rma_email_date', 'request_a_demo']
+                       'planned_retirement_date', 'last_rma_email_date', 'request_a_demo',
+                       'closedate', 'first_conversion_date', 'recent_conversion_date']
         if name == 'contacts':
             m2m_list = [
                 'asta_al_', 'aasbo_az_', 'aapt_ar_',
