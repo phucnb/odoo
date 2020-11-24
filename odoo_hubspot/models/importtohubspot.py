@@ -198,8 +198,8 @@ class HubspotImportIntegration(models.Model):
                 'num_conversion_events', 'hs_num_open_deals', 'hs_analytics_num_page_views', 'hs_analytics_num_visits',
                 'num_contacted_notes', 'recent_conversion_event_name', 'recent_conversion_date',
                 'engagements_last_meeting_booked_source', 'total_revenue', 'founded_year',
-                # 'hs_analytics_last_touch_converting_campaign', 'engagements_last_meeting_booked_medium',
-                'hs_num_child_companies', 'recent_deal_amount', 'total_money_raised',
+                'hs_analytics_last_touch_converting_campaign', 'engagements_last_meeting_booked_medium',
+                # 'hs_num_child_companies', 'recent_deal_amount', 'total_money_raised',
                 'hs_total_deal_value', 'number_of_buses',
             ]
             # 'wireless'
