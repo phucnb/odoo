@@ -751,7 +751,7 @@ class HubspotImportIntegration(models.Model):
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             companies = self.env['res.partner'].search([('hubspot_id', '!=', False),
                                                         ('is_company', '=', True),
-                                                        ('engagement_done', '=', False)]
+                                                        ('engagement_done', '=', True)]
             )
             for odoo_company in companies:
                 get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
@@ -773,20 +773,26 @@ class HubspotImportIntegration(models.Model):
                         odoo_message = self.env['mail.message'].search([('engagement_id', '=', engagement_data['id'])])
                         odoo_activity = self.env['mail.activity'].search([('engagement_id', '=', engagement_data['id'])])
                         if odoo_message or odoo_activity:
+                            self.env['log.handling'].create({
+                                'record_id': engagement_data['id'],
+                                'description': 'Record already exists',
+                                'skip': True,
+                                'model': 'res.partner',
+                            })
+                            self.env.cr.commit()
                             continue
                         association_data = engagement['associations']
                         meta_data = engagement['metadata']
                         if engagement_data['type'] == 'EMAIL':
                             if not meta_data.get('from'):
-                                if odoo_company.email:
-                                    meta_data['from'] = odoo_company.email
-                                else:
-                                    continue
-                            if len(meta_data['from']) == 0:
-                                if odoo_company.email:
-                                    meta_data['from'] = odoo_company.email
-                                else:
-                                    continue
+                                self.env['log.handling'].create({
+                                    'record_id': engagement_data['id'],
+                                    'description': 'Coming engagement email type has no \'from\' that is why skipped',
+                                    'skip': True,
+                                    'model': 'res.partner',
+                                })
+                                self.env.cr.commit()
+                                continue
                             try:
                                 print('Creating Email Engagement against the company', odoo_company.name)
                                 author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])[0]
@@ -806,8 +812,13 @@ class HubspotImportIntegration(models.Model):
                                 })
                                 self.env.cr.commit()
                             except Exception as e:
-                                print(e)
-                                a = 1
+                                self.env['log.handling'].create({
+                                    'record_id': engagement_data['id'],
+                                    'description': 'EMAIL: Skipped because of error while creating(' + str(e) + ')',
+                                    'skip': True,
+                                    'model': 'res.partner',
+                                })
+                                self.env.cr.commit()
                                 pass
                         elif engagement_data['type'] == 'NOTE':
                             try:
@@ -828,7 +839,13 @@ class HubspotImportIntegration(models.Model):
                                 self.env.cr.commit()
                                 # print(odoo_comment.name)
                             except Exception as e:
-                                print(e)
+                                self.env['log.handling'].create({
+                                    'record_id': engagement_data['id'],
+                                    'description': 'NOTE: Skipped because of error while creating(' + str(e) + ')',
+                                    'skip': True,
+                                    'model': 'res.partner',
+                                })
+                                self.env.cr.commit()
                                 a = 1
                                 pass
                         elif engagement_data['type'] == 'TASK':
@@ -872,7 +889,13 @@ class HubspotImportIntegration(models.Model):
                                     })
                                     self.env.cr.commit()
                             except Exception as e:
-                                print(e)
+                                self.env['log.handling'].create({
+                                    'record_id': engagement_data['id'],
+                                    'description': 'TASK: Skipped because of error while creating(' + str(e) + ')',
+                                    'skip': True,
+                                    'model': 'res.partner',
+                                })
+                                self.env.cr.commit()
                                 a = 1
                                 pass
                         elif engagement_data['type'] == 'CALL':
@@ -924,7 +947,13 @@ class HubspotImportIntegration(models.Model):
                                     })
                                     self.env.cr.commit()
                             except Exception as e:
-                                print(e)
+                                self.env['log.handling'].create({
+                                    'record_id': engagement_data['id'],
+                                    'description': 'CALL: Skipped because of error while creating(' + str(e) + ')',
+                                    'skip': True,
+                                    'model': 'res.partner',
+                                })
+                                self.env.cr.commit()
                                 a = 1
                                 pass
 
@@ -975,7 +1004,13 @@ class HubspotImportIntegration(models.Model):
                                     })
                                     self.env.cr.commit()
                             except Exception as e:
-                                print(e)
+                                self.env['log.handling'].create({
+                                    'record_id': engagement_data['id'],
+                                    'description': 'MEETING: Skipped because of error while creating(' + str(e) + ')',
+                                    'skip': True,
+                                    'model': 'res.partner',
+                                })
+                                self.env.cr.commit()
                                 a = 1
                                 pass
 

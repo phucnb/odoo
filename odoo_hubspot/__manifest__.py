@@ -26,6 +26,7 @@
         'views/companyone2manymodels.xml',
         'views/dealone2manymodels.xml',
         'views/ticketone2manymodels.xml',
-        'views/contactone2manymodels.xml'
+        'views/contactone2manymodels.xml',
+        'views/logs.xml'
     ],
 }

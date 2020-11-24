@@ -97,3 +97,12 @@ class InheritTicket(models.Model):
     _inherit = 'helpdesk.ticket'
 
     engagement_done = fields.Boolean("Engagements Fetched")
+
+
+class LogHandling(models.Model):
+    _name = 'log.handling'
+
+    record_id = fields.Char('Odoo/Hubspot Id')
+    description = fields.Char('Description')
+    skip = fields.Boolean('Record Skip?')
+    model = fields.Char('Related Model')
