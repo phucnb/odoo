@@ -221,14 +221,11 @@ class HubspotImportIntegration(models.Model):
                     })
                 else:
                     if line in date_fields:
-                        try:
-                            date_convert = hubspot_obj[line]['value']
-                            date_value = datetime.datetime.fromtimestamp(int(date_convert[:-3]))
-                            odoo_obj.update({
-                                line: date_value
-                            })
-                        except Exception as e:
-                            pass
+                        date_convert = hubspot_obj[line]['value']
+                        date_value = datetime.datetime.fromtimestamp(int(date_convert[:-3]))
+                        odoo_obj.update({
+                            line: date_value
+                        })
                     else:
                         if hubspot_obj[line]['value'] != 'false':
                             state_fields = ['state_or_province', 'state_or_region']
@@ -467,8 +464,9 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.append(company['companyId'])
             return hubspot_ids
         except Exception as e:
-            _logger.error(e)
-            raise ValidationError(_(str(e)))
+            pass
+            # _logger.error(e)
+            # raise ValidationError(_(str(e)))
 
     def import_deals(self,):
         icpsudo = self.env['ir.config_parameter'].sudo()
