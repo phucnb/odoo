@@ -1619,7 +1619,10 @@ class HubspotImportIntegration(models.Model):
                                 self.env.cr.commit()
                                 continue
                             try:
-                                author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])[0]
+                                author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])
+                                if len(author) > 1:
+                                    author = author[0]
+
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'email',
@@ -1653,7 +1656,7 @@ class HubspotImportIntegration(models.Model):
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
                                     'display_name': author_id.name if author_id.name else None,
-                                    'author_id': author_id,
+                                    'author_id': author_id.id,
                                     'model': 'res.partner',
                                     'res_id': odoo_contact.id
                                 })
@@ -1699,7 +1702,7 @@ class HubspotImportIntegration(models.Model):
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
-                                        'author_id': author_id,
+                                        'author_id': author_id.id,
                                         'model': 'res.partner',
                                         'res_id': odoo_contact.id
                                     })
@@ -1753,7 +1756,7 @@ class HubspotImportIntegration(models.Model):
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
-                                        'author_id': author_id,
+                                        'author_id': author_id.id,
                                         'model': 'res.partner',
                                         'res_id': odoo_contact.id
                                     })
@@ -1805,7 +1808,7 @@ class HubspotImportIntegration(models.Model):
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
-                                        'author_id': author_id,
+                                        'author_id': author_id.id,
                                         'model': 'res.partner',
                                         'res_id': odoo_contact.id
                                     })
