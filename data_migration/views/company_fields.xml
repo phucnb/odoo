@@ -48,6 +48,7 @@
                                 <field name="of_students_transported" />
                                 <field name="of_students_total" />
                                 <field name="parent_portal" />
+                                <field name="number_of_buses" />
                             </group>
                         </group>
                         <group>
@@ -202,6 +203,34 @@
 <!--                                <field name="wireless" />-->
                                 <field name="founded_year" />
                             </group>
+                            <group>
+                                <field name="first_contact_createdate" />
+                                <field name="first_deal_created_date" />
+                                <field name="notes_last_updated" />
+                                <field name="hs_last_booked_meeting_date" />
+                                <field name="notes_last_contacted" />
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="hs_last_logged_call_date"/>
+                                <field name="hs_lastmodifieddate" />
+                                <field name="hs_last_open_task_date" />
+                                <field name="hs_last_sales_activity_timestamp" />
+                                <field name="engagements_last_meeting_booked_medium" />
+                            </group>
+                            <group>
+                                <field name="hs_num_child_companies" />
+                                <field name="hubspot_owner_assigneddate" />
+                                <field name="recent_deal_amount" />
+                                <field name="recent_deal_close_date" />
+                                <field name="total_money_raised" />
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="hs_total_deal_value" />
+                            </group>
                         </group>
                     </page>
                     <page string='Social Media Information' attrs="{'invisible':[('is_company','=',False)]}">
@@ -229,6 +258,13 @@
                                 <field name="hs_analytics_first_touch_converting_campaign" />
                                 <field name="hs_analytics_num_page_views" />
                                 <field name="hs_analytics_num_visits" />
+                                <field name="hs_analytics_last_touch_converting_campaign"/>
+                                <field name="hs_analytics_first_timestamp"/>
+                            </group>
+                            <group>
+                                <field name="hs_analytics_last_timestamp" />
+                                <field name="hs_analytics_first_visit_timestamp" />
+                                <field name="hs_analytics_last_visit_timestamp" />
                             </group>
                         </group>
                     </page>

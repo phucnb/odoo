@@ -399,6 +399,29 @@ class CustomCompany(models.Model):
     # wireless = fields.Selection(WIRELESS, "Wireless")
     founded_year = fields.Char("Year Founded")
 
+    first_contact_createdate = fields.Date("First Contact Create Date")
+    first_deal_created_date = fields.Date("First Deal Created Date")
+    notes_last_updated = fields.Date("Last Activity Date")
+    hs_last_booked_meeting_date = fields.Date("Last Booked Meeting Date")
+    notes_last_contacted = fields.Date("Last Contacted")
+    hs_last_logged_call_date = fields.Date("Last Logged Call Date")
+    hs_lastmodifieddate = fields.Date("Last Modified Date")
+    hs_last_open_task_date = fields.Date("Last Open Task Date")
+    hs_last_sales_activity_timestamp = fields.Datetime("Last Sales Activity Date")
+    hs_analytics_last_touch_converting_campaign = fields.Char("Last Touch Converting Campaign")
+    engagements_last_meeting_booked_medium = fields.Date("Medium of last booking in meetings tool")
+    hs_num_child_companies = fields.Integer("Number of child companies")
+    hubspot_owner_assigneddate = fields.Date("Owner Assigned Date")
+    recent_deal_amount = fields.Float("Recent Deal Amount")
+    recent_deal_close_date = fields.Date("Recent Deal Close Date")
+    hs_analytics_first_timestamp = fields.Datetime("Time First Seen")
+    hs_analytics_last_timestamp = fields.Datetime("Time Last Seen")
+    hs_analytics_first_visit_timestamp = fields.Datetime("Time of First Session")
+    hs_analytics_last_visit_timestamp = fields.Datetime("Time of Last Session")
+    total_money_raised = fields.Float("Total Money Raised")
+    hs_total_deal_value = fields.Date("Total open deal value")
+    number_of_buses = fields.Integer("Number of Buses")
+
     @api.model
     def _compute_opportunity_count(self):
         for partner in self:
