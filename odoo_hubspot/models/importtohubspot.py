@@ -198,7 +198,7 @@ class HubspotImportIntegration(models.Model):
                 'num_conversion_events', 'hs_num_open_deals', 'hs_analytics_num_page_views', 'hs_analytics_num_visits',
                 'num_contacted_notes', 'recent_conversion_event_name', 'recent_conversion_date',
                 'engagements_last_meeting_booked_source', 'total_revenue', 'founded_year',
-                'hs_analytics_last_touch_converting_campaign', 'engagements_last_meeting_booked_medium',
+                # 'hs_analytics_last_touch_converting_campaign', 'engagements_last_meeting_booked_medium',
                 # 'hs_num_child_companies', 'recent_deal_amount', 'total_money_raised', 'hs_total_deal_value'
                 # 'hs_total_deal_value', 'number_of_buses',
             ]
@@ -221,25 +221,24 @@ class HubspotImportIntegration(models.Model):
                         line: [[6, 0, self.add_m2m_values(hubspot_obj[line]['value'], line, model)]]
                     })
                 else:
-                    if hubspot_obj['line']['value']:
-                        if line in date_fields:
-                            date_convert = hubspot_obj[line]['value']
-                            date_value = datetime.datetime.fromtimestamp(int(date_convert[:-3]))
-                            odoo_obj.update({
-                                line: date_value
-                            })
-                        else:
-                            if hubspot_obj[line]['value'] != 'false':
-                                state_fields = ['state_or_province', 'state_or_region']
-                                if line in state_fields:
-                                    odoo_state = self.env['res.country.state'].search([('name', '=', hubspot_obj[line]['value'])])
-                                    odoo_obj.update({
-                                        line: odoo_state.id if odoo_state else None
-                                    })
-                                else:
-                                    odoo_obj.update({
-                                        line: hubspot_obj[line]['value'] if hubspot_obj[line]['value'] else None
-                                    })
+                    if line in date_fields:
+                        date_convert = hubspot_obj[line]['value']
+                        date_value = datetime.datetime.fromtimestamp(int(date_convert[:-3]))
+                        odoo_obj.update({
+                            line: date_value
+                        })
+                    else:
+                        if hubspot_obj[line]['value'] != 'false':
+                            state_fields = ['state_or_province', 'state_or_region']
+                            if line in state_fields:
+                                odoo_state = self.env['res.country.state'].search([('name', '=', hubspot_obj[line]['value'])])
+                                odoo_obj.update({
+                                    line: odoo_state.id if odoo_state else None
+                                })
+                            else:
+                                odoo_obj.update({
+                                    line: hubspot_obj[line]['value'] if hubspot_obj[line]['value'] else None
+                                })
 
     def add_m2m_values(self, values, line, model):
         value_ids = []
