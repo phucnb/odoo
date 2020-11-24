@@ -1643,7 +1643,7 @@ class HubspotImportIntegration(models.Model):
                                     'model': 'res.partner',
                                 })
                                 self.env.cr.commit()
-                                pass
+                                continue
                         elif engagement_data['type'] == 'NOTE':
                             try:
                                 print(odoo_contact.name)
@@ -1667,7 +1667,7 @@ class HubspotImportIntegration(models.Model):
                                     'model': 'res.partner',
                                 })
                                 self.env.cr.commit()
-                                pass
+                                continue
                         elif engagement_data['type'] == 'TASK':
                             try:
                                 if meta_data['status'] != 'COMPLETED':
@@ -1713,7 +1713,7 @@ class HubspotImportIntegration(models.Model):
                                     'model': 'res.partner',
                                 })
                                 self.env.cr.commit()
-                                pass
+                                continue
                         elif engagement_data['type'] == 'CALL':
                             try:
                                 if meta_data['status'] != 'COMPLETED':
@@ -1767,7 +1767,7 @@ class HubspotImportIntegration(models.Model):
                                     'model': 'res.partner',
                                 })
                                 self.env.cr.commit()
-                                pass
+                                continue
                         elif engagement_data['type'] == 'MEETING':
                             try:
                                 end_time = datetime.datetime.fromtimestamp(int(str(meta_data['endTime'])[:-3]))
@@ -1819,7 +1819,7 @@ class HubspotImportIntegration(models.Model):
                                     'model': 'res.partner',
                                 })
                                 self.env.cr.commit()
-                                pass
+                                continue
                     has_more = res_data['hasMore']
                     parameter_dict['offset'] = res_data['offset']
 
