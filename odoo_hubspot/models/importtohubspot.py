@@ -824,14 +824,13 @@ class HubspotImportIntegration(models.Model):
                             try:
                                 print('Creating Note Engagement against the company', odoo_company.name)
                                 author_id = self.env['res.users'].search([('hubspot_id', '=', engagement_data['ownerId'])]).partner_id
-                                # author_id = self.env['res.partner'].search([('email', '=', author.email)]).id
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'notification',
                                     'body': engagement_data['bodyPreview'] if engagement_data.get('bodyPreview') else None,
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
-                                    'display_name': author.name if author.name else None,
+                                    'display_name': author_id.name if author_id.name else None,
                                     'author_id': author_id,
                                     'model': 'res.partner',
                                     'res_id': odoo_company.id
@@ -879,7 +878,7 @@ class HubspotImportIntegration(models.Model):
                                         'body': meta_data['body'] if meta_data.get('body') else meta_data['subject'],
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'display_name': author.name if author.name else None,
+                                        'display_name': author_id.name if author_id.name else None,
                                         'author_id': author_id,
                                         'model': 'res.partner',
                                         'res_id': odoo_company.id
@@ -935,7 +934,7 @@ class HubspotImportIntegration(models.Model):
                                             'subject'] if meta_data.get('subject') else None,
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'display_name': author.name if author.name else None,
+                                        'display_name': author_id.name if author_id.name else None,
                                         'author_id': author_id,
                                         'model': 'res.partner',
                                         'res_id': odoo_company.id
@@ -990,7 +989,7 @@ class HubspotImportIntegration(models.Model):
                                         'body': meta_data['body'] if meta_data.get('body') else meta_data['title'],
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'display_name': author.name if author.name else None,
+                                        'display_name': author_id.name if author_id.name else None,
                                         'author_id': author_id,
                                         'model': 'res.partner',
                                         'res_id': odoo_company.id
@@ -1100,7 +1099,7 @@ class HubspotImportIntegration(models.Model):
                                     'body': engagement_data['bodyPreview'] if engagement_data.get('bodyPreview') else None,
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
-                                    'display_name': author.name if author.name else None,
+                                    'display_name': author_id.name if author_id.name else None,
                                     'author_id': author_id,
                                     'model': 'crm.lead',
                                     'res_id': odoo_lead.id
@@ -1151,7 +1150,7 @@ class HubspotImportIntegration(models.Model):
                                         'body': meta_data['body'] if meta_data.get('body') else meta_data['subject'],
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'display_name': author.name if author.name else None,
+                                        'display_name': author_id.name if author_id.name else None,
                                         'author_id': author_id,
                                         'model': 'crm.lead',
                                         'res_id': odoo_lead.id
@@ -1210,7 +1209,7 @@ class HubspotImportIntegration(models.Model):
                                             'subject'] if meta_data.get('subject') else None,
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'display_name': author.name if author.name else None,
+                                        'display_name': author_id.name if author_id.name else None,
                                         'author_id': author_id,
                                         'model': 'crm.lead',
                                         'res_id': odoo_lead.id
@@ -1268,7 +1267,7 @@ class HubspotImportIntegration(models.Model):
                                         'body': meta_data['body'] if meta_data.get('body') else meta_data['title'],
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'display_name': author.name if author.name else None,
+                                        'display_name': author_id.name if author_id.name else None,
                                         'author_id': author_id,
                                         'model': 'crm.lead',
                                         'res_id': odoo_lead.id
@@ -1378,7 +1377,7 @@ class HubspotImportIntegration(models.Model):
                                     'body': engagement_data['bodyPreview'] if engagement_data.get('bodyPreview') else None,
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
-                                    'display_name': author.name if author.name else None,
+                                    'display_name': author_id.name if author_id.name else None,
                                     'author_id': author_id,
                                     'model': 'helpdesk.ticket',
                                     'res_id': odoo_ticket.id
@@ -1429,7 +1428,7 @@ class HubspotImportIntegration(models.Model):
                                         'body': meta_data['body'] if meta_data.get('body') else meta_data['subject'],
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'display_name': author.name if author.name else None,
+                                        'display_name': author_id.name if author_id.name else None,
                                         'author_id': author_id,
                                         'model': 'helpdesk.ticket',
                                         'res_id': odoo_ticket.id
@@ -1487,7 +1486,7 @@ class HubspotImportIntegration(models.Model):
                                             'subject'] if meta_data.get('subject') else None,
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'display_name': author.name if author.name else None,
+                                        'display_name': author_id.name if author_id.name else None,
                                         'author_id': author_id,
                                         'model': 'helpdesk.ticket',
                                         'res_id': odoo_ticket.id
@@ -1544,7 +1543,7 @@ class HubspotImportIntegration(models.Model):
                                         'body': meta_data['body'] if meta_data.get('body') else meta_data['title'],
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'display_name': author.name if author.name else None,
+                                        'display_name': author_id.name if author_id.name else None,
                                         'author_id': author_id,
                                         'model': 'helpdesk.ticket',
                                         'res_id': odoo_ticket.id
@@ -1621,7 +1620,6 @@ class HubspotImportIntegration(models.Model):
                                 continue
                             try:
                                 author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])[0]
-
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'email',
@@ -1635,7 +1633,7 @@ class HubspotImportIntegration(models.Model):
                                     'model': 'res.partner',
                                     'res_id': odoo_contact.id
                                 })
-                            except:
+                            except Exception as e:
                                 self.env['log.handling'].create({
                                     'record_id': engagement_data['id'],
                                     'description': 'EMAIL: Skipped because of error while creating(' + str(e) + ')',
@@ -1654,7 +1652,7 @@ class HubspotImportIntegration(models.Model):
                                     'body': engagement_data['bodyPreview'] if engagement_data.get('bodyPreview') else None,
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
-                                    'display_name': author.name if author.name else None,
+                                    'display_name': author_id.name if author_id.name else None,
                                     'author_id': author_id,
                                     'model': 'res.partner',
                                     'res_id': odoo_contact.id
@@ -1700,12 +1698,12 @@ class HubspotImportIntegration(models.Model):
                                         'body': meta_data['body'] if meta_data.get('body') else meta_data['subject'],
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'display_name': author.name if author.name else None,
+                                        'display_name': author_id.name if author_id.name else None,
                                         'author_id': author_id,
                                         'model': 'res.partner',
                                         'res_id': odoo_contact.id
                                     })
-                            except:
+                            except Exception as e:
                                 self.env['log.handling'].create({
                                     'record_id': engagement_data['id'],
                                     'description': 'TASK: Skipped because of error while creating(' + str(e) + ')',
@@ -1754,12 +1752,12 @@ class HubspotImportIntegration(models.Model):
                                         meta_data['subject'],
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'display_name': author.name if author.name else None,
+                                        'display_name': author_id.name if author_id.name else None,
                                         'author_id': author_id,
                                         'model': 'res.partner',
                                         'res_id': odoo_contact.id
                                     })
-                            except:
+                            except Exception as e:
                                 self.env['log.handling'].create({
                                     'record_id': engagement_data['id'],
                                     'description': 'CALL: Skipped because of error while creating(' + str(e) + ')',
@@ -1806,12 +1804,12 @@ class HubspotImportIntegration(models.Model):
                                         'body': meta_data['body'] if meta_data.get('body') else meta_data['title'],
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
-                                        'display_name': author.name if author.name else None,
+                                        'display_name': author_id.name if author_id.name else None,
                                         'author_id': author_id,
                                         'model': 'res.partner',
                                         'res_id': odoo_contact.id
                                     })
-                            except:
+                            except Exception as e:
                                 self.env['log.handling'].create({
                                     'record_id': engagement_data['id'],
                                     'description': 'MEETING: Skipped because of error while creating(' + str(e) + ')',
