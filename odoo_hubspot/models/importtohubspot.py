@@ -102,13 +102,11 @@ class HubspotImportIntegration(models.Model):
                        'closedate', 'first_conversion_date', 'recent_conversion_date',
                        'first_contact_createdate', 'first_deal_created_date', 'notes_last_updated',
                        'hs_last_booked_meeting_date', 'notes_last_contacted', 'hs_last_logged_call_date',
-                       'hs_lastmodifieddate', 'hs_last_open_task_date',
+                       'hs_lastmodifieddate', 'hs_last_open_task_date', 'hs_last_sales_activity_timestamp',
                        'hubspot_owner_assigneddate', 'recent_deal_close_date',
+                       'hs_analytics_first_timestamp', 'hs_analytics_last_timestamp',
+                       'hs_analytics_first_visit_timestamp', 'hs_analytics_last_visit_timestamp',
                        ]
-        # 'hs_last_sales_activity_timestamp',
-        # 'hs_analytics_first_timestamp', 'hs_analytics_last_timestamp',
-        # 'hs_analytics_first_visit_timestamp', 'hs_analytics_last_visit_timestamp',
-
         if name == 'contacts':
             m2m_list = [
                 'asta_al_', 'aasbo_az_', 'aapt_ar_',
@@ -200,14 +198,9 @@ class HubspotImportIntegration(models.Model):
                 'num_conversion_events', 'hs_num_open_deals', 'hs_analytics_num_page_views', 'hs_analytics_num_visits',
                 'num_contacted_notes', 'recent_conversion_event_name', 'recent_conversion_date',
                 'engagements_last_meeting_booked_source', 'total_revenue', 'wireless', 'founded_year',
-                'first_contact_createdate', 'first_deal_created_date', 'notes_last_updated',
-                'hs_last_booked_meeting_date', 'notes_last_contacted', 'hs_last_logged_call_date',
-                'hs_lastmodifieddate', 'hs_last_open_task_date', 'hs_last_sales_activity_timestamp',
                 'hs_analytics_last_touch_converting_campaign', 'engagements_last_meeting_booked_medium',
-                'hs_num_child_companies',
-                'hubspot_owner_assigneddate', 'recent_deal_amount', 'recent_deal_close_date',
-                'hs_analytics_first_timestamp', 'hs_analytics_last_timestamp', 'hs_analytics_first_visit_timestamp',
-                'hs_analytics_last_visit_timestamp', 'total_money_raised', 'hs_total_deal_value', 'number_of_buses',
+                'hs_num_child_companies', 'recent_deal_amount', 'total_money_raised',
+                'hs_total_deal_value', 'number_of_buses',
             ]
         elif name == 'deals':
             lines = [
