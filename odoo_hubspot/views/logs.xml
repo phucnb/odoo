@@ -3,7 +3,7 @@
     <data>
         <record model="ir.ui.view" id="logs_form_view">
             <field name="name">Log Form</field>
-            <field name="model">res.partner_years</field>
+            <field name="model">log.handling</field>
             <field name="arch" type="xml">
                 <tree>
                      <field name="record_id"/>
