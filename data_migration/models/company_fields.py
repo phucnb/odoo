@@ -409,7 +409,7 @@ class CustomCompany(models.Model):
     hs_last_open_task_date = fields.Date("Last Open Task Date")
     hs_last_sales_activity_timestamp = fields.Datetime("Last Sales Activity Date")
     hs_analytics_last_touch_converting_campaign = fields.Char("Last Touch Converting Campaign")
-    engagements_last_meeting_booked_medium = fields.Date("Medium of last booking in meetings tool")
+    engagements_last_meeting_booked_medium = fields.Char("Medium of last booking in meetings tool")
     hs_num_child_companies = fields.Integer("Number of child companies")
     hubspot_owner_assigneddate = fields.Date("Owner Assigned Date")
     recent_deal_amount = fields.Float("Recent Deal Amount")
