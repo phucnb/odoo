@@ -1017,7 +1017,7 @@ class HubspotImportIntegration(models.Model):
                     has_more = res_data['hasMore']
                     parameter_dict['offset'] = res_data['offset']
                 odoo_company.write({
-                    'engagement_done': True,
+                    'engagement_done': False,
                 })
                 self.env.cr.commit()
         except Exception as e:
