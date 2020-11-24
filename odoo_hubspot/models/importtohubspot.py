@@ -222,10 +222,11 @@ class HubspotImportIntegration(models.Model):
                 else:
                     if line in date_fields:
                         date_convert = hubspot_obj[line]['value']
-                        date_value = datetime.datetime.fromtimestamp(int(date_convert[:-3]))
-                        odoo_obj.update({
-                            line: date_value
-                        })
+                        if date_convert != '0.0':
+                            date_value = datetime.datetime.fromtimestamp(int(date_convert[:-3]))
+                            odoo_obj.update({
+                                line: date_value
+                            })
                     else:
                         if hubspot_obj[line]['value'] != 'false':
                             state_fields = ['state_or_province', 'state_or_region']
