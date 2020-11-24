@@ -102,11 +102,13 @@ class HubspotImportIntegration(models.Model):
                        'closedate', 'first_conversion_date', 'recent_conversion_date',
                        'first_contact_createdate', 'first_deal_created_date', 'notes_last_updated',
                        'hs_last_booked_meeting_date', 'notes_last_contacted', 'hs_last_logged_call_date',
-                       'hs_lastmodifieddate', 'hs_last_open_task_date', 'hs_last_sales_activity_timestamp',
+                       'hs_lastmodifieddate', 'hs_last_open_task_date',
                        'hubspot_owner_assigneddate', 'recent_deal_close_date',
-                       'hs_analytics_first_timestamp', 'hs_analytics_last_timestamp',
-                       'hs_analytics_first_visit_timestamp', 'hs_analytics_last_visit_timestamp',
                        ]
+        # 'hs_last_sales_activity_timestamp',
+        # 'hs_analytics_first_timestamp', 'hs_analytics_last_timestamp',
+        # 'hs_analytics_first_visit_timestamp', 'hs_analytics_last_visit_timestamp',
+
         if name == 'contacts':
             m2m_list = [
                 'asta_al_', 'aasbo_az_', 'aapt_ar_',
