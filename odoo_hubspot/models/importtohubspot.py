@@ -1643,6 +1643,7 @@ class HubspotImportIntegration(models.Model):
                                     'model': 'res.partner',
                                 })
                                 self.env.cr.commit()
+                                pass
                         elif engagement_data['type'] == 'NOTE':
                             try:
                                 print(odoo_contact.name)
