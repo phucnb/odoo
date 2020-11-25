@@ -383,12 +383,11 @@ class CustomCompany(models.Model):
     hs_ideal_customer_profile = fields.Selection(CUSTOMER_PROFILE, "Ideal Customer Profile Tier")
     is_public = fields.Boolean("Is Public")
     nadp = fields.Selection(NADP, 'NADP')
-    hs_num_contacts_with_buying_roles = fields.Integer("Number of contacts with a buying role",
-                                                       compute='_buying_role_count')
-    hs_num_decision_makers = fields.Char("Number of decision makers", compute='_decision_maker_count')
+    hs_num_contacts_with_buying_roles = fields.Integer("Number of contacts with a buying role")
+    hs_num_decision_makers = fields.Char("Number of decision makers")
     numberofemployees = fields.Integer("Number of Employees")
     num_conversion_events = fields.Integer("Number of Form Submissions")
-    hs_num_open_deals = fields.Integer("Number of open deals", compute='_count_open_deals')
+    hs_num_open_deals = fields.Integer("Number of open deals")
     hs_analytics_num_page_views = fields.Integer("Number of page views")
     hs_analytics_num_visits = fields.Integer("Number of Sessions")
     num_contacted_notes = fields.Integer("Number of times contacted")
@@ -440,12 +439,3 @@ class CustomCompany(models.Model):
         else:
             action['domain'] = [('hs_deal_contacts', '=', self.id)]
         return action
-
-    def _count_open_deals(self):
-        pass
-
-    def _decision_maker_count(self):
-        pass
-
-    def _buying_role_count(self):
-        pass
