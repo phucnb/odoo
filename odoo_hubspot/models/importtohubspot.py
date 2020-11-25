@@ -773,13 +773,13 @@ class HubspotImportIntegration(models.Model):
                         odoo_message = self.env['mail.message'].search([('engagement_id', '=', engagement_data['id'])])
                         odoo_activity = self.env['mail.activity'].search([('engagement_id', '=', engagement_data['id'])])
                         if odoo_message or odoo_activity:
-                            self.env['log.handling'].create({
-                                'record_id': engagement_data['id'],
-                                'description': 'Record already exists',
-                                'skip': True,
-                                'model': 'res.partner',
-                            })
-                            self.env.cr.commit()
+                            # self.env['log.handling'].create({
+                            #     'record_id': engagement_data['id'],
+                            #     'description': 'Record already exists',
+                            #     'skip': True,
+                            #     'model': 'res.partner',
+                            # })
+                            # self.env.cr.commit()
                             continue
                         association_data = engagement['associations']
                         meta_data = engagement['metadata']
@@ -795,8 +795,9 @@ class HubspotImportIntegration(models.Model):
                                 continue
                             try:
                                 print('Creating Email Engagement against the company', odoo_company.name)
-                                author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])[0]
-
+                                author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])
+                                if len(author) > 1:
+                                    author = author[0]
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'email',
@@ -831,7 +832,7 @@ class HubspotImportIntegration(models.Model):
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
                                     'display_name': author_id.name if author_id.name else None,
-                                    'author_id': author_id,
+                                    'author_id': author_id.id,
                                     'model': 'res.partner',
                                     'res_id': odoo_company.id
                                 })
@@ -879,7 +880,7 @@ class HubspotImportIntegration(models.Model):
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
-                                        'author_id': author_id,
+                                        'author_id': author_id.id,
                                         'model': 'res.partner',
                                         'res_id': odoo_company.id
                                     })
@@ -935,7 +936,7 @@ class HubspotImportIntegration(models.Model):
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
-                                        'author_id': author_id,
+                                        'author_id': author_id.id,
                                         'model': 'res.partner',
                                         'res_id': odoo_company.id
                                     })
@@ -990,7 +991,7 @@ class HubspotImportIntegration(models.Model):
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
-                                        'author_id': author_id,
+                                        'author_id': author_id.id,
                                         'model': 'res.partner',
                                         'res_id': odoo_company.id
                                     })
@@ -1020,7 +1021,7 @@ class HubspotImportIntegration(models.Model):
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             leads = self.env['crm.lead'].search([('hubspot_id', '!=', False),
                                                  ('type', '=', 'opportunity'),
-                                                 ('engagement_done', '=', False)])
+                                                 ('engagement_done', '=', True)])
             for odoo_lead in leads:
                 get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
                                                 "DEAL/{0}/paged?".format(odoo_lead.hubspot_id)
@@ -1041,13 +1042,13 @@ class HubspotImportIntegration(models.Model):
                         odoo_message = self.env['mail.message'].search([('engagement_id', '=', engagement_data['id'])])
                         odoo_activity = self.env['mail.activity'].search([('engagement_id', '=', engagement_data['id'])])
                         if odoo_message or odoo_activity:
-                            self.env['log.handling'].create({
-                                'record_id': engagement_data['id'],
-                                'description': 'Record already exists',
-                                'skip': True,
-                                'model': 'crm.lead',
-                            })
-                            self.env.cr.commit()
+                            # self.env['log.handling'].create({
+                            #     'record_id': engagement_data['id'],
+                            #     'description': 'Record already exists',
+                            #     'skip': False,
+                            #     'model': 'crm.lead',
+                            # })
+                            # self.env.cr.commit()
                             continue
                         association_data = engagement['associations']
                         meta_data = engagement['metadata']
@@ -1062,9 +1063,9 @@ class HubspotImportIntegration(models.Model):
                                 self.env.cr.commit()
                                 continue
                             try:
-                                print('Creating Email Engagement against the lead', odoo_lead.name)
-                                author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])[0]
-
+                                author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])
+                                if len(author) > 1:
+                                    author = author[0]
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'email',
@@ -1100,7 +1101,7 @@ class HubspotImportIntegration(models.Model):
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
                                     'display_name': author_id.name if author_id.name else None,
-                                    'author_id': author_id,
+                                    'author_id': author_id.id,
                                     'model': 'crm.lead',
                                     'res_id': odoo_lead.id
                                 })
@@ -1151,7 +1152,7 @@ class HubspotImportIntegration(models.Model):
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
-                                        'author_id': author_id,
+                                        'author_id': author_id.id,
                                         'model': 'crm.lead',
                                         'res_id': odoo_lead.id
                                     })
@@ -1210,7 +1211,7 @@ class HubspotImportIntegration(models.Model):
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
-                                        'author_id': author_id,
+                                        'author_id': author_id.id,
                                         'model': 'crm.lead',
                                         'res_id': odoo_lead.id
                                     })
@@ -1268,7 +1269,7 @@ class HubspotImportIntegration(models.Model):
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
-                                        'author_id': author_id,
+                                        'author_id': author_id.id,
                                         'model': 'crm.lead',
                                         'res_id': odoo_lead.id
                                     })
@@ -1286,12 +1287,10 @@ class HubspotImportIntegration(models.Model):
                     parameter_dict['offset'] = res_data['offset']
 
                 odoo_lead.write({
-                    'engagement_done': True,
+                    'engagement_done': False,
                 })
                 self.env.cr.commit()
         except Exception as e:
-            print(e)
-            a = 1
             pass
 
     def get_ticket_engagements(self):
@@ -1299,7 +1298,7 @@ class HubspotImportIntegration(models.Model):
             icpsudo = self.env['ir.config_parameter'].sudo()
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             tickets = self.env['helpdesk.ticket'].search([('hubspot_id', '!=', False),
-                                                          ('engagement_done', '=', False)])
+                                                          ('engagement_done', '=', True)])
             for odoo_ticket in tickets:
                 get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
                                                 "TICKET/{0}/paged?".format(odoo_ticket.hubspot_id)
@@ -1320,13 +1319,13 @@ class HubspotImportIntegration(models.Model):
                         odoo_message = self.env['mail.message'].search([('engagement_id', '=', engagement_data['id'])])
                         odoo_activity = self.env['mail.activity'].search([('engagement_id', '=', engagement_data['id'])])
                         if odoo_message or odoo_activity:
-                            self.env['log.handling'].create({
-                                'record_id': engagement_data['id'],
-                                'description': 'Record already exists',
-                                'skip': True,
-                                'model': 'crm.lead',
-                            })
-                            self.env.cr.commit()
+                            # self.env['log.handling'].create({
+                            #     'record_id': engagement_data['id'],
+                            #     'description': 'Record already exists',
+                            #     'skip': True,
+                            #     'model': 'crm.lead',
+                            # })
+                            # self.env.cr.commit()
                             continue
                         association_data = engagement['associations']
                         meta_data = engagement['metadata']
@@ -1341,8 +1340,9 @@ class HubspotImportIntegration(models.Model):
                                 self.env.cr.commit()
                                 continue
                             try:
-                                print('Creating Email Engagement against the lead', odoo_ticket.name)
-                                author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])[0]
+                                author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])
+                                if len(author) > 1:
+                                    author = author[0]
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'email',
@@ -1378,7 +1378,7 @@ class HubspotImportIntegration(models.Model):
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
                                     'display_name': author_id.name if author_id.name else None,
-                                    'author_id': author_id,
+                                    'author_id': author_id.id,
                                     'model': 'helpdesk.ticket',
                                     'res_id': odoo_ticket.id
                                 })
@@ -1429,7 +1429,7 @@ class HubspotImportIntegration(models.Model):
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
-                                        'author_id': author_id,
+                                        'author_id': author_id.id,
                                         'model': 'helpdesk.ticket',
                                         'res_id': odoo_ticket.id
                                     })
@@ -1487,7 +1487,7 @@ class HubspotImportIntegration(models.Model):
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
-                                        'author_id': author_id,
+                                        'author_id': author_id.id,
                                         'model': 'helpdesk.ticket',
                                         'res_id': odoo_ticket.id
                                     })
@@ -1544,7 +1544,7 @@ class HubspotImportIntegration(models.Model):
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
-                                        'author_id': author_id,
+                                        'author_id': author_id.id,
                                         'model': 'helpdesk.ticket',
                                         'res_id': odoo_ticket.id
                                     })
@@ -1562,12 +1562,10 @@ class HubspotImportIntegration(models.Model):
                     parameter_dict['offset'] = res_data['offset']
 
                 odoo_ticket.write({
-                    'engagement_done': True,
+                    'engagement_done': False,
                 })
                 self.env.cr.commit()
         except Exception as e:
-            print(e)
-            a = 1
             pass
 
     def get_contact_engagements(self):
@@ -1598,13 +1596,13 @@ class HubspotImportIntegration(models.Model):
                         odoo_message = self.env['mail.message'].search([('engagement_id', '=', engagement_data['id'])])
                         odoo_activity = self.env['mail.activity'].search([('engagement_id', '=', engagement_data['id'])])
                         if odoo_message or odoo_activity:
-                            self.env['log.handling'].create({
-                                'record_id': engagement_data['id'],
-                                'description': 'Record already exists',
-                                'skip': True,
-                                'model': 'res.partner',
-                            })
-                            self.env.cr.commit()
+                            # self.env['log.handling'].create({
+                            #     'record_id': engagement_data['id'],
+                            #     'description': 'Record already exists',
+                            #     'skip': True,
+                            #     'model': 'res.partner',
+                            # })
+                            # self.env.cr.commit()
                             continue
                         association_data = engagement['associations']
                         meta_data = engagement['metadata']

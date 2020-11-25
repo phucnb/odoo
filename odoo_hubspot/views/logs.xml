@@ -7,6 +7,7 @@
             <field name="arch" type="xml">
                 <tree>
                      <field name="record_id"/>
+                     <field name="odoo_record_name" />
                      <field name="description"/>
                      <field name="skip"/>
                      <field name="model"/>

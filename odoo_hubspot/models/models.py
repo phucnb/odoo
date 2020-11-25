@@ -102,7 +102,8 @@ class InheritTicket(models.Model):
 class LogHandling(models.Model):
     _name = 'log.handling'
 
-    record_id = fields.Char('Odoo/Hubspot Id')
+    record_id = fields.Char('Hubspot Id')
+    odoo_record_name = fields.Char('Odoo Record Name')
     description = fields.Char('Description')
     skip = fields.Boolean('Record Skip?')
-    model = fields.Char('Related Model')
+    model = fields.Char('Odoo Model')
