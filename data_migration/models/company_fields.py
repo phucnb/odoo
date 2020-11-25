@@ -440,3 +440,12 @@ class CustomCompany(models.Model):
         else:
             action['domain'] = [('hs_deal_contacts', '=', self.id)]
         return action
+
+    def _count_open_deals(self):
+        pass
+
+    def _decision_maker_count(self):
+        pass
+
+    def _buying_role_count(self):
+        pass
