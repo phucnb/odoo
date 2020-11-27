@@ -381,7 +381,7 @@ class CustomCompany(models.Model):
 
     about_us = fields.Char("About Us")
     closedate = fields.Date("Close Date")
-    customer_rating = fields.Selection(Customer_Rating, 'Customer Rating')
+    # customer_rating = fields.Selection(Customer_Rating, 'Customer Rating')
     description = fields.Text("Description")
     facebook_company_page = fields.Char("Facebook Company Page")
     facebookfans = fields.Integer("Facebook Fans")

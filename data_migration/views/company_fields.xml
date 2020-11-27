@@ -188,7 +188,7 @@
                                 <field name="closedate" />
                             </group>
                             <group>
-                                <field name="customer_rating"/>
+<!--                                <field name="customer_rating"/>-->
                                 <field name="description" />
                                 <field name="is_public" />
                                 <field name="nadp" />
