@@ -230,6 +230,7 @@
                         <group>
                             <group>
                                 <field name="hs_total_deal_value" />
+                                <field name="hubspot_team_id" />
                             </group>
                         </group>
                     </page>
