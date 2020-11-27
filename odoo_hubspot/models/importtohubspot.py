@@ -195,7 +195,7 @@ class HubspotImportIntegration(models.Model):
                     'bid_awarded_year', 'bus_garage', 'n247_dvr_total', 'special_instructions', 'area_code',
                     'vendor',
                     'dealer_sub_type', 'unique_identifier', 'opportunity_number', 'contractor', 'minitrack', 'erie_1_boces',
-                    'bid_reference', 'about_us', 'closedate', 'customer_rating', 'description', 'facebook_company_page',
+                    'bid_reference', 'about_us', 'closedate', 'description', 'facebook_company_page',
                     'facebookfans', 'first_conversion_event_name', 'first_conversion_date',
                     'hs_analytics_first_touch_converting_campaign', 'hs_ideal_customer_profile', 'is_public', 'nadp',
                     'hs_num_contacts_with_buying_roles', 'hs_num_decision_makers', 'numberofemployees',
@@ -206,7 +206,7 @@ class HubspotImportIntegration(models.Model):
                     'hs_num_child_companies', 'recent_deal_amount', 'total_money_raised', 'hs_total_deal_value'
                     'hs_total_deal_value', 'number_of_buses', 'hubspot_team_id'
                 ]
-                # 'wireless'
+                # 'wireless''customer_rating'
             elif name == 'deals':
                 lines = [
                     'deal_entered_current_deal_stage', 'dealers_quoting_this_deal', 'end_user', 'isr',
