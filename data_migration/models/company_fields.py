@@ -253,6 +253,14 @@ WIRELESS = [
 
 CUSTOMER_PROFILE = [('tier_1', 'Tier 1'), ('tier_2', 'Tier 2'), ('tier_3', 'Tier 3')]
 
+HUBSPOT_TEAM = [
+    ('216026', 'Surveillance-247'),
+    ('1062727', 'S247S'),
+    ('216255', 'PW'),
+    ('398602', 'NADP'),
+    ('216184', '247Security'),
+]
+
 
 class CustomCompany(models.Model):
     _inherit = 'res.partner'
@@ -420,6 +428,7 @@ class CustomCompany(models.Model):
     total_money_raised = fields.Float("Total Money Raised")
     hs_total_deal_value = fields.Date("Total open deal value")
     number_of_buses = fields.Integer("Number of Buses")
+    hubspot_team_id = fields.Selection(HUBSPOT_TEAM, 'Hubspot Team')
 
     @api.model
     def _compute_opportunity_count(self):

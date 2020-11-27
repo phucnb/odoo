@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="47652d1c-0534-4654-9aba-c7bcffd79ff9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/company_fields.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/company_fields.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +28,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="/opt/odoo13/custom-addons/odoo_office365" />
+    <property name="last_opened_file_path" value="/opt/odoo14/odoo" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
@@ -69,11 +70,11 @@
       <screen x="0" y="27" width="1280" height="950" />
     </state>
     <state x="98" y="159" width="1084" height="710" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1280.950@0.27.1280.950" timestamp="1603353476772" />
-    <state x="423" y="255" width="424" height="484" key="FileChooserDialogImpl" timestamp="1604993789442">
-      <screen x="0" y="27" width="1280" height="932" />
+    <state x="423" y="259" width="424" height="484" key="FileChooserDialogImpl" timestamp="1606470689169">
+      <screen x="0" y="27" width="1280" height="950" />
     </state>
     <state x="423" y="255" width="424" height="484" key="FileChooserDialogImpl/0.27.1280.932@0.27.1280.932" timestamp="1604993789442" />
-    <state x="423" y="259" width="424" height="484" key="FileChooserDialogImpl/0.27.1280.950@0.27.1280.950" timestamp="1603870097059" />
+    <state x="423" y="259" width="424" height="484" key="FileChooserDialogImpl/0.27.1280.950@0.27.1280.950" timestamp="1606470689169" />
     <state width="1257" height="272" key="GridCell.Tab.0.bottom" timestamp="1603713509319">
       <screen x="0" y="27" width="1280" height="950" />
     </state>
@@ -90,10 +91,10 @@
       <screen x="0" y="27" width="1280" height="950" />
     </state>
     <state width="1257" height="272" key="GridCell.Tab.0.right/0.27.1280.950@0.27.1280.950" timestamp="1603713509319" />
-    <state x="331" y="236" width="618" height="522" key="find.popup" timestamp="1604670528747">
-      <screen x="0" y="27" width="1280" height="932" />
+    <state x="350" y="220" width="618" height="522" key="find.popup" timestamp="1606470927468">
+      <screen x="0" y="27" width="1280" height="950" />
     </state>
     <state x="331" y="236" width="618" height="522" key="find.popup/0.27.1280.932@0.27.1280.932" timestamp="1604670528747" />
-    <state x="331" y="240" width="618" height="522" key="find.popup/0.27.1280.950@0.27.1280.950" timestamp="1603870097618" />
+    <state x="350" y="220" width="618" height="522" key="find.popup/0.27.1280.950@0.27.1280.950" timestamp="1606470927468" />
   </component>
 </project>
