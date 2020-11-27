@@ -29,249 +29,258 @@ class HubspotImportIntegration(models.Model):
     import_deal = fields.Boolean('Import deals', store=True)
     import_ticket = fields.Boolean('Import tickets', store=True)
     custom_date_range = fields.Boolean(string='Custom Date Range Sync')
-    company_last_ofsset = fields.Char("Company offset")
+    company_last_offfssset = fields.Char("Company offset")
     contact_last_offsetss = fields.Char("Contact Offset")
     ticket_last_offsetss = fields.Char("Ticket Offset")
 
     def read_file(self, file_name):
-        lines = []
-        if file_name == 'contacts':
-            lines = ['aapt_ar_','business_unit','demo',
-                    'did_they_go_to_a_new_school_district_company_','iacp','lead_type','napt',
-                    'no_longer_at_school_district_company','planned_retirement_date','population',
-                    'product_i_m_interested_in','purchased_list_july','purchasing_influence','remove','reports_to',
-                    'request_a_demo','role','s247_secondary_company','state_or_province',
-                    'state_or_region','surveillance_247_area_code','surveillance_247_district_name',
-                    'surveillance_247_district_website_domain','territory','what_school_district_company_did_they_go_',
-                    'what_type_of_support','why_not_at_school_district_company_','years_with_company',
-                    'zoom_webinar_attendance_average_duration','zoom_webinar_attendance_count','zoom_webinar_joinlink',
-                    'zoom_webinar_registration_count','aasbo_az_','address2','asta_al_','casbo_ca_',
-                    'casto_ca_','full_name','accounting_contact_full_name','cgcs','accounting_email','cptc_cn_',
-                    'crtc_wa_','purchasing_contact_full_name','cspta_co_','purchasing_email','ctaa',
-                    'division_cf_contact','fpta_ctd','gapt_ga_','last_rma_email_date',
-                    'gcapt_tx_','famtec_customer','iapt_il_','famtec_sales_rep','iapt_id_',
-                    'bus_garage','ipta_ia_','kspta_ks_','mapt_mi_','mapt_mo_','mnapt_mn_','n247_dvr_total','as_of_date',
-                    'msboa_mn_','cameras','napt_na_','external_camera','ncpta_nc_','ncst','special_instructions',
-                    'area_code','nsba_na_','job_title_secondary','nsta_mid','nsta_summer','unique_identifier',
-                    'nsta_national','solution_currently_installed','oapt_oh_','oapt_ok_','oasbo_on_','oasbo_osba',
-                    'opta_or_','osbma_oh_','sbx','scapt_sc_','sesptc','stai_in_','stn','taa_az_','tapt_tn_','tapt_tx_',
-                    'transfinder','tsd','uapt_ut_','vapt_va_','wapt_wa_','wpta_wy_','wsba_wi_','wvapt_wv_',
-                    'chapter_meeting_1','sts_of_nj']
-        elif file_name == 'companies':
-            lines = [
-                'bid_potential','bid_status','business_vertical','business_vertical_other_','camera_system',
-                'camera_system_other_','cameras','competitor','contract_expires','contracted_services',
-                'dealer_sold_through','e360_cameras','external_camera','fleet_maintenance_system',
-                'fleet_maintenance_system_other_','fleet_size_s247','gps','gps_vendor','gps_vendor_other_','how_many_lots_',
-                'issr','n247_bus_saleman','n247s_lifecycle_stage','netsuite_refresh','company_type',
-                'number_of_sales_personnel','number_of_special_needs_students_transported',
-                'of_buses','of_cameras_per_bus','of_students_total','of_students_transported',
-                'parent_portal','parent_portal_other_','parent_portal_system','preferred_camera_vendor','preferred_camera_vendor_cloned_',
-                'previous_camera_system','products','prospect_status_s247','purchase_date','purchased_list_july','remove','rfp_date_posted',
-                'routing','routing_solution','routing_solution_other_','rsm','s247_contact_email',
-                's247_county','s247_first_name','s247_last_name','s247_lead_contact','s247_pre_post_salutation','s247_title',
-                'sales_rep','school_year_budget_begins','school_year_start','service_agreement',
-                'sic_code','stop_arm_camera_s_','student_count','student_information_system','student_information_system_other_',
-                'student_tracking','student_tracking_system','student_tracking_system_other_','surveillance_247_company_domain',
-                'surveillance_247_district','system','td_fleet_monitor','territory','touchdown',
-                'touchdown_cloud_services_amount','touchdown_cloud_services_renewal_date','touchdown_install_date','wireless_s247',
-                'internal_id','new_id','lot_1_address','status','fleet_size','lot_2_address','netsuite_customer','netsuite_status',
-                'bid_awarded_year','bus_garage','n247_dvr_total','special_instructions','area_code','vendor',
-                'dealer_sub_type','unique_identifier','opportunity_number','contractor','minitrack','erie_1_boces','bid_reference',
-            ]
-        elif file_name == 'deals':
-            lines = [
-                'deal_entered_current_deal_stage', 'dealers_quoting_this_deal', 'end_user', 'isr',
-                'lost_reason_notes', 'n247s_lifecycle_stage', 'opportunity_link', 'product_s_considered',
-                'sales_order', 'state', 'opportunity_number'
-            ]
-        elif file_name == 'tickets':
-            lines = ['assigned_company', 'cs_number', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
-                     's247_product', 'touchdown']
+        try:
+            lines = []
+            if file_name == 'contacts':
+                lines = ['aapt_ar_','business_unit','demo',
+                        'did_they_go_to_a_new_school_district_company_','iacp','lead_type','napt',
+                        'no_longer_at_school_district_company','planned_retirement_date','population',
+                        'product_i_m_interested_in','purchased_list_july','purchasing_influence','remove','reports_to',
+                        'request_a_demo','role','s247_secondary_company','state_or_province',
+                        'state_or_region','surveillance_247_area_code','surveillance_247_district_name',
+                        'surveillance_247_district_website_domain','territory','what_school_district_company_did_they_go_',
+                        'what_type_of_support','why_not_at_school_district_company_','years_with_company',
+                        'zoom_webinar_attendance_average_duration','zoom_webinar_attendance_count','zoom_webinar_joinlink',
+                        'zoom_webinar_registration_count','aasbo_az_','address2','asta_al_','casbo_ca_',
+                        'casto_ca_','full_name','accounting_contact_full_name','cgcs','accounting_email','cptc_cn_',
+                        'crtc_wa_','purchasing_contact_full_name','cspta_co_','purchasing_email','ctaa',
+                        'division_cf_contact','fpta_ctd','gapt_ga_','last_rma_email_date',
+                        'gcapt_tx_','famtec_customer','iapt_il_','famtec_sales_rep','iapt_id_',
+                        'bus_garage','ipta_ia_','kspta_ks_','mapt_mi_','mapt_mo_','mnapt_mn_','n247_dvr_total','as_of_date',
+                        'msboa_mn_','cameras','napt_na_','external_camera','ncpta_nc_','ncst','special_instructions',
+                        'area_code','nsba_na_','job_title_secondary','nsta_mid','nsta_summer','unique_identifier',
+                        'nsta_national','solution_currently_installed','oapt_oh_','oapt_ok_','oasbo_on_','oasbo_osba',
+                        'opta_or_','osbma_oh_','sbx','scapt_sc_','sesptc','stai_in_','stn','taa_az_','tapt_tn_','tapt_tx_',
+                        'transfinder','tsd','uapt_ut_','vapt_va_','wapt_wa_','wpta_wy_','wsba_wi_','wvapt_wv_',
+                        'chapter_meeting_1','sts_of_nj']
+            elif file_name == 'companies':
+                lines = [
+                    'bid_potential','bid_status','business_vertical','business_vertical_other_','camera_system',
+                    'camera_system_other_','cameras','competitor','contract_expires','contracted_services',
+                    'dealer_sold_through','e360_cameras','external_camera','fleet_maintenance_system',
+                    'fleet_maintenance_system_other_','fleet_size_s247','gps','gps_vendor','gps_vendor_other_','how_many_lots_',
+                    'issr','n247_bus_saleman','n247s_lifecycle_stage','netsuite_refresh','company_type',
+                    'number_of_sales_personnel','number_of_special_needs_students_transported',
+                    'of_buses','of_cameras_per_bus','of_students_total','of_students_transported',
+                    'parent_portal','parent_portal_other_','parent_portal_system','preferred_camera_vendor','preferred_camera_vendor_cloned_',
+                    'previous_camera_system','products','prospect_status_s247','purchase_date','purchased_list_july','remove','rfp_date_posted',
+                    'routing','routing_solution','routing_solution_other_','rsm','s247_contact_email',
+                    's247_county','s247_first_name','s247_last_name','s247_lead_contact','s247_pre_post_salutation','s247_title',
+                    'sales_rep','school_year_budget_begins','school_year_start','service_agreement',
+                    'sic_code','stop_arm_camera_s_','student_count','student_information_system','student_information_system_other_',
+                    'student_tracking','student_tracking_system','student_tracking_system_other_','surveillance_247_company_domain',
+                    'surveillance_247_district','system','td_fleet_monitor','territory','touchdown',
+                    'touchdown_cloud_services_amount','touchdown_cloud_services_renewal_date','touchdown_install_date','wireless_s247',
+                    'internal_id','new_id','lot_1_address','status','fleet_size','lot_2_address','netsuite_customer','netsuite_status',
+                    'bid_awarded_year','bus_garage','n247_dvr_total','special_instructions','area_code','vendor',
+                    'dealer_sub_type','unique_identifier','opportunity_number','contractor','minitrack','erie_1_boces','bid_reference',
+                ]
+            elif file_name == 'deals':
+                lines = [
+                    'deal_entered_current_deal_stage', 'dealers_quoting_this_deal', 'end_user', 'isr',
+                    'lost_reason_notes', 'n247s_lifecycle_stage', 'opportunity_link', 'product_s_considered',
+                    'sales_order', 'state', 'opportunity_number'
+                ]
+            elif file_name == 'tickets':
+                lines = ['assigned_company', 'cs_number', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
+                         's247_product', 'touchdown']
 
-        property_url = ''
-        for line in lines:
-            property_url = property_url + '&properties=' + line
-        return property_url
+            property_url = ''
+            for line in lines:
+                property_url = property_url + '&properties=' + line
+            return property_url
+        except Exception as e:
+            raise ValidationError(str(e))
 
     def add_properties(self, odoo_obj, hubspot_obj, name, model):
-        m2m_list = []
-        date_fields = ['contract_expires', 'school_year_budget_begins', 'school_year_start',
-                       'touchdown_cloud_services_renewal_date', 'touchdown_install_date', 'date_of_birth',
-                       'planned_retirement_date', 'last_rma_email_date', 'request_a_demo',
-                       'closedate', 'first_conversion_date', 'recent_conversion_date',
-                       'first_contact_createdate', 'first_deal_created_date', 'notes_last_updated',
-                       'hs_last_booked_meeting_date', 'notes_last_contacted', 'hs_last_logged_call_date',
-                       'hs_lastmodifieddate', 'hs_last_open_task_date', 'hs_last_sales_activity_timestamp',
-                       'hubspot_owner_assigneddate', 'recent_deal_close_date',
-                       'hs_analytics_first_timestamp', 'hs_analytics_last_timestamp',
-                       'hs_analytics_first_visit_timestamp', 'hs_analytics_last_visit_timestamp',
-                       ]
-        if name == 'contacts':
-            m2m_list = [
-                'asta_al_', 'aasbo_az_', 'aapt_ar_',
-                'wvapt_wv_', 'wsba_wi_', 'wpta_wy_', 'wapt_wa_', 'vapt_va_', 'uapt_ut_',
-                'tsd', 'transfinder', 'tapt_tx_', 'tapt_tn_', 'taa_az_', 'sts_of_nj', 'stn',
-                'stai_in_', 'sesptc', 'scapt_sc_', 'sbx', 'osbma_oh_', 'opta_or_', 'oasbo_osba',
-                'oasbo_on_', 'oapt_ok_', 'oapt_oh_', 'nsta_summer', 'nsta_national', 'nsta_mid',
-                'nsba_na_', 'ncst', 'ncpta_nc_', 'napt_na_', 'napt', 'msboa_mn_', 'mnapt_mn_',
-                'mapt_mo_', 'mapt_mi_', 'kspta_ks_', 'ipta_ia_', 'iapt_il_', 'iapt_id_', 'gcapt_tx_',
-                'gapt_ga_', 'fpta_ctd', 'ctaa', 'cspta_co_', 'crtc_wa_', 'cptc_cn_', 'chapter_meeting_1',
-                'cgcs', 'casto_ca_', 'casbo_ca_', 'business_unit', 'buying_role', 'what_type_of_support'
-            ]
-        elif name == 'companies':
-            m2m_list = ['system', 'dealer_sold_through', 'camera_system', 'how_many_lots_', 'competitor',
-                        'previous_camera_system']
-        elif name == 'deals':
-            m2m_list = ['dealers_quoting_this_deal', 'product_s_considered']
-        elif name == 'tickets':
-            m2m_list = ['s247_product']
-        else:
-            print("hello")
+        try:
+            m2m_list = []
+            date_fields = ['contract_expires', 'school_year_budget_begins', 'school_year_start',
+                           'touchdown_cloud_services_renewal_date', 'touchdown_install_date', 'date_of_birth',
+                           'planned_retirement_date', 'last_rma_email_date', 'request_a_demo',
+                           'closedate', 'first_conversion_date', 'recent_conversion_date',
+                           'first_contact_createdate', 'first_deal_created_date', 'notes_last_updated',
+                           'hs_last_booked_meeting_date', 'notes_last_contacted', 'hs_last_logged_call_date',
+                           'hs_lastmodifieddate', 'hs_last_open_task_date', 'hs_last_sales_activity_timestamp',
+                           'hubspot_owner_assigneddate', 'recent_deal_close_date',
+                           'hs_analytics_first_timestamp', 'hs_analytics_last_timestamp',
+                           'hs_analytics_first_visit_timestamp', 'hs_analytics_last_visit_timestamp',
+                           ]
+            if name == 'contacts':
+                m2m_list = [
+                    'asta_al_', 'aasbo_az_', 'aapt_ar_',
+                    'wvapt_wv_', 'wsba_wi_', 'wpta_wy_', 'wapt_wa_', 'vapt_va_', 'uapt_ut_',
+                    'tsd', 'transfinder', 'tapt_tx_', 'tapt_tn_', 'taa_az_', 'sts_of_nj', 'stn',
+                    'stai_in_', 'sesptc', 'scapt_sc_', 'sbx', 'osbma_oh_', 'opta_or_', 'oasbo_osba',
+                    'oasbo_on_', 'oapt_ok_', 'oapt_oh_', 'nsta_summer', 'nsta_national', 'nsta_mid',
+                    'nsba_na_', 'ncst', 'ncpta_nc_', 'napt_na_', 'napt', 'msboa_mn_', 'mnapt_mn_',
+                    'mapt_mo_', 'mapt_mi_', 'kspta_ks_', 'ipta_ia_', 'iapt_il_', 'iapt_id_', 'gcapt_tx_',
+                    'gapt_ga_', 'fpta_ctd', 'ctaa', 'cspta_co_', 'crtc_wa_', 'cptc_cn_', 'chapter_meeting_1',
+                    'cgcs', 'casto_ca_', 'casbo_ca_', 'business_unit', 'buying_role', 'what_type_of_support'
+                ]
+            elif name == 'companies':
+                m2m_list = ['system', 'dealer_sold_through', 'camera_system', 'how_many_lots_', 'competitor',
+                            'previous_camera_system']
+            elif name == 'deals':
+                m2m_list = ['dealers_quoting_this_deal', 'product_s_considered']
+            elif name == 'tickets':
+                m2m_list = ['s247_product']
+            else:
+                print("hello")
 
-        lines = []
-        if name == 'contacts':
-            lines = ['aapt_ar_', 'business_unit', 'demo',
-                     'did_they_go_to_a_new_school_district_company_', 'iacp', 'lead_type',
-                     'napt',
-                     'no_longer_at_school_district_company', 'planned_retirement_date', 'population',
-                     'product_i_m_interested_in', 'purchased_list_july', 'purchasing_influence', 'remove', 'reports_to',
-                     'request_a_demo', 'role', 's247_secondary_company',
-                     'state_or_province',
-                     'state_or_region', 'surveillance_247_area_code', 'surveillance_247_district_name',
-                     'surveillance_247_district_website_domain', 'territory',
-                     'what_school_district_company_did_they_go_',
-                     'what_type_of_support', 'why_not_at_school_district_company_', 'years_with_company',
-                     'zoom_webinar_attendance_average_duration', 'zoom_webinar_attendance_count',
-                     'zoom_webinar_joinlink',
-                     'zoom_webinar_registration_count', 'aasbo_az_', 'address2', 'asta_al_', 'casbo_ca_',
-                     'casto_ca_', 'accounting_contact_full_name', 'cgcs', 'accounting_email', 'cptc_cn_',
-                     'crtc_wa_', 'purchasing_contact_full_name', 'cspta_co_', 'purchasing_email', 'ctaa',
-                     'division_cf_contact', 'fpta_ctd', 'gapt_ga_', 'last_rma_email_date',
-                     'gcapt_tx_', 'famtec_customer', 'iapt_il_', 'famtec_sales_rep', 'iapt_id_',
-                     'bus_garage', 'ipta_ia_', 'kspta_ks_', 'mapt_mi_', 'mapt_mo_', 'mnapt_mn_', 'n247_dvr_total',
-                     'as_of_date',
-                     'msboa_mn_', 'cameras', 'napt_na_', 'external_camera', 'ncpta_nc_', 'ncst', 'special_instructions',
-                     'area_code', 'nsba_na_', 'job_title_secondary', 'nsta_mid', 'nsta_summer', 'unique_identifier',
-                     'nsta_national', 'solution_currently_installed', 'oapt_oh_', 'oapt_ok_', 'oasbo_on_', 'oasbo_osba',
-                     'opta_or_', 'osbma_oh_', 'sbx', 'scapt_sc_', 'sesptc', 'stai_in_', 'stn', 'taa_az_', 'tapt_tn_',
-                     'tapt_tx_',
-                     'transfinder', 'tsd', 'uapt_ut_', 'vapt_va_', 'wapt_wa_', 'wpta_wy_', 'wsba_wi_', 'wvapt_wv_',
-                     'chapter_meeting_1', 'sts_of_nj']
-        elif name == 'companies':
-            lines = [
-                'bid_potential', 'bid_status', 'business_vertical', 'business_vertical_other_', 'camera_system',
-                'camera_system_other_', 'cameras', 'competitor', 'contract_expires',
-                'contracted_services',
-                'dealer_sold_through', 'e360_cameras', 'external_camera', 'fleet_maintenance_system',
-                'fleet_maintenance_system_other_', 'fleet_size_s247', 'gps', 'gps_vendor', 'gps_vendor_other_',
-                'how_many_lots_',
-                'issr', 'n247_bus_saleman', 'n247s_lifecycle_stage', 'netsuite_refresh', 'company_type',
-                'number_of_sales_personnel', 'number_of_special_needs_students_transported',
-                'of_buses', 'of_cameras_per_bus', 'of_students_total',
-                'of_students_transported',
-                'parent_portal', 'parent_portal_other_', 'parent_portal_system', 'preferred_camera_vendor',
-                'preferred_camera_vendor_cloned_',
-                'previous_camera_system', 'products', 'prospect_status_s247', 'purchase_date', 'purchased_list_july',
-                'remove', 'rfp_date_posted',
-                'routing', 'routing_solution', 'routing_solution_other_', 'rsm', 's247_contact_email',
-                's247_county', 's247_first_name', 's247_last_name', 's247_lead_contact', 's247_pre_post_salutation',
-                's247_title',
-                'sales_rep', 'school_year_budget_begins', 'school_year_start', 'service_agreement',
-                'sic_code', 'stop_arm_camera_s_', 'student_count', 'student_information_system',
-                'student_information_system_other_',
-                'student_tracking', 'student_tracking_system', 'student_tracking_system_other_',
-                'surveillance_247_company_domain',
-                'surveillance_247_district', 'system', 'td_fleet_monitor', 'territory',
-                'touchdown',
-                'touchdown_cloud_services_amount', 'touchdown_cloud_services_renewal_date', 'touchdown_install_date',
-                'wireless_s247',
-                'internal_id', 'new_id', 'lot_1_address', 'status', 'fleet_size', 'lot_2_address', 'netsuite_customer',
-                'netsuite_status',
-                'bid_awarded_year', 'bus_garage', 'n247_dvr_total', 'special_instructions', 'area_code',
-                'vendor',
-                'dealer_sub_type', 'unique_identifier', 'opportunity_number', 'contractor', 'minitrack', 'erie_1_boces',
-                'bid_reference', 'about_us', 'closedate', 'customer_rating', 'description', 'facebook_company_page',
-                'facebookfans', 'first_conversion_event_name', 'first_conversion_date',
-                'hs_analytics_first_touch_converting_campaign', 'hs_ideal_customer_profile', 'is_public', 'nadp',
-                'hs_num_contacts_with_buying_roles', 'hs_num_decision_makers', 'numberofemployees',
-                'num_conversion_events', 'hs_num_open_deals', 'hs_analytics_num_page_views', 'hs_analytics_num_visits',
-                'num_contacted_notes', 'recent_conversion_event_name', 'recent_conversion_date',
-                'engagements_last_meeting_booked_source', 'total_revenue', 'founded_year',
-                # 'hs_analytics_last_touch_converting_campaign', 'engagements_last_meeting_booked_medium',
-                'hs_num_child_companies', 'recent_deal_amount', 'total_money_raised', 'hs_total_deal_value'
-                'hs_total_deal_value', 'number_of_buses', 'hubspot_team_id'
-            ]
-            # 'wireless'
-        elif name == 'deals':
-            lines = [
-                'deal_entered_current_deal_stage', 'dealers_quoting_this_deal', 'end_user', 'isr',
-                'lost_reason_notes', 'n247s_lifecycle_stage', 'opportunity_link', 'product_s_considered',
-                'sales_order', 'state', 'opportunity_number'
-            ]
-        elif name == 'tickets':
-            lines = ['assigned_company', 'cs_number', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
-                     's247_product', 'touchdown']
-        else:
-            print("Hellossss")
-        for line in lines:
-            if hubspot_obj.get(line):
-                if line in m2m_list:
-                    odoo_obj.update({
-                        line: [[6, 0, self.add_m2m_values(hubspot_obj[line]['value'], line, model)]]
-                    })
-                else:
-                    if line in date_fields:
-                        date_convert = hubspot_obj[line]['value']
-                        date_value = datetime.datetime.fromtimestamp(int(date_convert[:-3]))
+            lines = []
+            if name == 'contacts':
+                lines = ['aapt_ar_', 'business_unit', 'demo',
+                         'did_they_go_to_a_new_school_district_company_', 'iacp', 'lead_type',
+                         'napt',
+                         'no_longer_at_school_district_company', 'planned_retirement_date', 'population',
+                         'product_i_m_interested_in', 'purchased_list_july', 'purchasing_influence', 'remove', 'reports_to',
+                         'request_a_demo', 'role', 's247_secondary_company',
+                         'state_or_province',
+                         'state_or_region', 'surveillance_247_area_code', 'surveillance_247_district_name',
+                         'surveillance_247_district_website_domain', 'territory',
+                         'what_school_district_company_did_they_go_',
+                         'what_type_of_support', 'why_not_at_school_district_company_', 'years_with_company',
+                         'zoom_webinar_attendance_average_duration', 'zoom_webinar_attendance_count',
+                         'zoom_webinar_joinlink',
+                         'zoom_webinar_registration_count', 'aasbo_az_', 'address2', 'asta_al_', 'casbo_ca_',
+                         'casto_ca_', 'accounting_contact_full_name', 'cgcs', 'accounting_email', 'cptc_cn_',
+                         'crtc_wa_', 'purchasing_contact_full_name', 'cspta_co_', 'purchasing_email', 'ctaa',
+                         'division_cf_contact', 'fpta_ctd', 'gapt_ga_', 'last_rma_email_date',
+                         'gcapt_tx_', 'famtec_customer', 'iapt_il_', 'famtec_sales_rep', 'iapt_id_',
+                         'bus_garage', 'ipta_ia_', 'kspta_ks_', 'mapt_mi_', 'mapt_mo_', 'mnapt_mn_', 'n247_dvr_total',
+                         'as_of_date',
+                         'msboa_mn_', 'cameras', 'napt_na_', 'external_camera', 'ncpta_nc_', 'ncst', 'special_instructions',
+                         'area_code', 'nsba_na_', 'job_title_secondary', 'nsta_mid', 'nsta_summer', 'unique_identifier',
+                         'nsta_national', 'solution_currently_installed', 'oapt_oh_', 'oapt_ok_', 'oasbo_on_', 'oasbo_osba',
+                         'opta_or_', 'osbma_oh_', 'sbx', 'scapt_sc_', 'sesptc', 'stai_in_', 'stn', 'taa_az_', 'tapt_tn_',
+                         'tapt_tx_',
+                         'transfinder', 'tsd', 'uapt_ut_', 'vapt_va_', 'wapt_wa_', 'wpta_wy_', 'wsba_wi_', 'wvapt_wv_',
+                         'chapter_meeting_1', 'sts_of_nj']
+            elif name == 'companies':
+                lines = [
+                    'bid_potential', 'bid_status', 'business_vertical', 'business_vertical_other_', 'camera_system',
+                    'camera_system_other_', 'cameras', 'competitor', 'contract_expires',
+                    'contracted_services',
+                    'dealer_sold_through', 'e360_cameras', 'external_camera', 'fleet_maintenance_system',
+                    'fleet_maintenance_system_other_', 'fleet_size_s247', 'gps', 'gps_vendor', 'gps_vendor_other_',
+                    'how_many_lots_',
+                    'issr', 'n247_bus_saleman', 'n247s_lifecycle_stage', 'netsuite_refresh', 'company_type',
+                    'number_of_sales_personnel', 'number_of_special_needs_students_transported',
+                    'of_buses', 'of_cameras_per_bus', 'of_students_total',
+                    'of_students_transported',
+                    'parent_portal', 'parent_portal_other_', 'parent_portal_system', 'preferred_camera_vendor',
+                    'preferred_camera_vendor_cloned_',
+                    'previous_camera_system', 'products', 'prospect_status_s247', 'purchase_date', 'purchased_list_july',
+                    'remove', 'rfp_date_posted',
+                    'routing', 'routing_solution', 'routing_solution_other_', 'rsm', 's247_contact_email',
+                    's247_county', 's247_first_name', 's247_last_name', 's247_lead_contact', 's247_pre_post_salutation',
+                    's247_title',
+                    'sales_rep', 'school_year_budget_begins', 'school_year_start', 'service_agreement',
+                    'sic_code', 'stop_arm_camera_s_', 'student_count', 'student_information_system',
+                    'student_information_system_other_',
+                    'student_tracking', 'student_tracking_system', 'student_tracking_system_other_',
+                    'surveillance_247_company_domain',
+                    'surveillance_247_district', 'system', 'td_fleet_monitor', 'territory',
+                    'touchdown',
+                    'touchdown_cloud_services_amount', 'touchdown_cloud_services_renewal_date', 'touchdown_install_date',
+                    'wireless_s247',
+                    'internal_id', 'new_id', 'lot_1_address', 'status', 'fleet_size', 'lot_2_address', 'netsuite_customer',
+                    'netsuite_status',
+                    'bid_awarded_year', 'bus_garage', 'n247_dvr_total', 'special_instructions', 'area_code',
+                    'vendor',
+                    'dealer_sub_type', 'unique_identifier', 'opportunity_number', 'contractor', 'minitrack', 'erie_1_boces',
+                    'bid_reference', 'about_us', 'closedate', 'customer_rating', 'description', 'facebook_company_page',
+                    'facebookfans', 'first_conversion_event_name', 'first_conversion_date',
+                    'hs_analytics_first_touch_converting_campaign', 'hs_ideal_customer_profile', 'is_public', 'nadp',
+                    'hs_num_contacts_with_buying_roles', 'hs_num_decision_makers', 'numberofemployees',
+                    'num_conversion_events', 'hs_num_open_deals', 'hs_analytics_num_page_views', 'hs_analytics_num_visits',
+                    'num_contacted_notes', 'recent_conversion_event_name', 'recent_conversion_date',
+                    'engagements_last_meeting_booked_source', 'total_revenue', 'founded_year',
+                    # 'hs_analytics_last_touch_converting_campaign', 'engagements_last_meeting_booked_medium',
+                    'hs_num_child_companies', 'recent_deal_amount', 'total_money_raised', 'hs_total_deal_value'
+                    'hs_total_deal_value', 'number_of_buses', 'hubspot_team_id'
+                ]
+                # 'wireless'
+            elif name == 'deals':
+                lines = [
+                    'deal_entered_current_deal_stage', 'dealers_quoting_this_deal', 'end_user', 'isr',
+                    'lost_reason_notes', 'n247s_lifecycle_stage', 'opportunity_link', 'product_s_considered',
+                    'sales_order', 'state', 'opportunity_number'
+                ]
+            elif name == 'tickets':
+                lines = ['assigned_company', 'cs_number', 'product', 'pw_resolution', 'rn_number', 's247_resolution',
+                         's247_product', 'touchdown']
+            else:
+                print("Hellossss")
+            for line in lines:
+                if hubspot_obj.get(line):
+                    if line in m2m_list:
                         odoo_obj.update({
-                            line: date_value
+                            line: [[6, 0, self.add_m2m_values(hubspot_obj[line]['value'], line, model)]]
                         })
                     else:
-                        if hubspot_obj[line]['value'] != 'false':
-                            state_fields = ['state_or_province', 'state_or_region']
-                            if line in state_fields:
-                                odoo_state = self.env['res.country.state'].search([('name', '=', hubspot_obj[line]['value'])])
-                                odoo_obj.update({
-                                    line: odoo_state.id if odoo_state else None
-                                })
-                            else:
-                                odoo_obj.update({
-                                    line: hubspot_obj[line]['value'] if hubspot_obj[line]['value'] else None
-                                })
+                        if line in date_fields:
+                            date_convert = hubspot_obj[line]['value']
+                            date_value = datetime.datetime.fromtimestamp(int(date_convert[:-3]))
+                            odoo_obj.update({
+                                line: date_value
+                            })
+                        else:
+                            if hubspot_obj[line]['value'] != 'false':
+                                state_fields = ['state_or_province', 'state_or_region']
+                                if line in state_fields:
+                                    odoo_state = self.env['res.country.state'].search([('name', '=', hubspot_obj[line]['value'])])
+                                    odoo_obj.update({
+                                        line: odoo_state.id if odoo_state else None
+                                    })
+                                else:
+                                    odoo_obj.update({
+                                        line: hubspot_obj[line]['value'] if hubspot_obj[line]['value'] else None
+                                    })
+        except Exception as e:
+            raise ValidationError(str(e))
 
     def add_m2m_values(self, values, line, model):
-        value_ids = []
-        fields = [
-                'asta_al_', 'aasbo_az_', 'aapt_ar_',
-                'wvapt_wv_', 'wsba_wi_', 'wpta_wy_', 'wapt_wa_', 'vapt_va_', 'uapt_ut_',
-                'tsd', 'transfinder', 'tapt_tx_', 'tapt_tn_', 'taa_az_', 'sts_of_nj', 'stn',
-                'stai_in_', 'sesptc', 'scapt_sc_', 'sbx', 'osbma_oh_', 'opta_or_', 'oasbo_osba',
-                'oasbo_on_', 'oapt_ok_', 'oapt_oh_', 'nsta_summer', 'nsta_national', 'nsta_mid',
-                'nsba_na_', 'ncst', 'ncpta_nc_', 'napt_na_', 'napt', 'msboa_mn_', 'mnapt_mn_',
-                'mapt_mo_', 'mapt_mi_', 'kspta_ks_', 'ipta_ia_', 'iapt_il_', 'iapt_id_', 'gcapt_tx_',
-                'gapt_ga_', 'fpta_ctd', 'ctaa', 'cspta_co_', 'crtc_wa_', 'cptc_cn_', 'chapter_meeting_1',
-                'cgcs', 'casto_ca_', 'casbo_ca_']
-        if model == 'res.partner' and line in fields:
-            for value in values.split(';'):
-                odoo_value = self.env['res.partner_years'].search([('name', '=', value)])
-                if not odoo_value:
-                    odoo_value = self.env['res.partner_years'].create({
-                        'name': value,
-                    })
-                self.env.cr.commit()
-                value_ids.append(odoo_value.id)
+        try:
+            value_ids = []
+            fields = [
+                    'asta_al_', 'aasbo_az_', 'aapt_ar_',
+                    'wvapt_wv_', 'wsba_wi_', 'wpta_wy_', 'wapt_wa_', 'vapt_va_', 'uapt_ut_',
+                    'tsd', 'transfinder', 'tapt_tx_', 'tapt_tn_', 'taa_az_', 'sts_of_nj', 'stn',
+                    'stai_in_', 'sesptc', 'scapt_sc_', 'sbx', 'osbma_oh_', 'opta_or_', 'oasbo_osba',
+                    'oasbo_on_', 'oapt_ok_', 'oapt_oh_', 'nsta_summer', 'nsta_national', 'nsta_mid',
+                    'nsba_na_', 'ncst', 'ncpta_nc_', 'napt_na_', 'napt', 'msboa_mn_', 'mnapt_mn_',
+                    'mapt_mo_', 'mapt_mi_', 'kspta_ks_', 'ipta_ia_', 'iapt_il_', 'iapt_id_', 'gcapt_tx_',
+                    'gapt_ga_', 'fpta_ctd', 'ctaa', 'cspta_co_', 'crtc_wa_', 'cptc_cn_', 'chapter_meeting_1',
+                    'cgcs', 'casto_ca_', 'casbo_ca_']
+            if model == 'res.partner' and line in fields:
+                for value in values.split(';'):
+                    odoo_value = self.env['res.partner_years'].search([('name', '=', value)])
+                    if not odoo_value:
+                        odoo_value = self.env['res.partner_years'].create({
+                            'name': value,
+                        })
+                    self.env.cr.commit()
+                    value_ids.append(odoo_value.id)
 
-        else:
-            for value in values.split(';'):
-                odoo_value = self.env[str(model) + '_' + str(line)].search([('name', '=', value)])
-                if not odoo_value:
-                    odoo_value = self.env[str(model) + '_' + str(line)].create({
-                        'name': value,
-                    })
-                self.env.cr.commit()
-                value_ids.append(odoo_value.id)
-        return value_ids
+            else:
+                for value in values.split(';'):
+                    odoo_value = self.env[str(model) + '_' + str(line)].search([('name', '=', value)])
+                    if not odoo_value:
+                        odoo_value = self.env[str(model) + '_' + str(line)].create({
+                            'name': value,
+                        })
+                    self.env.cr.commit()
+                    value_ids.append(odoo_value.id)
+            return value_ids
+        except Exception as e:
+            raise ValidationError(str(e))
 
     def import_contacts(self):
         icpsudo = self.env['ir.config_parameter'].sudo()
@@ -391,8 +400,8 @@ class HubspotImportIntegration(models.Model):
         else:
             try:
                 get_all_companies_url = "https://api.hubapi.com/companies/v2/companies/paged?"
-                if self.company_last_ofsset:
-                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'offset': int(self.company_last_ofsset)}
+                if self.company_last_offfssset:
+                    parameter_dict = {'hapikey': hubspot_keys, 'limit': 250, 'offset': int(self.company_last_offfssset)}
                 else:
                     parameter_dict = {'hapikey': hubspot_keys, 'limit': 250}
                 headers = {
@@ -409,10 +418,8 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.extend(self.create_companies(response_dict['companies'], hubspot_keys))
                     has_more = response_dict['has-more']
                     parameter_dict['offset'] = response_dict['offset']
-                    self.company_last_ofsset = response_dict['offset']
-                # return hubspot_ids
+                    self.company_last_offfssset = response_dict['offset']
             except Exception as e:
-                _logger.error(e)
                 raise ValidationError(_(str(e)))
 
     def create_companies(self, companies, hubspot_keys):
@@ -465,9 +472,7 @@ class HubspotImportIntegration(models.Model):
                     hubspot_ids.append(company['companyId'])
             return hubspot_ids
         except Exception as e:
-            pass
-            # _logger.error(e)
-            # raise ValidationError(_(str(e)))
+            raise ValidationError((str(e)))
 
     def import_deals(self,):
         icpsudo = self.env['ir.config_parameter'].sudo()

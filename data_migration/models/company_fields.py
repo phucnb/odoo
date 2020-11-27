@@ -425,7 +425,7 @@ class CustomCompany(models.Model):
     hs_analytics_last_timestamp = fields.Datetime("Time Last Seen")
     hs_analytics_first_visit_timestamp = fields.Datetime("Time of First Session")
     hs_analytics_last_visit_timestamp = fields.Datetime("Time of Last Session")
-    total_money_raised = fields.Float("Total Money Raised")
+    total_money_raised = fields.Char("Total Money Raised")
     hs_total_deal_value = fields.Date("Total open deal value")
     number_of_buses = fields.Integer("Number of Buses")
     hubspot_team_id = fields.Selection(HUBSPOT_TEAM, 'Hubspot Team')
