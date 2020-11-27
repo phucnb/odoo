@@ -428,7 +428,7 @@ class CustomCompany(models.Model):
     total_money_raised = fields.Float("Total Money Raised")
     hs_total_deal_value = fields.Date("Total open deal value")
     number_of_buses = fields.Integer("Number of Buses")
-    hubspot_team_id = fields.Selection(HUBSPOT_TEAM, 'Hubspot Team')
+    # hubspot_team_id = fields.Selection(HUBSPOT_TEAM, 'Hubspot Team')
 
     @api.model
     def _compute_opportunity_count(self):
