@@ -200,7 +200,7 @@ class HubspotImportIntegration(models.Model):
                 'engagements_last_meeting_booked_source', 'total_revenue', 'founded_year',
                 # 'hs_analytics_last_touch_converting_campaign', 'engagements_last_meeting_booked_medium',
                 'hs_num_child_companies', 'recent_deal_amount', 'total_money_raised', 'hs_total_deal_value'
-                'hs_total_deal_value', 'number_of_buses',
+                'hs_total_deal_value', 'number_of_buses', 'hubspot_team_id'
             ]
             # 'wireless'
         elif name == 'deals':
