@@ -789,7 +789,7 @@ class HubspotImportIntegration(models.Model):
                             continue
                         association_data = engagement['associations']
                         meta_data = engagement['metadata']
-                        if engagement_data['type'] == 'EMAIL':
+                        if engagement_data['type'] in ['EMAIL', 'INCOMING_EMAIL']:
                             if not meta_data.get('from'):
                                 self.env['log.handling'].create({
                                     'record_id': engagement_data['id'],
@@ -1128,7 +1128,7 @@ class HubspotImportIntegration(models.Model):
                             continue
                         association_data = engagement['associations']
                         meta_data = engagement['metadata']
-                        if engagement_data['type'] == 'EMAIL':
+                        if engagement_data['type'] in ['EMAIL', 'INCOMING_EMAIL']:
                             if not meta_data.get('from'):
                                 self.env['log.handling'].create({
                                     'record_id': engagement_data['id'],
@@ -1481,7 +1481,7 @@ class HubspotImportIntegration(models.Model):
                             continue
                         association_data = engagement['associations']
                         meta_data = engagement['metadata']
-                        if engagement_data['type'] == 'EMAIL':
+                        if engagement_data['type'] in ['EMAIL', 'INCOMING_EMAIL']:
                             if not meta_data.get('from'):
                                 self.env['log.handling'].create({
                                     'record_id': engagement_data['id'],
@@ -1834,7 +1834,7 @@ class HubspotImportIntegration(models.Model):
                             continue
                         association_data = engagement['associations']
                         meta_data = engagement['metadata']
-                        if engagement_data['type'] == 'EMAIL':
+                        if engagement_data['type'] in ['EMAIL', 'INCOMING_EMAIL']:
                             if not meta_data.get('from'):
                                 self.env['log.handling'].create({
                                     'record_id': engagement_data['id'],
