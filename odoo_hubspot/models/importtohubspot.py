@@ -756,7 +756,7 @@ class HubspotImportIntegration(models.Model):
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             companies = self.env['res.partner'].search([('hubspot_id', '!=', False),
                                                         ('is_company', '=', True),
-                                                        ('engagement_done', '=', False)]
+                                                        ('engagement_done', '=', True)]
             )
             for odoo_company in companies:
                 get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
@@ -1084,7 +1084,7 @@ class HubspotImportIntegration(models.Model):
                     has_more = res_data['hasMore']
                     parameter_dict['offset'] = res_data['offset']
                 odoo_company.write({
-                    'engagement_done': True,
+                    'engagement_done': False,
                 })
                 self.env.cr.commit()
         except Exception as e:
@@ -1096,7 +1096,7 @@ class HubspotImportIntegration(models.Model):
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             leads = self.env['crm.lead'].search([('hubspot_id', '!=', False),
                                                  ('type', '=', 'opportunity'),
-                                                 ('engagement_done', '=', False)])
+                                                 ('engagement_done', '=', True)])
             for odoo_lead in leads:
                 get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
                                                 "DEAL/{0}/paged?".format(odoo_lead.hubspot_id)
@@ -1438,7 +1438,7 @@ class HubspotImportIntegration(models.Model):
                     parameter_dict['offset'] = res_data['offset']
 
                 odoo_lead.write({
-                    'engagement_done': True,
+                    'engagement_done': False,
                 })
                 self.env.cr.commit()
         except Exception as e:
@@ -1449,7 +1449,7 @@ class HubspotImportIntegration(models.Model):
             icpsudo = self.env['ir.config_parameter'].sudo()
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             tickets = self.env['helpdesk.ticket'].search([('hubspot_id', '!=', False),
-                                                          ('engagement_done', '=', False)])
+                                                          ('engagement_done', '=', True)])
             for odoo_ticket in tickets:
                 get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
                                                 "TICKET/{0}/paged?".format(odoo_ticket.hubspot_id)
@@ -1789,7 +1789,7 @@ class HubspotImportIntegration(models.Model):
                     parameter_dict['offset'] = res_data['offset']
 
                 odoo_ticket.write({
-                    'engagement_done': True,
+                    'engagement_done': False,
                 })
                 self.env.cr.commit()
         except Exception as e:
@@ -1801,7 +1801,7 @@ class HubspotImportIntegration(models.Model):
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             contacts = self.env['res.partner'].search([('hubspot_id', '!=', False),
                                                        ('is_company', '=', False),
-                                                       ('engagement_done', '=', False)])
+                                                       ('engagement_done', '=', True)])
 
             for odoo_contact in contacts:
                 get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
@@ -2126,7 +2126,7 @@ class HubspotImportIntegration(models.Model):
                     parameter_dict['offset'] = res_data['offset']
 
                 odoo_contact.write({
-                    'engagement_done': True,
+                    'engagement_done': False,
                 })
                 self.env.cr.commit()
         except:
