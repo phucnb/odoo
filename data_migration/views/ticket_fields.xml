@@ -9,7 +9,6 @@
                     <field name="hs_ticket_company"/>
                     <field name="assigned_company"/>
                     <field name="cs_number"/>
-<!--                    <field name="support_request"/>-->
                     <field name="product"/>
                     <field name="pw_resolution"/>
                 </field>
@@ -19,8 +18,8 @@
                     <field name="s247_resolution"/>
                     <field name="s247_product" widget="many2many_tags"/>
                     <field name="touchdown"/>
-                    <field name="hs_ticket_category"/>
-                    <field name="source_type" />
+<!--                    <field name="hs_ticket_category"/>-->
+<!--                    <field name="source_type" />-->
                 </field>
             </field>
         </record>
