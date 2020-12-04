@@ -83,6 +83,13 @@ PRODUCT_INTERESTED = [
     ('Temperature Sensing Station (TSS)', 'Temperature Sensing Station (TSS)')
 ]
 
+SOLUTION_INSTALLED = [
+    ('Gatekeeper', 'Gatekeeper'), ('Angel Trax', 'Angel Trax'),
+    ('Seon', 'Seon'), ('REI', 'REI'),
+    ('Safety Vision', 'Safety Vision'),
+    ('Pro Vision', 'Pro Vision'), ('Other', 'Other')
+]
+
 
 class ContactFields(models.Model):
     _inherit = 'res.partner'
@@ -239,10 +246,7 @@ class ContactFields(models.Model):
                           help="Please select/add years e.g 2015, 2016 ...")
     scapt_sc_ = fields.Many2many('res.partner_years', 'partner_id_year_id16', 'partner_id', 'year_id', "SCAPT(SC)",
                                 help="Please select/add years e.g 2015, 2016 ...")
-    # solution_currently_installed = fields.One2many('res.partner_previous_camera_system', 'partner_id',
-    #                                                "Solution Currently Installed",
-    #                                                help="Please select/add GateKeeper, Angel Trax, Seon, "
-    #                                                     "Safety Vision, Pro Vision, Other")
+    solution_currently_installed = fields.One2many(SOLUTION_INSTALLED, "Solution Currently Installed")
     sesptc = fields.Many2many('res.partner_years', 'partner_id_year_id15', 'partner_id', 'year_id', "SESPTC",
                              help="Please select/add years e.g 2015, 2016 ...")
     special_instructions = fields.Char("Special Instructions")
