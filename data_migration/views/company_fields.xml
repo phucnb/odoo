@@ -234,7 +234,7 @@
                             <group>
                                 <field name="hs_total_deal_value" />
                                 <field name="hubspot_team_id" />
-<!--                                <field name="website" />-->
+                                <field name="website" />
                             </group>
                         </group>
                     </page>

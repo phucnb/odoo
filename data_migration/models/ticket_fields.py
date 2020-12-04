@@ -80,6 +80,6 @@ class TicketFields(models.Model):
     touchdown = fields.Char("Touchdown")
     hs_ticket_contacts = fields.Many2many('res.partner', 'ticket_partner_rel', 'partner_id', 'ticket_id', 'Contacts')
     hs_ticket_company = fields.Many2one('res.partner', 'Company')
-    # source_type = fields.Selection(SOURCE_TYPE, 'Source')
-    # hs_ticket_category = fields.Many2many('helpdesk.hs_ticket_category', 'ticket_id_hs_ticket_category_id', 'ticket_id',
-    #                                       'hs_ticket_category_id', 'Ticket Category')
+    source_type = fields.Selection(SOURCE_TYPE, 'Source')
+    hs_ticket_category = fields.Many2many('helpdesk.hs_ticket_category', 'ticket_id_hs_ticket_category_id', 'ticket_id',
+                                          'hs_ticket_category_id', 'Ticket Category')

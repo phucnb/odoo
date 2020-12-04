@@ -429,8 +429,8 @@ class CustomCompany(models.Model):
     hs_total_deal_value = fields.Date("Total open deal value")
     number_of_buses = fields.Integer("Number of Buses")
     hubspot_team_id = fields.Selection(HUBSPOT_TEAM, 'Hubspot Team')
-    # number_of_total_students = fields.Integer('Number of Total Students')
-    # website = fields.Char('Website URL')
+    number_of_total_students = fields.Integer('Number of Total Students')
+    website = fields.Char('Website URL')
 
     @api.model
     def _compute_opportunity_count(self):

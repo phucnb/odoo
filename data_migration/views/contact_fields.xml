@@ -16,7 +16,7 @@
                                 <field name="date_of_birth" />
                                 <field name="reports_to" />
                                 <field name="purchasing_influence"/>
-<!--                                <field name="solution_currently_installed" />-->
+                                <field name="solution_currently_installed" />
                             </group>
                         </group>
                         <group>

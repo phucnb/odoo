@@ -246,7 +246,7 @@ class ContactFields(models.Model):
                           help="Please select/add years e.g 2015, 2016 ...")
     scapt_sc_ = fields.Many2many('res.partner_years', 'partner_id_year_id16', 'partner_id', 'year_id', "SCAPT(SC)",
                                 help="Please select/add years e.g 2015, 2016 ...")
-    # solution_currently_installed = fields.One2many(SOLUTION_INSTALLED, "Solution Currently Installed")
+    solution_currently_installed = fields.One2many(SOLUTION_INSTALLED, "Solution Currently Installed")
     sesptc = fields.Many2many('res.partner_years', 'partner_id_year_id15', 'partner_id', 'year_id', "SESPTC",
                              help="Please select/add years e.g 2015, 2016 ...")
     special_instructions = fields.Char("Special Instructions")
