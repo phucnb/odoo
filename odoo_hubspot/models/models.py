@@ -85,18 +85,21 @@ class InheritPartner(models.Model):
     _inherit = 'res.partner'
 
     engagement_done = fields.Boolean("Engagements Fetched")
+    attachment_done = fields.Boolean("Attachments Fetched")
 
 
 class InheritCRM(models.Model):
     _inherit = 'crm.lead'
 
     engagement_done = fields.Boolean("Engagements Fetched")
+    attachment_done = fields.Boolean("Attachments Fetched")
 
 
 class InheritTicket(models.Model):
     _inherit = 'helpdesk.ticket'
 
     engagement_done = fields.Boolean("Engagements Fetched")
+    attachment_done = fields.Boolean("Attachments Fetched")
 
 
 class LogHandling(models.Model):

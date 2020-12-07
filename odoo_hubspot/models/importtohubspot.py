@@ -2174,7 +2174,7 @@ class HubspotImportIntegration(models.Model):
             icpsudo = self.env['ir.config_parameter'].sudo()
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             leads = self.env['crm.lead'].search(
-                [('hubspot_id', '!=', False)]
+                [('hubspot_id', '!=', False), ('attachment_done', '=', False)]
             )
             for odoo_lead in leads:
                 url = 'https://api.hubapi.com/engagements/v1/engagements/associated/DEAL/{0}/paged?hapikey={1}'.format(
@@ -2228,6 +2228,11 @@ class HubspotImportIntegration(models.Model):
                                     print(odoo_lead.name)
                             except Exception as e:
                                 pass
+
+                odoo_lead.write({
+                    'attachment_done': True
+                })
+                self.env.cr.commit()
         except Exception as e:
             pass
 
@@ -2236,7 +2241,7 @@ class HubspotImportIntegration(models.Model):
             icpsudo = self.env['ir.config_parameter'].sudo()
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             contacts = self.env['res.partner'].search(
-                [('hubspot_id', '!=', False), ('company_type', '=', 'person')]
+                [('hubspot_id', '!=', False), ('company_type', '=', 'person'), ('attachment_done', '=', False)]
             )
             for odoo_contact in contacts:
                 url = 'https://api.hubapi.com/engagements/v1/engagements/associated/CONTACT/{0}/paged?hapikey={1}'.format(
@@ -2291,6 +2296,12 @@ class HubspotImportIntegration(models.Model):
                                     continue
                             except Exception as e:
                                  pass
+
+                odoo_contact.write({
+                    'attachment_done': True
+                })
+                self.env.cr.commit()
+
         except Exception as e:
             pass
 
@@ -2299,7 +2310,7 @@ class HubspotImportIntegration(models.Model):
             icpsudo = self.env['ir.config_parameter'].sudo()
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             companies = self.env['res.partner'].search(
-                [('hubspot_id', '!=', False), ('company_type', '=', 'company')]
+                [('hubspot_id', '!=', False), ('company_type', '=', 'company'), ('attachment_done', '=', False)]
             )
             for odoo_company in companies:
                 url = 'https://api.hubapi.com/engagements/v1/engagements/associated/COMPANY/{0}/paged?hapikey={1}'.format(
@@ -2355,6 +2366,12 @@ class HubspotImportIntegration(models.Model):
                                     continue
                             except Exception as e:
                                 pass
+
+                odoo_company.write({
+                    'attachment_done': True
+                })
+                self.env.cr.commit()
+
         except Exception as e:
             pass
 
@@ -2362,7 +2379,7 @@ class HubspotImportIntegration(models.Model):
         try:
             icpsudo = self.env['ir.config_parameter'].sudo()
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
-            tickets = self.env['helpdesk.ticket'].search([('hubspot_id', '!=', False)])
+            tickets = self.env['helpdesk.ticket'].search([('hubspot_id', '!=', False), ('attachment_done', '=', False)])
             for odoo_ticket in tickets:
                 url = 'https://api.hubapi.com/engagements/v1/engagements/associated/TICKET/{0}/paged?hapikey={1}'.format(
                     odoo_ticket.hubspot_id, hubspot_keys)
@@ -2420,5 +2437,10 @@ class HubspotImportIntegration(models.Model):
                                     continue
                             except Exception as e:
                                 pass
+
+                odoo_ticket.write({
+                    'attachment_done': True
+                })
+                self.env.cr.commit()
         except Exception as e:
             pass
