@@ -2187,9 +2187,13 @@ class HubspotImportIntegration(models.Model):
                     if len(attachments):
                         for attachment in attachments:
                             try:
-                                odoo_attachment = self.env['ir.attachment'].search(
-                                    [('hubspot_id', '=', str(attachment['id']))]
-                                )
+                                odoo_attachment = self.env['ir.attachment'].search([
+                                    ('hubspot_id', '=', str(attachment['id'])),
+                                    ('res_model', '=', 'crm.lead'),
+                                    ('res_id', '=', odoo_lead.id)])
+
+                                if odoo_attachment:
+                                    continue
 
                                 attachment_url = 'https://api.hubapi.com/filemanager/api/v2/files/{0}/?hapikey={1}'.format(
                                     attachment['id'], hubspot_keys
@@ -2214,18 +2218,18 @@ class HubspotImportIntegration(models.Model):
                                                 file.write('{} -> {} \n{}'.format(
                                                     odoo_lead.name, file_name, file_url)
                                                 )
-                                    if odoo_attachment:
-                                        continue
+
                                     f = open('engagement_files/' + file_name + '.' + res_data['extension'], "rb")
-                                    data = data = base64.b64encode(f.read())
-                                    self.env['ir.attachment'].create({'name': file_name + '.' + res_data['extension'],
-                                                                      'datas': data,
-                                                                      'res_model': 'crm.lead',
-                                                                      'res_id': odoo_lead.id, })
+                                    data = base64.b64encode(f.read())
+                                    self.env['ir.attachment'].create({
+                                        'hubspot_id': str(attachment['id']),
+                                        'name': file_name + '.' + res_data['extension'],
+                                        'datas': data,
+                                        'res_model': 'crm.lead',
+                                        'res_id': odoo_lead.id, })
                                     f.close()
                                     os.remove('engagement_files/' + file_name + '.' + res_data['extension'])
                                     self.env.cr.commit()
-                                    print(odoo_lead.name)
                             except Exception as e:
                                 pass
 
@@ -2254,9 +2258,13 @@ class HubspotImportIntegration(models.Model):
                     if len(attachments):
                         for attachment in attachments:
                             try:
-                                odoo_attachment = self.env['ir.attachment'].search(
-                                    [('hubspot_id', '=', str(attachment['id']))]
-                                )
+                                odoo_attachment = self.env['ir.attachment'].search([
+                                    ('hubspot_id', '=', str(attachment['id'])),
+                                    ('res_model', '=', 'res.partner'),
+                                    ('res_id', '=', odoo_contact.id)])
+
+                                if odoo_attachment:
+                                    continue
                                 attachment_url = 'https://api.hubapi.com/filemanager/api/v2/files/{0}/?hapikey={1}'.format(
                                     attachment['id'], hubspot_keys
                                 )
@@ -2279,21 +2287,18 @@ class HubspotImportIntegration(models.Model):
                                                 file.write('{} -> {} \n{}'.format(
                                                     odoo_contact.name, file_name, file_url)
                                                 )
-                                    if odoo_attachment:
-                                        continue
-                                    a = 1
+
                                     f = open('engagement_files/' + file_name + '.' + res_data['extension'], "rb")
-                                    data = data = base64.b64encode(f.read())
-                                    self.env['ir.attachment'].create({'name': file_name + '.' + res_data['extension'],
-                                                                      'datas': data,
-                                                                      'res_model': 'res.partner',
-                                                                      'res_id': odoo_contact.id, })
+                                    data = base64.b64encode(f.read())
+                                    self.env['ir.attachment'].create({
+                                        'hubspot_id': str(attachment['id']),
+                                        'name': file_name + '.' + res_data['extension'],
+                                        'datas': data,
+                                        'res_model': 'res.partner',
+                                        'res_id': odoo_contact.id, })
                                     f.close()
                                     os.remove('engagement_files/' + file_name + '.' + res_data['extension'])
                                     self.env.cr.commit()
-                                    print(odoo_contact.name)
-                                if odoo_attachment:
-                                    continue
                             except Exception as e:
                                  pass
 
@@ -2324,9 +2329,13 @@ class HubspotImportIntegration(models.Model):
                     if len(attachments):
                         for attachment in attachments:
                             try:
-                                odoo_attachment = self.env['ir.attachment'].search(
-                                    [('hubspot_id', '=', str(attachment['id']))]
-                                )
+                                odoo_attachment = self.env['ir.attachment'].search([
+                                    ('hubspot_id', '=', str(attachment['id'])),
+                                    ('res_model', '=', 'res.partner'),
+                                    ('res_id', '=', odoo_company.id)])
+
+                                if odoo_attachment:
+                                    continue
                                 attachment_url = 'https://api.hubapi.com/filemanager/api/v2/files/{0}/?hapikey={1}'.format(
                                     attachment['id'], hubspot_keys
                                 )
@@ -2349,21 +2358,19 @@ class HubspotImportIntegration(models.Model):
                                                 file.write('{} -> {} \n{}'.format(
                                                     odoo_company.name, file_name, file_url)
                                                 )
-                                    if odoo_attachment:
-                                        continue
-                                    a = 1
+
                                     f = open('engagement_files/' + file_name + '.' + res_data['extension'], "rb")
                                     data = base64.b64encode(f.read())
-                                    self.env['ir.attachment'].create({'name': file_name + '.' + res_data['extension'],
-                                                                      'datas': data,
-                                                                      'res_model': 'res.partner',
-                                                                      'res_id': odoo_company.id, })
+                                    self.env['ir.attachment'].create({
+                                        'hubspot_id': str(attachment['id']),
+                                        'name': file_name + '.' + res_data['extension'],
+                                        'datas': data,
+                                        'res_model': 'res.partner',
+                                        'res_id': odoo_company.id,
+                                    })
                                     f.close()
                                     os.remove('engagement_files/' + file_name + '.' + res_data['extension'])
                                     self.env.cr.commit()
-                                    print(odoo_company.name)
-                                if odoo_attachment:
-                                    continue
                             except Exception as e:
                                 pass
 
@@ -2392,11 +2399,13 @@ class HubspotImportIntegration(models.Model):
                     if len(attachments):
                         for attachment in attachments:
                             try:
-                                odoo_attachment = self.env['ir.attachment'].search(
-                                    [('hubspot_id', '=', str(attachment['id']))]
-                                )
-                                # if odoo_attachment:
-                                #     continue
+                                odoo_attachment = self.env['ir.attachment'].search([
+                                    ('hubspot_id', '=', str(attachment['id'])),
+                                    ('res_model', '=', 'helpdesk.ticket'),
+                                    ('res_id', '=', odoo_ticket.id)])
+
+                                if odoo_attachment:
+                                    continue
                                 attachment_url = 'https://api.hubapi.com/filemanager/api/v2/files/{0}/?hapikey={1}'.format(
                                     attachment['id'], hubspot_keys
                                 )
@@ -2419,22 +2428,17 @@ class HubspotImportIntegration(models.Model):
                                                 file.write('{} -> {} \n{}'.format(
                                                     odoo_ticket.name, file_name, file_url)
                                                 )
-                                    if odoo_attachment:
-                                        continue
-
-                                    a = 1
                                     f = open('engagement_files/' + file_name + '.' + res_data['extension'], "rb")
-                                    data = data = base64.b64encode(f.read())
-                                    self.env['ir.attachment'].create({'name': file_name + '.' + res_data['extension'],
-                                                                      'datas': data,
-                                                                      'res_model': 'helpdesk.ticket',
-                                                                      'res_id': odoo_ticket.id, })
+                                    data = base64.b64encode(f.read())
+                                    self.env['ir.attachment'].create({
+                                        'hubspot_id': str(attachment['id']),
+                                        'name': file_name + '.' + res_data['extension'],
+                                        'datas': data,
+                                        'res_model': 'helpdesk.ticket',
+                                        'res_id': odoo_ticket.id, })
                                     f.close()
                                     os.remove('engagement_files/' + file_name + '.' + res_data['extension'])
                                     self.env.cr.commit()
-                                    print(odoo_ticket.name)
-                                if odoo_attachment:
-                                    continue
                             except Exception as e:
                                 pass
 
