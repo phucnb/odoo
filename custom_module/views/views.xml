@@ -632,6 +632,14 @@
 				</field>
 				<field name="function" position="after">
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="role"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="sales_rep"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="issr"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="fleet_size"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="touchdown"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="service_agreement"/>
+				</field>
+				<field name="name" position="after">					
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="website"/>
 				</field>
 			</field>
 		</record>
