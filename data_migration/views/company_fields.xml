@@ -5,287 +5,286 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//page[1]" position='before'>
-                    <page string='Dealers' attrs="{'invisible':[('is_company','=',False)]}">
+                <!-- <xpath expr="//page[1]" position="before"> -->
+                    <!-- <page attrs="{'invisible':[('is_company','=',False)]}" string="Dealers">
                         <group>
                             <group>
-                                <field name="number_of_sales_personnel" />
+                                <field name="number_of_sales_personnel"/>
                                 <field name="territory_coverage" widget="many2many_tags"/>
                             </group>
                         </group>
-                    </page>
-                    <page string='Cameras' attrs="{'invisible':[('is_company','=',False)]}">
+                    </page> -->
+                    <!-- <page attrs="{'invisible':[('is_company','=',False)]}" string="Cameras">
                         <group>
                             <group>
                                 <field name="previous_camera_system" widget="many2many_tags"/>
                             </group>
                         </group>
-                    </page>
-                    <page string='School District Information' attrs="{'invisible':[('is_company','=',False)]}">
+                    </page> -->
+                    <!-- <page attrs="{'invisible':[('is_company','=',False)]}" string="School District Information">
                         <group>
                             <group>
                                 <field name="camera_system" widget="many2many_tags"/>
-                                <field name="camera_system_other_" />
-                                <field name="contract_expires" />
-                                <field name="contracted_services" />
+                                <field name="camera_system_other_"/>
+                                <field name="contract_expires"/>
+                                <field name="contracted_services"/>
                             </group>
                             <group>
-                                <field name="contracted_with" />
+                                <field name="contracted_with"/>
                                 <field name="dealer_sold_through" widget="many2many_tags"/>
-                                <field name="fleet_maintenance_system" />
-                                <field name="fleet_maintenance_system_other_" />
+                                <field name="fleet_maintenance_system"/>
+                                <field name="fleet_maintenance_system_other_"/>
                             </group>
                         </group>
                         <group>
                             <group>
-                                <field name="gps" />
-                                <field name="gps_vendor" />
-                                <field name="gps_vendor_other_" />
-                                <field name="of_buses" />
+                                <field name="gps"/>
+                                <field name="gps_vendor"/>
+                                <field name="gps_vendor_other_"/>
+                                <field name="of_buses"/>
                             </group>
                             <group>
-                                <field name="of_cameras_per_bus" />
-                                <field name="of_students_transported" />
-                                <field name="of_students_total" />
-                                <field name="parent_portal" />
-                                <field name="number_of_buses" />
+                                <field name="of_cameras_per_bus"/>
+                                <field name="of_students_transported"/>
+                                <field name="of_students_total"/>
+                                <field name="parent_portal"/>
+                                <field name="number_of_buses"/>
                             </group>
                         </group>
                         <group>
                             <group>
-                                <field name="parent_portal_other_" />
-                                <field name="preferred_camera_vendor" />
-                                <field name="preferred_camera_vendor_cloned_" />
-                                <field name="routing_solution" />
+                                <field name="parent_portal_other_"/>
+                                <field name="preferred_camera_vendor"/>
+                                <field name="preferred_camera_vendor_cloned_"/>
+                                <field name="routing_solution"/>
                             </group>
                             <group>
-                                <field name="routing_solution_other_" />
-                                <field name="school_year_start" />
-                                <field name="stop_arm_camera_s_" />
-                                <field name="student_information_system" />
+                                <field name="routing_solution_other_"/>
+                                <field name="school_year_start"/>
+                                <field name="stop_arm_camera_s_"/>
+                                <field name="student_information_system"/>
                             </group>
                         </group>
                         <group>
                             <group>
-                                <field name="student_tracking_system_other_" />
-                                <field name="student_information_system_other_" />
-                                <field name="student_tracking" />
-                                <field name="student_tracking_system" />
+                                <field name="student_tracking_system_other_"/>
+                                <field name="student_information_system_other_"/>
+                                <field name="student_tracking"/>
+                                <field name="student_tracking_system"/>
                             </group>
                             <group>
-                                <field name="number_of_total_students" />
+                                <field name="number_of_total_students"/>
                             </group>
                         </group>
-                    </page>
-                    <page string='Touchdown' attrs="{'invisible':[('is_company','=',False)]}">
+                    </page> -->
+                    <!-- <page attrs="{'invisible':[('is_company','=',False)]}" string="Touchdown">
                         <group>
                             <group>
                                 <field name="how_many_lots_" widget="many2many_tags"/>
-                                <field name="lot_1_address" />
-                                <field name="lot_2_address" />
-                                <field name="purchase_date" />
-                                <field name="td_fleet_monitor" />
+                                <field name="lot_1_address"/>
+                                <field name="lot_2_address"/>
+                                <field name="purchase_date"/>
+                                <field name="td_fleet_monitor"/>
                             </group>
                             <group>
-                                <field name="touchdown" />
-                                <field name="touchdown_cloud_services_amount" />
-                                <field name="touchdown_cloud_services_renewal_date" />
-                                <field name="touchdown_install_date" />
-                            </group>
-                        </group>
-                    </page>
-                    <page string='Company Information' attrs="{'invisible':[('is_company','=',False)]}">
-                        <group>
-                            <group>
-                                <field name="of_students_total" />
-                                <field name="of_students_transported" />
-                                <field name="n247_bus_saleman" />
-                                <field name="n247s_lifecycle_stage" />
-                            </group>
-                            <group>
-                                <field name="annual_revenue" />
-                                <field name="bid_awarded_year" />
-                                <field name="bid_potential" />
-                                <field name="bid_reference" />
+                                <field name="touchdown"/>
+                                <field name="touchdown_cloud_services_amount"/>
+                                <field name="touchdown_cloud_services_renewal_date"/>
+                                <field name="touchdown_install_date"/>
                             </group>
                         </group>
+                    </page> -->
+                   <!--  <page attrs="{'invisible':[('is_company','=',False)]}" string="Company Information">
                         <group>
                             <group>
-                                <field name="bid_status" />
-                                <field name="bus_garage" />
-                                <field name="business_vertical" />
-                                <field name="business_vertical_other_" />
-                                <field name="cameras" />
+                                <field name="of_students_total"/>
+                                <field name="of_students_transported"/>
+                                <field name="n247_bus_saleman"/>
+                                <field name="n247s_lifecycle_stage"/>
+                            </group>
+                            <group>
+                                <field name="annual_revenue"/>
+                                <field name="bid_awarded_year"/>
+                                <field name="bid_potential"/>
+                                <field name="bid_reference"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="bid_status"/>
+                                <field name="bus_garage"/>
+                                <field name="business_vertical"/>
+                                <field name="business_vertical_other_"/>
+                                <field name="cameras"/>
                             </group>
                             <group>
                                 <field name="competitor" widget="many2many_tags"/>
-                                <field name="contractor" />
-                                <field name="dealer_sub_type" />
+                                <field name="contractor"/>
+                                <field name="dealer_sub_type"/>
                             </group>
                         </group>
                         <group>
                             <group>
-                                <field name="e360_cameras" />
-                                <field name="erie_1_boces" />
-                                <field name="fleet_size" />
-                                <field name="issr" />
-                                <field name="minitrack" />
+                                <field name="e360_cameras"/>
+                                <field name="erie_1_boces"/>
+                                <field name="fleet_size"/>
+                                <field name="issr"/>
+                                <field name="minitrack"/>
                             </group>
                             <group>
                                 <field name="web_technologies" widget="many2many_tags"/>
-                                <field name="netsuite_customer" />
-                                <field name="netsuite_refresh" />
-                                <field name="number_of_special_needs_students_transported" />
+                                <field name="netsuite_customer"/>
+                                <field name="netsuite_refresh"/>
+                                <field name="number_of_special_needs_students_transported"/>
                             </group>
                         </group>
                         <group>
                             <group>
-                                <field name="opportunity_number" />
-                                <field name="parent_portal_system" />
-                                <field name="products" />
-                                <field name="purchased_list_july" />
-                                <field name="rfp_date_posted" />
+                                <field name="opportunity_number"/>
+                                <field name="parent_portal_system"/>
+                                <field name="products"/>
+                                <field name="purchased_list_july"/>
+                                <field name="rfp_date_posted"/>
                             </group>
                             <group>
-                                <field name="rsm" />
-                                <field name="remove" />
-                                <field name="routing" />
-                                <field name="fleet_size_s247" />
-                            </group>
-                        </group>
-                        <group>
-                            <group>
-                                <field name="surveillance_247_company_domain" />
-                                <field name="s247_contact_email" />
-                                <field name="s247_county" />
-                                <field name="surveillance_247_district" />
-                                <field name="s247_first_name" />
-                            </group>
-                            <group>
-                                <field name="s247_last_name" />
-                                <field name="s247_lead_contact" />
-                                <field name="s247_pre_post_salutation" />
-                                <field name="prospect_status_s247" />
+                                <field name="rsm"/>
+                                <field name="remove"/>
+                                <field name="routing"/>
+                                <field name="fleet_size_s247"/>
                             </group>
                         </group>
                         <group>
                             <group>
-                                <field name="s247_title" />
-                                <field name="wireless_s247" />
-                                <field name="sales_rep" />
-                                <field name="school_year_budget_begins" />
-                                <field name="service_agreement" />
+                                <field name="surveillance_247_company_domain"/>
+                                <field name="s247_contact_email"/>
+                                <field name="s247_county"/>
+                                <field name="surveillance_247_district"/>
+                                <field name="s247_first_name"/>
                             </group>
                             <group>
-                                <field name="sic_code" />
-                                <field name="status" />
-                                <field name="student_count" />
+                                <field name="s247_last_name"/>
+                                <field name="s247_lead_contact"/>
+                                <field name="s247_pre_post_salutation"/>
+                                <field name="prospect_status_s247"/>
                             </group>
                         </group>
                         <group>
                             <group>
-                                <field name="system" widget="many2many_tags" />
-                                <field name="unique_identifier" />
-                                <field name="vendor" />
-                                <field name="about_us" />
-                                <field name="closedate" />
+                                <field name="s247_title"/>
+                                <field name="wireless_s247"/>
+                                <field name="sales_rep"/>
+                                <field name="school_year_budget_begins"/>
+                                <field name="service_agreement"/>
                             </group>
                             <group>
-<!--                                <field name="customer_rating"/>-->
-                                <field name="description" />
-                                <field name="is_public" />
-                                <field name="nadp" />
-                                <field name="hs_num_open_deals" />
+                                <field name="sic_code"/>
+                                <field name="status"/>
+                                <field name="student_count"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="system" widget="many2many_tags"/>
+                                <field name="unique_identifier"/>
+                                <field name="vendor"/>
+                                <field name="about_us"/>
+                                <field name="closedate"/>
+                            </group>
+                            <group>
+                                <field name="customer_rating"/>
+                                <field name="description"/>
+                                <field name="is_public"/>
+                                <field name="nadp"/>
+                                <field name="hs_num_open_deals"/>
                             </group>
                         </group>
                         <group>
                             <group>
                                 <field name="num_contacted_notes"/>
-                                <field name="engagements_last_meeting_booked_source" />
-                                <field name="total_revenue" />
-<!--                                <field name="wireless" />-->
-                                <field name="founded_year" />
+                                <field name="engagements_last_meeting_booked_source"/>
+                                <field name="total_revenue"/>
+                                <field name="wireless" />
+                                <field name="founded_year"/>
                             </group>
                             <group>
-                                <field name="first_contact_createdate" />
-                                <field name="first_deal_created_date" />
-                                <field name="notes_last_updated" />
-                                <field name="hs_last_booked_meeting_date" />
-                                <field name="notes_last_contacted" />
+                                <field name="first_contact_createdate"/>
+                                <field name="first_deal_created_date"/>
+                                <field name="notes_last_updated"/>
+                                <field name="hs_last_booked_meeting_date"/>
+                                <field name="notes_last_contacted"/>
                             </group>
                         </group>
                         <group>
                             <group>
                                 <field name="hs_last_logged_call_date"/>
-                                <field name="hs_lastmodifieddate" />
-                                <field name="hs_last_open_task_date" />
-                                <field name="hs_last_sales_activity_timestamp" />
-                                <field name="engagements_last_meeting_booked_medium" />
+                                <field name="hs_lastmodifieddate"/>
+                                <field name="hs_last_open_task_date"/>
+                                <field name="hs_last_sales_activity_timestamp"/>
+                                <field name="engagements_last_meeting_booked_medium"/>
                             </group>
                             <group>
-                                <field name="hs_num_child_companies" />
-                                <field name="hubspot_owner_assigneddate" />
-                                <field name="recent_deal_amount" />
-                                <field name="recent_deal_close_date" />
-                                <field name="total_money_raised" />
+                                <field name="hs_num_child_companies"/>
+                                <field name="hubspot_owner_assigneddate"/>
+                                <field name="recent_deal_amount"/>
+                                <field name="recent_deal_close_date"/>
+                                <field name="total_money_raised"/>
                             </group>
                         </group>
                         <group>
                             <group>
-                                <field name="hs_total_deal_value" />
-                                <field name="hubspot_team_id" />
-                                <field name="website" />
+                                <field name="hs_total_deal_value"/>
+                                <field name="hubspot_team_id"/>
+                                <field name="website"/>
                             </group>
                         </group>
-                    </page>
-                    <page string='Social Media Information' attrs="{'invisible':[('is_company','=',False)]}">
+                    </page> -->
+                    <!-- <page attrs="{'invisible':[('is_company','=',False)]}" string="Social Media Information">
                         <group>
                             <group>
-                                <field name="facebook_company_page" />
+                                <field name="facebook_company_page"/>
                                 <field name="facebookfans"/>
                             </group>
                         </group>
                     </page>
-                    <page string='Conversion Information' attrs="{'invisible':[('is_company','=',False)]}">
+                    <page attrs="{'invisible':[('is_company','=',False)]}" string="Conversion Information">
                         <group>
                             <group>
-                                <field name="first_conversion_event_name" />
+                                <field name="first_conversion_event_name"/>
                                 <field name="first_conversion_date"/>
-                                <field name="num_conversion_events" />
+                                <field name="num_conversion_events"/>
                                 <field name="recent_conversion_event_name"/>
                                 <field name="recent_conversion_date"/>
                             </group>
                         </group>
                     </page>
-                    <page string='Web Analytics History' attrs="{'invisible':[('is_company','=',False)]}">
+                    <page attrs="{'invisible':[('is_company','=',False)]}" string="Web Analytics History">
                         <group>
                             <group>
-                                <field name="hs_analytics_first_touch_converting_campaign" />
-                                <field name="hs_analytics_num_page_views" />
-                                <field name="hs_analytics_num_visits" />
+                                <field name="hs_analytics_first_touch_converting_campaign"/>
+                                <field name="hs_analytics_num_page_views"/>
+                                <field name="hs_analytics_num_visits"/>
                                 <field name="hs_analytics_last_touch_converting_campaign"/>
                                 <field name="hs_analytics_first_timestamp"/>
                             </group>
                             <group>
-                                <field name="hs_analytics_last_timestamp" />
-                                <field name="hs_analytics_first_visit_timestamp" />
-                                <field name="hs_analytics_last_visit_timestamp" />
+                                <field name="hs_analytics_last_timestamp"/>
+                                <field name="hs_analytics_first_visit_timestamp"/>
+                                <field name="hs_analytics_last_visit_timestamp"/>
                             </group>
                         </group>
                     </page>
-                    <page string='Target Account Information' attrs="{'invisible':[('is_company','=',False)]}">
+                    <page attrs="{'invisible':[('is_company','=',False)]}" string="Target Account Information">
                         <group>
                             <group>
-                                <field name="hs_ideal_customer_profile" />
+                                <field name="hs_ideal_customer_profile"/>
                                 <field name="hs_num_contacts_with_buying_roles"/>
                                 <field name="hs_num_decision_makers"/>
                                 <field name="numberofemployees"/>
                             </group>
                         </group>
-                    </page>
-                </xpath>
+                    </page> -->
+                <!-- </xpath> -->
             </field>
         </record>
     </data>
 </odoo>
-

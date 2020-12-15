@@ -18,7 +18,6 @@ access_crm_lead_product_s_considered,access.crm.lead_product_s_considered,model_
 
 
 access_helpdesk_ticket_s247_product,access.helpdesk.ticket_s247_product,model_helpdesk_ticket_s247_product,base.group_user,1,1,1,1
-access_helpdesk_hs_ticket_category,access.helpdesk.hs_ticket_category,model_helpdesk_hs_ticket_category,base.group_user,1,1,1,1
 
 
 access_res_partner_years,access.res.partner_years,model_res_partner_years,base.group_user,1,1,1,1

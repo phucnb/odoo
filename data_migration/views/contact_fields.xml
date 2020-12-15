@@ -6,6 +6,13 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//page[1]" position='before'>
+                    <page string="HubSpot Information">
+                        <notebook>
+                            <page string="Contact Information">
+                                
+                            </page>
+                        </notebook>
+                    </page>
                     <page string='Contact Information' autofocus='True' attrs="{'invisible':[('is_company','=',True)]}">
                         <group>
                             <group>
