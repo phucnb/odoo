@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <odoo>
     <data>
-        <record model="ir.ui.view" id="logs_form_view">
-            <field name="name">Log Form</field>
-            <field name="model">log.handling</field>
+        <record model="ir.ui.view" id="engagements_logs_form_view">
+            <field name="name">Engagements Logs</field>
+            <field name="model">log.engagements</field>
             <field name="arch" type="xml">
                 <tree>
                      <field name="record_id"/>
@@ -15,14 +15,37 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="log_action">
-            <field name="name">Log</field>
-            <field name="res_model">log.handling</field>
+        <record model="ir.actions.act_window" id="engagements_log_action">
+            <field name="name">Engagements Logs</field>
+            <field name="res_model">log.engagements</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+
+        <record model="ir.ui.view" id="attachments_logs_form_view">
+            <field name="name">Attachments Logs</field>
+            <field name="model">log.attachments</field>
+            <field name="arch" type="xml">
+                <tree>
+                     <field name="record_id"/>
+                     <field name="odoo_record_name" />
+                     <field name="description"/>
+                     <field name="skip"/>
+                     <field name="model"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="attachments_log_action">
+            <field name="name">Attachments Logs</field>
+            <field name="res_model">log.attachments</field>
             <field name="view_mode">tree</field>
         </record>
 
 
 
-        <menuitem id="logs_menu" name="Logs" parent="hubspot_root" sequence="4" action="log_action"/>
+        <menuitem id="logs_menu" name="Logs" parent="hubspot_root" sequence="4"/>
+        <menuitem id="engagements_logs_menu" name="Engagements Logs" parent="logs_menu" sequence="1" action="engagements_log_action"/>
+        <menuitem id="attachments_logs_menu" name="Attachments Logs" parent="logs_menu" sequence="2" action="attachments_log_action"/>
     </data>
 </odoo>
