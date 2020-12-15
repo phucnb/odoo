@@ -6,6 +6,45 @@
 			<field name="inherit_id" ref="base.view_partner_form"/>
 			<field name="arch" type="xml">
 				<xpath expr="//page[1]" position="after">
+					<page attrs="{'invisible':[('is_company','=',False)]}" string="Fleet">
+						<group>
+							<group>
+								<field name="fleet_size"/>
+								<field name="special_instructions"/>
+							</group>
+						</group>
+					</page>
+					<page attrs="{'invisible':[('is_company','=',False)]}" string="Installation / Service">
+						<group>
+							<group>
+								<field name="bus_garage"/>
+								<field name="address2"/>
+							</group>
+							<group>
+								<field name="service_agreement"/>
+							</group>
+						</group>
+					</page>
+					<page attrs="{'invisible':[('is_company','=',False)]}" string="Camera System">
+						<group>
+							<group>
+								<field name="camera_system"/>
+								<field name="n247_dvr_total"/>
+								<field name="of_cameras_per_bus"/>
+								<field name="preferred_camera_vendor"/>
+								<field name="preferred_camera_vendor_cloned_"/>
+								<field name="previous_camera_system"/>
+								<field name="of_students_total"/>
+								<field name="of_students_transported"/>
+								<field name="school_year_start"/>
+							</group>
+						</group>
+					</page>
+					<page attrs="{'invisible':[('is_company','=',False)]}" string="Service">
+						<group>
+							<group/>
+						</group>
+					</page>
 					<page name="hubspot_information_tab" string="HubSpot Information">
 						<notebook name="hubspot_information_notebook">
 							<page attrs="{'invisible':[('is_company','=',False)]}" string="Company Information">
@@ -455,8 +494,8 @@
 					<page attrs="{'invisible':[('is_company','=',True)]}" string="Tradeshow(s)">
 						<group>
 							<group>
-								<field name="aapt_ar_" widget="many2many_tags" attrs="{'invisible': [('parent_id', '!=', False)]}"/>
-								<field name="aasbo_az_" widget="many2many_tags" attrs="{'invisible': [('parent_id', '!=', True)]}"/>
+								<field attrs="{'invisible': [('parent_id', '!=', False)]}" name="aapt_ar_" widget="many2many_tags"/>
+								<field attrs="{'invisible': [('parent_id', '!=', True)]}" name="aasbo_az_" widget="many2many_tags"/>
 								<field name="asta_al_" widget="many2many_tags"/>
 								<field name="casbo_ca_" widget="many2many_tags"/>
 								<field name="casto_ca_" widget="many2many_tags"/>
@@ -543,64 +582,57 @@
 					<page attrs="{'invisible':[('is_company','=',True)]}" string="HubSpot Marketing">
 						<group>
 							<group>
-								<field name="hs_email_optout" />
-								<field name="opted_out_of_email_security_blog_sub" />
-								<field name="opted_out_of_email_customer_Service" />
-								<field name="opted_out_of_email_marketing" />
-								
+								<field name="hs_email_optout"/>
+								<field name="opted_out_of_email_security_blog_sub"/>
+								<field name="opted_out_of_email_customer_Service"/>
+								<field name="opted_out_of_email_marketing"/>
 							</group>
-							<group>								
-								<field name="opted_out_of_email_one2one" />
-								<field name="opted_out_of_email_quote_follow_up" />
-								<field name="opted_out_of_email_2247_installment" />
-								<field name="opted_out_of_email_sales_check_in" />
+							<group>
+								<field name="opted_out_of_email_one2one"/>
+								<field name="opted_out_of_email_quote_follow_up"/>
+								<field name="opted_out_of_email_2247_installment"/>
+								<field name="opted_out_of_email_sales_check_in"/>
 							</group>
 						</group>
 						<group>
 							<group>
-								<field name="hs_analytics_num_event_completions" />
-								<field name="num_conversion_events" />
-								<field name="hs_analytics_num_page_views" />
-								<field name="num_notes" />
-								<field name="hs_analytics_num_visits" />
+								<field name="hs_analytics_num_event_completions"/>
+								<field name="num_conversion_events"/>
+								<field name="hs_analytics_num_page_views"/>
+								<field name="num_notes"/>
+								<field name="hs_analytics_num_visits"/>
 							</group>
-							<group>								
-								
-								<field name="hs_email_bounce" />
-								<field name="hs_email_click" />
-								<field name="hs_email_delivered" />
-								<field name="hs_email_open" />
-								<field name="hs_marketable_until_renewal" />
+							<group>
+								<field name="hs_email_bounce"/>
+								<field name="hs_email_click"/>
+								<field name="hs_email_delivered"/>
+								<field name="hs_email_open"/>
+								<field name="hs_marketable_until_renewal"/>
 							</group>
 						</group>
 						<group>
 							<group>
-								<field name="hs_email_last_click_date" />
-								<field name="hs_email_last_email_name" />
-								
+								<field name="hs_email_last_click_date"/>
+								<field name="hs_email_last_email_name"/>
 							</group>
-							<group>								
-								
-								<field name="hs_email_last_open_date" />
-								<field name="hs_email_last_send_date" />
-						
+							<group>
+								<field name="hs_email_last_open_date"/>
+								<field name="hs_email_last_send_date"/>
 							</group>
 						</group>
 					</page>
 				</xpath>
 				<field name="vat" position="before">
-                    <field name="first_name" attrs="{'invisible':[('is_company','=',True)]}"/>
-                    <field name="last_name" attrs="{'invisible':[('is_company','=',True)]}"/>
-                    <field name="job_title" attrs="{'invisible':[('is_company','=',True)]}"/>
-                    <field name="phone" attrs="{'invisible':[('is_company','=',True)]}"/>
-                    <field name="mobile" attrs="{'invisible':[('is_company','=',True)]}"/>
-                    <field name="email" attrs="{'invisible':[('is_company','=',True)]}"/>
-                </field>
-                <field name="function" position="after">
-                    <field name="role" attrs="{'invisible':[('is_company','=',True)]}"/>
-                    
-                </field>
-                
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="first_name"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="last_name"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="job_title"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="phone"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="mobile"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="email"/>
+				</field>
+				<field name="function" position="after">
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="role"/>
+				</field>
 			</field>
 		</record>
 	</data>
