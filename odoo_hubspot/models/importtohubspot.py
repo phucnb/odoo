@@ -735,7 +735,7 @@ class HubspotImportIntegration(models.Model):
                     'priority': priority,
                     'stage_id': odoo_stage.id if odoo_stage else None,
                     'ticket_type_id': odoo_type.id,
-                    'tag_ids': [[6, 0, tag_ids]],
+                    'hs_ticket_category': [[6, 0, tag_ids]],
                     'hs_ticket_contacts': [[6, 0, contacts]] if contacts else None,
                     'hs_ticket_company': companies[0] if companies else None,
                 }
