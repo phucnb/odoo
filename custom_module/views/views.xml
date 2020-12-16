@@ -26,7 +26,7 @@
 								<field name="service_agreement"/>
 								<field name="service_plan_type"/>
 								<field name="fleet_inspection"/>
-								<field name="no_vehicles_serviced"/>
+								<!-- <field name="no_vehicles_serviced"/> -->
 							</group>
 						</group>
 					</page>
