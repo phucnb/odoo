@@ -10,6 +10,8 @@
 						<group>
 							<group>
 								<field name="fleet_size"/>
+								<field name="bus_mfg"/>
+								<field name="bus_type"/>
 								<field name="special_instructions"/>
 							</group>
 						</group>
@@ -22,21 +24,29 @@
 							</group>
 							<group>
 								<field name="service_agreement"/>
+								<field name="service_plan_type"/>
+								<field name="fleet_inspection"/>
+								<field name="no_vehicles_serviced"/>
 							</group>
 						</group>
 					</page>
 					<page attrs="{'invisible':[('is_company','=',False)]}" string="Camera System">
 						<group>
 							<group>
-								<field name="camera_system"/>
+								<field name="camera_vendor"/>
 								<field name="n247_dvr_total"/>
 								<field name="of_cameras_per_bus"/>
 								<field name="preferred_camera_vendor"/>
 								<field name="preferred_camera_vendor_cloned_"/>
 								<field name="previous_camera_system"/>
+								<field name="shield_cams"/>
+								<field name="stop_arm_camera_s_"/>
+								<field name="stop_arm_third_party"/>
 								<field name="of_students_total"/>
 								<field name="of_students_transported"/>
+								<field name="district_type"/>
 								<field name="school_year_start"/>
+								<field name="no_bell_times"/>
 							</group>
 						</group>
 					</page>
