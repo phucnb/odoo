@@ -645,9 +645,7 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="_247_customer"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="np_score"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="sales_rep"/>
-					<field name="phone" position="replace">
-						<field attrs="{'invisible':[('is_company','=',False)]}" name="issr"/>
-					</field>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="issr"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="crr"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="fleet_size"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="touchdown"/>
