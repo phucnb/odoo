@@ -87,7 +87,7 @@ class ResPartnerField(models.Model):
      bus_type = fields.Selection(BUS_TYPE, 'Bus Type')
      service_plan_type = fields.Selection(SERVICE_PLAN_TYPE, 'Service Plan Type')
      fleet_inspection = fields.Boolean('Fleet Inspection')   
-     no_vihicles_serviced = fields.Integer('# Vehicles Serviced')
+     no_vehicles_serviced = fields.Integer('# Vehicles Serviced')
      camera_vendor = fields.Selection(CAMERA_VENDOR, 'Camera Vendor')
      shield_cams = fields.Boolean('Shield Cams')
      stop_arm_third_party = fields.Selection(STOP_ARM_THIRD_PARTY, 'Stop Arm Third Party')
