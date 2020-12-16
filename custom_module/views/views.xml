@@ -638,12 +638,15 @@
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="job_title"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="phone"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="mobile"/>
-					<field attrs="{'invisible':[('is_company','=',True)]}" name="email"/>
+					
 				</field>
-				<field name="function" position="after">
+				<field name="function" position="after">					
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="role"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="_247_customer"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="np_score"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="sales_rep"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="issr"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="ccr"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="fleet_size"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="touchdown"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="service_agreement"/>
