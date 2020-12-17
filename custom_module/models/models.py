@@ -94,3 +94,24 @@ class ResPartnerField(models.Model):
      district_type = fields.Selection(DISTRICT_TYPE, 'District Type')
      no_bell_times = fields.Selection(NO_BELL_TIMES, '# Bell Times')
 
+      child_ids = fields.One2many(
+        'res.partner', 'parent_id',
+        string='Contact',
+        domain=[('active', '=', True)]
+    )  # force "active_test" domain to bypass _search() override
+    main_contact = fields.Many2one(
+        'res.partner', string='Main Contact'
+    )
+    main_contact_email = fields.Char(
+        string='Main Contact Email',
+        related='main_contact.email', related_sudo=True, compute_sudo=True,
+        readonly=True, store=True, index=True
+    )
+    main_contact_phone = fields.Char(
+        string='Main Contact Phone',
+        related='main_contact.phone', related_sudo=True, compute_sudo=True,
+        readonly=True, store=True, index=True
+    )
+
+
+

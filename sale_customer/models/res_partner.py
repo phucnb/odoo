@@ -14,6 +14,8 @@ class ResPartner(models.Model):
         string='Sale Order Count'
     )
 
+    
+
     def _compute_quotation_order_count(self):
         # retrieve all children partners and prefetch 'parent_id' on them
         all_partners = self.with_context(active_test=False).search([('id', 'child_of', self.ids)])
