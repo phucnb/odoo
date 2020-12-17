@@ -1,4 +1,4 @@
-odoo.define('sale_customer.invisible_fields', function(require) {
+odoo.define('custom_module.invisible_fields', function(require) {
     "use strict";
 
     var FormController = require('web.FormController');
