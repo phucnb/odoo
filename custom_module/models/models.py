@@ -211,4 +211,14 @@ class ResPartnerField(models.Model):
      tv_monitor = fields.Boolean("TeamViewer Monitor")
      server_inst_date = fields.Date("Server Install Date")
 
+     is_not_tags = fields.Boolean(
+        string='Is not tags', default=False,
+        compute='_compute_is_not_tags', compute_sudo=True, related_sudo=True
+     )
+
+     # def _compute_is_not_tags(self):
+     #    for record in self:
+     #        record.is_not_tags = True if record.category_id else False
+
+
 

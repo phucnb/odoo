@@ -706,9 +706,9 @@
                     <field name="main_contact_phone" attrs="{'invisible':[('is_company','=',False)]}"/>
                     
                 </field>
-                <field name="category_id" position="attributes">
+               <!--  <field name="category_id" position="attributes">
                     <attribute name="attrs">{'invisible': [('is_not_tags','=',False)]}</attribute>
-                </field>
+                </field> -->
 
 			</field>
 		</record>
