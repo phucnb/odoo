@@ -700,7 +700,7 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="website"/>
 				</field>
 				<field name="vat" position="before">
-                    <field name="main_contact"
+                   <field name="main_contact"
                            domain="[('id', 'in', child_ids)]" options="{'no_create_edit': True}"/>
                            domain="[('id', 'in', child_ids), ('type', '=', 'contact')]"
                            options="{'no_create_edit': True}"/>
