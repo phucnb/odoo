@@ -58,12 +58,20 @@
 					<page string='Service / Installation' attrs="{'invisible':[('is_company','=',False)]}">
                         <group>
                              <group>
-                             	<field name="bus_garage"/>
-                                <field name="service_plan" />
-                                <field name="service_plan_type" attrs="{'invisible':[('service_plan', '=', False)]}" />
-                                <field name="service_vehicle_num" attrs="{'invisible':[('service_plan_type', '=', False)]}" />
+                             	
+                             	<field name="bus_garage_main"
+		                           domain="[('id', 'in', child_ids), ('type', '=', 'bus_address')]"
+		                           options="{'no_create_edit': True}"/>
+
+			                    <field name="bus_garage_address" attrs="{'invisible':[('is_company','=',False)]}"/>
+			                    <field name="bus_garage_city" attrs="{'invisible':[('is_company','=',False)]}"/>
+			                    <field name="bus_garage_phone" attrs="{'invisible':[('is_company','=',False)]}"/>
+                                
                             </group>
                             <group>
+                            	<field name="service_plan" />
+                                <field name="service_plan_type" attrs="{'invisible':[('service_plan', '=', False)]}" />
+                                <field name="service_vehicle_num" attrs="{'invisible':[('service_plan_type', '=', False)]}" />
                                 <field name="service_po_received" attrs="{'invisible':[('service_plan', '=', False)]}" />
                             </group>
                         </group>
@@ -681,6 +689,7 @@
                     <attribute name="invisible">1</attribute>
                 </field>
                 <xpath expr="//label[@for='email']" position="attributes">
+                <xpath expr="//label[@for='phone']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
 

@@ -174,6 +174,28 @@ class ResPartnerField(models.Model):
             readonly=True, store=True, index=True
      )
 
+     bus_garage_main = fields.Many2one(
+            'res.partner', string='Bus Garage Contact'
+     )
+        
+     bus_garage_address = fields.Char(
+            string='Address',
+            related='bus_garage_main.street', related_sudo=True, compute_sudo=True,
+            readonly=True, store=True, index=True
+     )
+     
+     bus_garage_city = fields.Char(
+            string='City',
+            related='bus_garage_main.city', related_sudo=True, compute_sudo=True,
+            readonly=True, store=True, index=True
+     )
+
+     bus_garage_phone = fields.Char(
+            string='Phone',
+            related='bus_garage_main.phone', related_sudo=True, compute_sudo=True,
+            readonly=True, store=True, index=True
+     )  
+
       # ***CAMERA TAB***
      camera_vendor = fields.Selection(OPTIONS2, "Camera Vendor")
      camera_vendor_other = fields.Boolean("Other")
