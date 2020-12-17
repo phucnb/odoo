@@ -99,6 +99,27 @@ OPTIONS2 = [
     ('Other', 'Other')
 ]
 
+WIRELESS = [
+    ('TOUCHDOWN I', 'Touchdown I'),
+    ('TOUCHDOWN II', 'Touchdown II'),
+    ('Touchdown II (50)', 'Touchdown II (50)'),
+    ('Touchdown II (100)', 'Touchdown II (100)'),
+    ('Quoted Touchdown II', 'Quoted Touchdown II'),
+    ('Mini Smart Server', 'Mini Smart Server'),
+    ('NO', 'NO')
+]
+ 
+WIRELESS_PLATFORM = [
+    ('TOUCHDOWN', 'Touchdown'),
+    ('CLOUD', 'Cloud'),
+]
+ 
+TOUCHDOWN_TYPE = [
+    ('TD50', 'TD50'),
+    ('TD100', 'TD100'),
+    ('TD200', 'TD200'),
+]
+
 class ResPartnerField(models.Model):
 
      _inherit = 'res.partner'
