@@ -632,6 +632,9 @@
 						</group>
 					</page>
 				</xpath>
+				 <field name="phone" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
 				<field name="vat" position="before">
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="first_name"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="last_name"/>
@@ -661,9 +664,7 @@
                     <field name="main_contact_phone"/>
                     
                 </field>
-                <field name="phone" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
+
 
 
 			</field>
