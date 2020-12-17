@@ -106,7 +106,7 @@ class ResPartnerField(models.Model):
         
      main_contact_title = fields.Char(
             string='Main Contact Title',
-            related='main_contact.title', related_sudo=True, compute_sudo=True,
+            related='main_contact.function', related_sudo=True, compute_sudo=True,
             readonly=True, store=True, index=True
      )
      
