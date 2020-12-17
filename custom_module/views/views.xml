@@ -114,6 +114,7 @@
 										<field name="of_students_transported"/>
 										<field name="n247_bus_saleman"/>
 										<field name="n247s_lifecycle_stage"/>
+										<field name="n247_dvr_total"/>
 									</group>
 									<group>
 										<field name="annual_revenue"/>
