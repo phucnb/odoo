@@ -180,7 +180,7 @@ class ResPartnerField(models.Model):
         
      bus_garage_address = fields.Char(
             string='Address',
-            related='main_contact.address', related_sudo=True, compute_sudo=True,
+            related='main_contact.street', related_sudo=True, compute_sudo=True,
             readonly=True, store=True, index=True
      )
      
