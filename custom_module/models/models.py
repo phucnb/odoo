@@ -175,24 +175,24 @@ class ResPartnerField(models.Model):
      )
 
      bus_garage_main = fields.Many2one(
-            'res.partner', string='Main Contact'
+            'res.partner', string='Bus Garage Contact'
      )
         
      bus_garage_address = fields.Char(
             string='Address',
-            related='main_contact.street', related_sudo=True, compute_sudo=True,
+            related='bus_garage_main.street', related_sudo=True, compute_sudo=True,
             readonly=True, store=True, index=True
      )
      
      bus_garage_city = fields.Char(
             string='City',
-            related='main_contact.city', related_sudo=True, compute_sudo=True,
+            related='bus_garage_main.city', related_sudo=True, compute_sudo=True,
             readonly=True, store=True, index=True
      )
 
      bus_garage_phone = fields.Char(
             string='Phone',
-            related='main_contact.phone', related_sudo=True, compute_sudo=True,
+            related='bus_garage_main.phone', related_sudo=True, compute_sudo=True,
             readonly=True, store=True, index=True
      )  
 
