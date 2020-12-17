@@ -88,6 +88,16 @@ SERVICE_PLAN_TYPE = [
     ('FLEET INSPECTION', 'Fleet Inspection'),
 ]
 
+OPTIONS2 = [
+    ('247Security', '247Security'),
+    ('Angletrax', 'Angletrax'),
+    ('Gatekeeper', 'Gatekeeper'),
+    ('Provision', 'Provision'),
+    ('REI', 'REI'),
+    ('Safety Vision', 'Safety Vision'),
+    ('Seon', 'Seon'),
+    ('Other', 'Other')
+]
 
 class ResPartnerField(models.Model):
 
