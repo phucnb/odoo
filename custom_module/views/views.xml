@@ -16,7 +16,7 @@
 							</group>
 						</group>
 					</page>
-					<page attrs="{'invisible':[('is_company','=',False)]}" string="Installation / Service">
+					<!-- <page attrs="{'invisible':[('is_company','=',False)]}" string="Installation / Service">
 						<group>
 							<group>
 								<field name="bus_garage"/>
@@ -29,7 +29,7 @@
 								<field name="no_vehicles_serviced"/>
 							</group>
 						</group>
-					</page>
+					</page> -->
 					<page string='Cameras / DVRs' attrs="{'invisible':[('is_company','=',False)]}">
                         <group>
                             <group>
@@ -58,6 +58,7 @@
 					<page string='Service / Installation' attrs="{'invisible':[('is_company','=',False)]}">
                         <group>
                              <group>
+                             	<field name="bus_garage"/>
                                 <field name="service_plan" />
                                 <field name="service_plan_type" attrs="{'invisible':[('service_plan', '=', False)]}" />
                                 <field name="service_vehicle_num" attrs="{'invisible':[('service_plan_type', '=', False)]}" />
