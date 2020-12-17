@@ -220,5 +220,17 @@ class ResPartnerField(models.Model):
      #    for record in self:
      #        record.is_not_tags = True if record.category_id else False
 
+     #Add new type for contact address for bus Garage
+     type = fields.Selection([
+        ('contact', 'Contact'),
+        ('invoice', 'Invoice Address'),
+        ('delivery', 'Delivery Address'),
+        ('other', 'Other Address'),
+        ("private", "Private Address"),
+        ('bus_address', 'Bus garage address'),
+     ], string='Address Type', default='contact',
+        help="Invoice & Delivery addresses are used in sales orders. "
+             "Private addresses are only visible by authorized users."
+     )
 
 
