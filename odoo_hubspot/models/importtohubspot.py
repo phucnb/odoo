@@ -2359,7 +2359,7 @@ class HubspotImportIntegration(models.Model):
             icpsudo = self.env['ir.config_parameter'].sudo()
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             companies = self.env['res.partner'].search(
-                [('hubspot_id', '!=', False), ('company_type', '=', 'company'), ('attachment_done', '=', False)]
+                [('hubspot_id', '!=', False), ('company_type', '=', 'company'), ('attachment_done', '=', True)]
             )
             for odoo_company in companies:
                 url = 'https://api.hubapi.com/engagements/v1/engagements/associated/COMPANY/{0}/paged?hapikey={1}'.format(
@@ -2451,7 +2451,7 @@ class HubspotImportIntegration(models.Model):
                                 pass
 
                 odoo_company.write({
-                    'attachment_done': True
+                    'attachment_done': False
                 })
                 self.env.cr.commit()
 
