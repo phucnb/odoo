@@ -1,16 +1,17 @@
 <odoo>
 	<data>
-		<record id="custom_helpdesk_form" model="ir.ui.view">
-			<field name="name">custom.helpdesk.form</field>
-			<field name="model">helpdesk.ticket</field>
-			<field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
-			<field name="arch" type="xml">
-				<field name="name" position="after">
-       				
-       				<field name="rn_number" />
-                    
+		<record model="ir.ui.view" id="custom_ticket_view">
+            <field name="name">custom.ticket.view</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="rs_number"/>
+                   
                 </field>
-			</field>
-		</record>
+               
+            </field>
+        </record>
+
 	</data>
 </odoo>
