@@ -5,11 +5,55 @@
             <field name="model">helpdesk.ticket</field>
             <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
             <field name="arch" type="xml">
-                <field name="name" position="after">
-                    <field name="rs_number"/>
-                   
+            	<xpath expr="//group/field[@name='team_id']" position="before">
+                	<field name="partner_id" />
+                </xpath>
+
+
+                <!-- Hide fields -->
+                <field name="hs_ticket_company" position="attributes">
+                    <attribute name="invisible">1</attribute>
                 </field>
-               
+                <field name="assigned_company" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="cs_number" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="product" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="pw_resolution" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="rn_number" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="s247_resolution" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="s247_product" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="touchdown" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="hs_ticket_category" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="source_type" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="hs_ticket_contacts" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="email_cc" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="partner_email" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                
             </field>
         </record>
 
