@@ -5,8 +5,8 @@
             <field name="model">helpdesk.ticket</field>
             <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
             <field name="arch" type="xml">
-            	<xpath expr="//group/field[@name='team_id']" position="before">
-                	<field name="partner_id" />
+            	<xpath expr="//group/field[@name='sla_deadline']" position="after">
+                	<field name="multiple_product" />
                 </xpath>
 
 
