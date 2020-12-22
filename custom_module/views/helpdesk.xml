@@ -10,8 +10,7 @@
                 </xpath>
 
                 <field name="partner_id" position="after">
-                	<field name="customer_main" />
-                	<field name="customer_busaddress" />
+                	<field name="partner_bus_garage_address" />
                 </field>
 
 
