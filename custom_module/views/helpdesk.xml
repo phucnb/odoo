@@ -9,6 +9,11 @@
                 	<field name="multiple_product" />
                 </xpath>
 
+                <field name="partner_id" position="after">
+                	<field name="customer_main" />
+                	<field name="customer_busaddress" />
+                </field>
+
 
                 <!-- Hide fields -->
                 <field name="hs_ticket_company" position="attributes">
@@ -47,12 +52,13 @@
                 <field name="hs_ticket_contacts" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </field>
-                <field name="email_cc" position="attributes">
+               <!--  <field name="email_cc" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </field>
                 <field name="partner_email" position="attributes">
                     <attribute name="invisible">1</attribute>
-                </field>
+                </field> -->
+
                 
             </field>
         </record>
