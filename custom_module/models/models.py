@@ -151,6 +151,8 @@ class ResPartnerField(models.Model):
      stop_arm_third_party = fields.Selection(STOP_ARM_THIRD_PARTY, 'Stop Arm Third Party')
      district_type = fields.Selection(DISTRICT_TYPE, 'District Type')
      no_bell_times = fields.Selection(NO_BELL_TIMES, '# Bell Times')
+     purchase_order_received = fields.Date("Purchase Order Received")
+
 
      child_ids = fields.One2many(
         'res.partner', 'parent_id',

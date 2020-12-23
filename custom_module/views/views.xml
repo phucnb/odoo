@@ -51,10 +51,14 @@
 								<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_phone"/>
 							</group>
 							<group>
-								<field name="service_plan"/>
+								
+								<field name="fleet_inspection" attrs="{'invisible':[('service_plan', '=', True)]}"/>
+								<field name="service_plan" attrs="{'invisible':[('fleet_inspection', '=', True)]}"/>
 								<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_plan_type"/>
 								<field attrs="{'invisible':[('service_plan_type', '=', False)]}" name="service_vehicle_num"/>
 								<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_po_received"/>
+								<field name="purchase_order_received"/>
+								
 							</group>
 						</group>
 					</page>
