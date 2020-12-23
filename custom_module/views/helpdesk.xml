@@ -17,7 +17,9 @@
                 </field>
 
                 <field name="description" position="before">
-                    <field name="product_type" />
+                    <group>
+                        <field name="product_type" string="Product Type" />
+                    </group>
                 </field>
 
 
