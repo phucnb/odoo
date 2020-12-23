@@ -721,7 +721,7 @@
 				<field name="vat" position="before">
                     <field name="main_contact"
                            domain="[('id', 'in', child_ids), ('type', '=', 'contact')]"
-                           options="{'no_create_edit': True}"/>
+                           options="{'no_create_edit': True}" attrs="{'invisible':[('is_company','=',False)]}"/>
 
                     <field name="main_contact_title" attrs="{'invisible':[('is_company','=',False)]}"/>
                     <field name="main_contact_phone" attrs="{'invisible':[('is_company','=',False)]}"/>
