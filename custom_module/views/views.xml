@@ -45,7 +45,8 @@
 					<page attrs="{'invisible':[('is_company','=',False)]}" string="Service / Installation">
 						<group>
 							<group>
-								<field domain="[('id', 'in', child_ids), ('type', '=', 'bus_address')]" name="bus_garage_main" options="{'no_create_edit': True}"/>
+								<!-- <field domain="[('id', 'in', child_ids), ('type', '=', 'bus_address')]" name="bus_garage_main" options="{'no_create_edit': True}"/> -->
+								<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_address"/>
 								<field attrs="{'invisible':[('is_company','=',False)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="main_contact" options="{'no_create_edit': True}"/>
 							<!-- 	<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_address"/>
 								<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_city"/>
