@@ -5,7 +5,7 @@
             <field name="model">helpdesk.ticket</field>
             <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//group/field[@name='sla_deadline']" position="after">
+                <!-- <xpath expr="//group/field[@name='sla_deadline']" position="after">
                     <field name="multiple_product" />
                 </xpath>
 
@@ -20,7 +20,7 @@
                     <group>
                         <field name="product_type" string="Product Type" />
                     </group>
-                </field>
+                </field> -->
 
 
                 <!-- Hide fields -->

@@ -112,20 +112,20 @@ SYSTEM_RELATED_MAIN = [
 class TicketFields(models.Model):
     _inherit = 'helpdesk.ticket'
 
-    multiple_product = fields.Boolean("Multiple Product")
-    partner_bus_garage_address = fields.Char(string='Bus Garage Address', compute='_compute_partner_contact', store=True, readonly=False)
-    partner_phone = fields.Char(string='Main Phone', compute='_compute_partner_contact', store=True, readonly=False)
-    partner_main_contact = fields.Char(string='Primary Contact', compute='_compute_partner_contact', store=True, readonly=False)
-    partner_main_contact_phone = fields.Char(string='Primary Contact Phone', compute='_compute_partner_contact', store=True, readonly=False)
+    # multiple_product = fields.Boolean("Multiple Product")
+    # partner_bus_garage_address = fields.Char(string='Bus Garage Address', compute='_compute_partner_contact', store=True, readonly=False)
+    # partner_phone = fields.Char(string='Main Phone', compute='_compute_partner_contact', store=True, readonly=False)
+    # partner_main_contact = fields.Char(string='Primary Contact', compute='_compute_partner_contact', store=True, readonly=False)
+    # partner_main_contact_phone = fields.Char(string='Primary Contact Phone', compute='_compute_partner_contact', store=True, readonly=False)
     
 
-    def _compute_partner_contact(self):
-        for ticket in self:
-            if ticket.partner_id:
-                ticket.partner_bus_garage_address = ticket.partner_id.bus_garage_address
-                ticket.partner_phone = ticket.partner_id.phone
-                ticket.partner_main_contact = ticket.partner_id.main_contact.partner_id
-                ticket.partner_main_contact_phone = ticket.partner_id.main_contact_phone
+    # def _compute_partner_contact(self):
+    #     for ticket in self:
+    #         if ticket.partner_id:
+    #             ticket.partner_bus_garage_address = ticket.partner_id.bus_garage_address
+    #             ticket.partner_phone = ticket.partner_id.phone
+    #             ticket.partner_main_contact = ticket.partner_id.main_contact.partner_id
+    #             ticket.partner_main_contact_phone = ticket.partner_id.main_contact_phone
 
-    product_type = fields.Selection(PRODUCT_TYPE, "Product Type")
+    # product_type = fields.Selection(PRODUCT_TYPE, "Product Type")
             
