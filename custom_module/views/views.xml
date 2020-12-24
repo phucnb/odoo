@@ -16,95 +16,81 @@
 							</group>
 						</group>
 					</page>
-					<!-- <page attrs="{'invisible':[('is_company','=',False)]}" string="Installation / Service">
+					<!-- <page attrs="{'invisible':[('is_company','=',False)]}" string="Installation / Service"><group><group><field name="bus_garage"/><field name="address2"/></group><group><field name="service_agreement"/><field name="service_plan_type"/><field name="fleet_inspection"/><field name="no_vehicles_serviced"/></group></group></page>-->
+					<page attrs="{'invisible':[('is_company','=',False)]}" string="Cameras / DVRs">
 						<group>
 							<group>
-								<field name="bus_garage"/>
-								<field name="address2"/>
+								<field name="camera_vendor"/>
+								<field attrs="{'invisible':[('camera_vendor','!=','Other')]}" name="camera_vendor_specify"/>
 							</group>
 							<group>
-								<field name="service_agreement"/>
-								<field name="service_plan_type"/>
-								<field name="fleet_inspection"/>
-								<field name="no_vehicles_serviced"/>
+								<field attrs="{'invisible':[('camera_vendor','=',False)]}" name="camera_number"/>
+								<field attrs="{'invisible':[('camera_vendor','=',False)]}" name="camera_number_per_bus"/>
+								<field attrs="{'invisible':[('camera_vendor','=',False)]}" name="camera_type_shield"/>
+								<field attrs="{'invisible':[('camera_vendor','=',False)]}" name="camera_type_sac"/>
+								<field attrs="{'invisible':[('camera_type_sac','=',False)]}" name="camera_type_sac_3rd_pt"/>
+								<field attrs="{'invisible':[('camera_type_sac_3rd_pt','=',False)]}" name="camera_type_sac_3rd_pt_vendor"/>
+								<field attrs="{'invisible':[('camera_type_sac_3rd_pt_vendor','!=','Other')]}" name="camera_type_sac_3rd_pt_specify"/>
 							</group>
 						</group>
-					</page> -->
-					<page string='Cameras / DVRs' attrs="{'invisible':[('is_company','=',False)]}">
-                        <group>
-                            <group>
-                                <field name="camera_vendor" />
-                                <field name="camera_vendor_specify" attrs="{'invisible':[('camera_vendor','!=','Other')]}" />
-                            </group>
-                            <group>
-                                <field name="camera_number" attrs="{'invisible':[('camera_vendor','=',False)]}" />
-                                <field name="camera_number_per_bus" attrs="{'invisible':[('camera_vendor','=',False)]}" />
-                                <field name="camera_type_shield" attrs="{'invisible':[('camera_vendor','=',False)]}" />
-                                <field name="camera_type_sac" attrs="{'invisible':[('camera_vendor','=',False)]}"  />
-                                <field name="camera_type_sac_3rd_pt" attrs="{'invisible':[('camera_type_sac','=',False)]}" />
-                                <field name="camera_type_sac_3rd_pt_vendor" attrs="{'invisible':[('camera_type_sac_3rd_pt','=',False)]}" />
-                                <field name="camera_type_sac_3rd_pt_specify" attrs="{'invisible':[('camera_type_sac_3rd_pt_vendor','!=','Other')]}"/>
-                            </group>
-                        </group>
-                        <group>
-                            <group>
-                                <field name="camera_vendor_pref" />
-                            </group>
-                            <group>
-                                <field name="camera_vendor_pref_specify" attrs="{'invisible':[('camera_vendor_pref','!=','Other')]}" />
-                            </group>
-                        </group>
-                    </page>
-					<page string='Service / Installation' attrs="{'invisible':[('is_company','=',False)]}">
-                        <group>
-                             <group>
-                             	
-                             	<field name="bus_garage_main"
-		                           domain="[('id', 'in', child_ids), ('type', '=', 'bus_address')]"
-		                           options="{'no_create_edit': True}"/>
-
-			                    <field name="bus_garage_address" attrs="{'invisible':[('is_company','=',False)]}"/>
-			                    <field name="bus_garage_city" attrs="{'invisible':[('is_company','=',False)]}"/>
-			                    <field name="bus_garage_phone" attrs="{'invisible':[('is_company','=',False)]}"/>
-                                
-                            </group>
-                            <group>
-                            	<field name="service_plan" />
-                                <field name="service_plan_type" attrs="{'invisible':[('service_plan', '=', False)]}" />
-                                <field name="service_vehicle_num" attrs="{'invisible':[('service_plan_type', '=', False)]}" />
-                                <field name="service_po_received" attrs="{'invisible':[('service_plan', '=', False)]}" />
-                            </group>
-                        </group>
-                    </page>
-                    <page string='Wireless' attrs="{'invisible':[('is_company','=',False)]}">
-                        <group>
-                            <group>
-                                <field name="wireless_check" />
-                                <field name="wireless_platform" attrs="{'invisible':[('wireless_check','=',False)]}" />
-                                <field name="touchdown_type" attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" />
-                                <field name="mss_check" attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}"  />
-                                <field name="mss_count" attrs="{'invisible':[('mss_check','=',False)]}"  />
-                                <field name="server_type" attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" />
-                            </group>
-                            <group>
-                                <field name="wireless_speed" attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" />
-                                <field name="wireless_ap_type" attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" />
-                                <field name="wireless_ap_count" attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" />
-                                <field name="wireless_vehicle_count" attrs="{'invisible':[('wireless_check','=',False)]}" />
-                                <field name="server_inst_date" attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" />
-                            </group>
-                        </group>
-                        <group>
-                            <group>
-                                <field name="tv_access" attrs="{'invisible':[('wireless_check','=',False)]}" />
-                                <field name="tv_monitor" attrs="{'invisible':[('tv_access','=',False)]}" />
-                            </group>
-                            <group>
-                                <field name="tv_id" attrs="{'invisible':[('tv_access','=',False)]}" />
-                                <field name="tv_version" attrs="{'invisible':[('tv_access','=',False)]}" />
-                            </group>
-                        </group>
-                    </page>
+						<group>
+							<group>
+								<field name="camera_vendor_pref"/>
+							</group>
+							<group>
+								<field attrs="{'invisible':[('camera_vendor_pref','!=','Other')]}" name="camera_vendor_pref_specify"/>
+							</group>
+						</group>
+					</page>
+					<page attrs="{'invisible':[('is_company','=',False)]}" string="Service / Installation">
+						<group>
+							<group>
+								<field domain="[('id', 'in', child_ids), ('type', '=', 'bus_address')]" name="bus_garage_main" options="{'no_create_edit': True}"/>
+								<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_address"/>
+								<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_city"/>
+								<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_phone"/>
+							</group>
+							<group>
+								
+								<field name="fleet_inspection" attrs="{'invisible':[('service_plan', '=', True)]}"/>
+								<field name="service_plan" attrs="{'invisible':[('fleet_inspection', '=', True)]}"/>
+								<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_plan_type"/>
+								<field attrs="{'invisible':[('service_plan_type', '=', False)]}" name="service_vehicle_num"/>
+								<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_po_received"/>
+								<field name="purchase_order_received"/>
+								
+							</group>
+						</group>
+					</page>
+					<page attrs="{'invisible':[('is_company','=',False)]}" string="Wireless">
+						<group>
+							<group>
+								<field name="wireless_check"/>
+								<field attrs="{'invisible':[('wireless_check','=',False)]}" name="wireless_platform"/>
+								<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="touchdown_type"/>
+								<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="mss_check"/>
+								<field attrs="{'invisible':[('mss_check','=',False)]}" name="mss_count"/>
+								<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="server_type"/>
+							</group>
+							<group>
+								<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="wireless_speed"/>
+								<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="wireless_ap_type"/>
+								<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="wireless_ap_count"/>
+								<field attrs="{'invisible':[('wireless_check','=',False)]}" name="wireless_vehicle_count"/>
+								<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="server_inst_date"/>
+							</group>
+						</group>
+						<group>
+							<group>
+								<field attrs="{'invisible':[('wireless_check','=',False)]}" name="tv_access"/>
+								<field attrs="{'invisible':[('tv_access','=',False)]}" name="tv_monitor"/>
+							</group>
+							<group>
+								<field attrs="{'invisible':[('tv_access','=',False)]}" name="tv_id"/>
+								<field attrs="{'invisible':[('tv_access','=',False)]}" name="tv_version"/>
+							</group>
+						</group>
+					</page>
 					<page name="hubspot_information_tab" string="HubSpot Information">
 						<notebook name="hubspot_information_notebook">
 							<page attrs="{'invisible':[('is_company','=',False)]}" string="Company Information">
@@ -683,28 +669,26 @@
 						</group>
 					</page>
 				</xpath>
-				 <field name="phone" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
-                <field name="email" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
-                <xpath expr="//label[@for='email']" position="attributes">
-                	<attribute name="invisible">1</attribute>
-                </xpath>
-                <xpath expr="//label[@for='phone']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-
+				<field name="phone" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</field>
+				<field name="email" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</field>
+				<xpath expr="//label[@for='email']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//label[@for='phone']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
 				<field name="vat" position="before">
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="first_name"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="last_name"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="job_title"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="phone"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="mobile"/>
-					
 				</field>
-				<field name="function" position="after">					
+				<field name="function" position="after">
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="role"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="_247_customer"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="np_score"/>
@@ -712,25 +696,33 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="issr"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="crr"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="fleet_size"/>
-					<field attrs="{'invisible':[('is_company','=',False)]}" name="touchdown"/>
-					<field attrs="{'invisible':[('is_company','=',False)]}" name="service_agreement"/>
+					<!-- <field attrs="{'invisible':[('is_company','=',False)]}" name="touchdown"/>-->
+					<field name="wireless_check"/>
+					<field attrs="{'invisible':[('wireless_check','=',False)]}" name="wireless_platform"/>
+					<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="touchdown_type"/>
+					<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="mss_check"/>
+					<field attrs="{'invisible':[('mss_check','=',False)]}" name="mss_count"/>
+					<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="server_type"/>
+					<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="wireless_speed"/>
+					<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="wireless_ap_type"/>
+					<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="wireless_ap_count"/>
+					<field attrs="{'invisible':[('wireless_check','=',False)]}" name="wireless_vehicle_count"/>
+					<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="server_inst_date"/>
+					<!-- <field attrs="{'invisible':[('is_company','=',False)]}" name="service_agreement"/>-->
+					<field name="service_plan"/>
+					<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_plan_type"/>
+					<field attrs="{'invisible':[('service_plan_type', '=', False)]}" name="service_vehicle_num"/>
+					<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_po_received"/>
 				</field>
-				<field name="name" position="after">					
+				<field name="name" position="after">
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="website"/>
 				</field>
 				<field name="vat" position="before">
-                    <field name="main_contact"
-                           domain="[('id', 'in', child_ids), ('type', '=', 'contact')]"
-                           options="{'no_create_edit': True}"/>
-
-                    <field name="main_contact_title" attrs="{'invisible':[('is_company','=',False)]}"/>
-                    <field name="main_contact_phone" attrs="{'invisible':[('is_company','=',False)]}"/>
-                    
-                </field>
-               <!--  <field name="category_id" position="attributes">
-                    <attribute name="attrs">{'invisible': [('is_not_tags','=',False)]}</attribute>
-                </field> -->
-
+					<field attrs="{'invisible':[('is_company','=',False)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="main_contact" options="{'no_create_edit': True}"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_title"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_phone"/>
+				</field>
+				<!--  <field name="category_id" position="attributes"><attribute name="attrs">{'invisible': [('is_not_tags','=',False)]}</attribute></field>-->
 			</field>
 		</record>
 	</data>
