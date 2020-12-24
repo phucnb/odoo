@@ -717,7 +717,7 @@
 					<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_po_received"/>
 				</field>
 				<field name="name" position="after">
-					<field attrs="{'invisible':[('is_company','=',False)]}" name="website"/>
+					<!-- <field attrs="{'invisible':[('is_company','=',False)]}" name="website"/> -->
 				</field>
 				<field name="vat" position="before">
 					<field attrs="{'invisible':[('is_company','=',False)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="main_contact" options="{'no_create_edit': True}"/>
