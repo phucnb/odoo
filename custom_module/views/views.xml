@@ -675,18 +675,33 @@
 				
 				
 				
-				
-				<field name="vat" position="before">
-					<!-- <field attrs="{'invisible':[('is_company','=',True)]}" name="first_name"/>
-					<field attrs="{'invisible':[('is_company','=',True)]}" name="last_name"/>
-					<field attrs="{'invisible':[('is_company','=',True)]}" name="job_title"/>
-					<field attrs="{'invisible':[('is_company','=',True)]}" name="phone"/>
-					<field attrs="{'invisible':[('is_company','=',True)]}" name="mobile"/>
-					<field attrs="{'invisible':[('is_company','=',True)]}" name="email"/>
-					<field attrs="{'invisible':[('is_company','=',True)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="report_to" options="{'no_create_edit': True}"/> -->
-				</field>
+				<!-- HIDE FIELDS RIGHT SIDE -->
+				<field name='phone' position='replace' />
+				<field name='mobile' position='replace' />
+				<field name='function' position='replace' />
+				<field name='website' position='replace' />
+				<field name='title' position='replace' />
+				<!-- HIDE LABELS -->
+				<xpath expr="//label[@for='phone']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+ 				<xpath expr="//label[@for='mobile']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
 
 				<!-- LEFT SIDE CONTACT CARD -->
+				<field name="is_blacklisted" position="after">
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="first_name"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="last_name"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="function"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="phone"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="mobile"/>				
+				</field>
+				<field name='vat' position='before' >
+					<field attrs="{'invisible':[('is_company','=',True)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="report_to" options="{'no_create_edit': True}"/>		
+				</field>
+				
+				<!-- RIGHT SIDE CONTACT CARD -->
 				<field name="category_id" position="before" >
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="primary_contact"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="date_of_birth"/>
@@ -731,45 +746,8 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_title"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_phone"/>
 				</field>
-				<!--  <field name="category_id" position="attributes"><attribute name="attrs">{'invisible': [('is_not_tags','=',False)]}</attribute></field>-->
 
-				<!-- HIDE FIELDS -->				
-				<field name="position" position="attributes">
-					<attribute name="invisible">1</attribute>
-				</field>
-				<field name="phone" position="attributes">
-					<attribute name="invisible">1</attribute>
-				</field>
-				<field name="mobile" position="attributes">
-					<attribute name="invisible">1</attribute>
-				</field>
-				<field name="email" position="attributes">
-					<attribute name="invisible">1</attribute>
-				</field>
-				<field name="website" position="attributes">
-					<attribute name="invisible">1</attribute>
-				</field>
-				<field name="title" position="attributes">
-					<attribute name="invisible">1</attribute>
-				</field>
-				<xpath expr="//label[@for='email']" position="attributes">
-					<attribute name="invisible">1</attribute>
-				</xpath>
-				<xpath expr="//label[@for='phone']" position="attributes">
-					<attribute name="invisible">1</attribute>
-				</xpath>
-				<xpath expr="//label[@for='position']" position="attributes">
-					<attribute name="invisible">1</attribute>
-				</xpath>
-				<xpath expr="//label[@for='mobile']" position="attributes">
-					<attribute name="invisible">1</attribute>
-				</xpath>
-				<xpath expr="//label[@for='website']" position="attributes">
-					<attribute name="invisible">1</attribute>
-				</xpath>
-				<xpath expr="//label[@for='title']" position="attributes">
-					<attribute name="invisible">1</attribute>
-				</xpath>
+
 			</field>
 		</record>
 	</data>
