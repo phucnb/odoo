@@ -682,9 +682,74 @@
 								<field name="reference"/>
 								<field name="survey_date"/>
 							</group>
-						</group>
-						
+						</group>						
 					</page>
+					<!-- END CONTACT REFERRAL TAB -->
+
+					<!-- COMPANY SCHOOL DISTRICT INFO TAB -->
+					<page attrs="{'invisible':[('is_company','=',False)]}" string="School District Info">
+						<group>
+							<group>
+								<field name="type_of_district"/>
+								<field name="school_year_start"/>
+								<field name="number_of_total_students"/>
+								<field name="student_count"/>
+								<field name="number_of_special_needs_students_transported"/>								
+							</group>
+							<group>
+								<field name="budget_planning_starts"/>
+								<field name="budget_renews"/>
+								<field name="of_students_transported" string="Number of Students Transported"/>
+								<field name="buy_boards"/>
+							</group>
+						</group>						
+					</page>
+					<!-- END COMPANY SCHOOL DISTRICT INFO TAB -->
+
+					<!-- COMPANY 3RD PARTY SOLUTIONS TAB -->
+					<page attrs="{'invisible':[('is_company','=',False)]}" string="3rd Party Solutions">
+						<group>
+							<group>
+								<field name="student_information_system"/>
+								<field name="student_information_system_other_" attrs="{'invisible':[('student_information_system_other_','!=','Other')]}" />										
+							</group>
+							<group>
+								<field name="routing"/>
+								<field name="routing_solution" attrs="{'invisible':[('routing','!=','Yes')]}" />
+								<field name="routing_solution_other_" attrs="{'invisible':[('routing_solution','!=','Other')]}" />
+							</group>
+						</group>
+
+						<group>
+							<group>
+								<field name="gps"/>
+								<field name="gps_vendor"/>
+								<field name="gps_vendor_other_"/>
+								<field name="gps_contract_expires"/>
+							</group>
+							<group>
+								<field name="is_tablets"/>
+								<field name="driver_time_and_attendance"/>
+							</group>
+						</group>		
+
+						<group>
+							<group>
+								<field name="student_tracking"/>
+								<field name="student_tracking_system"/>
+								<field name="student_tracking_system_other_"/>
+								<field name="student_tracking_contract_expires"/>
+							</group>
+							<group>
+								<field name="fleet_maintenance_system"/>
+								<field name="fleet_maintenance_system_other_"/>
+								<field name="parent_portal"/>
+								<field name="parent_portal_other_"/>
+							</group>
+						</group>		
+
+					</page>
+					<!-- END COMPANY SCHOOL DISTRICT INFO TAB -->
 				</xpath>
 
 				

@@ -86,7 +86,8 @@ STUDENT_INFO_SYSTEM = [
     ('Infinite Campus', 'Infinite Campus'),
     ('Power School', 'Power School'), ('Skyward', 'Skyward'),
     ('E-school', 'E-school'), ('School Tool', 'School Tool'),
-    ('Unkown', 'Unknown')
+    ('Unkown', 'Unknown'),
+    ('Other', 'Other')
 ]
 
 STUDENT_TRACK_PRO = [
