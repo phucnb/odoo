@@ -699,7 +699,7 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="crr"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="fleet_size"/>
 					<!-- <field attrs="{'invisible':[('is_company','=',False)]}" name="touchdown"/>-->
-					<field name="wireless_check"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="wireless_check"/>
 					<field attrs="{'invisible':[('wireless_check','=',False)]}" name="wireless_platform"/>
 					<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="touchdown_type"/>
 					<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="mss_check"/>
@@ -711,7 +711,7 @@
 					<field attrs="{'invisible':[('wireless_check','=',False)]}" name="wireless_vehicle_count"/>
 					<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="server_inst_date"/>
 					<!-- <field attrs="{'invisible':[('is_company','=',False)]}" name="service_agreement"/>-->
-					<field name="service_plan"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="service_plan"/>
 					<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_plan_type"/>
 					<field attrs="{'invisible':[('service_plan_type', '=', False)]}" name="service_vehicle_num"/>
 					<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_po_received"/>
