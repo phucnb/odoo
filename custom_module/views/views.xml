@@ -697,18 +697,20 @@
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="email"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="report_to" options="{'no_create_edit': True}"/> -->
 				</field>
-				<field name="function" position="before" >
-					<!-- <field attrs="{'invisible':[('is_company','=',True)]}" name="primary_contact"/>
+
+				<!-- LEFT SIDE CONTACT CARD -->
+				<field name="category_id" position="before" >
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="primary_contact"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="date_of_birth"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="planned_retirement_date" string="Retirement Date"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="previous_employment"/>	
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="no_longer_at_school_district_company" string="No longer at District"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="did_they_go_to_a_new_school_district_company_" string="Employed at another district"/>
-					<field attrs="{'invisible':[('is_company','=',True)]}" name="previous_camera_system" string="What System Did They use before"/> -->
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="previous_camera_system" string="What System Did They use before"/>
 				</field>
 
 				<!-- LEFT SIDE COMPANY CARD -->
-				<field name="function" position="after">
+				<field name="category_id" position="before">
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="role"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="_247_customer"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="np_score"/>
