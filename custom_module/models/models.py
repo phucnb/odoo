@@ -263,5 +263,6 @@ class ResPartnerField(models.Model):
              "Private addresses are only visible by authorized users."
      )
 
-
+     # Contact card
+     primary_contact = fields.Boolean("Primary Contact")
 
