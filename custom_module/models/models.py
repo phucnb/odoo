@@ -267,4 +267,9 @@ class ResPartnerField(models.Model):
      primary_contact = fields.Boolean("Primary Contact")
      previous_employment = fields.Char("Previous Employment")
      
+     #New field for refarral tab in contact card
+     net_promoter_score_service = fields.Integer("Net promoter score Service")
+     net_promoter_score_referral = fields.Integer("Net promoter score Referral")
+     reference = fields.Boolean("Reference")
+     survey_date = fields.Date("Survey Date")
 

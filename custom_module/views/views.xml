@@ -670,6 +670,21 @@
 							</group>
 						</group>
 					</page>
+
+					<!-- CONTACT REFERRAL TAB -->
+					<page attrs="{'invisible':[('is_company','=',True)]}" string="Referral">
+						<group>
+							<group>
+								<field name="net_promoter_score_service"/>
+								<field name="net_promoter_score_referral"/>								
+							</group>
+							<group>
+								<field name="reference"/>
+								<field name="survey_date"/>
+							</group>
+						</group>
+						
+					</page>
 				</xpath>
 
 				
