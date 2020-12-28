@@ -265,4 +265,6 @@ class ResPartnerField(models.Model):
 
      # Contact card
      primary_contact = fields.Boolean("Primary Contact")
+     previous_employment = fields.Char("Previous Employment")
+     
 
