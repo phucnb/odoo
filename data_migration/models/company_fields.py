@@ -159,13 +159,13 @@ CAMERAS = [
 
 COMPANY_TYPE = [
     ('Association', 'Association'),
-    ('Contractor', 'Contractor'),
-    ('Dealer', 'Dealer'),
-    ('Distributor', 'Distributor'),
-    ('Partner', 'Partner'),
-    ('School Bus Dealer', 'School Bus Dealer'),
-    ('School District', 'School District'),
-    ('Vendor', 'Vendor')
+    ('Contractor', 'Contractor')
+    # ('Dealer', 'Dealer'),
+    # ('Distributor', 'Distributor'),
+    # ('Partner', 'Partner'),
+    # ('School Bus Dealer', 'School Bus Dealer'),
+    # ('School District', 'School District'),
+    # ('Vendor', 'Vendor')
 ]
 
 Customer_Rating = [

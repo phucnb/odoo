@@ -496,94 +496,6 @@
 							</page>
 						</notebook>
 					</page>
-<!-- 					<page attrs="{'invisible':[('is_company','=',True)]}" string="Tradeshow(s)">
-						<group>
-							<group>
-								<field attrs="{'invisible': [('parent_id', '!=', False)]}" name="aapt_ar_" widget="many2many_tags"/>
-								<field attrs="{'invisible': [('parent_id', '!=', True)]}" name="aasbo_az_" widget="many2many_tags"/>
-								<field name="asta_al_" widget="many2many_tags"/>
-								<field name="casbo_ca_" widget="many2many_tags"/>
-								<field name="casto_ca_" widget="many2many_tags"/>
-							</group>
-							<group>
-								<field name="cgcs" widget="many2many_tags"/>
-								<field name="cptc_cn_" widget="many2many_tags"/>
-								<field name="crtc_wa_" widget="many2many_tags"/>
-								<field name="cspta_co_" widget="many2many_tags"/>
-								<field name="ctaa" widget="many2many_tags"/>
-							</group>
-						</group>
-						<group>
-							<group>
-								<field name="fpta_ctd" widget="many2many_tags"/>
-								<field name="gapt_ga_" widget="many2many_tags"/>
-								<field name="gcapt_tx_" widget="many2many_tags"/>
-								<field name="iapt_id_" widget="many2many_tags"/>
-								<field name="iapt_il_" widget="many2many_tags"/>
-							</group>
-							<group>
-								<field name="ipta_ia_" widget="many2many_tags"/>
-								<field name="kspta_ks_" widget="many2many_tags"/>
-								<field name="mapt_mi_" widget="many2many_tags"/>
-								<field name="mapt_mo_" widget="many2many_tags"/>
-								<field name="mnapt_mn_" widget="many2many_tags"/>
-							</group>
-						</group>
-						<group>
-							<group>
-								<field name="msboa_mn_" widget="many2many_tags"/>
-								<field name="napt" widget="many2many_tags"/>
-								<field name="napt_na_" widget="many2many_tags"/>
-								<field name="ncpta_nc_" widget="many2many_tags"/>
-								<field name="ncst" widget="many2many_tags"/>
-							</group>
-							<group>
-								<field name="nsba_na_" widget="many2many_tags"/>
-								<field name="nsta_mid" widget="many2many_tags"/>
-								<field name="nsta_national" widget="many2many_tags"/>
-								<field name="nsta_summer" widget="many2many_tags"/>
-								<field name="oapt_oh_" widget="many2many_tags"/>
-							</group>
-						</group>
-						<group>
-							<group>
-								<field name="oapt_ok_" widget="many2many_tags"/>
-								<field name="oasbo_on_" widget="many2many_tags"/>
-								<field name="oasbo_osba" widget="many2many_tags"/>
-								<field name="opta_or_" widget="many2many_tags"/>
-								<field name="osbma_oh_" widget="many2many_tags"/>
-							</group>
-							<group>
-								<field name="sbx" widget="many2many_tags"/>
-								<field name="scapt_sc_" widget="many2many_tags"/>
-								<field name="sesptc" widget="many2many_tags"/>
-								<field name="stai_in_" widget="many2many_tags"/>
-								<field name="stn" widget="many2many_tags"/>
-							</group>
-						</group>
-						<group>
-							<group>
-								<field name="sts_of_nj" widget="many2many_tags"/>
-								<field name="taa_az_" widget="many2many_tags"/>
-								<field name="tapt_tn_" widget="many2many_tags"/>
-								<field name="tapt_tx_" widget="many2many_tags"/>
-								<field name="transfinder" widget="many2many_tags"/>
-							</group>
-							<group>
-								<field name="tsd" widget="many2many_tags"/>
-								<field name="uapt_ut_" widget="many2many_tags"/>
-								<field name="vapt_va_" widget="many2many_tags"/>
-								<field name="wapt_wa_" widget="many2many_tags"/>
-								<field name="wpta_wy_" widget="many2many_tags"/>
-							</group>
-						</group>
-						<group>
-							<group>
-								<field name="wsba_wi_" widget="many2many_tags"/>
-								<field name="wvapt_wv_" widget="many2many_tags"/>
-							</group>
-						</group>
-					</page> -->
 					<page attrs="{'invisible':[('is_company','=',True)]}" string="Marketing">
 						<notebook name="hubspot_marketing_notebook">
 							<page attrs="{'invisible':[('is_company','=',True)]}" string="Contact Information">
@@ -835,6 +747,8 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_title"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_phone"/>
 				</field>
+                
+               
 
 
 			</field>
