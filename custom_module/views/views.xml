@@ -711,7 +711,7 @@
 						<group>
 							<group>
 								<field name="student_information_system"/>
-								<field name="student_information_system_other_" attrs="{'invisible':[('student_information_system,'!=','Other')]}" />										
+								<field name="student_information_system_other_" attrs="{'invisible':[('student_information_system','!=','Other')]}" />											
 							</group>
 							<group>
 								<field name="routing"/>
@@ -724,9 +724,9 @@
 						<group>
 							<group>
 								<field name="gps"/>
-								<field name="gps_vendor"/>
-								<field name="gps_vendor_other_"/>
-								<field name="gps_contract_expires"/>
+								<field name="gps_vendor" attrs="{'invisible':[('gps','!=','Yes')]}" />
+								<field name="gps_vendor_other_" attrs="{'invisible':['|',('gps_vendor','!=','Other'),('gps','!=','Yes')]}" />
+								<field name="gps_contract_expires" attrs="{'invisible':[('gps','!=','Yes')]}" />
 							</group>
 							<group>
 								<field name="is_tablets"/>
@@ -737,15 +737,15 @@
 						<group>
 							<group>
 								<field name="student_tracking"/>
-								<field name="student_tracking_system"/>
-								<field name="student_tracking_system_other_"/>
-								<field name="student_tracking_contract_expires"/>
+								<field name="student_tracking_system" attrs="{'invisible':[('student_tracking','!=','Yes')]}" />
+								<field name="student_tracking_system_other_" attrs="{'invisible':['|',('student_tracking_system','!=','Other'),('student_tracking','!=','Yes')]}"/>
+								<field name="student_tracking_contract_expires" attrs="{'invisible':[('student_tracking','!=','Yes')]}"/>
 							</group>
 							<group>
 								<field name="fleet_maintenance_system"/>
-								<field name="fleet_maintenance_system_other_"/>
+								<field name="fleet_maintenance_system_other_" attrs="{'invisible':[('fleet_maintenance_system','!=','Other')]}" />
 								<field name="parent_portal"/>
-								<field name="parent_portal_other_"/>
+								<field name="parent_portal_other_" attrs="{'invisible':[('parent_portal','!=','Other')]}" />
 							</group>
 						</group>		
 
