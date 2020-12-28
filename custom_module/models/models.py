@@ -159,6 +159,10 @@ class ResPartnerField(models.Model):
         string='Contact',
         domain=[('active', '=', True)]
      )  # force "active_test" domain to bypass _search() override
+
+     report_to = fields.Many2one(
+            'res.partner', string='Report To'
+     )
      
      main_contact = fields.Many2one(
             'res.partner', string='Main Contact'
