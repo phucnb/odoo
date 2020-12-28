@@ -711,12 +711,13 @@
 						<group>
 							<group>
 								<field name="student_information_system"/>
-								<field name="student_information_system_other_" attrs="{'invisible':[('student_information_system_other_','!=','Other')]}" />										
+								<field name="student_information_system_other_" attrs="{'invisible':[('student_information_system,'!=','Other')]}" />										
 							</group>
 							<group>
 								<field name="routing"/>
 								<field name="routing_solution" attrs="{'invisible':[('routing','!=','Yes')]}" />
-								<field name="routing_solution_other_" attrs="{'invisible':[('routing_solution','!=','Other')]}" />
+								<field name="routing_solution_other_" 
+									attrs="{'invisible':['|',('routing_solution','!=','Other'),('routing','!=','Yes')]}" />
 							</group>
 						</group>
 

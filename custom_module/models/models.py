@@ -273,3 +273,17 @@ class ResPartnerField(models.Model):
      reference = fields.Boolean("Reference")
      survey_date = fields.Date("Survey Date")
 
+     #New fields for school district info
+     type_of_district = fields.Char("Type of District")
+     budget_planning_starts = fields.Date("Budget Planning Starts")
+     budget_renews = fields.Date("Budget Renews")
+     buy_boards = fields.Char("Buy Boards")
+
+     #New fields for 3rd party solutions
+     is_tablets = fields.Boolean("Tablets")
+     gps_contract_expires = fields.Date("GPS Contract Expires")
+     driver_time_and_attendance = fields.Date("Driver Time and Attendance")
+     student_tracking_contract_expires = fields.Date("Student Tracking Contract Expires")
+
+
+
