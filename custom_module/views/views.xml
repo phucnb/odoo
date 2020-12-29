@@ -16,7 +16,6 @@
 							</group>
 						</group>
 					</page>
-
 					<page attrs="{'invisible':[('is_company','=',False)]}" string="Cameras / DVRs">
 						<group>
 							<group>
@@ -45,22 +44,18 @@
 					<page attrs="{'invisible':[('is_company','=',False)]}" string="Service / Installation">
 						<group>
 							<group>
-								<!-- <field domain="[('id', 'in', child_ids), ('type', '=', 'bus_address')]" name="bus_garage_main" options="{'no_create_edit': True}"/> -->
+								<!-- <field domain="[('id', 'in', child_ids), ('type', '=', 'bus_address')]" name="bus_garage_main" options="{'no_create_edit': True}"/>-->
 								<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_address"/>
 								<field attrs="{'invisible':[('is_company','=',False)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="main_contact" options="{'no_create_edit': True}"/>
-							<!-- 	<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_address"/>
-								<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_city"/>
-								<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_phone"/> -->
+								<!-- 	<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_address"/><field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_city"/><field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_phone"/>-->
 							</group>
 							<group>
-								
-								<field name="fleet_inspection" attrs="{'invisible':[('service_plan', '=', True)]}"/>
-								<field name="service_plan" attrs="{'invisible':[('fleet_inspection', '=', True)]}"/>
+								<field attrs="{'invisible':[('service_plan', '=', True)]}" name="fleet_inspection"/>
+								<field attrs="{'invisible':[('fleet_inspection', '=', True)]}" name="service_plan"/>
 								<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_plan_type"/>
 								<field attrs="{'invisible':[('service_plan_type', '=', False)]}" name="service_vehicle_num"/>
 								<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_po_received"/>
 								<field name="purchase_order_received"/>
-								
 							</group>
 						</group>
 					</page>
@@ -92,6 +87,158 @@
 								<field attrs="{'invisible':[('tv_access','=',False)]}" name="tv_version"/>
 							</group>
 						</group>
+					</page>
+					<!-- CONTACT REFERRAL TAB -->
+					<page attrs="{'invisible':[('is_company','=',True)]}" string="Referral">
+						<group>
+							<group>
+								<field name="net_promoter_score_service"/>
+								<field name="net_promoter_score_referral"/>
+							</group>
+							<group>
+								<field name="reference"/>
+								<field name="survey_date"/>
+							</group>
+						</group>
+					</page>
+					<!-- END CONTACT REFERRAL TAB -->
+					<!-- COMPANY SCHOOL DISTRICT INFO TAB -->
+					<page attrs="{'invisible':[('is_company','=',False)]}" string="School District Info">
+						<group>
+							<group>
+								<field name="type_of_district"/>
+								<field name="school_year_start"/>
+								<field name="number_of_total_students"/>
+								<field name="student_count"/>
+								<field name="number_of_special_needs_students_transported"/>
+							</group>
+							<group>
+								<field name="budget_planning_starts"/>
+								<field name="budget_renews"/>
+								<field name="of_students_transported" string="Number of Students Transported"/>
+								<field name="buy_boards"/>
+							</group>
+						</group>
+					</page>
+					<!-- END COMPANY SCHOOL DISTRICT INFO TAB -->
+					<!-- COMPANY 3RD PARTY SOLUTIONS TAB -->
+					<page attrs="{'invisible':[('is_company','=',False)]}" string="3rd Party Solutions">
+						<group>
+							<group>
+								<field name="student_information_system"/>
+								<field attrs="{'invisible':[('student_information_system','!=','Other')]}" name="student_information_system_other_"/>
+							</group>
+							<group>
+								<field name="routing"/>
+								<field attrs="{'invisible':[('routing','!=','Yes')]}" name="routing_solution"/>
+								<field attrs="{'invisible':['|',('routing_solution','!=','Other'),('routing','!=','Yes')]}" name="routing_solution_other_"/>
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="gps"/>
+								<field attrs="{'invisible':[('gps','!=','Yes')]}" name="gps_vendor"/>
+								<field attrs="{'invisible':['|',('gps_vendor','!=','Other'),('gps','!=','Yes')]}" name="gps_vendor_other_"/>
+								<field attrs="{'invisible':[('gps','!=','Yes')]}" name="gps_contract_expires"/>
+							</group>
+							<group>
+								<field name="is_tablets"/>
+								<field name="driver_time_and_attendance"/>
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="student_tracking"/>
+								<field attrs="{'invisible':[('student_tracking','!=','Yes')]}" name="student_tracking_system"/>
+								<field attrs="{'invisible':['|',('student_tracking_system','!=','Other'),('student_tracking','!=','Yes')]}" name="student_tracking_system_other_"/>
+								<field attrs="{'invisible':[('student_tracking','!=','Yes')]}" name="student_tracking_contract_expires"/>
+							</group>
+							<group>
+								<field name="fleet_maintenance_system"/>
+								<field attrs="{'invisible':[('fleet_maintenance_system','!=','Other')]}" name="fleet_maintenance_system_other_"/>
+								<field name="parent_portal"/>
+								<field attrs="{'invisible':[('parent_portal','!=','Other')]}" name="parent_portal_other_"/>
+							</group>
+						</group>
+					</page>
+					<!-- END COMPANY SCHOOL DISTRICT INFO TAB -->
+				</xpath>
+				<xpath expr="//page[last()]" position="after">
+					<page attrs="{'invisible':[('is_company','=',True)]}" string="Marketing">
+						<notebook name="hubspot_marketing_notebook">
+							<page attrs="{'invisible':[('is_company','=',True)]}" string="Contact Information">
+								<group>
+									<group>
+										<field name="life_cycle_stage"/>
+										<field name="lead_type"/>
+									</group>
+									<group>
+										<field name="date_of_birth"/>
+										<field name="reports_to"/>
+										<field name="purchasing_influence"/>
+										<field name="solution_currently_installed"/>
+									</group>
+								</group>
+								<group>
+									<group>
+										<field name="years_with_company"/>
+										<field name="no_longer_at_school_district_company"/>
+										<field attrs="{'invisible':[('no_longer_at_school_district_company','=',True)]}" name="why_not_at_school_district_company_"/>
+										<field attrs="{'invisible':[('no_longer_at_school_district_company','=',True)]}" name="did_they_go_to_a_new_school_district_company_"/>
+										<field attrs="{'invisible':[('no_longer_at_school_district_company','=',True)]}" name="what_school_district_company_did_they_go_"/>
+									</group>
+								</group>
+							</page>
+							<page attrs="{'invisible':[('is_company','=',True)]}" string="Social Media Information">
+								<group>
+									<group>
+										<field name="linkedin_bio"/>
+									</group>
+								</group>
+							</page>
+							<page attrs="{'invisible':[('is_company','=',True)]}" string="Email Marketing">
+								<group>
+									<group>
+										<field name="hs_email_optout"/>
+										<field attrs="{'invisible':[('hs_email_optout','=',True)]}" name="opted_out_of_email_security_blog_sub"/>
+										<field attrs="{'invisible':[('hs_email_optout','=',True)]}" name="opted_out_of_email_customer_Service"/>
+										<field attrs="{'invisible':[('hs_email_optout','=',True)]}" name="opted_out_of_email_marketing"/>
+									</group>
+									<group>
+										<field attrs="{'invisible':[('hs_email_optout','=',True)]}" name="opted_out_of_email_one2one"/>
+										<field attrs="{'invisible':[('hs_email_optout','=',True)]}" name="opted_out_of_email_quote_follow_up"/>
+										<field attrs="{'invisible':[('hs_email_optout','=',True)]}" name="opted_out_of_email_2247_installment"/>
+										<field attrs="{'invisible':[('hs_email_optout','=',True)]}" name="opted_out_of_email_sales_check_in"/>
+									</group>
+								</group>
+								<group>
+									<group>
+										<field name="hs_analytics_num_event_completions"/>
+										<field name="num_conversion_events"/>
+										<field name="hs_analytics_num_page_views"/>
+										<field name="num_notes"/>
+										<field name="hs_analytics_num_visits"/>
+									</group>
+									<group>
+										<field name="hs_email_bounce"/>
+										<field name="hs_email_click"/>
+										<field name="hs_email_delivered"/>
+										<field name="hs_email_open"/>
+										<field name="hs_marketable_until_renewal"/>
+									</group>
+								</group>
+								<group>
+									<group>
+										<field name="hs_email_last_click_date"/>
+										<field name="hs_email_last_email_name"/>
+									</group>
+									<group>
+										<field name="hs_email_last_open_date"/>
+										<field name="hs_email_last_send_date"/>
+									</group>
+								</group>
+							</page>
+						</notebook>
 					</page>
 					<page name="hubspot_information_tab" string="HubSpot Information">
 						<notebook name="hubspot_information_notebook">
@@ -334,12 +481,10 @@
 										<field name="of_students_total"/>
 										<field name="parent_portal"/>
 										<field name="parent_portal_other_"/>
-										<!-- <field name="number_of_buses" />-->
 									</group>
 								</group>
 								<group>
 									<group>
-										<!-- <field name="parent_portal_other_" />-->
 										<field name="preferred_camera_vendor"/>
 										<field name="preferred_camera_vendor_cloned_"/>
 										<field name="routing_solution"/>
@@ -359,7 +504,6 @@
 										<field name="student_tracking_system"/>
 									</group>
 									<group/>
-									<!-- <field name="number_of_total_students" />-->
 								</group>
 							</page>
 							<page attrs="{'invisible':[('is_company','=',False)]}" string="Dealers">
@@ -377,7 +521,6 @@
 									</group>
 								</group>
 							</page>
-						
 							<page attrs="{'invisible':[('is_company','=',True)]}" string="Web Analytics History">
 								<group>
 									<group>
@@ -496,235 +639,41 @@
 							</page>
 						</notebook>
 					</page>
-					<page attrs="{'invisible':[('is_company','=',True)]}" string="Marketing">
-						<notebook name="hubspot_marketing_notebook">
-							<page attrs="{'invisible':[('is_company','=',True)]}" string="Contact Information">
-								<group>
-									<group>
-										<field name="life_cycle_stage"/>
-										<field name="lead_type"/>
-									</group>
-									<group>
-										<field name="date_of_birth"/>
-										<field name="reports_to"/>
-										<field name="purchasing_influence"/>
-										<field name="solution_currently_installed"/>
-									</group>
-								</group>
-								<group>
-									<group>
-										<field name="years_with_company"/>
-										<field name="no_longer_at_school_district_company"/>
-										<field name="why_not_at_school_district_company_" attrs="{'invisible':[('no_longer_at_school_district_company','=',True)]}"/>
-										<field name="did_they_go_to_a_new_school_district_company_" attrs="{'invisible':[('no_longer_at_school_district_company','=',True)]}"/>
-										<field name="what_school_district_company_did_they_go_" attrs="{'invisible':[('no_longer_at_school_district_company','=',True)]}"/>
-									</group>
-								</group>
-							</page>
-							<page attrs="{'invisible':[('is_company','=',True)]}" string="Social Media Information">
-								<group>
-									<group>
-										<field name="linkedin_bio"/>
-									</group>
-								</group>
-							</page>
-							<page attrs="{'invisible':[('is_company','=',True)]}" string="Email Information">
-								<group>
-									<group>
-										<field name="opted_out_of_email_marketing"/>
-										<field name="opted_out_of_email_security_blog_sub"/>
-										<field name="opted_out_of_email_customer_Service"/>
-									</group>
-									<group>
-										<field name="opted_out_of_email_one2one"/>
-										<field name="opted_out_of_email_quote_follow_up"/>
-										<field name="opted_out_of_email_2247_installment"/>
-										<field name="opted_out_of_email_sales_check_in"/>
-									</group>
-								</group>
-							</page>
-							
-							<page attrs="{'invisible':[('is_company','=',True)]}" string="Marketing">
-								<group>
-									<group>
-										<field name="hs_email_optout"/>
-										<field name="opted_out_of_email_security_blog_sub" attrs="{'invisible':[('hs_email_optout','=',True)]}"/>
-										<field name="opted_out_of_email_customer_Service" attrs="{'invisible':[('hs_email_optout','=',True)]}"/>
-										<field name="opted_out_of_email_marketing" attrs="{'invisible':[('hs_email_optout','=',True)]}"/>
-									</group>
-									<group>
-										<field name="opted_out_of_email_one2one" attrs="{'invisible':[('hs_email_optout','=',True)]}"/>
-										<field name="opted_out_of_email_quote_follow_up" attrs="{'invisible':[('hs_email_optout','=',True)]}"/>
-										<field name="opted_out_of_email_2247_installment" attrs="{'invisible':[('hs_email_optout','=',True)]}"/>
-										<field name="opted_out_of_email_sales_check_in" attrs="{'invisible':[('hs_email_optout','=',True)]}"/>
-									</group>
-								</group>
-								<group>
-									<group>
-										<field name="hs_analytics_num_event_completions"/>
-										<field name="num_conversion_events"/>
-										<field name="hs_analytics_num_page_views"/>
-										<field name="num_notes"/>
-										<field name="hs_analytics_num_visits"/>
-									</group>
-									<group>
-										<field name="hs_email_bounce"/>
-										<field name="hs_email_click"/>
-										<field name="hs_email_delivered"/>
-										<field name="hs_email_open"/>
-										<field name="hs_marketable_until_renewal"/>
-									</group>
-								</group>
-								<group>
-									<group>
-										<field name="hs_email_last_click_date"/>
-										<field name="hs_email_last_email_name"/>
-									</group>
-									<group>
-										<field name="hs_email_last_open_date"/>
-										<field name="hs_email_last_send_date"/>
-									</group>
-								</group>
-							</page>
-						</notebook>
-
-						
-					</page>
-
-					<!-- CONTACT REFERRAL TAB -->
-					<page attrs="{'invisible':[('is_company','=',True)]}" string="Referral">
-						<group>
-							<group>
-								<field name="net_promoter_score_service"/>
-								<field name="net_promoter_score_referral"/>								
-							</group>
-							<group>
-								<field name="reference"/>
-								<field name="survey_date"/>
-							</group>
-						</group>						
-					</page>
-					<!-- END CONTACT REFERRAL TAB -->
-
-					<!-- COMPANY SCHOOL DISTRICT INFO TAB -->
-					<page attrs="{'invisible':[('is_company','=',False)]}" string="School District Info">
-						<group>
-							<group>
-								<field name="type_of_district"/>
-								<field name="school_year_start"/>
-								<field name="number_of_total_students"/>
-								<field name="student_count"/>
-								<field name="number_of_special_needs_students_transported"/>								
-							</group>
-							<group>
-								<field name="budget_planning_starts"/>
-								<field name="budget_renews"/>
-								<field name="of_students_transported" string="Number of Students Transported"/>
-								<field name="buy_boards"/>
-							</group>
-						</group>						
-					</page>
-					<!-- END COMPANY SCHOOL DISTRICT INFO TAB -->
-
-					<!-- COMPANY 3RD PARTY SOLUTIONS TAB -->
-					<page attrs="{'invisible':[('is_company','=',False)]}" string="3rd Party Solutions">
-						<group>
-							<group>
-								<field name="student_information_system"/>
-								<field name="student_information_system_other_" attrs="{'invisible':[('student_information_system','!=','Other')]}" />											
-							</group>
-							<group>
-								<field name="routing"/>
-								<field name="routing_solution" attrs="{'invisible':[('routing','!=','Yes')]}" />
-								<field name="routing_solution_other_" 
-									attrs="{'invisible':['|',('routing_solution','!=','Other'),('routing','!=','Yes')]}" />
-							</group>
-						</group>
-
-						<group>
-							<group>
-								<field name="gps"/>
-								<field name="gps_vendor" attrs="{'invisible':[('gps','!=','Yes')]}" />
-								<field name="gps_vendor_other_" attrs="{'invisible':['|',('gps_vendor','!=','Other'),('gps','!=','Yes')]}" />
-								<field name="gps_contract_expires" attrs="{'invisible':[('gps','!=','Yes')]}" />
-							</group>
-							<group>
-								<field name="is_tablets"/>
-								<field name="driver_time_and_attendance"/>
-							</group>
-						</group>		
-
-						<group>
-							<group>
-								<field name="student_tracking"/>
-								<field name="student_tracking_system" attrs="{'invisible':[('student_tracking','!=','Yes')]}" />
-								<field name="student_tracking_system_other_" attrs="{'invisible':['|',('student_tracking_system','!=','Other'),('student_tracking','!=','Yes')]}"/>
-								<field name="student_tracking_contract_expires" attrs="{'invisible':[('student_tracking','!=','Yes')]}"/>
-							</group>
-							<group>
-								<field name="fleet_maintenance_system"/>
-								<field name="fleet_maintenance_system_other_" attrs="{'invisible':[('fleet_maintenance_system','!=','Other')]}" />
-								<field name="parent_portal"/>
-								<field name="parent_portal_other_" attrs="{'invisible':[('parent_portal','!=','Other')]}" />
-							</group>
-						</group>		
-
-					</page>
-					<!-- END COMPANY SCHOOL DISTRICT INFO TAB -->
 				</xpath>
-
-				<xpath expr="//page[10]" position="after">
-					<page string="Test">
-						<group>
-							<group>
-								<field name="fleet_size"/>
-								<field name="bus_mfg"/>
-								<field name="bus_type"/>
-								<field name="special_instructions"/>
-							</group>
-						</group>
-					</page>
-				</xpath>
-				
-				
-				
 				<!-- HIDE FIELDS RIGHT SIDE -->
-				<field name='phone' position='replace' />
-				<field name='mobile' position='replace' />
-				<field name='function' position='replace' />
-				<field name='website' position='replace' />
-				<field name='title' position='replace' />
+				<field name="phone" position="replace"/>
+				<field name="mobile" position="replace"/>
+				<field name="function" position="replace"/>
+				<field name="website" position="replace"/>
+				<field name="title" position="replace"/>
 				<!-- HIDE LABELS -->
 				<xpath expr="//label[@for='phone']" position="attributes">
 					<attribute name="invisible">1</attribute>
 				</xpath>
- 				<xpath expr="//label[@for='mobile']" position="attributes">
+				<xpath expr="//label[@for='mobile']" position="attributes">
 					<attribute name="invisible">1</attribute>
 				</xpath>
-
 				<!-- LEFT SIDE CONTACT CARD -->
 				<field name="is_blacklisted" position="after">
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="first_name"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="last_name"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="function"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="phone"/>
-					<field attrs="{'invisible':[('is_company','=',True)]}" name="mobile"/>				
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="mobile"/>
 				</field>
-				<field name='vat' position='before' >
-					<field attrs="{'invisible':[('is_company','=',True)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="report_to" options="{'no_create_edit': True}"/>		
+				<field name="vat" position="before">
+					<field attrs="{'invisible':[('is_company','=',True)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="report_to" options="{'no_create_edit': True}"/>
 				</field>
-				
 				<!-- RIGHT SIDE CONTACT CARD -->
-				<field name="category_id" position="before" >
+				<field name="category_id" position="before">
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="primary_contact"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="date_of_birth"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="planned_retirement_date" string="Retirement Date"/>
-					<field attrs="{'invisible':[('is_company','=',True)]}" name="previous_employment"/>	
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="previous_employment"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="no_longer_at_school_district_company" string="No longer at District"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="did_they_go_to_a_new_school_district_company_" string="Employed at another district"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="previous_camera_system" string="What System Did They use before"/>
 				</field>
-
 				<!-- RIGHT SIDE COMPANY CARD -->
 				<field name="category_id" position="before">
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="role"/>
@@ -752,17 +701,12 @@
 					<field attrs="{'invisible':[('service_plan_type', '=', False)]}" name="service_vehicle_num"/>
 					<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_po_received"/>
 				</field>
-
 				<!-- LEFT SIDE COMPANY CARD -->
 				<field name="vat" position="before">
 					<field attrs="{'invisible':[('is_company','=',False)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="main_contact" options="{'no_create_edit': True}"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_title"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_phone"/>
 				</field>
-                
-               
-
-
 			</field>
 		</record>
 	</data>
