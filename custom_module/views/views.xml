@@ -343,7 +343,7 @@
 										<field name="description"/>
 										<field name="is_public"/>
 										<field name="nadp"/>
-										<field name="num_open_deals"/>
+										<field name="hs_num_open_deals"/>
 									</group>
 								</group>
 								<group>
