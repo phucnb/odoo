@@ -102,11 +102,21 @@ class InheritTicket(models.Model):
     attachment_done = fields.Boolean("Attachments Fetched")
 
 
-class LogHandling(models.Model):
-    _name = 'log.handling'
+class LogsEngagements(models.Model):
+    _name = 'log.engagements'
 
     record_id = fields.Char('Hubspot Id')
     odoo_record_name = fields.Char('Odoo Record Name')
+    description = fields.Char('Description')
+    skip = fields.Boolean('Record Skip?')
+    model = fields.Char('Odoo Model')
+
+
+class LogsAttachments(models.Model):
+    _name = 'log.attachments'
+
+    record_id = fields.Char('Hubspot Id')
+    attachment_name = fields.Char('Attachment Name')
     description = fields.Char('Description')
     skip = fields.Boolean('Record Skip?')
     model = fields.Char('Odoo Model')

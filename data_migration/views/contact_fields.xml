@@ -18,6 +18,8 @@
                             <group>
                                 <field name="life_cycle_stage" />
                                 <field name="lead_type"/>
+                                <field name="n247_dvr_total"/>
+                                
                             </group>
                             <group>
                                 <field name="date_of_birth" />

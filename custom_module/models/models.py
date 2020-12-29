@@ -151,12 +151,18 @@ class ResPartnerField(models.Model):
      stop_arm_third_party = fields.Selection(STOP_ARM_THIRD_PARTY, 'Stop Arm Third Party')
      district_type = fields.Selection(DISTRICT_TYPE, 'District Type')
      no_bell_times = fields.Selection(NO_BELL_TIMES, '# Bell Times')
+     purchase_order_received = fields.Date("Purchase Order Received")
+
 
      child_ids = fields.One2many(
         'res.partner', 'parent_id',
         string='Contact',
         domain=[('active', '=', True)]
      )  # force "active_test" domain to bypass _search() override
+
+     report_to = fields.Many2one(
+            'res.partner', string='Report To'
+     )
      
      main_contact = fields.Many2one(
             'res.partner', string='Main Contact'
@@ -178,11 +184,13 @@ class ResPartnerField(models.Model):
             'res.partner', string='Bus Garage Contact'
      )
         
-     bus_garage_address = fields.Char(
-            string='Address',
-            related='bus_garage_main.street', related_sudo=True, compute_sudo=True,
-            readonly=True, store=True, index=True
-     )
+     # bus_garage_address = fields.Char(
+     #        string='Address',
+     #        related='bus_garage_main.street', related_sudo=True, compute_sudo=True,
+     #        readonly=True, store=True, index=True
+     # )
+     
+     bus_garage_address = fields.Char("Bus Garage Address")
      
      bus_garage_city = fields.Char(
             string='City',
@@ -254,6 +262,29 @@ class ResPartnerField(models.Model):
         help="Invoice & Delivery addresses are used in sales orders. "
              "Private addresses are only visible by authorized users."
      )
+
+
+     # Contact card
+     primary_contact = fields.Boolean("Primary Contact")
+     previous_employment = fields.Char("Previous Employment")
+     
+     #New field for refarral tab in contact card
+     net_promoter_score_service = fields.Integer("Net promoter score Service")
+     net_promoter_score_referral = fields.Integer("Net promoter score Referral")
+     reference = fields.Boolean("Reference")
+     survey_date = fields.Date("Survey Date")
+
+     #New fields for school district info
+     type_of_district = fields.Char("Type of District")
+     budget_planning_starts = fields.Date("Budget Planning Starts")
+     budget_renews = fields.Date("Budget Renews")
+     buy_boards = fields.Char("Buy Boards")
+
+     #New fields for 3rd party solutions
+     is_tablets = fields.Boolean("Tablets")
+     gps_contract_expires = fields.Date("GPS Contract Expires")
+     driver_time_and_attendance = fields.Date("Driver Time and Attendance")
+     student_tracking_contract_expires = fields.Date("Student Tracking Contract Expires")
 
 
 
