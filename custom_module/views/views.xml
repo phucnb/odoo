@@ -54,7 +54,6 @@
 								<field attrs="{'invisible':[('fleet_inspection', '=', True)]}" name="service_plan"/>
 								<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_plan_type"/>
 								<field attrs="{'invisible':[('service_plan_type', '=', False)]}" name="service_vehicle_num"/>
-								<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_po_received"/>
 								<field name="purchase_order_received"/>
 							</group>
 						</group>
@@ -70,10 +69,11 @@
 								<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="server_type"/>
 							</group>
 							<group>
+								<field attrs="{'invisible':[('wireless_check','=',False)]}" name="wireless_vehicle_count"/>
 								<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="wireless_speed"/>
 								<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="wireless_ap_type"/>
 								<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="wireless_ap_count"/>
-								<field attrs="{'invisible':[('wireless_check','=',False)]}" name="wireless_vehicle_count"/>
+								
 								<field attrs="{'invisible':[('wireless_platform','!=','TOUCHDOWN')]}" name="server_inst_date"/>
 							</group>
 						</group>
@@ -183,9 +183,9 @@
 									<group>
 										<field name="years_with_company"/>
 										<field name="no_longer_at_school_district_company"/>
-										<field attrs="{'invisible':[('no_longer_at_school_district_company','=',True)]}" name="why_not_at_school_district_company_"/>
-										<field attrs="{'invisible':[('no_longer_at_school_district_company','=',True)]}" name="did_they_go_to_a_new_school_district_company_"/>
-										<field attrs="{'invisible':[('no_longer_at_school_district_company','=',True)]}" name="what_school_district_company_did_they_go_"/>
+										<field attrs="{'invisible':[('no_longer_at_school_district_company','=',False)]}" name="why_not_at_school_district_company_"/>
+										<field attrs="{'invisible':[('no_longer_at_school_district_company','=',False)]}" name="did_they_go_to_a_new_school_district_company_"/>
+										<field attrs="{'invisible':[('did_they_go_to_a_new_school_district_company_','=',False)]}" name="what_school_district_company_did_they_go_"/>
 									</group>
 								</group>
 							</page>
@@ -343,7 +343,7 @@
 										<field name="description"/>
 										<field name="is_public"/>
 										<field name="nadp"/>
-										<field name="hs_num_open_deals"/>
+										<field name="num_open_deals"/>
 									</group>
 								</group>
 								<group>
@@ -699,7 +699,7 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="service_plan"/>
 					<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_plan_type"/>
 					<field attrs="{'invisible':[('service_plan_type', '=', False)]}" name="service_vehicle_num"/>
-					<field attrs="{'invisible':[('service_plan', '=', False)]}" name="service_po_received"/>
+					<field attrs="{'invisible':[('service_plan', '=', False)]}" name="purchase_order_received"/>
 				</field>
 				<!-- LEFT SIDE COMPANY CARD -->
 				<field name="vat" position="before">
