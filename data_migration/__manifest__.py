@@ -25,8 +25,8 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/contact_fields.xml',
-        'views/company_fields.xml',
+        # 'views/contact_fields.xml',
+        # 'views/company_fields.xml',
         'views/deals.xml',
         'views/ticket_fields.xml'
     ],

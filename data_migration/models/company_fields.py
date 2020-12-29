@@ -86,7 +86,8 @@ STUDENT_INFO_SYSTEM = [
     ('Infinite Campus', 'Infinite Campus'),
     ('Power School', 'Power School'), ('Skyward', 'Skyward'),
     ('E-school', 'E-school'), ('School Tool', 'School Tool'),
-    ('Unkown', 'Unknown')
+    ('Unkown', 'Unknown'),
+    ('Other', 'Other')
 ]
 
 STUDENT_TRACK_PRO = [
@@ -158,13 +159,13 @@ CAMERAS = [
 
 COMPANY_TYPE = [
     ('Association', 'Association'),
-    ('Contractor', 'Contractor'),
-    ('Dealer', 'Dealer'),
-    ('Distributor', 'Distributor'),
-    ('Partner', 'Partner'),
-    ('School Bus Dealer', 'School Bus Dealer'),
-    ('School District', 'School District'),
-    ('Vendor', 'Vendor')
+    ('Contractor', 'Contractor')
+    # ('Dealer', 'Dealer'),
+    # ('Distributor', 'Distributor'),
+    # ('Partner', 'Partner'),
+    # ('School Bus Dealer', 'School Bus Dealer'),
+    # ('School District', 'School District'),
+    # ('Vendor', 'Vendor')
 ]
 
 Customer_Rating = [
@@ -282,7 +283,8 @@ class CustomCompany(models.Model):
     lot_2_address = fields.Text("Lot2 Address")
     bus_garage = fields.Char("Bus Garage")
     erie_1_boces = fields.Boolean("ERIE 1 BOCES")
-    fleet_size = fields.Selection(FLEET_SIZE, "Fleet Size")
+    # fleet_size = fields.Selection(FLEET_SIZE, "Fleet Size")
+    fleet_size = fields.Integer("Fleet Size")
     of_buses = fields.Integer("# of buses")
     contracted_services = fields.Boolean("Contract Services")
     contracted_with = fields.Char("Contract With")
