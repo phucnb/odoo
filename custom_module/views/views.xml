@@ -673,6 +673,18 @@
 					<!-- END COMPANY SCHOOL DISTRICT INFO TAB -->
 				</xpath>
 
+				<xpath expr="//page[10]" position="after">
+					<page string="Test">
+						<group>
+							<group>
+								<field name="fleet_size"/>
+								<field name="bus_mfg"/>
+								<field name="bus_type"/>
+								<field name="special_instructions"/>
+							</group>
+						</group>
+					</page>
+				</xpath>
 				
 				
 				
