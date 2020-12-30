@@ -220,42 +220,233 @@
 		<record id="selection_main_system_related_networkdomain" model="selection.main">
 			<field name="name">Network Domain</field>
 		</record>
-				<record id="selection_issue_dvr_1" model="selection.issue">
-			<field name="name">test</field>
+		<record id="selection_issue_nopowerignition" model="selection.issue">
+			<field name="name">No Power / Ignition</field>
+		</record>
+		<record id="selection_issue_blinkingignition" model="selection.issue">
+			<field name="name">Blinking Ignition</field>
+		</record>
+		<record id="selection_issue_norecordmode" model="selection.issue">
+			<field name="name">No Record Mode</field>
+		</record>
+		<record id="selection_issue_videolosslight" model="selection.issue">
+			<field name="name">Video Loss Light</field>
+		</record>
+		<record id="selection_issue_noemrlights" model="selection.issue">
+			<field name="name">No EMR Lights</field>
+		</record>
+		<record id="selection_issue_poppingfuses" model="selection.issue">
+			<field name="name">Popping Fuses</field>
+		</record>
+		<record id="selection_issue_transferissue" model="selection.issue">
+			<field name="name">Transfer Issue</field>
+		</record>
+		<record id="selection_issue_firmwareoutdated" model="selection.issue">
+			<field name="name">Firmware Outdated</field>
+		</record>
+		<record id="selection_issue_wirelessupload" model="selection.issue">
+			<field name="name">Wireless Upload</field>
+		</record>
+		<record id="selection_issue_novideo" model="selection.issue">
+			<field name="name">No Video</field>
+		</record>
+		<record id="selection_issue_distortedvideo" model="selection.issue">
+			<field name="name">Distorted Video</field>
+		</record>
+		<record id="selection_issue_pooraudio" model="selection.issue">
+			<field name="name">Poor Audio</field>
+		</record>
+		<record id="selection_issue_frameskipping" model="selection.issue">
+			<field name="name">Frame Skipping</field>
+		</record>
+		<record id="selection_issue_intermittentouttage" model="selection.issue">
+			<field name="name">Intermittent Outtage</field>
+		</record>
+		<record id="selection_issue_irissue" model="selection.issue">
+			<field name="name">IR Issue</field>
+		</record>
+		<record id="selection_issue_ssidconfig" model="selection.issue">
+			<field name="name">SSID Config</field>
+		</record>
+		<record id="selection_issue_bentbrokenantenna" model="selection.issue">
+			<field name="name">Bent / Broken Antenna</field>
+		</record>
+		<record id="selection_issue_disconnectedcable" model="selection.issue">
+			<field name="name">Disconnected Cable</field>
+		</record>
+		<record id="selection_issue_nopower" model="selection.issue">
+			<field name="name">No Power</field>
+		</record>
+		<record id="selection_issue_ssidconfig" model="selection.issue">
+			<field name="name">SSID Config</field>
+		</record>
+		<record id="selection_issue_bentbrokenantenna" model="selection.issue">
+			<field name="name">Bent / Broken Antenna</field>
+		</record>
+		<record id="selection_issue_disconnectedcable" model="selection.issue">
+			<field name="name">Disconnected Cable</field>
+		</record>
+		<record id="selection_issue_nopower" model="selection.issue">
+			<field name="name">No Power</field>
+		</record>
+		<record id="selection_issue_switchinjectorissue" model="selection.issue">
+			<field name="name">Switch / Injector Issue</field>
+		</record>
+		<record id="selection_issue_catcableissue" model="selection.issue">
+			<field name="name">Cat Cable Issue</field>
+		</record>
+		<record id="selection_issue_missingvideo" model="selection.issue">
+			<field name="name">Missing Video</field>
+		</record>
+		<record id="selection_issue_transferissue" model="selection.issue">
+			<field name="name">Transfer Issue</field>
+		</record>
+		<record id="selection_issue_playbackissue" model="selection.issue">
+			<field name="name">Playback Issue</field>
+		</record>
+		<record id="selection_issue_encrypted" model="selection.issue">
+			<field name="name">Encrypted</field>
+		</record>
+		<record id="selection_issue_videoplayback" model="selection.issue">
+			<field name="name">Video Playback</field>
+		</record>
+		<record id="selection_issue_createclips" model="selection.issue">
+			<field name="name">Create Clips</field>
+		</record>
+		<record id="selection_issue_generaluse" model="selection.issue">
+			<field name="name">General Use</field>
+		</record>
+		<record id="selection_issue_checkin" model="selection.issue">
+			<field name="name">Check-In</field>
+		</record>
+		<record id="selection_issue_videorequest" model="selection.issue">
+			<field name="name">Video Request</field>
+		</record>
+		<record id="selection_issue_videoreview" model="selection.issue">
+			<field name="name">Video Review</field>
+		</record>
+		<record id="selection_issue_email" model="selection.issue">
+			<field name="name">E-Mail</field>
+		</record>
+		<record id="selection_issue_cantcreatevideo" model="selection.issue">
+			<field name="name">Can't Create Video</field>
+		</record>
+		<record id="selection_issue_cantcutclips" model="selection.issue">
+			<field name="name">Can't Cut Clips</field>
+		</record>
+		<record id="selection_issue_dvrviewerissue" model="selection.issue">
+			<field name="name">DVR Viewer Issue</field>
+		</record>
+		<record id="selection_resolution_rmadvr" model="selection.resolution">
+			<field name="name">RMA DVR</field>
+		</record>
+		<record id="selection_resolution_rmaemr" model="selection.resolution">
+			<field name="name">RMA EMR</field>
+		</record>
+		<record id="selection_resolution_fusechange" model="selection.resolution">
+			<field name="name">Fuse Change</field>
+		</record>
+		<record id="selection_resolution_rmapowercable" model="selection.resolution">
+			<field name="name">RMA Power Cable</field>
+		</record>
+		<record id="selection_resolution_updatefirmware" model="selection.resolution">
+			<field name="name">Update Firmware</field>
+		</record>
+		<record id="selection_resolution_modifydvrsettings" model="selection.resolution">
+			<field name="name">Modify DVR Settings</field>
+		</record>
+		<record id="selection_resolution_hostdeploydvr" model="selection.resolution">
+			<field name="name">Host Deploy DVR</field>
+		</record>
+		<record id="selection_resolution_scheduleservicevisit" model="selection.resolution">
+			<field name="name">Schedule Service Visit</field>
+		</record>
+		<record id="selection_resolution_changedvrport" model="selection.resolution">
+			<field name="name">Change DVR Port</field>
+		</record>
+		<record id="selection_resolution_rmacamera" model="selection.resolution">
+			<field name="name">RMA Camera</field>
+		</record>
+		<record id="selection_resolution_rmacable" model="selection.resolution">
+			<field name="name">RMA Cable</field>
+		</record>
+		<record id="selection_resolution_rmabridge" model="selection.resolution">
+			<field name="name">RMA Bridge</field>
+		</record>
+		<record id="selection_resolution_servicevisitscheduled" model="selection.resolution">
+			<field name="name">Service Visit Scheduled</field>
+		</record>
+		<record id="selection_resolution_rmaap" model="selection.resolution">
+			<field name="name">RMA AP</field>
+		</record>
+		<record id="selection_resolution_rmaswitch" model="selection.resolution">
+			<field name="name">RMA Switch</field>
+		</record>
+		<record id="selection_resolution_servicevisitscheduled" model="selection.resolution">
+			<field name="name">Service Visit Scheduled</field>
+		</record>
+		<record id="selection_resolution_rmastorage" model="selection.resolution">
+			<field name="name">RMA Storage</field>
+		</record>
+		<record id="selection_resolution_formatstorage" model="selection.resolution">
+			<field name="name">Format Storage</field>
+		</record>
+		<record id="selection_resolution_reinstalldvrviewer" model="selection.resolution">
+			<field name="name">Reinstall DVRViewer</field>
+		</record>
+		<record id="selection_resolution_updatedvrviewer" model="selection.resolution">
+			<field name="name">Update DVRViewer</field>
+		</record>
+		<record id="selection_resolution_provideinstruction" model="selection.resolution">
+			<field name="name">Provide Instruction</field>
+		</record>
+		<record id="selection_resolution_updatetdsoftware" model="selection.resolution">
+			<field name="name">Update TD Software</field>
+		</record>
+		<record id="selection_resolution_restarttdapplications" model="selection.resolution">
+			<field name="name">Restart TD Applications</field>
+		</record>
+		<record id="selection_resolution_configuresettings" model="selection.resolution">
+			<field name="name">Configure Settings</field>
+		</record>
+		<record id="selection_resolution_addavexclusions" model="selection.resolution">
+			<field name="name">Add AV Exclusions</field>
+		</record>
+		<record id="selection_resolution_trainingscheduled" model="selection.resolution">
+			<field name="name">Training Scheduled</field>
 		</record>
 		<!-- Selection Parent -->
 		<record id="selection_type_dvr" model="selection.type">
 			<field name="name">DVR</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_main_dvr_1'),ref('custom_module.selection_main_dvr_2'),ref('custom_module.selection_main_dvr_3'),ref('custom_module.selection_main_dvr_4'),ref('custom_module.selection_main_dvr_5'),ref('custom_module.selection_main_dvr_6'),ref('custom_module.selection_main_dvr_7'),ref('custom_module.selection_main_dvr_8'),ref('custom_module.selection_main_dvr_9'),ref('custom_module.selection_issue_dvr_1')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_dvr_1'),ref('custom_module.selection_main_dvr_2'),ref('custom_module.selection_main_dvr_3'),ref('custom_module.selection_main_dvr_4'),ref('custom_module.selection_main_dvr_5'),ref('custom_module.selection_main_dvr_6'),ref('custom_module.selection_main_dvr_7'),ref('custom_module.selection_main_dvr_8'),ref('custom_module.selection_main_dvr_9'),ref('custom_module.selection_issue_nopowerignition'), ref('custom_module.selection_issue_blinkingignition'), ref('custom_module.selection_issue_norecordmode'), ref('custom_module.selection_issue_videolosslight'), ref('custom_module.selection_issue_noemrlights'), ref('custom_module.selection_issue_poppingfuses'), ref('custom_module.selection_issue_transferissue'), ref('custom_module.selection_issue_firmwareoutdated'), ref('custom_module.selection_issue_wirelessupload'),ref('custom_module.selection_resolution_rmadvr'), ref('custom_module.selection_resolution_rmaemr'), ref('custom_module.selection_resolution_fusechange'), ref('custom_module.selection_resolution_rmapowercable'), ref('custom_module.selection_resolution_updatefirmware'), ref('custom_module.selection_resolution_modifydvrsettings'), ref('custom_module.selection_resolution_hostdeploydvr'), ref('custom_module.selection_resolution_scheduleservicevisit')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_camera" model="selection.type">
 			<field name="name">CAMERA</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_main_camera_hdq21'),          ref('custom_module.selection_main_camera_hdq29'),          ref('custom_module.selection_main_camera_hdq36'),          ref('custom_module.selection_main_camera_hdq36sc'),          ref('custom_module.selection_main_camera_hdq60'),          ref('custom_module.selection_main_camera_hdqsac16'),          ref('custom_module.selection_main_camera_hdqdualsac1643'),          ref('custom_module.selection_main_camera_ahd21'),          ref('custom_module.selection_main_camera_ahd28cshieldcam'),          ref('custom_module.selection_main_camera_ahdsac12'),          ref('custom_module.selection_main_camera_ahddualsac1243'),          ref('custom_module.selection_main_camera_fhd21'),          ref('custom_module.selection_main_camera_fhdov360s'),          ref('custom_module.selection_main_camera_fhdov360a'),          ref('custom_module.selection_main_camera_fhd21shield'),          ref('custom_module.selection_main_camera_fhdsac12'),          ref('custom_module.selection_main_camera_fhddualsac1228')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_camera_hdq21'),          ref('custom_module.selection_main_camera_hdq29'),          ref('custom_module.selection_main_camera_hdq36'),          ref('custom_module.selection_main_camera_hdq36sc'),          ref('custom_module.selection_main_camera_hdq60'),          ref('custom_module.selection_main_camera_hdqsac16'),          ref('custom_module.selection_main_camera_hdqdualsac1643'),          ref('custom_module.selection_main_camera_ahd21'),          ref('custom_module.selection_main_camera_ahd28cshieldcam'),          ref('custom_module.selection_main_camera_ahdsac12'),          ref('custom_module.selection_main_camera_ahddualsac1243'),          ref('custom_module.selection_main_camera_fhd21'),          ref('custom_module.selection_main_camera_fhdov360s'),          ref('custom_module.selection_main_camera_fhdov360a'),          ref('custom_module.selection_main_camera_fhd21shield'),          ref('custom_module.selection_main_camera_fhdsac12'),          ref('custom_module.selection_main_camera_fhddualsac1228'),ref('custom_module.selection_issue_novideo'), ref('custom_module.selection_issue_distortedvideo'), ref('custom_module.selection_issue_pooraudio'), ref('custom_module.selection_issue_frameskipping'), ref('custom_module.selection_issue_intermittentouttage'), ref('custom_module.selection_issue_irissue'),ref('custom_module.selection_resolution_changedvrport'), ref('custom_module.selection_resolution_rmacamera'), ref('custom_module.selection_resolution_rmacable')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_bridge" model="selection.type">
 			<field name="name">Bridge</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_main_bridge_mikrotek24ghz'), ref('custom_module.selection_main_bridge_ubiquiti24ghz'), ref('custom_module.selection_main_bridge_ubiquiti5ghz')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_bridge_mikrotek24ghz'), ref('custom_module.selection_main_bridge_ubiquiti24ghz'), ref('custom_module.selection_main_bridge_ubiquiti5ghz'),ref('custom_module.selection_issue_ssidconfig'), ref('custom_module.selection_issue_bentbrokenantenna'), ref('custom_module.selection_issue_disconnectedcable'), ref('custom_module.selection_issue_nopower'),ref('custom_module.selection_resolution_rmabridge'), ref('custom_module.selection_resolution_servicevisitscheduled')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_access_point" model="selection.type">
 			<field name="name">Access Point</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_main_access_point_mikrotek24ghz'), ref('custom_module.selection_main_access_point_ubiquiti24ghzomni'), ref('custom_module.selection_main_access_point_ubiquiti5ghzomni'), ref('custom_module.selection_main_access_point_ubiquitinanobeam')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_access_point_mikrotek24ghz'), ref('custom_module.selection_main_access_point_ubiquiti24ghzomni'), ref('custom_module.selection_main_access_point_ubiquiti5ghzomni'), ref('custom_module.selection_main_access_point_ubiquitinanobeam'),ref('custom_module.selection_issue_ssidconfig'), ref('custom_module.selection_issue_bentbrokenantenna'), ref('custom_module.selection_issue_disconnectedcable'), ref('custom_module.selection_issue_nopower'), ref('custom_module.selection_issue_switchinjectorissue'), ref('custom_module.selection_issue_catcableissue'),ref('custom_module.selection_resolution_rmaap'), ref('custom_module.selection_resolution_rmaswitch'), ref('custom_module.selection_resolution_servicevisitscheduled')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_storage" model="selection.type">
 			<field name="name">Storage</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_main_storage_infinity'), ref('custom_module.selection_main_storage_dhd2'), ref('custom_module.selection_main_storage_dhd'), ref('custom_module.selection_main_storage_ssd'), ref('custom_module.selection_main_storage_hdd'), ref('custom_module.selection_main_storage_sdcard')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_storage_infinity'), ref('custom_module.selection_main_storage_dhd2'), ref('custom_module.selection_main_storage_dhd'), ref('custom_module.selection_main_storage_ssd'), ref('custom_module.selection_main_storage_hdd'), ref('custom_module.selection_main_storage_sdcard'),ref('custom_module.selection_issue_missingvideo'), ref('custom_module.selection_issue_transferissue'), ref('custom_module.selection_issue_playbackissue'), ref('custom_module.selection_issue_encrypted'),ref('custom_module.selection_resolution_rmastorage'), ref('custom_module.selection_resolution_formatstorage')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_dvr_viewer" model="selection.type">
 			<field name="name">DVR Viewer</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_main_dvr_viewer_v19522win10'), ref('custom_module.selection_main_dvr_viewer_v171215win7'), ref('custom_module.selection_main_dvr_viewer_outdatedversion'), ref('custom_module.selection_main_wireless_touchdown')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_dvr_viewer_v19522win10'), ref('custom_module.selection_main_dvr_viewer_v171215win7'), ref('custom_module.selection_main_dvr_viewer_outdatedversion'), ref('custom_module.selection_main_wireless_touchdown'),ref('custom_module.selection_issue_videoplayback'), ref('custom_module.selection_issue_createclips'), ref('custom_module.selection_issue_generaluse'),ref('custom_module.selection_resolution_reinstalldvrviewer'), ref('custom_module.selection_resolution_updatedvrviewer'), ref('custom_module.selection_resolution_provideinstruction')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_wireless" model="selection.type">
 			<field name="name">Wireless</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_main_wireless_v3739'), ref('custom_module.selection_main_wireless_v3738'), ref('custom_module.selection_main_wireless_v3734'), ref('custom_module.selection_main_wireless_laptopserver'), ref('custom_module.selection_main_wireless_rackserver'), ref('custom_module.selection_main_wireless_hpproliantserver'), ref('custom_module.selection_main_wireless_virtualserver'), ref('custom_module.selection_main_wireless_s247server'), ref('custom_module.selection_main_wireless_windows10'), ref('custom_module.selection_main_wireless_windowsserver2019'), ref('custom_module.selection_main_wireless_windowsserver2016'), ref('custom_module.selection_main_wireless_windowsserver2012r2'), ref('custom_module.selection_main_wireless_windows7'), ref('custom_module.selection_main_wireless_networkdomain'), ref('custom_module.selection_main_wireless_windowsdefender'), ref('custom_module.selection_main_wireless_3rdpartyantivirus')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_wireless_v3739'), ref('custom_module.selection_main_wireless_v3738'), ref('custom_module.selection_main_wireless_v3734'), ref('custom_module.selection_main_wireless_laptopserver'), ref('custom_module.selection_main_wireless_rackserver'), ref('custom_module.selection_main_wireless_hpproliantserver'), ref('custom_module.selection_main_wireless_virtualserver'), ref('custom_module.selection_main_wireless_s247server'), ref('custom_module.selection_main_wireless_windows10'), ref('custom_module.selection_main_wireless_windowsserver2019'), ref('custom_module.selection_main_wireless_windowsserver2016'), ref('custom_module.selection_main_wireless_windowsserver2012r2'), ref('custom_module.selection_main_wireless_windows7'), ref('custom_module.selection_main_wireless_networkdomain'), ref('custom_module.selection_main_wireless_windowsdefender'), ref('custom_module.selection_main_wireless_3rdpartyantivirus'),ref('custom_module.selection_issue_checkin'), ref('custom_module.selection_issue_videorequest'), ref('custom_module.selection_issue_videoreview'), ref('custom_module.selection_issue_email'),ref('custom_module.selection_resolution_updatetdsoftware'), ref('custom_module.selection_resolution_restarttdapplications'), ref('custom_module.selection_resolution_configuresettings'), ref('custom_module.selection_resolution_addavexclusions')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_system_related" model="selection.type">
 			<field name="name">User's System Related</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_main_system_related_laptop'), ref('custom_module.selection_main_system_related_pc'), ref('custom_module.selection_main_system_related_mac'), ref('custom_module.selection_main_system_related_allinone'), ref('custom_module.selection_main_system_related_other'), ref('custom_module.selection_main_system_related_windows10'), ref('custom_module.selection_main_system_related_windows81'), ref('custom_module.selection_main_system_related_windows8'), ref('custom_module.selection_main_system_related_windows7'), ref('custom_module.selection_main_system_related_windowsxp'), ref('custom_module.selection_main_system_related_dell'), ref('custom_module.selection_main_system_related_hp'), ref('custom_module.selection_main_system_related_lenovo'), ref('custom_module.selection_main_system_related_networkdomain')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_system_related_laptop'), ref('custom_module.selection_main_system_related_pc'), ref('custom_module.selection_main_system_related_mac'), ref('custom_module.selection_main_system_related_allinone'), ref('custom_module.selection_main_system_related_other'), ref('custom_module.selection_main_system_related_windows10'), ref('custom_module.selection_main_system_related_windows81'), ref('custom_module.selection_main_system_related_windows8'), ref('custom_module.selection_main_system_related_windows7'), ref('custom_module.selection_main_system_related_windowsxp'), ref('custom_module.selection_main_system_related_dell'), ref('custom_module.selection_main_system_related_hp'), ref('custom_module.selection_main_system_related_lenovo'), ref('custom_module.selection_main_system_related_networkdomain'),ref('custom_module.selection_issue_cantcreatevideo'), ref('custom_module.selection_issue_cantcutclips'), ref('custom_module.selection_issue_dvrviewerissue'),ref('custom_module.selection_resolution_trainingscheduled')])]" name="child_ids"/>
 		</record>
-		
 	</data>
 </odoo>

@@ -19,6 +19,12 @@
                     <field name="product_main"
                            domain="[('parent_id', '=', product_type2)]"
                            options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                    <field name="product_issue"
+                           domain="[('parent_id', '=', product_type2)]"
+                           options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                    <field name="product_resolution"
+                           domain="[('parent_id', '=', product_type2)]"
+                           options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
 
                     </group>
                 </field>
