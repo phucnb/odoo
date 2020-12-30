@@ -1,5 +1,7 @@
 from odoo import fields, models
 
+#Main
+
 
 class SelectionChild(models.Model):
     _name = 'selection.main'
@@ -7,7 +9,11 @@ class SelectionChild(models.Model):
 
     name = fields.Char(string='Name')
 
+class SelectionChildInherit(models.Model):
+    _inherit = 'selection.main'
 
+    parent_id = fields.Many2one('selection.type', string='Parent')
+    
 class SelectionParent(models.Model):
     _name = 'selection.type'
     _description = 'Module help manager selection A'
@@ -15,25 +21,7 @@ class SelectionParent(models.Model):
     name = fields.Char(string='Name')
     child_ids = fields.One2many('selection.main', 'parent_id', string='Child IDs')
 
-class SelectionParent3(models.Model):
-    _name = 'selection.type'
-    _description = 'Module help manager selection A'
-
-    name = fields.Char(string='Name')
-    child_ids = fields.One2many('selection.resolution', 'parent_id', string='Child IDs')
-
-class SelectionParent2(models.Model):
-    _name = 'selection.type'
-    _description = 'Module help manager selection A'
-
-    name = fields.Char(string='Name')
-    child_ids = fields.One2many('selection.issue', 'parent_id', string='Child IDs')
-
-class SelectionChildInherit(models.Model):
-    _inherit = 'selection.main'
-
-    parent_id = fields.Many2one('selection.type', string='Parent')
-
+#Issue
 class SelectionIssue(models.Model):
     _name = 'selection.issue'
     _description = 'Module help manager selection B'
@@ -45,6 +33,14 @@ class SelectionIssueInherit(models.Model):
 
     parent_id = fields.Many2one('selection.type', string='Parent')
 
+class SelectionParent2(models.Model):
+    _name = 'selection.type'
+    _description = 'Module help manager selection A'
+
+    name = fields.Char(string='Name')
+    child_ids = fields.One2many('selection.issue', 'parent_id', string='Child IDs')
+
+# Resolution
 class SelectionResolution(models.Model):
     _name = 'selection.resolution'
     _description = 'Module help manager selection B'
@@ -55,3 +51,10 @@ class SelectionResolutionInherit(models.Model):
     _inherit = 'selection.resolution'
 
     parent_id = fields.Many2one('selection.type', string='Parent')
+
+class SelectionParent3(models.Model):
+    _name = 'selection.type'
+    _description = 'Module help manager selection A'
+
+    name = fields.Char(string='Name')
+    child_ids = fields.One2many('selection.resolution', 'parent_id', string='Child IDs')
