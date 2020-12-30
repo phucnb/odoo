@@ -1,54 +1,257 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <data>
-        <record id="selection_child_a1" model="selection.child">
-			<field name="name">A1</field>
+	<data>
+		<record id="selection_main_dvr_1" model="selection.main">
+			<field name="name">Zeus 16</field>
 		</record>
-        <record id="selection_child_a2" model="selection.child">
-			<field name="name">A2</field>
+		<record id="selection_main_dvr_2" model="selection.main">
+			<field name="name">Zeus 8</field>
 		</record>
-        <record id="selection_child_a3" model="selection.child">
-			<field name="name">A3</field>
+		<record id="selection_main_dvr_3" model="selection.main">
+			<field name="name">Zeus 6s</field>
 		</record>
-        <record id="selection_child_a4" model="selection.child">
-			<field name="name">A4</field>
+		<record id="selection_main_dvr_4" model="selection.main">
+			<field name="name">Zeus 5</field>
 		</record>
-        <record id="selection_child_a5" model="selection.child">
-			<field name="name">A5</field>
+		<record id="selection_main_dvr_5" model="selection.main">
+			<field name="name">Zeus 3</field>
 		</record>
-        <record id="selection_child_b1" model="selection.child">
-			<field name="name">B1</field>
+		<record id="selection_main_dvr_6" model="selection.main">
+			<field name="name">514</field>
 		</record>
-        <record id="selection_child_b2" model="selection.child">
-			<field name="name">B2</field>
+		<record id="selection_main_dvr_7" model="selection.main">
+			<field name="name">512</field>
 		</record>
-        <record id="selection_child_b3" model="selection.child">
-			<field name="name">B3</field>
+		<record id="selection_main_dvr_8" model="selection.main">
+			<field name="name">500</field>
 		</record>
-        <record id="selection_child_c1" model="selection.child">
-			<field name="name">C1</field>
+		<record id="selection_main_dvr_9" model="selection.main">
+			<field name="name">300</field>
 		</record>
-        <record id="selection_child_c2" model="selection.child">
-			<field name="name">C2</field>
+		<record id="selection_main_camera_hdq21" model="selection.main">
+			<field name="name">HDQ 2.1</field>
 		</record>
-        <record id="selection_child_c3" model="selection.child">
-			<field name="name">C3</field>
+		<record id="selection_main_camera_hdq29" model="selection.main">
+			<field name="name">HDQ 2.9</field>
 		</record>
-        <!-- Selection Parent -->
-        <record id="selection_parent_a" model="selection.parent">
-			<field name="name">A</field>
-            <field name="child_ids"
-                   eval="[(6, 0, [ref('custom_module.selection_child_a1'),ref('custom_module.selection_child_a3'),ref('custom_module.selection_child_a3'),ref('custom_module.selection_child_a4'),ref('custom_module.selection_child_a5')])]"/>
+		<record id="selection_main_camera_hdq36" model="selection.main">
+			<field name="name">HDQ 3.6</field>
 		</record>
-        <record id="selection_parent_b" model="selection.parent">
-			<field name="name">B</field>
-            <field name="child_ids"
-                   eval="[(6, 0, [ref('custom_module.selection_child_b1'),ref('custom_module.selection_child_b2'),ref('custom_module.selection_child_b3')])]"/>
+		<record id="selection_main_camera_hdq36sc" model="selection.main">
+			<field name="name">HDQ 3.6 SC</field>
 		</record>
-        <record id="selection_parent_c" model="selection.parent">
-			<field name="name">C</field>
-            <field name="child_ids"
-                   eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]"/>
+		<record id="selection_main_camera_hdq60" model="selection.main">
+			<field name="name">HDQ 6.0</field>
 		</record>
-    </data>
+		<record id="selection_main_camera_hdqsac16" model="selection.main">
+			<field name="name">HDQ SAC 16</field>
+		</record>
+		<record id="selection_main_camera_hdqdualsac1643" model="selection.main">
+			<field name="name">HDQ Dual SAC 16 | 4.3</field>
+		</record>
+		<record id="selection_main_camera_ahd21" model="selection.main">
+			<field name="name">AHD 2.1</field>
+		</record>
+		<record id="selection_main_camera_ahd28cshieldcam" model="selection.main">
+			<field name="name">AHD 2.8c (Shield Cam)</field>
+		</record>
+		<record id="selection_main_camera_ahdsac12" model="selection.main">
+			<field name="name">AHD SAC 12</field>
+		</record>
+		<record id="selection_main_camera_ahddualsac1243" model="selection.main">
+			<field name="name">AHD Dual SAC 12 | 4.3</field>
+		</record>
+		<record id="selection_main_camera_fhd21" model="selection.main">
+			<field name="name">FHD 2.1</field>
+		</record>
+		<record id="selection_main_camera_fhdov360s" model="selection.main">
+			<field name="name">FHD OV360s</field>
+		</record>
+		<record id="selection_main_camera_fhdov360a" model="selection.main">
+			<field name="name">FHD OV360a</field>
+		</record>
+		<record id="selection_main_camera_fhd21shield" model="selection.main">
+			<field name="name">FHD 2.1 Shield</field>
+		</record>
+		<record id="selection_main_camera_fhdsac12" model="selection.main">
+			<field name="name">FHD SAC 12</field>
+		</record>
+		<record id="selection_main_camera_fhddualsac1228" model="selection.main">
+			<field name="name">FHD Dual SAC 12 | 2.8</field>
+		</record>
+		<record id="selection_main_bridge_mikrotek24ghz" model="selection.main">
+			<field name="name">MikroTek 2.4Ghz</field>
+		</record>
+		<record id="selection_main_bridge_ubiquiti24ghz" model="selection.main">
+			<field name="name">Ubiquiti 2.4Ghz</field>
+		</record>
+		<record id="selection_main_bridge_ubiquiti5ghz" model="selection.main">
+			<field name="name">Ubiquiti 5Ghz</field>
+		</record>
+		<record id="selection_main_access_point_mikrotek24ghz" model="selection.main">
+			<field name="name">MikroTek 2.4Ghz</field>
+		</record>
+		<record id="selection_main_access_point_ubiquiti24ghzomni" model="selection.main">
+			<field name="name">Ubiquiti 2.4Ghz Omni</field>
+		</record>
+		<record id="selection_main_access_point_ubiquiti5ghzomni" model="selection.main">
+			<field name="name">Ubiquiti 5Ghz Omni</field>
+		</record>
+		<record id="selection_main_access_point_ubiquitinanobeam" model="selection.main">
+			<field name="name">Ubiquiti Nanobeam</field>
+		</record>
+		<record id="selection_main_storage_infinity" model="selection.main">
+			<field name="name">Infinity</field>
+		</record>
+		<record id="selection_main_storage_dhd2" model="selection.main">
+			<field name="name">DHD2</field>
+		</record>
+		<record id="selection_main_storage_dhd" model="selection.main">
+			<field name="name">DHD</field>
+		</record>
+		<record id="selection_main_storage_ssd" model="selection.main">
+			<field name="name">SSD</field>
+		</record>
+		<record id="selection_main_storage_hdd" model="selection.main">
+			<field name="name">HDD</field>
+		</record>
+		<record id="selection_main_storage_sdcard" model="selection.main">
+			<field name="name">SD Card</field>
+		</record>
+		<record id="selection_main_dvr_viewer_v19522win10" model="selection.main">
+			<field name="name">v19.522 (Win10)</field>
+		</record>
+		<record id="selection_main_dvr_viewer_v171215win7" model="selection.main">
+			<field name="name">v17.1215 (Win7)</field>
+		</record>
+		<record id="selection_main_dvr_viewer_outdatedversion" model="selection.main">
+			<field name="name">Outdated Version</field>
+		</record>
+		<record id="selection_main_wireless_touchdown" model="selection.main">
+			<field name="name">Touchdown</field>
+		</record>
+		<record id="selection_main_wireless_v3739" model="selection.main">
+			<field name="name">v3.7.39</field>
+		</record>
+		<record id="selection_main_wireless_v3738" model="selection.main">
+			<field name="name">v3.7.38</field>
+		</record>
+		<record id="selection_main_wireless_v3734" model="selection.main">
+			<field name="name">v3.7.34</field>
+		</record>
+		<record id="selection_main_wireless_laptopserver" model="selection.main">
+			<field name="name">Laptop Server</field>
+		</record>
+		<record id="selection_main_wireless_rackserver" model="selection.main">
+			<field name="name">Rack Server</field>
+		</record>
+		<record id="selection_main_wireless_hpproliantserver" model="selection.main">
+			<field name="name">HP ProLiant Server</field>
+		</record>
+		<record id="selection_main_wireless_virtualserver" model="selection.main">
+			<field name="name">Virtual Server</field>
+		</record>
+		<record id="selection_main_wireless_s247server" model="selection.main">
+			<field name="name">s247 Server</field>
+		</record>
+		<record id="selection_main_wireless_windows10" model="selection.main">
+			<field name="name">Windows 10</field>
+		</record>
+		<record id="selection_main_wireless_windowsserver2019" model="selection.main">
+			<field name="name">Windows Server 2019</field>
+		</record>
+		<record id="selection_main_wireless_windowsserver2016" model="selection.main">
+			<field name="name">Windows Server 2016</field>
+		</record>
+		<record id="selection_main_wireless_windowsserver2012r2" model="selection.main">
+			<field name="name">Windows Server 2012R2</field>
+		</record>
+		<record id="selection_main_wireless_windows7" model="selection.main">
+			<field name="name">Windows 7</field>
+		</record>
+		<record id="selection_main_wireless_networkdomain" model="selection.main">
+			<field name="name">Network Domain</field>
+		</record>
+		<record id="selection_main_wireless_windowsdefender" model="selection.main">
+			<field name="name">Windows Defender</field>
+		</record>
+		<record id="selection_main_wireless_3rdpartyantivirus" model="selection.main">
+			<field name="name">3rd Party Antivirus</field>
+		</record>
+		<record id="selection_main_system_related_laptop" model="selection.main">
+			<field name="name">Laptop</field>
+		</record>
+		<record id="selection_main_system_related_pc" model="selection.main">
+			<field name="name">PC</field>
+		</record>
+		<record id="selection_main_system_related_mac" model="selection.main">
+			<field name="name">MAC</field>
+		</record>
+		<record id="selection_main_system_related_allinone" model="selection.main">
+			<field name="name">All-In-One</field>
+		</record>
+		<record id="selection_main_system_related_other" model="selection.main">
+			<field name="name">Other</field>
+		</record>
+		<record id="selection_main_system_related_windows10" model="selection.main">
+			<field name="name">Windows 10</field>
+		</record>
+		<record id="selection_main_system_related_windows81" model="selection.main">
+			<field name="name">Windows 8.1</field>
+		</record>
+		<record id="selection_main_system_related_windows8" model="selection.main">
+			<field name="name">Windows 8</field>
+		</record>
+		<record id="selection_main_system_related_windows7" model="selection.main">
+			<field name="name">Windows 7</field>
+		</record>
+		<record id="selection_main_system_related_windowsxp" model="selection.main">
+			<field name="name">Windows XP</field>
+		</record>
+		<record id="selection_main_system_related_dell" model="selection.main">
+			<field name="name">Dell</field>
+		</record>
+		<record id="selection_main_system_related_hp" model="selection.main">
+			<field name="name">HP</field>
+		</record>
+		<record id="selection_main_system_related_lenovo" model="selection.main">
+			<field name="name">Lenovo</field>
+		</record>
+		<record id="selection_main_system_related_networkdomain" model="selection.main">
+			<field name="name">Network Domain</field>
+		</record>
+		<!-- Selection Parent -->
+		<record id="selection_type_dvr" model="selection.type">
+			<field name="name">DVR</field>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_dvr_1'),ref('custom_module.selection_main_dvr_2'),ref('custom_module.selection_main_dvr_3'),ref('custom_module.selection_main_dvr_4'),ref('custom_module.selection_main_dvr_5'),ref('custom_module.selection_main_dvr_6'),ref('custom_module.selection_main_dvr_7'),ref('custom_module.selection_main_dvr_8'),ref('custom_module.selection_main_dvr_9')])]" name="child_ids"/>
+		</record>
+		<!-- <record id="selection_type_camera" model="selection.type">
+			<field name="name">CAMERA</field>
+			<field eval="[(6, 0, [ref('custom_module.selection_child_b1'),ref('custom_module.selection_child_b2'),ref('custom_module.selection_child_b3')])]" name="child_ids"/>
+		</record>
+		<record id="selection_type_bridge" model="selection.type">
+			<field name="name">Bridge</field>
+			<field eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]" name="child_ids"/>
+		</record>
+		<record id="selection_type_access_point" model="selection.type">
+			<field name="name">Access Point</field>
+			<field eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]" name="child_ids"/>
+		</record>
+		<record id="selection_type_storage" model="selection.type">
+			<field name="name">Storage</field>
+			<field eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]" name="child_ids"/>
+		</record>
+		<record id="selection_type_dvr_viewer" model="selection.type">
+			<field name="name">DVR Viewer</field>
+			<field eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]" name="child_ids"/>
+		</record>
+		<record id="selection_type_wireless" model="selection.type">
+			<field name="name">Wireless</field>
+			<field eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]" name="child_ids"/>
+		</record>
+		<record id="selection_type_system_related" model="selection.type">
+			<field name="name">User's System Related</field>
+			<field eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]" name="child_ids"/>
+		</record> -->
+	</data>
 </odoo>
