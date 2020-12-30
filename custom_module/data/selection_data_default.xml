@@ -220,31 +220,31 @@
 		<record id="selection_main_system_related_networkdomain" model="selection.main">
 			<field name="name">Network Domain</field>
 		</record>
-		<record id="selection_issue_nopowerignition" model="selection.issue">
+		<record id="selection_issue_dvr_nopowerignition" model="selection.issue">
 			<field name="name">No Power / Ignition</field>
 		</record>
-		<record id="selection_issue_blinkingignition" model="selection.issue">
+		<record id="selection_issue_dvr_blinkingignition" model="selection.issue">
 			<field name="name">Blinking Ignition</field>
 		</record>
-		<record id="selection_issue_norecordmode" model="selection.issue">
+		<record id="selection_issue_dvr_norecordmode" model="selection.issue">
 			<field name="name">No Record Mode</field>
 		</record>
-		<record id="selection_issue_videolosslight" model="selection.issue">
+		<record id="selection_issue_dvr_videolosslight" model="selection.issue">
 			<field name="name">Video Loss Light</field>
 		</record>
-		<record id="selection_issue_noemrlights" model="selection.issue">
+		<record id="selection_issue_dvr_noemrlights" model="selection.issue">
 			<field name="name">No EMR Lights</field>
 		</record>
-		<record id="selection_issue_poppingfuses" model="selection.issue">
+		<record id="selection_issue_dvr_poppingfuses" model="selection.issue">
 			<field name="name">Popping Fuses</field>
 		</record>
-		<record id="selection_issue_transferissue" model="selection.issue">
+		<record id="selection_issue_dvr_transferissue" model="selection.issue">
 			<field name="name">Transfer Issue</field>
 		</record>
-		<record id="selection_issue_firmwareoutdated" model="selection.issue">
+		<record id="selection_issue_dvr_firmwareoutdated" model="selection.issue">
 			<field name="name">Firmware Outdated</field>
 		</record>
-		<record id="selection_issue_wirelessupload" model="selection.issue">
+		<record id="selection_issue_dvr_wirelessupload" model="selection.issue">
 			<field name="name">Wireless Upload</field>
 		</record>
 		<record id="selection_issue_novideo" model="selection.issue">
@@ -298,7 +298,7 @@
 		<record id="selection_issue_missingvideo" model="selection.issue">
 			<field name="name">Missing Video</field>
 		</record>
-		<record id="selection_issue_transferissue" model="selection.issue">
+		<record id="selection_issue_transferissue2" model="selection.issue">
 			<field name="name">Transfer Issue</field>
 		</record>
 		<record id="selection_issue_playbackissue" model="selection.issue">
@@ -418,7 +418,7 @@
 		<!-- Selection Parent -->
 		<record id="selection_type_dvr" model="selection.type">
 			<field name="name">DVR</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_main_dvr_1'),ref('custom_module.selection_main_dvr_2'),ref('custom_module.selection_main_dvr_3'),ref('custom_module.selection_main_dvr_4'),ref('custom_module.selection_main_dvr_5'),ref('custom_module.selection_main_dvr_6'),ref('custom_module.selection_main_dvr_7'),ref('custom_module.selection_main_dvr_8'),ref('custom_module.selection_main_dvr_9'),ref('custom_module.selection_issue_nopowerignition'), ref('custom_module.selection_issue_blinkingignition'), ref('custom_module.selection_issue_norecordmode'), ref('custom_module.selection_issue_videolosslight'), ref('custom_module.selection_issue_noemrlights'), ref('custom_module.selection_issue_poppingfuses'), ref('custom_module.selection_issue_transferissue'), ref('custom_module.selection_issue_firmwareoutdated'), ref('custom_module.selection_issue_wirelessupload'), ref('custom_module.selection_resolution_rmadvr'), ref('custom_module.selection_resolution_rmaemr'), ref('custom_module.selection_resolution_fusechange'), ref('custom_module.selection_resolution_rmapowercable'), ref('custom_module.selection_resolution_updatefirmware'), ref('custom_module.selection_resolution_modifydvrsettings'), ref('custom_module.selection_resolution_hostdeploydvr'), ref('custom_module.selection_resolution_scheduleservicevisit')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_dvr_1'),ref('custom_module.selection_main_dvr_2'),ref('custom_module.selection_main_dvr_3'),ref('custom_module.selection_main_dvr_4'),ref('custom_module.selection_main_dvr_5'),ref('custom_module.selection_main_dvr_6'),ref('custom_module.selection_main_dvr_7'),ref('custom_module.selection_main_dvr_8'),ref('custom_module.selection_main_dvr_9'),ref('custom_module.selection_issue_dvr_nopowerignition'),ref('custom_module.selection_issue_dvr_blinkingignition'),ref('custom_module.selection_issue_dvr_norecordmode'),ref('custom_module.selection_issue_dvr_videolosslight'),ref('custom_module.selection_issue_dvr_noemrlights'),ref('custom_module.selection_issue_dvr_poppingfuses'),ref('custom_module.selection_issue_dvr_transferissue'),ref('custom_module.selection_issue_dvr_firmwareoutdated'),ref('custom_module.selection_issue_dvr_wirelessupload'),ref('custom_module.selection_resolution_rmadvr'),ref('custom_module.selection_resolution_rmaemr'),ref('custom_module.selection_resolution_fusechange'),ref('custom_module.selection_resolution_rmapowercable'),ref('custom_module.selection_resolution_updatefirmware'),ref('custom_module.selection_resolution_modifydvrsettings'),ref('custom_module.selection_resolution_hostdeploydvr'),ref('custom_module.selection_resolution_scheduleservicevisit')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_camera" model="selection.type">
 			<field name="name">CAMERA</field>
@@ -434,7 +434,7 @@
 		</record>
 		<record id="selection_type_storage" model="selection.type">
 			<field name="name">Storage</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_main_storage_infinity'), ref('custom_module.selection_main_storage_dhd2'), ref('custom_module.selection_main_storage_dhd'), ref('custom_module.selection_main_storage_ssd'), ref('custom_module.selection_main_storage_hdd'), ref('custom_module.selection_main_storage_sdcard'),ref('custom_module.selection_issue_missingvideo'), ref('custom_module.selection_issue_transferissue'), ref('custom_module.selection_issue_playbackissue'), ref('custom_module.selection_issue_encrypted'),ref('custom_module.selection_resolution_rmastorage'), ref('custom_module.selection_resolution_formatstorage')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_storage_infinity'), ref('custom_module.selection_main_storage_dhd2'), ref('custom_module.selection_main_storage_dhd'), ref('custom_module.selection_main_storage_ssd'), ref('custom_module.selection_main_storage_hdd'), ref('custom_module.selection_main_storage_sdcard'),ref('custom_module.selection_issue_missingvideo'), ref('custom_module.selection_issue_transferissue2'), ref('custom_module.selection_issue_playbackissue'), ref('custom_module.selection_issue_encrypted'),ref('custom_module.selection_resolution_rmastorage'), ref('custom_module.selection_resolution_formatstorage')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_dvr_viewer" model="selection.type">
 			<field name="name">DVR Viewer</field>
