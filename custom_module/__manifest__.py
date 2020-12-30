@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','contacts','data_migration', 'sale_management', 'crm','helpdesk'],
+    'depends': ['base','contacts','data_migration', 'sale_management', 'crm','helpdesk','sale_team'],
 
     # always loaded
     'data': [
