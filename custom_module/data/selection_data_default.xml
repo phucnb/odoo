@@ -28,7 +28,7 @@
 		<record id="selection_main_dvr_9" model="selection.main">
 			<field name="name">300</field>
 		</record>
-		<record id="selection_main_camera_hdq21" model="selection.main">
+		<!-- <record id="selection_main_camera_hdq21" model="selection.main">
 			<field name="name">HDQ 2.1</field>
 		</record>
 		<record id="selection_main_camera_hdq29" model="selection.main">
@@ -219,7 +219,7 @@
 		</record>
 		<record id="selection_main_system_related_networkdomain" model="selection.main">
 			<field name="name">Network Domain</field>
-		</record>
+		</record> -->
 		<!-- Selection Parent -->
 		<record id="selection_type_dvr" model="selection.type">
 			<field name="name">DVR</field>

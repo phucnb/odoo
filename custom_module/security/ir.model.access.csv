@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_selection_child_config_officer,selection.child.config.officer,model_selection_child,sales_team.group_sale_salesman,1,1,1,1
-access_selection_parent_config_officer,selection.parent.config.officer,model_selection_parent,sales_team.group_sale_salesman,1,1,1,1
+access_selection_main_config_officer,selection.main.config.officer,model_selection_main,sales_team.group_sale_salesman,1,1,1,1
+access_selection_type_config_officer,selection.type.config.officer,model_selection_type,sales_team.group_sale_salesman,1,1,1,1
