@@ -131,6 +131,7 @@ class TicketFields(models.Model):
 
     product_type2 = fields.Many2one('selection.type', string='Product Type')
     product_main = fields.Many2one('selection.main', string='Product Main')
+    product_issue = fields.Many2one('selection.issue', string='Product Issue')
 
     @api.onchange('product_type2')
     def onchange_product_type2(self):
@@ -139,7 +140,12 @@ class TicketFields(models.Model):
                     and self.product_main.id not in self.product_type2.child_ids.ids:
                 self.product_main = False
 
-
+    @api.onchange('product_main')
+    def onchange_product_main(self):
+        if self.product_main:
+            if self.product_issue \
+                    and self.product_issue.id not in self.product_main.child_ids.ids:
+                self.product_issue = False
 
 
             

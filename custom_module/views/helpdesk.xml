@@ -14,7 +14,6 @@
                 </field>
                 <field name="description" position="before">
                     <group>
-                        <field name="product_type" string="Product Type"/>
                         <field name="product_type2"
                            options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
                     <field name="product_main"

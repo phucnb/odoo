@@ -6,6 +6,7 @@ class SelectionChild(models.Model):
     _description = 'Module help manager selection B'
 
     name = fields.Char(string='Name')
+    child_ids = fields.One2many('selection.issue', 'parent_id', string='Child IDs')
 
 
 class SelectionParent(models.Model):
@@ -20,3 +21,15 @@ class SelectionChildInherit(models.Model):
     _inherit = 'selection.main'
 
     parent_id = fields.Many2one('selection.type', string='Parent')
+
+class SelectionIssue(models.Model):
+    _name = 'selection.issue'
+    _description = 'Module help manager selection C'
+
+    name = fields.Char(string='Name')
+
+
+class SelectionIssueInherit(models.Model):
+    _inherit = 'selection.issue'
+
+    parent_id = fields.Many2one('selection.main', string='Parent')

@@ -28,7 +28,7 @@
 		<record id="selection_main_dvr_9" model="selection.main">
 			<field name="name">300</field>
 		</record>
-		<!-- <record id="selection_main_camera_hdq21" model="selection.main">
+		<record id="selection_main_camera_hdq21" model="selection.main">
 			<field name="name">HDQ 2.1</field>
 		</record>
 		<record id="selection_main_camera_hdq29" model="selection.main">
@@ -219,39 +219,43 @@
 		</record>
 		<record id="selection_main_system_related_networkdomain" model="selection.main">
 			<field name="name">Network Domain</field>
-		</record> -->
+		</record>
 		<!-- Selection Parent -->
 		<record id="selection_type_dvr" model="selection.type">
 			<field name="name">DVR</field>
 			<field eval="[(6, 0, [ref('custom_module.selection_main_dvr_1'),ref('custom_module.selection_main_dvr_2'),ref('custom_module.selection_main_dvr_3'),ref('custom_module.selection_main_dvr_4'),ref('custom_module.selection_main_dvr_5'),ref('custom_module.selection_main_dvr_6'),ref('custom_module.selection_main_dvr_7'),ref('custom_module.selection_main_dvr_8'),ref('custom_module.selection_main_dvr_9')])]" name="child_ids"/>
 		</record>
-		<!-- <record id="selection_type_camera" model="selection.type">
+		<record id="selection_type_camera" model="selection.type">
 			<field name="name">CAMERA</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_child_b1'),ref('custom_module.selection_child_b2'),ref('custom_module.selection_child_b3')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_camera_hdq21'),          ref('custom_module.selection_main_camera_hdq29'),          ref('custom_module.selection_main_camera_hdq36'),          ref('custom_module.selection_main_camera_hdq36sc'),          ref('custom_module.selection_main_camera_hdq60'),          ref('custom_module.selection_main_camera_hdqsac16'),          ref('custom_module.selection_main_camera_hdqdualsac1643'),          ref('custom_module.selection_main_camera_ahd21'),          ref('custom_module.selection_main_camera_ahd28cshieldcam'),          ref('custom_module.selection_main_camera_ahdsac12'),          ref('custom_module.selection_main_camera_ahddualsac1243'),          ref('custom_module.selection_main_camera_fhd21'),          ref('custom_module.selection_main_camera_fhdov360s'),          ref('custom_module.selection_main_camera_fhdov360a'),          ref('custom_module.selection_main_camera_fhd21shield'),          ref('custom_module.selection_main_camera_fhdsac12'),          ref('custom_module.selection_main_camera_fhddualsac1228')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_bridge" model="selection.type">
 			<field name="name">Bridge</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_bridge_mikrotek24ghz'), ref('custom_module.selection_main_bridge_ubiquiti24ghz'), ref('custom_module.selection_main_bridge_ubiquiti5ghz')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_access_point" model="selection.type">
 			<field name="name">Access Point</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_access_point_mikrotek24ghz'), ref('custom_module.selection_main_access_point_ubiquiti24ghzomni'), ref('custom_module.selection_main_access_point_ubiquiti5ghzomni'), ref('custom_module.selection_main_access_point_ubiquitinanobeam')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_storage" model="selection.type">
 			<field name="name">Storage</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_storage_infinity'), ref('custom_module.selection_main_storage_dhd2'), ref('custom_module.selection_main_storage_dhd'), ref('custom_module.selection_main_storage_ssd'), ref('custom_module.selection_main_storage_hdd'), ref('custom_module.selection_main_storage_sdcard')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_dvr_viewer" model="selection.type">
 			<field name="name">DVR Viewer</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_dvr_viewer_v19522win10'), ref('custom_module.selection_main_dvr_viewer_v171215win7'), ref('custom_module.selection_main_dvr_viewer_outdatedversion'), ref('custom_module.selection_main_wireless_touchdown')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_wireless" model="selection.type">
 			<field name="name">Wireless</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_wireless_v3739'), ref('custom_module.selection_main_wireless_v3738'), ref('custom_module.selection_main_wireless_v3734'), ref('custom_module.selection_main_wireless_laptopserver'), ref('custom_module.selection_main_wireless_rackserver'), ref('custom_module.selection_main_wireless_hpproliantserver'), ref('custom_module.selection_main_wireless_virtualserver'), ref('custom_module.selection_main_wireless_s247server'), ref('custom_module.selection_main_wireless_windows10'), ref('custom_module.selection_main_wireless_windowsserver2019'), ref('custom_module.selection_main_wireless_windowsserver2016'), ref('custom_module.selection_main_wireless_windowsserver2012r2'), ref('custom_module.selection_main_wireless_windows7'), ref('custom_module.selection_main_wireless_networkdomain'), ref('custom_module.selection_main_wireless_windowsdefender'), ref('custom_module.selection_main_wireless_3rdpartyantivirus')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_system_related" model="selection.type">
 			<field name="name">User's System Related</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]" name="child_ids"/>
-		</record> -->
+			<field eval="[(6, 0, [ref('custom_module.selection_main_system_related_laptop'), ref('custom_module.selection_main_system_related_pc'), ref('custom_module.selection_main_system_related_mac'), ref('custom_module.selection_main_system_related_allinone'), ref('custom_module.selection_main_system_related_other'), ref('custom_module.selection_main_system_related_windows10'), ref('custom_module.selection_main_system_related_windows81'), ref('custom_module.selection_main_system_related_windows8'), ref('custom_module.selection_main_system_related_windows7'), ref('custom_module.selection_main_system_related_windowsxp'), ref('custom_module.selection_main_system_related_dell'), ref('custom_module.selection_main_system_related_hp'), ref('custom_module.selection_main_system_related_lenovo'), ref('custom_module.selection_main_system_related_networkdomain')])]" name="child_ids"/>
+		</record>
+		<record id="selection_issue_dvr" model="selection.issue">
+			<field name="name">DVR</field>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_system_related_laptop'), ref('custom_module.selection_main_system_related_pc'), ref('custom_module.selection_main_system_related_mac'), ref('custom_module.selection_main_system_related_allinone'), ref('custom_module.selection_main_system_related_other'), ref('custom_module.selection_main_system_related_windows10'), ref('custom_module.selection_main_system_related_windows81'), ref('custom_module.selection_main_system_related_windows8'), ref('custom_module.selection_main_system_related_windows7'), ref('custom_module.selection_main_system_related_windowsxp'), ref('custom_module.selection_main_system_related_dell'), ref('custom_module.selection_main_system_related_hp'), ref('custom_module.selection_main_system_related_lenovo'), ref('custom_module.selection_main_system_related_networkdomain')])]" name="child_ids"/>
+		</record>
 	</data>
 </odoo>
