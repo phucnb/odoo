@@ -9,7 +9,7 @@
 					<page attrs="{'invisible':[('is_company','=',False)]}" string="Fleet">
 						<group>
 							<group>
-								<field name="fleet_size"/>
+								<field name="fleet_size2"/>
 								<field name="bus_mfg"/>
 								<field name="bus_type"/>
 								<field name="special_instructions"/>
@@ -276,7 +276,7 @@
 									<group>
 										<field name="e360_cameras"/>
 										<field name="erie_1_boces"/>
-										<field name="fleet_size"/>
+										<field name="fleet_size2"/>
 										<field name="issr"/>
 										<field name="minitrack"/>
 									</group>
@@ -682,7 +682,7 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="sales_rep"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="issr"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="crr"/>
-					<field attrs="{'invisible':[('is_company','=',False)]}" name="fleet_size"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="fleet_size2"/>
 					<!-- <field attrs="{'invisible':[('is_company','=',False)]}" name="touchdown"/>-->
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="wireless_check"/>
 					<field attrs="{'invisible':[('wireless_check','=',False)]}" name="wireless_platform"/>
