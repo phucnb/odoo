@@ -1,28 +1,28 @@
 <odoo>
     <data>
-        <record model="ir.ui.view" id="custom_ticket_view">
+        <record id="custom_ticket_view" model="ir.ui.view">
             <field name="name">custom.ticket.view</field>
             <field name="model">helpdesk.ticket</field>
             <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//group/field[@name='sla_deadline']" position="after">
-                    <field name="multiple_product" />
+                    <field name="multiple_product"/>
                 </xpath>
-
                 <field name="partner_id" position="after">
-                    <field name="partner_bus_garage_address" />
-                    <field name="partner_phone" />
-                    <field name="partner_main_contact" />
-                    <field name="partner_main_contact_phone" />
+                    <field name="partner_bus_garage_address"/>
+                    <!--  <field name="partner_phone" /><field name="partner_main_contact" /><field name="partner_main_contact_phone" />-->
                 </field>
-
                 <field name="description" position="before">
                     <group>
-                        <field name="product_type" string="Product Type" />
+                        <field name="product_type" string="Product Type"/>
+                        <field name="product_type2"
+                           options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                    <field name="product_main"
+                           domain="[('parent_id', '=', selection_a)]"
+                           options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+
                     </group>
                 </field>
-
-
                 <!-- Hide fields -->
                 <field name="hs_ticket_company" position="attributes">
                     <attribute name="invisible">1</attribute>
@@ -66,10 +66,7 @@
                 <field name="partner_email" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </field>
-
-                
             </field>
         </record>
-
     </data>
 </odoo>

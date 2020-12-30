@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="selection_child_a1" model="selection.child">
+			<field name="name">A1</field>
+		</record>
+        <record id="selection_child_a2" model="selection.child">
+			<field name="name">A2</field>
+		</record>
+        <record id="selection_child_a3" model="selection.child">
+			<field name="name">A3</field>
+		</record>
+        <record id="selection_child_a4" model="selection.child">
+			<field name="name">A4</field>
+		</record>
+        <record id="selection_child_a5" model="selection.child">
+			<field name="name">A5</field>
+		</record>
+        <record id="selection_child_b1" model="selection.child">
+			<field name="name">B1</field>
+		</record>
+        <record id="selection_child_b2" model="selection.child">
+			<field name="name">B2</field>
+		</record>
+        <record id="selection_child_b3" model="selection.child">
+			<field name="name">B3</field>
+		</record>
+        <record id="selection_child_c1" model="selection.child">
+			<field name="name">C1</field>
+		</record>
+        <record id="selection_child_c2" model="selection.child">
+			<field name="name">C2</field>
+		</record>
+        <record id="selection_child_c3" model="selection.child">
+			<field name="name">C3</field>
+		</record>
+        <!-- Selection Parent -->
+        <record id="selection_parent_a" model="selection.parent">
+			<field name="name">A</field>
+            <field name="child_ids"
+                   eval="[(6, 0, [ref('custom_module.selection_child_a1'),ref('custom_module.selection_child_a3'),ref('custom_module.selection_child_a3'),ref('custom_module.selection_child_a4'),ref('custom_module.selection_child_a5')])]"/>
+		</record>
+        <record id="selection_parent_b" model="selection.parent">
+			<field name="name">B</field>
+            <field name="child_ids"
+                   eval="[(6, 0, [ref('custom_module.selection_child_b1'),ref('custom_module.selection_child_b2'),ref('custom_module.selection_child_b3')])]"/>
+		</record>
+        <record id="selection_parent_c" model="selection.parent">
+			<field name="name">C</field>
+            <field name="child_ids"
+                   eval="[(6, 0, [ref('custom_module.selection_child_c1'),ref('custom_module.selection_child_c2'),ref('custom_module.selection_child_c3')])]"/>
+		</record>
+    </data>
+</odoo>

@@ -119,13 +119,27 @@ class TicketFields(models.Model):
     partner_main_contact_phone = fields.Char(string='Primary Contact Phone', compute='_compute_partner_contact', store=True, readonly=False)
     
 
-    # def _compute_partner_contact(self):
-    #     for ticket in self:
-    #         if ticket.partner_id:
-    #             ticket.partner_bus_garage_address = ticket.partner_id.bus_garage_address
-    #             ticket.partner_phone = ticket.partner_id.phone
-    #             ticket.partner_main_contact = ticket.partner_id.main_contact.partner_id
-    #             ticket.partner_main_contact_phone = ticket.partner_id.main_contact_phone
+    def _compute_partner_contact(self):
+        for ticket in self:
+            if ticket.partner_id:
+                ticket.partner_bus_garage_address = ticket.partner_id.bus_garage_address
+                # ticket.partner_phone = ticket.partner_id.phone
+                # ticket.partner_main_contact = ticket.partner_id.main_contact.partner_id
+                # ticket.partner_main_contact_phone = ticket.partner_id.main_contact_phone
 
-    # product_type = fields.Selection(PRODUCT_TYPE, "Product Type")
+    product_type = fields.Selection(PRODUCT_TYPE, "Product Type")
+
+    product_type2 - fields.Many2one('selection.parent', string='Product Type')
+    product_main - fields.Many2one('selection.child', string='Product Main')
+
+    @api.onchange('product_type2')
+    def onchange_product_type2(self):
+        if self.product_type2:
+            if self.product_main \
+                    and self.product_main.id not in self.product_type2.child_ids.ids:
+                self.product_main = False
+
+
+
+
             
