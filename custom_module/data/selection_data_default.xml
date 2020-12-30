@@ -220,10 +220,13 @@
 		<record id="selection_main_system_related_networkdomain" model="selection.main">
 			<field name="name">Network Domain</field>
 		</record>
+				<record id="selection_issue_dvr_1" model="selection.issue">
+			<field name="name">test</field>
+		</record>
 		<!-- Selection Parent -->
 		<record id="selection_type_dvr" model="selection.type">
 			<field name="name">DVR</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_main_dvr_1'),ref('custom_module.selection_main_dvr_2'),ref('custom_module.selection_main_dvr_3'),ref('custom_module.selection_main_dvr_4'),ref('custom_module.selection_main_dvr_5'),ref('custom_module.selection_main_dvr_6'),ref('custom_module.selection_main_dvr_7'),ref('custom_module.selection_main_dvr_8'),ref('custom_module.selection_main_dvr_9')])]" name="child_ids"/>
+			<field eval="[(6, 0, [ref('custom_module.selection_main_dvr_1'),ref('custom_module.selection_main_dvr_2'),ref('custom_module.selection_main_dvr_3'),ref('custom_module.selection_main_dvr_4'),ref('custom_module.selection_main_dvr_5'),ref('custom_module.selection_main_dvr_6'),ref('custom_module.selection_main_dvr_7'),ref('custom_module.selection_main_dvr_8'),ref('custom_module.selection_main_dvr_9'),ref('custom_module.selection_issue_dvr_1')])]" name="child_ids"/>
 		</record>
 		<record id="selection_type_camera" model="selection.type">
 			<field name="name">CAMERA</field>
@@ -253,9 +256,6 @@
 			<field name="name">User's System Related</field>
 			<field eval="[(6, 0, [ref('custom_module.selection_main_system_related_laptop'), ref('custom_module.selection_main_system_related_pc'), ref('custom_module.selection_main_system_related_mac'), ref('custom_module.selection_main_system_related_allinone'), ref('custom_module.selection_main_system_related_other'), ref('custom_module.selection_main_system_related_windows10'), ref('custom_module.selection_main_system_related_windows81'), ref('custom_module.selection_main_system_related_windows8'), ref('custom_module.selection_main_system_related_windows7'), ref('custom_module.selection_main_system_related_windowsxp'), ref('custom_module.selection_main_system_related_dell'), ref('custom_module.selection_main_system_related_hp'), ref('custom_module.selection_main_system_related_lenovo'), ref('custom_module.selection_main_system_related_networkdomain')])]" name="child_ids"/>
 		</record>
-		<record id="selection_issue_dvr" model="selection.issue">
-			<field name="name">DVR</field>
-			<field eval="[(6, 0, [ref('custom_module.selection_main_system_related_laptop'), ref('custom_module.selection_main_system_related_pc'), ref('custom_module.selection_main_system_related_mac'), ref('custom_module.selection_main_system_related_allinone'), ref('custom_module.selection_main_system_related_other'), ref('custom_module.selection_main_system_related_windows10'), ref('custom_module.selection_main_system_related_windows81'), ref('custom_module.selection_main_system_related_windows8'), ref('custom_module.selection_main_system_related_windows7'), ref('custom_module.selection_main_system_related_windowsxp'), ref('custom_module.selection_main_system_related_dell'), ref('custom_module.selection_main_system_related_hp'), ref('custom_module.selection_main_system_related_lenovo'), ref('custom_module.selection_main_system_related_networkdomain')])]" name="child_ids"/>
-		</record>
+		
 	</data>
 </odoo>
