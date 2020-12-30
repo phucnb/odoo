@@ -1,5 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_selection_main_config_officer,selection.main.config.officer,model_selection_main,sales_team.group_sale_salesman,1,1,1,1
 access_selection_type_config_officer,selection.type.config.officer,model_selection_type,sales_team.group_sale_salesman,1,1,1,1
-access_selection_issue_config_officer,selection.issue.config.officer,model_selection_issue,sales_team.group_sale_salesman,1,1,1,1
-access_selection_resolution_config_officer,selection.resolution.config.officer,model_selection_resolution,sales_team.group_sale_salesman,1,1,1,1

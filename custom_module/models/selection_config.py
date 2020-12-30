@@ -21,40 +21,40 @@ class SelectionParent(models.Model):
     name = fields.Char(string='Name')
     child_ids = fields.One2many('selection.main', 'parent_id', string='Child IDs')
 
-#Issue
-class SelectionIssue(models.Model):
-    _name = 'selection.issue'
-    _description = 'Module help manager selection B'
+# #Issue
+# class SelectionIssue(models.Model):
+#     _name = 'selection.issue'
+#     _description = 'Module help manager selection B'
 
-    name = fields.Char(string='Name')
+#     name = fields.Char(string='Name')
 
-class SelectionIssueInherit(models.Model):
-    _inherit = 'selection.issue'
+# class SelectionIssueInherit(models.Model):
+#     _inherit = 'selection.issue'
 
-    parent_id = fields.Many2one('selection.type', string='Parent')
+#     parent_id = fields.Many2one('selection.type', string='Parent')
 
-class SelectionParent2(models.Model):
-    _name = 'selection.type'
-    _description = 'Module help manager selection A'
+# class SelectionParent2(models.Model):
+#     _name = 'selection.type'
+#     _description = 'Module help manager selection A'
 
-    name = fields.Char(string='Name')
-    child_ids = fields.One2many('selection.issue', 'parent_id', string='Child IDs')
+#     name = fields.Char(string='Name')
+#     child_ids = fields.One2many('selection.issue', 'parent_id', string='Child IDs')
 
-# Resolution
-class SelectionResolution(models.Model):
-    _name = 'selection.resolution'
-    _description = 'Module help manager selection B'
+# # Resolution
+# class SelectionResolution(models.Model):
+#     _name = 'selection.resolution'
+#     _description = 'Module help manager selection B'
 
-    name = fields.Char(string='Name')
+#     name = fields.Char(string='Name')
 
-class SelectionResolutionInherit(models.Model):
-    _inherit = 'selection.resolution'
+# class SelectionResolutionInherit(models.Model):
+#     _inherit = 'selection.resolution'
 
-    parent_id = fields.Many2one('selection.type', string='Parent')
+#     parent_id = fields.Many2one('selection.type', string='Parent')
 
-class SelectionParent3(models.Model):
-    _name = 'selection.type'
-    _description = 'Module help manager selection A'
+# class SelectionParent3(models.Model):
+#     _name = 'selection.type'
+#     _description = 'Module help manager selection A'
 
-    name = fields.Char(string='Name')
-    child_ids = fields.One2many('selection.resolution', 'parent_id', string='Child IDs')
+#     name = fields.Char(string='Name')
+#     child_ids = fields.One2many('selection.resolution', 'parent_id', string='Child IDs')
