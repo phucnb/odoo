@@ -129,8 +129,8 @@ class TicketFields(models.Model):
 
     product_type = fields.Selection(PRODUCT_TYPE, "Product Type")
 
-    product_type2 - fields.Many2one('selection.parent', string='Product Type')
-    product_main - fields.Many2one('selection.child', string='Product Main')
+    product_type2 = fields.Many2one('selection.parent', string='Product Type')
+    product_main = fields.Many2one('selection.child', string='Product Main')
 
     @api.onchange('product_type2')
     def onchange_product_type2(self):
