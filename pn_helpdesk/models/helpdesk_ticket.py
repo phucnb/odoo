@@ -6,7 +6,7 @@ class HelpdeskTicketLines(models.Model):
     _description = 'Helpdesk ticket Line'
 
     ticket_id = fields.Many2one('helpdesk.ticket', string='Ticket')
-    type_id = fields.Many2one('helpdesk.ticket.type', string='Type', required=True)
+    type_id = fields.Many2one('helpdesk.ticket.type2', string='Type', required=True)
     product_id = fields.Many2one('helpdesk.ticket.product', string='Product')
     issue_id = fields.Many2one('helpdesk.ticket.issue', string='Issue')
     resolution_id = fields.Many2one('helpdesk.ticket.resolution', string='Resolution')
