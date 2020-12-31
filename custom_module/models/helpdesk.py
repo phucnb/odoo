@@ -129,10 +129,10 @@ class TicketFields(models.Model):
 
  
 
-    @api.onchange('partner_id')
-    def onchange_partner_id(self):
-        if self.partner_id:
-                self.name = partner_id
+    # @api.onchange('partner_id')
+    # def onchange_partner_id(self):
+    #     if self.partner_id:
+    #             self.name = partner_id
                 
             
 
