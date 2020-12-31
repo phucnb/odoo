@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_helpdesk_ticket_type_rule,helpdesk_ticket_type_rule,model_helpdesk_ticket_type,,1,1,1,1
+access_helpdesk_ticket_type2_rule,helpdesk_ticket_type2_rule,model_helpdesk_ticket_type2,,1,1,1,1
 access_helpdesk_ticket_product_rule,helpdesk_ticket_product_rule,model_helpdesk_ticket_product,,1,1,1,1
 access_helpdesk_ticket_issue_rule,helpdesk_ticket_issue_rule,model_helpdesk_ticket_issue,,1,1,1,1
 access_helpdesk_ticket_resolution_rule,helpdesk_ticket_resolution_rule,model_helpdesk_ticket_resolution,,1,1,1,1
