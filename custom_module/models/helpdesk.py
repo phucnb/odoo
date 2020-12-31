@@ -131,15 +131,15 @@ class TicketFields(models.Model):
 
     product_type2 = fields.Many2one('selection.type', string='Product Type')
     product_main = fields.Many2one('selection.main', string='Product Main')
-    # product_issue = fields.Many2one('selection.issue', string='Issue')
-    # product_resolution = fields.Many2one('selection.resolution', string='Resolution')
+    product_issue = fields.Many2one('selection.issue', string='Issue')
+    product_resolution = fields.Many2one('selection.resolution', string='Resolution')
 
     @api.onchange('product_type2')
     def onchange_product_type2(self):
         if self.product_type2:
                 self.product_main = False
-                # self.product_issue = False
-                # self.product_resolution = False
+                self.product_issue = False
+                self.product_resolution = False
             
 
 
