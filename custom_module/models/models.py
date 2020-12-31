@@ -183,6 +183,12 @@ class ResPartnerField(models.Model):
         readonly=True, store=True, index=True
     )
 
+    main_contact_email = fields.Char(
+        string='Main Contact Email',
+        related='main_contact.email', related_sudo=True, compute_sudo=True,
+        readonly=True, store=True, index=True
+    )
+
     bus_garage_main = fields.Many2one(
         'res.partner', string='Bus Garage Contact'
     )
@@ -280,7 +286,7 @@ class ResPartnerField(models.Model):
     # New fields for 3rd party solutions
     is_tablets = fields.Boolean("Tablets")
     gps_contract_expires = fields.Date("GPS Contract Expires")
-    driver_time_and_attendance = fields.Date("Driver Time and Attendance")
+    driver_time_and_attendance = fields.Selection([('Yes','Yes'),('No','No'),('Looking','Looking')])
     student_tracking_contract_expires = fields.Date(
         "Student Tracking Contract Expires")
 
