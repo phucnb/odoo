@@ -112,7 +112,6 @@ SYSTEM_RELATED_MAIN = [
 class TicketFields(models.Model):
     _inherit = 'helpdesk.ticket'
 
-    multiple_product = fields.Boolean("Multiple Product")
     partner_bus_garage_address = fields.Char(string='Bus Garage Address', compute='_compute_partner_contact', store=True, readonly=False)
     partner_phone = fields.Char(string='Main Phone', compute='_compute_partner_contact', store=True, readonly=False)
     partner_main_contact = fields.Char(string='Primary Contact', compute='_compute_partner_contact', store=True, readonly=False)
@@ -123,23 +122,18 @@ class TicketFields(models.Model):
         for ticket in self:
             if ticket.partner_id:
                 ticket.partner_bus_garage_address = ticket.partner_id.bus_garage_address
-                # ticket.partner_phone = ticket.partner_id.phone
-                # ticket.partner_main_contact = ticket.partner_id.main_contact.partner_id
-                # ticket.partner_main_contact_phone = ticket.partner_id.main_contact_phone
+                ticket.partner_phone = ticket.partner_id.phone
+                ticket.partner_main_contact = ticket.partner_id.main_contact.partner_id
+                ticket.partner_main_contact_phone = ticket.partner_id.main_contact_phone
 
-    product_type = fields.Selection(PRODUCT_TYPE, "Product Type")
 
-    product_type2 = fields.Many2one('selection.type', string='Product Type')
-    product_main = fields.Many2one('selection.main', string='Product Main')
-    product_issue = fields.Many2one('selection.issue', string='Issue')
-    product_resolution = fields.Many2one('selection.resolution', string='Resolution')
+ 
 
-    @api.onchange('product_type2')
-    def onchange_product_type2(self):
-        if self.product_type2:
-                self.product_main = False
-                self.product_issue = False
-                self.product_resolution = False
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        if self.partner_id:
+                self.name = partner_id
+                
             
 
 

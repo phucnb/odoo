@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import models, helpdesk, selection_config
+from . import models, helpdesk
