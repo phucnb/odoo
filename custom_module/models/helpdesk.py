@@ -127,28 +127,4 @@ class TicketFields(models.Model):
                 # ticket.partner_main_contact = ticket.partner_id.main_contact.partner_id
                 # ticket.partner_main_contact_phone = ticket.partner_id.main_contact_phone
 
-    product_type = fields.Selection(PRODUCT_TYPE, "Product Type")
-
-    product_type2 = fields.Many2one('selection.type', string='Product Type')
-    product_main = fields.Many2one('selection.main', string='Product Main')
-    product_issue = fields.Many2one('selection.issue', string='Issue')
-    product_resolution = fields.Many2one('selection.resolution', string='Resolution')
-
-    @api.onchange('product_type2')
-    def onchange_product_type2(self):
-        if self.product_type2:
-                self.product_main = False
-                self.product_issue = False
-                self.product_resolution = False
-            
-
-
-    # @api.onchange('product_main')
-    # def onchange_product_main(self):
-    #     if self.product_main:
-    #         if self.product_issue \
-    #                 and self.product_issue.id not in self.product_main.child_ids.ids:
-    #             self.product_issue = False
-
-
-            
+    
