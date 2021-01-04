@@ -208,10 +208,10 @@ class ResPartnerField(models.Model):
     )
 
     # ***CAMERA TAB***
-    # camera_vendor = fields.Selection(OPTIONS2, "Camera Vendor")
-    camera_vendor = fields.Many2many('res.partner_camera_vendor',
-                                              'partner_id_camera_vendor_id', 'partner_id',
-                                              'camera_vendor_id', 'Camera Vendor',
+    camera_vendor = fields.Selection(OPTIONS2, "Camera Vendor")
+    camera_vendors = fields.Many2many('res.partner_camera_vendors',
+                                              'partner_id_camera_vendors_id', 'partner_id',
+                                              'camera_vendors_id', 'Camera Vendors',
                                               help='Please add/select the name of Camera Vendor '
                                                    'e.g. AngelTrax, Seon, Gatekeeper etc')
     camera_vendor_other = fields.Boolean("Other")
@@ -427,6 +427,6 @@ class ResPartnerField(models.Model):
             self.parent_portal_other_ = ''
 
 class CameraVendor(models.Model):
-    _name = 'res.partner_camera_vendor'
+    _name = 'res.partner_camera_vendors'
 
     name = fields.Char("Value")
