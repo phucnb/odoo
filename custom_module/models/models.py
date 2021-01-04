@@ -426,7 +426,7 @@ class ResPartnerField(models.Model):
         if self.parent_portal != 'Other':
             self.parent_portal_other_ = ''
 
-    class CameraVendor(models.Model):
+class CameraVendor(models.Model):
     _name = 'res.partner_camera_vendor'
 
     name = fields.Char("Value")
