@@ -19,15 +19,15 @@
 					<page attrs="{'invisible':[('is_company','=',False)]}" string="Cameras / DVRs">
 						<group>
 							<group>
-								<field name="camera_vendors"/>
+								<field name="camera_vendors" widget="many2many_tags"/>
 								<field name="camera_vendor"/>
-								<field attrs="{'invisible':[('camera_vendors','!=','Other')]}" name="camera_vendor_specify"/>
+								<field attrs="{'invisible':[('camera_vendor','!=','Other')]}" name="camera_vendor_specify"/>
 							</group>
 							<group>
-								<field attrs="{'invisible':[('camera_vendors','=',False)]}" name="camera_number"/>
-								<field attrs="{'invisible':[('camera_vendors','=',False)]}" name="camera_number_per_bus"/>
-								<field attrs="{'invisible':[('camera_vendors','=',False)]}" name="camera_type_shield"/>
-								<field attrs="{'invisible':[('camera_vendors','=',False)]}" name="camera_type_sac"/>
+								<field attrs="{'invisible':[('camera_vendor','=',False)]}" name="camera_number"/>
+								<field attrs="{'invisible':[('camera_vendor','=',False)]}" name="camera_number_per_bus"/>
+								<field attrs="{'invisible':[('camera_vendor','=',False)]}" name="camera_type_shield"/>
+								<field attrs="{'invisible':[('camera_vendor','=',False)]}" name="camera_type_sac"/>
 								<field attrs="{'invisible':[('camera_type_sac','=',False)]}" name="camera_type_sac_3rd_pt"/>
 								<field attrs="{'invisible':[('camera_type_sac_3rd_pt','=',False)]}" name="camera_type_sac_3rd_pt_vendor"/>
 								<field attrs="{'invisible':[('camera_type_sac_3rd_pt_vendor','!=','Other')]}" name="camera_type_sac_3rd_pt_specify"/>
