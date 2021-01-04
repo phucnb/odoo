@@ -20,8 +20,8 @@
 						<group>
 							<group>
 								<field name="camera_vendors" widget="many2many_tags"/>
-								<field name="camera_vendor"/>
-								<field attrs="{'invisible':[('camera_vendors','!=','Other')]}" name="camera_vendor_specify"/>
+								<!-- <field name="camera_vendor"/> -->
+								<field attrs="{'invisible':[('camera_vendors','!=',['Other'])]}" name="camera_vendor_specify"/>
 							</group>
 							<group>
 								<field attrs="{'invisible':[('camera_vendors','=',[])]}" name="camera_number"/>
