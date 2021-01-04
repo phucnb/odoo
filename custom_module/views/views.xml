@@ -19,6 +19,7 @@
 					<page attrs="{'invisible':[('is_company','=',False)]}" string="Cameras / DVRs">
 						<group>
 							<group>
+								<field name="camera_vendors"/>
 								<field name="camera_vendor"/>
 								<field attrs="{'invisible':[('camera_vendor','!=','Other')]}" name="camera_vendor_specify"/>
 							</group>
