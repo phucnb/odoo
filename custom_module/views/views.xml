@@ -697,6 +697,13 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_email"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="website"/>
 				</field>
+				<xpath expr="//field[@name='child_ids']/kanban/templates/t/div/div[hasclass('oe_kanban_details')]/field[@name='name']" position="replace">
+                    <t t-set="partner_link" t-value="'/web#id=' + record.id.raw_value + '&amp;model=res.partner'"/>
+                    <a t-att-href="partner_link" style="text-decoration:none;float:none;">
+                        <field name="name"/>
+                    </a>
+                </xpath>
+
 			</field>
 		</record>
 	</data>
