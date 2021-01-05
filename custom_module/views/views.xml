@@ -704,11 +704,7 @@
                         <field name="name"/>
                     </a>
                 </xpath>
-                <xpath expr="//[hasclass('o_Message_headerDate')]" position="replace">
-                    - <t t-esc="message.dateFromNow"/> / <t t-esc="message.date"/>
-                    
-                </xpath>
-
+                
 
 			</field>
 		</record>
