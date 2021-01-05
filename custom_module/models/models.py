@@ -216,7 +216,7 @@ class ResPartnerField(models.Model):
                                                    'e.g. AngelTrax, Seon, Gatekeeper etc')
     camera_vendor_other = fields.Boolean("Other")
     camera_vendor_specify = fields.Char("Specify Vendor")
-    camera_number = fields.Integer("# of Cameras")
+    camera_number = fields.Integer("DVR Total")
     camera_number_per_bus = fields.Integer("# of Cameras / Bus")
     camera_type_shield = fields.Boolean("Shield Cam")
     camera_type_sac = fields.Boolean("Stop Arm Camera")
