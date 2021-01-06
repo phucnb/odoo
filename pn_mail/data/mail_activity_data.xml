@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="mail_activity_type_log" model="mail.activity.type">
+			<field name="name">Log</field>
+		</record>
+    </data>
+</odoo>
