@@ -434,21 +434,21 @@ class CustomCompany(models.Model):
     number_of_total_students = fields.Integer('Number of Total Students')
     website = fields.Char('Website URL')
 
-    @api.model
-    def _compute_opportunity_count(self):
-        for partner in self:
-            if partner.is_company:
-                partner.opportunity_count = self.env['crm.lead'].search_count([('hs_deal_companies', '=', partner.id)])
-            else:
-                partner.opportunity_count = self.env['crm.lead'].search_count([('hs_deal_contacts', '=', partner.id)])
+    # @api.model
+    # def _compute_opportunity_count(self):
+    #     for partner in self:
+    #         if partner.is_company:
+    #             partner.opportunity_count = self.env['crm.lead'].search_count([('hs_deal_companies', '=', partner.id)])
+    #         else:
+    #             partner.opportunity_count = self.env['crm.lead'].search_count([('hs_deal_contacts', '=', partner.id)])
 
-    def action_view_opportunity(self):
-        '''
-        This function returns an action that displays the opportunities from partner.
-        '''
-        action = self.env.ref('crm.crm_lead_opportunities').read()[0]
-        if self.is_company:
-            action['domain'] = [('hs_deal_companies', '=', self.id)]
-        else:
-            action['domain'] = [('hs_deal_contacts', '=', self.id)]
-        return action
+    # def action_view_opportunity(self):
+    #     '''
+    #     This function returns an action that displays the opportunities from partner.
+    #     '''
+    #     action = self.env.ref('crm.crm_lead_opportunities').read()[0]
+    #     if self.is_company:
+    #         action['domain'] = [('hs_deal_companies', '=', self.id)]
+    #     else:
+    #         action['domain'] = [('hs_deal_contacts', '=', self.id)]
+    #     return action
