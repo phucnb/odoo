@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+        <record id="custom_ticket_view" model="ir.ui.view">
+            <field name="name">custom.ticket.view</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                
+                <field name="partner_id" position="after">
+                    <field name="partner_bus_garage_address"/>
+                      <field name="partner_phone" /><field name="partner_main_contact" /><field name="partner_main_contact_phone" />
+                </field>
+               
+                <!-- Hide fields -->
+                <field name="hs_ticket_company" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="assigned_company" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="cs_number" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="product" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="pw_resolution" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="rn_number" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="s247_resolution" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="s247_product" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="touchdown" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="hs_ticket_category" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="source_type" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="hs_ticket_contacts" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="email_cc" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="partner_email" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

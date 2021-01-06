@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="pn_helpdesk_ticket_line_from_view" model="ir.ui.view">
+            <field name="name">pn.helpdesk.ticket.line.from.view</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='description']" position="before">
+                    <notebook>
+                        <page string="Ticket Lines" name="ticket_lines">
+                            <field name="line_ids" string="Ticket Lines">
+                                <tree editable="bottom">
+                                    <field name="type_id" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                    <field name="product_id"
+                                           domain="[('ticket_type_id', '=', type_id)]"
+                                           options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                    <field name="issue_id"
+                                           domain="[('ticket_type_id', '=', type_id)]"
+                                           options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                    <field name="resolution_id"
+                                           domain="[('ticket_type_id', '=', type_id)]"
+                                           options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                    <field name="remark"/>
+                                    <field name="ticket_id" invisible="1"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="type_id"
+                                                   options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                            <field name="product_id"
+                                                   domain="[('ticket_type_id', '=', type_id)]"
+                                                   options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                        </group>
+                                        <group>
+                                            <field name="issue_id"
+                                                   domain="[('ticket_type_id', '=', type_id)]"
+                                                   options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                            <field name="resolution_id"
+                                                   domain="[('ticket_type_id', '=', type_id)]"
+                                                   options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                            <field name="remark"/>
+                                            <field name="ticket_id" invisible="1"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

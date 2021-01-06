@@ -6,9 +6,7 @@ class S247Product(models.Model):
 
     name = fields.Char("Value")
 
-
 class Category(models.Model):
     _name = 'helpdesk.hs_ticket_category'
 
     name = fields.Char("Value")
-
