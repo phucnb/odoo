@@ -1,3 +1,4 @@
+from datetime import date, datetime
 from odoo import api, fields, models
 
 
@@ -6,7 +7,7 @@ class HelpdeskTicketLines(models.Model):
     _description = 'Helpdesk ticket Line'
 
     ticket_id = fields.Many2one('helpdesk.ticket', string='Ticket')
-    type_id = fields.Many2one('helpdesk.ticket.type2', string='Type', required=True)
+    type_id = fields.Many2one('helpdesk.ticket.type', string='Type', required=True)
     product_id = fields.Many2one('helpdesk.ticket.product', string='Product')
     issue_id = fields.Many2one('helpdesk.ticket.issue', string='Issue')
     resolution_id = fields.Many2one('helpdesk.ticket.resolution', string='Resolution')
@@ -28,3 +29,15 @@ class HelpdeskTicket(models.Model):
     _inherit = 'helpdesk.ticket'
 
     line_ids = fields.One2many('helpdesk.ticket.line', 'ticket_id', string='Lines')
+    name = fields.Char(
+        string='Subject', required=True,
+        index=True, store=True
+    )
+
+    @api.onchange('partner_id')
+    def onchange_helpdesk_ticket_subject(self):
+        if self.partner_id:
+            today = date.today()
+            self.name = '%s %s' % (self.partner_id.name, datetime.strftime(today, '%Y/%m/%d'))
+
+

@@ -1,35 +1,34 @@
 # -*- encoding: utf-8 -*-
 {
-    'name': 'PN Helpdesk',
+    'name': 'PN Mail',
     'version': '14.1.0.1',
     'author': 'Niran Aki',
-    'summary': 'Helpdesk',
-    'website': '',
-    'category': 'Helpdesk',
+    'summary': 'Mail',
+    'website': 'https://www.facebook.com/nhat.nang.52035',
+    'category': 'Mail',
     'description': "",
     'depends': [
-        'helpdesk',
+        'mail',
     ],
     'data': [
         # ============================================================
         # SECURITY SETTING - GROUP - PROFILE
         # ============================================================
-        'security/ir.model.access.csv',
         # ============================================================
         # DATA
         # ============================================================
-        # 'data/approval_role_data.xml',
-        'data/helpdesk_ticket_type_data.xml',
-        'data/cron_create_data.xml',
+        # 'data/mail_activity_data.xml',
         # ============================================================
         # VIEWS - REPORTS
         # ============================================================
         # */views
-        'views/helpdesk_ticket_views.xml',
+        'views/mail_activity_views.xml',
+        'views/assets.xml',
+        'views/mail_data.xml',
         # */menu
         # */wizard
     ],
-    'qweb': [],
+    'qweb': ['static/src/xml/mail_message.xml'],
     'installable': True,
-    'application': False,
+    'application': True,
 }

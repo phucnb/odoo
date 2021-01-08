@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-inherit="mail.ChatterTopbar" t-inherit-mode="extension">
+        <xpath expr="///div[hasclass('o-autogrow')]"
+               position="before">
+            <button class="btn btn-link o_ChatterTopbar_button o_ChatterTopbar_buttonScheduleLog"
+                    type="button"
+                    t-att-disabled="chatter.isDisabled"
+                    t-on-click="_onClickLogScheduleActivity">
+                <i class="fa fa-clock-o"/> Log
+            </button>
+        </xpath>
+    </t>
+</templates>

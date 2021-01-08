@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="pn_mail_data_chatter" name="PN Chatter" inherit_id="mail.message_activity_done">
+            <xpath expr="//div//div[1]" position="after">
+                <div t-if="activity.callout_come">
+                    <div class="o_mail_note_title"><strong>Callout Come:</strong></div>
+                    <div t-field="activity.callout_come"/>
+                </div>
+                <div t-if="activity.call_type">
+                    <div class="o_mail_note_title"><strong>Call or Meeting Type:</strong></div>
+                    <div t-field="activity.call_type"/>
+                </div>
+                <div t-if="activity.out_come">
+                    <div class="o_mail_note_title"><strong>Out Come:</strong></div>
+                    <div t-field="activity.out_come"/>
+                </div>
+                <div t-if="activity.out_come">
+                    <div class="o_mail_note_title"><strong>Start Time:</strong></div>
+                    <div t-field="activity.startTime"/>
+                </div>
+                <div t-if="activity.out_come">
+                    <div class="o_mail_note_title"><strong>End Time:</strong></div>
+                    <div t-field="activity.endTime"/>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

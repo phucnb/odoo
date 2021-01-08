@@ -2,35 +2,35 @@
 <odoo>
     <data>
         <!-- Set helpdesk ticket type -->
-        <record id="helpdesk_ticket_type_dvr" model="helpdesk.ticket.type2">
+        <record id="helpdesk_ticket_type_dvr" model="helpdesk.ticket.type">
 			<field name="name">DVR</field>
 		</record>
 
-        <record id="helpdesk_ticket_type_camera" model="helpdesk.ticket.type2">
+        <record id="helpdesk_ticket_type_camera" model="helpdesk.ticket.type">
 			<field name="name">Camera</field>
 		</record>
 
-        <record id="helpdesk_ticket_type_bridge" model="helpdesk.ticket.type2">
+        <record id="helpdesk_ticket_type_bridge" model="helpdesk.ticket.type">
 			<field name="name">Bridge</field>
 		</record>
 
-        <record id="helpdesk_ticket_type_access_point" model="helpdesk.ticket.type2">
+        <record id="helpdesk_ticket_type_access_point" model="helpdesk.ticket.type">
 			<field name="name">Access Point</field>
 		</record>
 
-        <record id="helpdesk_ticket_type_storage" model="helpdesk.ticket.type2">
+        <record id="helpdesk_ticket_type_storage" model="helpdesk.ticket.type">
 			<field name="name">Storage</field>
 		</record>
 
-        <record id="helpdesk_ticket_type_dvr_viewer" model="helpdesk.ticket.type2">
+        <record id="helpdesk_ticket_type_dvr_viewer" model="helpdesk.ticket.type">
 			<field name="name">DVR Viewer</field>
 		</record>
 
-        <record id="helpdesk_ticket_type_wrieless" model="helpdesk.ticket.type2">
+        <record id="helpdesk_ticket_type_wrieless" model="helpdesk.ticket.type">
 			<field name="name">Wrieless</field>
 		</record>
 
-        <record id="helpdesk_ticket_type_system_rel" model="helpdesk.ticket.type2">
+        <record id="helpdesk_ticket_type_system_rel" model="helpdesk.ticket.type">
 			<field name="name">User's System Related</field>
 		</record>
         <!-- DVR Product -->

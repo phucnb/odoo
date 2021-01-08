@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="assets_common_pn_log_activity" name="pn mail activity" inherit_id="web.assets_common">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/pn_mail/static/src/js/log_schedule.js"></script>
+        </xpath>
+    </template>
+</odoo>

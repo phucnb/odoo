@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="pn_mail_activity_inherit_mail_activity_form_popup" model="ir.ui.view">
+            <field name="name">pn.mail.activity.inherit.mail.activity.form.popup</field>
+            <field name="model">mail.activity</field>
+            <field name="inherit_id" ref="mail.mail_activity_view_form_popup" />
+            <field name="arch" type="xml">
+                <field name="summary" position="after">
+                    <field name="callout_come"
+                           attrs="{'invisible': ['|',('is_call_type','=',False),('is_log_schedule', '=', False)]}"/>
+                    <field name="call_type"
+                           attrs="{'invisible': ['|',('is_call_type','=',False),('is_log_schedule', '=', False)]}"/>
+                </field>
+                <field name="user_id" position="after">
+                    <field name="out_come"
+                           attrs="{'invisible': ['|',('is_mail_type','=',False),('is_log_schedule', '=', False)]}"/>
+                    <field name="is_log_schedule" invisible="1"/>
+                    <field name="is_call_type" invisible="1"/>
+                    <field name="is_mail_type" invisible="1"/>
+                </field>
+                <xpath expr="//footer/button[@name='action_close_dialog']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_log_schedule', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//footer/button[@name='action_done']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('force_next', '=', True),('is_log_schedule', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//footer/button[@name='action_done_schedule_next'][1]" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('force_next', '=', True),('is_log_schedule', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//footer/button[@name='action_done_schedule_next'][2]" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('force_next', '=', False),('is_log_schedule', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//footer/button[@name='action_done']" position="after">
+                    <button attrs="{'invisible': [('is_log_schedule', '=', False)]}"
+                            string="Log Activity" name="action_done" type="object"
+                            class="btn-primary"
+                            context="{'mail_activity_quick_update': True}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
