@@ -177,7 +177,7 @@ class ResPartnerField(models.Model):
             for rec in self:
                 results.append((rec.id, rec.name))
             return results
-        return super(ResPartner, self).name_get()
+        return super(ResPartnerField, self).name_get()
 
 
     main_contact_title = fields.Char(
