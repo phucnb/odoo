@@ -1,5 +1,7 @@
 from odoo import models, fields, api
+import logging
 
+_logger  = logging.getLogger(__name__)
 NP_SCORE = [
     ('0', '0'),
     ('1', '1'),
@@ -296,6 +298,7 @@ class ResPartnerField(models.Model):
         "Student Tracking Contract Expires")
 
     def name_get(self):
+        _logger.info("============================ context = %s" % self._context.get('main_contact'))
         if self._context.get('main_contact', False):
             results = []
             for rec in self:
