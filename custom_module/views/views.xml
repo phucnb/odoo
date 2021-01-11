@@ -686,13 +686,14 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="crr"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="fleet_size2"/>
 					<!-- <field attrs="{'invisible':[('is_company','=',False)]}" name="touchdown"/>-->
-					<field attrs="{'invisible':[('is_company','=',False)]}" name="wireless_check"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="wireless_check" readonly='1' force_save="1"/>
 					<!-- <field attrs="{'invisible':[('is_company','=',False)]}" name="service_agreement"/>-->
-					<field attrs="{'invisible':[('is_company','=',False)]}" name="service_plan"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="service_plan" readonly='1' force_save="1"/>
 				</field>
 				<!-- LEFT SIDE COMPANY CARD -->
 				<field name="vat" position="before">
-					<field attrs="{'invisible':[('is_company','=',False)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="main_contact" options="{'no_create_edit': True}"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="main_contact" context="{'main_contact': True}"
+                           options="{'no_create': True, 'no_edit': True, 'no_create_edit': True}"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_title"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_phone"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_email"/>

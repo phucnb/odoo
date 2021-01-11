@@ -171,6 +171,15 @@ class ResPartnerField(models.Model):
         'res.partner', string='Main Contact'
     )
 
+    def name_get(self):
+        if self._context.get('main_contact', False):
+            results = []
+            for rec in self:
+                results.append((rec.id, rec.name))
+            return results
+        return super(ResPartner, self).name_get()
+
+
     main_contact_title = fields.Char(
         string='Main Contact Title',
         related='main_contact.function', related_sudo=True, compute_sudo=True,
