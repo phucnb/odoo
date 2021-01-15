@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="adding_warranty_wizard_form" model="ir.ui.view">
+            <field name="name">Warranty Wizard</field>
+            <field name="model">warranty.wizard</field>
+            <field name="arch" type="xml" >
+                <form string="Message">
+                    <group>
+                        <group>
+                            <field name="wm_sale_order_id_w" readonly="1"/>
+                            <field name="wm_partner_id_w" readonly="1"/>
+                            <field name="wm_product_id_w" readonly="1"/>
+                            <field name="wm_assigned_by_w" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="wm_start_date_w"/>
+                            <field name="wm_end_date_w"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="wm_comments_w"/>
+                    </group>
+
+                    <footer>
+                        <button name="add_warranty" type="object" string="Apply Warranty" class="oe_highlight" style="width:20%"/>
+                        <button string="Cancel" special="cancel" style="width:10%"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="adding_warranty_wizard" model="ir.actions.act_window">
+            <field name="name">Warranty Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">warranty.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="adding_warranty_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

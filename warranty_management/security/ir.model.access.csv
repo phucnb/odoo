@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_warranty_management,warranty.management,model_warranty_management,warranty_management.group_stock_warranty,1,1,1,1
+access_warranty_type,warranty.type,model_warranty_type,warranty_management.group_stock_warranty,1,1,1,1
