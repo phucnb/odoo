@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="pn_mail_activity_popup_view" model="ir.ui.view">
+            <field name="name">pn.mail.activity.popup.view</field>
+            <field name="model">mail.activity</field>
+            <field name="priority">14</field>
+            <field name="inherit_id" ref="mail.mail_activity_view_form_popup"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="before">
+                    <field name="meeting_subject" attrs="{'invisible': [('activity_category', '!=', 'meeting')]}"/>
+                    <field name="partner_ids" attrs="{'invisible': [('activity_category', '!=', 'meeting')]}" widget="many2many_tags" placeholder="Select attendees..." context="{'force_email':True}"/>
+                    <field name="start_date" attrs="{'invisible': ['|',('allday','=',False),('activity_category', '!=', 'meeting')]}"/>
+                    <field name="end_date" attrs="{'invisible': ['|',('allday','=',False),('activity_category', '!=', 'meeting')]}"/>
+                    <field name="start" attrs="{'invisible': ['|',('allday','=',True),('activity_category', '!=', 'meeting')]}"/>
+                    <field name="duration" attrs="{'invisible': ['|',('allday','=',True),('activity_category', '!=', 'meeting')]}"/>
+                    <field name="stop" invisible="1"/>
+                    <field name="allday" attrs="{'invisible': [('activity_category', '!=', 'meeting')]}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_close_dialog']" position="before">
+                    <button string="Create Calendar"
+                        attrs="{'invisible': [('activity_category', '!=', 'meeting')]}"
+                        name="action_create_calendar_event_non_setup"
+                        type="object"
+                        class="btn-primary"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

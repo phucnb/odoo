@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mail_activity_user_overview,mail_activity_overview_basic,model_mail_activity_overview,,0,0,0,0
+access_mail_activity_own_document_overview,mail_activity_overview_basic,model_mail_activity_overview,pn_activity.group_activity_own_document,1,1,1,1

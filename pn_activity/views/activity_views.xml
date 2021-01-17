@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="pn_mail_activity_overview_view_search" model="ir.ui.view">
+            <field name="name">pn.mail.activity.overview.view.search</field>
+            <field name="model">mail.activity.overview</field>
+            <field name="arch" type="xml">
+                <search string="Activity">
+                    <field name="model_name"/>
+                    <field name="res_name"/>
+                    <field name="summary"/>
+                    <field name="activity_type_id"/>
+                    <filter string="Today Activities" name="activities_today" domain="[('date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="Future Activities" name="activities_upcoming_all" domain="[('date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="My Activities" name="my_activities" domain="[('user_id', '=', uid)]"/>
+                    <filter string="Activity" name="fl_activity" domain="[('state', '!=', 'done')]"/>
+                    <filter string="Done" name="fl_done" domain="[('state', '=', 'done')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Assign To" name="gb_assign_to" context="{'group_by': 'user_id'}"/>
+                        <filter string="Deadline" name="date_deadline" context="{'group_by': 'date_deadline'}"/>
+                        <filter string="State" name="gb_state" context="{'group_by': 'state'}"/>
+                        <filter string="Activity Type" name="activittype" context="{'group_by': 'activity_type_id'}"/>
+                        <filter string="Document Model" name="document_model" context="{'group_by': 'model_name'}"/>
+                        <filter string="Document Name" name="document_name" context="{'group_by': 'res_name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="pn_mail_activity_view_tree" model="ir.ui.view">
+            <field name="name">pn.mail.activity.view.tree</field>
+            <field name="model">mail.activity.overview</field>
+            <field name="arch" type="xml">
+                <tree string="Activities" editable="bottom"
+                      decoration-danger="date_deadline &lt; current_date and state != 'done'"
+                      decoration-success="date_deadline == current_date and state != 'done'"
+                      decoration-muted="state == 'done'"
+                      default_order="date_deadline"
+                      create="false" edit="false" delete="false">
+                    <field name="mail_activity_id" invisible="1"/>
+                    <field name="res_name"/>
+                    <button name="action_open_record" type="object" string="(View)" icon="fa-external-link" />
+                    <field name="model_name"/>
+                    <field name="activity_type_id" string="Activity Type"/>
+                    <field name="user_id"/>
+                    <field name="request_partner_id" optional="hide"/>
+                    <field name="activity_ids" widget="list_activity" optional="show" string="Summary"/>
+                    <field name="date_deadline"/>
+                    <field name="state" optional="show"/>
+                </tree>
+            </field>
+        </record>
+        <record id="pn_mail_activity_view_form" model="ir.ui.view">
+            <field name="name">pn.mail.activity.view.form</field>
+            <field name="model">mail.activity.overview</field>
+            <field name="arch" type="xml">
+                <form string="Activities" create="false" edit="false" delete="false">
+                    <header>
+                        <button attrs="{'invisible': ['|',('force_next', '=', True),('state', '=', 'done')]}"
+                                string="Mark as Done" name="action_done" type="object" class="btn-secondary"/>
+                        <button attrs="{'invisible': ['|',('force_next', '=', True),('state', '=', 'done')]}"
+                                string="Done &amp; Schedule Next"
+                                name="action_done_schedule_next"
+                                type="object" class="btn-secondary"/>
+                        <button attrs="{'invisible': [('force_next', '=', False)]}"
+                                string="Done &amp; Launch Next" name="action_done_schedule_next"
+                                type="object" class="btn-secondary"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="mail_activity_id" invisible="1"/>
+                                <field name="res_name"/>
+                                <field name="model_name"/>
+                                <field name="user_id"/>
+                                <field name="request_partner_id"/>
+                            </group>
+                            <group>
+                                <field name="activity_type_id" string="Activity Type"/>
+                                <field name="activity_ids" widget="list_activity" optional="show" string="Summary"/>
+                                <field name="date_deadline"/>
+                                <field name="force_next" invisible="1"/>
+                            </group>
+                        </group>
+                        <label for="note" string="Note"/>
+                        <field name="note"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="pn_mail_activity_act_action" model="ir.actions.act_window">
+            <field name="name">Activities</field>
+            <field name="res_model">mail.activity.overview</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_fl_activity': True}</field>
+            <field name="view_id" ref="pn_activity.pn_mail_activity_view_tree"/>
+            <field name="search_view_id" ref="pn_activity.pn_mail_activity_overview_view_search"/>
+        </record>
+
+        <record id="action_server_done_multi_server" model="ir.actions.server">
+            <field name="name">Mark as Done</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_mail_activity_overview" />
+            <field name="binding_model_id" ref="model_mail_activity_overview" />
+            <field name="state">code</field>
+            <field name="code">records.action_done_multi()</field>
+        </record>
+
+        <menuitem id="pn_menu_mail_activity_parent_menu" name="Activity Management" sequence="20" groups="pn_activity.group_activity_own_document"/>
+        <menuitem id="pn_menu_mail_activity_menu" action="pn_mail_activity_act_action" sequence="1" groups="pn_activity.group_activity_own_document" parent="pn_activity.pn_menu_mail_activity_parent_menu"/>
+    </data>
+</odoo>
