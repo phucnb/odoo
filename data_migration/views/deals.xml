@@ -43,10 +43,10 @@
                             <field name="recordingUrl"/>
                             <field name="disposition"/>
                         </group> -->
-                        <group>
+                       <!--  <group>
                             <field name="startTime"/>
                             <field name="endTime"/>
-                        </group>
+                        </group> -->
                     </group>
             </xpath>
             </field>
