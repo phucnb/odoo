@@ -449,7 +449,7 @@ class ResPartnerField(models.Model):
 
     @api.model
     def default_get(self, fields):
-        res = super(ResPartner, self).default_get(fields)
+        res = super(ResPartnerField, self).default_get(fields)
         if not res.get('country_id', False):
             try:
                 res['country_id'] = self.env.ref('base.us').id
