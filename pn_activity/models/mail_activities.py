@@ -71,6 +71,11 @@ class MailActivity(models.Model):
                         if company_id:
                             attendees.append(company_id)
                     self.meeting_subject = 'name' in active_id and active_id.name or ''
+                if self.res_model == 'res.partner':
+                    contact_id = self.env[self.res_model].browse(self.res_id)
+                    attendees.append(contact_id.id)
+                    if contact_id.parent_id:
+                        attendees.append(contact_id.parent_id.id)
             self.partner_ids = [(6, 0, attendees)]
             self.start_date = date.today()
             self.end_date = date.today()
