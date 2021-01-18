@@ -18,7 +18,7 @@
                     <field name="allday" attrs="{'invisible': [('activity_category', '!=', 'meeting')]}"/>
                 </xpath>
                 <xpath expr="//button[@name='action_close_dialog']" position="before">
-                    <button string="Create Calendar"
+                    <button string="Create Meeting"
                         attrs="{'invisible': [('activity_category', '!=', 'meeting')]}"
                         name="action_create_calendar_event_non_setup"
                         type="object"
