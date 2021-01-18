@@ -61,13 +61,15 @@ class MailActivity(models.Model):
     def onchange_activity_category(self):
         if self.activity_category == 'meeting':
             attendees = self.env.user.partner_id.ids
-            company_ids = self.env.user.company_id.mapped('partner_id').ids
-            attendees.extend(company_ids)
             if self.res_model and self.res_id:
                 active_id = self.env[self.res_model].browse(self.res_id)
                 if active_id.exists():
                     if 'partner_id' in active_id and active_id.partner_id:
-                        attendees.append(active_id.id)
+                        attendees.append(active_id.partner_id.id)
+                        customer_company = active_id.partner_id.parent_id
+                        company_id = customer_company and customer_company.id or False
+                        if company_id:
+                            attendees.append(company_id)
                     self.meeting_subject = 'name' in active_id and active_id.name or ''
             self.partner_ids = [(6, 0, attendees)]
             self.start_date = date.today()
