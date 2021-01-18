@@ -1,4 +1,5 @@
-from odoo import models, fields, api
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 import logging
 
 _logger  = logging.getLogger(__name__)
@@ -436,6 +437,26 @@ class ResPartnerField(models.Model):
     def _clear_fields_parent_portal(self):
         if self.parent_portal != 'Other':
             self.parent_portal_other_ = ''
+
+    state_code = fields.Char(string='State Code', related='state_id.code', readonly=True, related_sudo=True, store=True, help='The state code.')
+    
+    @api.constrains('name')
+    def constrains_contact_name(self):
+        for record in self:
+            contacts = self.search([('name', '=', record.name)])
+            if len(contacts) > 1:
+                raise ValidationError(_('Error! Name must be unique'))
+
+    @api.model
+    def default_get(self, fields):
+        res = super(ResPartnerField, self).default_get(fields)
+        if not res.get('country_id', False):
+            try:
+                res['country_id'] = self.env.ref('base.us').id
+            except Exception as e:
+                pass
+        return res
+
 
 class CameraVendor(models.Model):
     _name = 'res.partner_camera_vendors'
