@@ -131,6 +131,20 @@ TOUCHDOWN_TYPE = [
     ('TD200', 'TD200'),
 ]
 
+CUSTOMER_TYPE = [
+    ('dealer', 'Dealer'),
+    ('dealer preferred', 'Dealer Preferred'),
+    ('school district', 'School District'),
+    ('municipality', 'Municipality'),
+    ('school contracter', 'School Contracter'),
+    ('association', 'Association'),
+    ('other', 'Other')
+]
+
+PROSPECT_CUSTOMER = [
+    ('prospect', 'Prospect'),
+    ('customer', 'Customer')
+]
 
 class ResPartnerField(models.Model):
 
@@ -167,6 +181,8 @@ class ResPartnerField(models.Model):
         STOP_ARM_THIRD_PARTY, 'Stop Arm Third Party')
     district_type = fields.Selection(DISTRICT_TYPE, 'District Type')
     no_bell_times = fields.Selection(NO_BELL_TIMES, '# Bell Times')
+    customer_type = fields.Selection(CUSTOMER_TYPE, 'Customer Type')
+    prospect_customer = fields.Selection(PROSPECT_CUSTOMER, 'Prospect/Customer')
     purchase_order_received = fields.Date("Purchase Order Received")
 
     child_ids = fields.One2many(

@@ -678,10 +678,11 @@
 				</field>
 				<!-- RIGHT SIDE COMPANY CARD -->
 				<field name="category_id" position="before">
-					<field attrs="{'invisible':[('is_company','=',False)]}" name="_247_customer"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="customer_type"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="prospect_customer"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="np_score"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="sales_rep"/>
-					<field attrs="{'invisible':[('is_company','=',False)]}" name="issr"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="isr"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="crr"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="fleet_size2"/>
 					<!-- <field attrs="{'invisible':[('is_company','=',False)]}" name="touchdown"/>-->

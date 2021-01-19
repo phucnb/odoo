@@ -7,9 +7,12 @@
             <field name="arch" type="xml">
                 <field name="team_id" position="after">
                     <field name="n247s_lifecycle_stage"  attrs="{'invisible': [('type', '=', 'lead')]}"/>
+                    <field name="hs_deal_contacts" attrs="{'invisible': [('type', '=', 'lead')]}"/>
                     <field name="dealers_quoting_this_deal" widget="many2many_tags"/>
+                    <field name="end_user"  attrs="{'invisible': [('type', '=', 'lead')]}"/>
                     <field name="isr" attrs="{'invisible': [('type', '=', 'lead')]}"/>
                     <field name="opportunity_number"  attrs="{'invisible': [('type', '=', 'lead')]}"/>
+                    
                 </field>
             </field>
         </record>
