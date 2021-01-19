@@ -30,11 +30,22 @@ ISR = [
 ]   
 
 BUS_MFG = [
-    ('demo', 'demo')
+    ('Blue Bird', 'Blue Bird'),
+    ('IC Bu', 'IC Bu'),
+    ('Thomas Built', 'Thomas Built'),
+    ('Collins', 'Collins'),
+    ('Micro Bird', 'Micro Bird'),
+    ('Lion', 'Lion'),
+    ('Starcraft', 'Starcraft'),
+    ('Other', 'Other'),
 ]
 
+
 BUS_TYPE = [
-    ('demo', 'demo')
+    ('Type A', 'Type A'),
+    ('Type B', 'Type B'),
+    ('Type C', 'Type C'),
+    ('Type D', 'Type D')
 ]
 
 
@@ -277,7 +288,11 @@ class ResPartnerField(models.Model):
     tv_version = fields.Char("TeamViewer Version")
     tv_monitor = fields.Boolean("TeamViewer Monitor")
     server_inst_date = fields.Date("Server Install Date")
-
+    fleet_note = fields.Char("Note",track_visibility='onchange')
+    camera_note = fields.Char("Note",track_visibility='onchange')
+    service_note = fields.Char("Note",track_visibility='onchange')
+    wireless_note = fields.Char("Note",track_visibility='onchange')
+    school_note = fields.Char("Note",track_visibility='onchange')
     # is_not_tags = fields.Boolean(
     #     string='Is not tags', default=False,
     #     compute='_compute_is_not_tags', compute_sudo=True, related_sudo=True
@@ -465,12 +480,12 @@ class ResPartnerField(models.Model):
 
     state_code = fields.Char(string='State Code', related='state_id.code', readonly=True, related_sudo=True, store=True, help='The state code.')
     
-    @api.constrains('name')
-    def constrains_contact_name(self):
-        for record in self:
-            contacts = self.search([('name', '=', record.name)])
-            if len(contacts) > 1:
-                raise ValidationError(_('Error! Name must be unique'))
+    # @api.constrains('name')
+    # def constrains_contact_name(self):
+    #     for record in self:
+    #         contacts = self.search([('name', '=', record.name)])
+    #         if len(contacts) > 1:
+    #             raise ValidationError(_('Error! Name must be unique'))
 
     @api.model
     def default_get(self, fields):

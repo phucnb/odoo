@@ -12,7 +12,7 @@
 								<field name="fleet_size2"/>
 								<field name="bus_mfg"/>
 								<field name="bus_type"/>
-								<field name="special_instructions"/>
+								<field name="fleet_note"/>
 							</group>
 						</group>
 					</page>
@@ -32,10 +32,12 @@
 								<field attrs="{'invisible':[('camera_type_sac_3rd_pt','=',False)]}" name="camera_type_sac_3rd_pt_vendor"/>
 								<field attrs="{'invisible':[('camera_type_sac_3rd_pt_vendor','!=','Other')]}" name="camera_type_sac_3rd_pt_specify"/>
 							</group>
+
 						</group>
 						<group>
 							<group>
 								<field name="camera_vendor_pref"/>
+								<field name="camera_note"/>
 							</group>
 							<group>
 								<field attrs="{'invisible':[('camera_vendor_pref','!=','Other')]}" name="camera_vendor_pref_specify"/>
@@ -49,6 +51,7 @@
 								<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_address"/>
 								<!-- <field attrs="{'invisible':[('is_company','=',False)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="main_contact" options="{'no_create_edit': True}"/> -->
 								<!-- 	<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_address"/><field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_city"/><field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_phone"/>-->
+								<field name="service_note"/>
 							</group>
 							<group>
 								<field attrs="{'invisible':[('service_plan', '=', True)]}" name="fleet_inspection"/>
@@ -82,6 +85,7 @@
 							<group>
 								<field attrs="{'invisible':[('wireless_check','=',False)]}" name="tv_access"/>
 								<field attrs="{'invisible':[('tv_access','=',False)]}" name="tv_monitor"/>
+								<field name="wireless_note" />
 							</group>
 							<group>
 								<field attrs="{'invisible':[('tv_access','=',False)]}" name="tv_id"/>
@@ -112,6 +116,8 @@
 								<field name="number_of_total_students"/>
 								<!-- <field name="student_count"/> -->
 								<field name="number_of_special_needs_students_transported"/>
+								<field name="school_note"/>
+
 							</group>
 							<group>
 								<field name="budget_planning_starts"/>
@@ -683,6 +689,7 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="np_score"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="sales_rep"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="isr"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="rsm"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="crr"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="fleet_size2"/>
 					<!-- <field attrs="{'invisible':[('is_company','=',False)]}" name="touchdown"/>-->
