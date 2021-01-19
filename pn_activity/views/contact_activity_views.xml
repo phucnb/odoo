@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="pn_mail_activity_contact_act_action" model="ir.actions.act_window">
+            <field name="name">Activities</field>
+            <field name="res_model">mail.activity.overview</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_fl_activity': True}</field>
+            <field name="domain">[('res_model','=','res.partner')]</field>
+            <field name="view_id" ref="pn_activity.pn_mail_activity_view_tree"/>
+            <field name="search_view_id" ref="pn_activity.pn_mail_activity_overview_view_search"/>
+        </record>
+
+        <menuitem id="pn_menu_mail_activity_contact_menu"
+                  action="pn_activity.pn_mail_activity_contact_act_action"
+                  sequence="2"
+                  groups="pn_activity.group_activity_own_document"
+                  parent="contacts.menu_contacts"/>
+
+        <record id="contacts.res_partner_menu_config" model="ir.ui.menu">
+            <field name="sequence">4</field>
+        </record>
+    </data>
+</odoo>

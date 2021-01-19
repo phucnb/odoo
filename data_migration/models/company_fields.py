@@ -230,7 +230,8 @@ SALE_REP = [
     ('Christina Graham', 'Christina Graham'),
     ('Larry Silba', 'Larry Silba'),
     ('Syreeta Hill', 'Syreeta Hill'),
-    ('Theresa Jensen', 'Theresa Jensen')
+    ('Theresa Jensen', 'Theresa Jensen'),
+    ('Tom Giglio', 'Tom Giglio')
 ]
 
 VENDOR = [

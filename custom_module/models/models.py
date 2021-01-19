@@ -18,8 +18,16 @@ NP_SCORE = [
 ]
 
 CRR = [
-    ('demo', 'demo')
+    ('Tristin Church', 'Tristin Church'),
+    ('Ricky Oram', 'Ricky Oram')
 ]
+
+ISR = [
+    ('Brian Sapp','Brian Sapp'),
+    ('Kristi Keaton','Kristi Keaton'),
+    ('Ross Evart','Ross Evart'),
+    ('Manny Casanas','Manny Casanas')
+]   
 
 BUS_MFG = [
     ('demo', 'demo')
@@ -145,6 +153,7 @@ class ResPartnerField(models.Model):
     _247_customer = fields.Boolean('247 Customer')
     np_score = fields.Selection(NP_SCORE, "NP Score")
     crr = fields.Selection(CRR, 'CRR')
+    isr = fields.Selection(ISR, 'ISR')
     bus_mfg = fields.Selection(BUS_MFG, 'Bus MFG')
     bus_type = fields.Selection(BUS_TYPE, 'Bus Type')
     service_plan_type = fields.Selection(

@@ -8,7 +8,7 @@
     'sequence': 185,
     'category': 'Activities',
     'description': "",
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail', 'contacts'],
     'data': [
         'security/activity_group.xml',
         'security/ir.model.access.csv',
@@ -16,6 +16,7 @@
         'data/schedule_sync_activity_data.xml',
         'views/activity_views.xml',
         'views/mail_activity_views.xml',
+        'views/contact_activity_views.xml'
     ],
     'qweb': [],
     'installable': True,
