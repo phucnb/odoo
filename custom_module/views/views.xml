@@ -732,7 +732,7 @@
                     <attribute name="context">{'default_parent_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_lang': None, 'default_user_id': user_id, 'default_type': 'contact'}</attribute>
                 </xpath>
                 <xpath expr="//page[@name='contact_addresses']/field[@name='child_ids']/kanban/templates/t/div/div[1]/t[1]" position="inside">
-                    <img alt="Bus garage address" t-if="record.type.raw_value === 'bus_address'" t-att-src='_s + "/sale_customer/static/src/img/bus.png"'/>
+                    <img alt="Bus garage address" t-if="record.type.raw_value === 'bus_address'" t-att-src='_s + "/custom_module/static/src/img/bus.png"'/>
                 </xpath>
                 <xpath expr="//page[@name='contact_addresses']/field[@name='child_ids']/kanban/templates/t/div/div[1]/t[1]/t" position="attributes">
                     <attribute name="t-if">record.type.raw_value !== 'invoice' &amp;&amp; record.type.raw_value !== 'delivery' &amp;&amp; record.type.raw_value !== 'bus_address'</attribute>
