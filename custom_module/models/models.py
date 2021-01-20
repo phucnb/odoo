@@ -507,7 +507,8 @@ class ResPartnerField(models.Model):
                 can_modify = True
             record.can_modify = can_modify
 
-
+    report_to_id = fields.Many2one('res.partner', string='Report To')     
+      
 
 class CameraVendor(models.Model):
     _name = 'res.partner_camera_vendors'
