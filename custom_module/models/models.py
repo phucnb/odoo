@@ -1,4 +1,4 @@
-from odoo import api, fields, models, _
+from odoo import api, fields, models, SUPERUSER_ID,  _
 from odoo.exceptions import ValidationError
 import logging
 
@@ -496,6 +496,17 @@ class ResPartnerField(models.Model):
             except Exception as e:
                 pass
         return res
+
+    # Allow admin to edit company type
+    can_modify = fields.Boolean(string='Can Modify', compute='_compute_can_modify', default=True)
+    def _compute_can_modify(self):
+        is_manager = self.env.user.has_group('base.group_erp_manager')
+        for record in self:
+            can_modify = False
+            if is_manager or not self.create_date or (self.create_date and is_manager):
+                can_modify = True
+            record.can_modify = can_modify
+
 
 
 class CameraVendor(models.Model):

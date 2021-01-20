@@ -4,6 +4,7 @@
 			<field name="name">custom.contact.fields</field>
 			<field name="model">res.partner</field>
 			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="priority" eval="30"/>
 			<field name="arch" type="xml">
 				<xpath expr="//page[1]" position="after">
 					<page attrs="{'invisible':[('is_company','=',False)]}" string="Fleet">
@@ -696,6 +697,7 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="wireless_check" readonly='1' force_save="1"/>
 					<!-- <field attrs="{'invisible':[('is_company','=',False)]}" name="service_agreement"/>-->
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="service_plan" readonly='1' force_save="1"/>
+					<field name="can_modify" invisible="1"/>
 				</field>
 				<!-- LEFT SIDE COMPANY CARD -->
 				<field name="vat" position="before">
@@ -709,6 +711,12 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_email"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="website"/>
 				</field>
+
+				<field name="company_type" position="attributes">
+                    <attribute name="attrs">{'readonly': [('can_modify', '=', False)]}</attribute>
+                </field>
+
+
 				<xpath expr="//field[@name='child_ids']/kanban/templates/t/div/div[hasclass('oe_kanban_details')]/field[@name='name']" position="replace">
                     <t t-set="partner_link" t-value="'/web#id=' + record.id.raw_value + '&amp;model=res.partner&amp;view_type=form&amp;cids=1'"/>
                     <a t-att-href="partner_link" style="text-decoration:none;float:none;">
@@ -716,8 +724,56 @@
                     </a>
                 </xpath>
                 
+               
+
 
 			</field>
 		</record>
+
+        <record id="sale_customer_res_partner_inherit_view_buttons" model="ir.ui.view">
+            <field name="name">sale.customer.res.partner.inherit.mail.from.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="sale_customer_res_partner_view_buttons" />
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="main_contact" position="before">
+                    <field name="email" widget="email"
+                           context="{'gravatar_image': True}"
+                           attrs="{'invisible': [('company_type', '=', 'company')], 'required': [('user_ids','!=', [])]}"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="sale_customer_res_partner_mail_from_view" model="ir.ui.view">
+            <field name="name">sale.customer.res.partner.mail.from.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="mail.res_partner_view_form_inherit_mail" />
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='email'][hasclass('oe_inline')]" position="attributes">
+                    <attribute name="attrs">{'invisible': [('company_type','=','person')]}</attribute>
+                </xpath>
+                <xpath expr="//div[hasclass('o_row_readonly')]/field[@name='email']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('company_type','=','person')], 'required': [('user_ids','!=', [])]}</attribute>
+                </xpath>
+            </field>
+        </record>
+				
+
+
+		 <!-- ADD CITY TO COMPANY CARD ON KANBAN VIEW -->
+		<record id="custom_module_res_partner_inherit_kanban_view" model="ir.ui.view">
+            <field name="name">custom.module.res.partner.inherit.kanban.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('flex-column')]/ul/li/t/field[@name='city']" position="after">
+                    <t t-if="record.state_id.raw_value">, </t>
+                    <t t-if="record.state_id.raw_value"><field name="state_id"/></t>
+                </xpath>
+            </field>
+        </record>
+
 	</data>
 </odoo>
