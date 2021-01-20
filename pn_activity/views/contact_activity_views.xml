@@ -35,11 +35,10 @@
                   action="pn_activity.pn_mail_activity_crm_act_action"
                   sequence="4"
                   groups="pn_activity.group_activity_own_document"
-                  parent="contacts.menu_contacts"/>
+                  parent="crm.crm_menu_root"/>
 
-        <record id="crm.crm_lead_menu_config" model="ir.ui.menu">
-            <field name="sequence">5</field>
-        </record>
+       
 
     </data>
 </odoo>
+

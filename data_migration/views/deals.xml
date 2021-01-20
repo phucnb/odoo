@@ -5,14 +5,15 @@
             <field name="model">crm.lead</field>
             <field name="inherit_id" ref="crm.crm_lead_view_form"/>
             <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                     <field name="end_user"  />
+                </field>
                 <field name="team_id" position="after">
-                    <field name="n247s_lifecycle_stage"  attrs="{'invisible': [('type', '=', 'lead')]}"/>
-                    <field name="hs_deal_contacts" attrs="{'invisible': [('type', '=', 'lead')]}"/>
-                    <field name="dealers_quoting_this_deal" widget="many2many_tags"/>
-                    <field name="end_user"  attrs="{'invisible': [('type', '=', 'lead')]}"/>
-                    <field name="isr" attrs="{'invisible': [('type', '=', 'lead')]}"/>
-                    <field name="opportunity_number"  attrs="{'invisible': [('type', '=', 'lead')]}"/>
-                    
+                    <field name="isr" />
+                    <field name="opportunity_number"/>
+                    <field name="opportunity_link" />
+                    <field name="quote_number"/>
+                    <field name="quote_link" />
                 </field>
             </field>
         </record>

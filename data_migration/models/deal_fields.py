@@ -51,7 +51,7 @@ class DealFields(models.Model):
                                             help='Please add/select the considered products e.g. ZeusPT, ZeusHD, '
                                                  'Touchdown™, GPS, G-Force, IP Cameras w/SARAH4\'s, Stop Arm Cameras,'
                                                  'Demo, Install, TRS')
-    # quote_link = fields.Char("Quote Link")
-    # quote_number = fields.Char("Quote Number")
+    quote_link = fields.Char("Quote Link")
+    quote_number = fields.Char("Quote Number")
     sales_number = fields.Char("Sales Number")
     state = fields.Char('State/Region')
