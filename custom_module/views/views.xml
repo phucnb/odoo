@@ -733,7 +733,7 @@
         <record id="sale_customer_res_partner_inherit_view_buttons" model="ir.ui.view">
             <field name="name">sale.customer.res.partner.inherit.mail.from.view</field>
             <field name="model">res.partner</field>
-            <field name="inherit_id" ref="sale_customer_res_partner_view_buttons" />
+            <field name="inherit_id" ref="custom_contact_field" />
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
                 <field name="main_contact" position="before">
