@@ -663,7 +663,7 @@
 					<attribute name="invisible">1</attribute>
 				</xpath>
 				<!-- LEFT SIDE CONTACT CARD -->
-				<field name="main_contact" position="before">
+				<field name="email" position="after">
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="first_name"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="last_name"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="role" string="Title"/>
