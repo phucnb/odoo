@@ -14,6 +14,15 @@
                 </field>
                
                 <!-- Hide fields -->
+               <field name="product_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+               <field name="partner_name" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="ticket_type_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
                 <field name="hs_ticket_company" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </field>
