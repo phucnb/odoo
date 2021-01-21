@@ -19,13 +19,13 @@
         # DATA
         # ============================================================
         # 'data/approval_role_data.xml',
-        # 'data/helpdesk_ticket_type_data.xml',
+        'data/helpdesk_ticket_type_data.xml',
         'data/cron_create_data.xml',
         # ============================================================
         # VIEWS - REPORTS
         # ============================================================
         # */views
-        # 'views/helpdesk_ticket_views.xml',
+        'views/helpdesk_ticket_views.xml',
         # */menu
         # */wizard
     ],
