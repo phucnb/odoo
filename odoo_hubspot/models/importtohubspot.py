@@ -790,15 +790,15 @@ class HubspotImportIntegration(models.Model):
                         association_data = engagement['associations']
                         meta_data = engagement['metadata']
                         if engagement_data['type'] in ['EMAIL', 'INCOMING_EMAIL']:
-                            if not meta_data.get('from'):
-                                self.env['log.engagements'].create({
-                                    'record_id': engagement_data['id'],
-                                    'description': 'Coming engagement email type has no \'from\' that is why skipped',
-                                    'skip': True,
-                                    'model': 'res.partner',
-                                })
-                                self.env.cr.commit()
-                                continue
+                            # if not meta_data.get('from'):
+                            #     self.env['log.engagements'].create({
+                            #         'record_id': engagement_data['id'],
+                            #         'description': 'Coming engagement email type has no \'from\' that is why skipped',
+                            #         'skip': True,
+                            #         'model': 'res.partner',
+                            #     })
+                            #     self.env.cr.commit()
+                            #     continue
                             try:
                                 author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])
                                 if len(author) > 1:
@@ -806,11 +806,11 @@ class HubspotImportIntegration(models.Model):
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'email',
-                                    'body': engagement_data['bodyPreview'],
+                                    'body': engagement_data['bodyPreview'] if engagement_data.get('bodyPreview') else meta_data['text'].rstrip(),
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
                                     'display_name': author.name if author.name else None,
-                                    'email_from': meta_data['from'],
+                                    'email_from': meta_data['from'] if meta_data.get('from') else engagement['sourceId'],
                                     # comment.author.email if comment.author.email else None,
                                     'author_id': author.id if author else None,
                                     'model': 'res.partner',
@@ -1124,16 +1124,16 @@ class HubspotImportIntegration(models.Model):
                         association_data = engagement['associations']
                         meta_data = engagement['metadata']
                         if engagement_data['type'] in ['EMAIL', 'INCOMING_EMAIL']:
-                            if not meta_data.get('from'):
-                                self.env['log.engagements'].create({
-                                    'record_id': engagement_data['id'],
-                                    'odoo_record_name': odoo_lead.name,
-                                    'description': 'Coming engagement email type has no \'from\' that is why skipped',
-                                    'skip': True,
-                                    'model': 'Deal-crm.lead',
-                                })
-                                self.env.cr.commit()
-                                continue
+                            # if not meta_data.get('from'):
+                            #     self.env['log.engagements'].create({
+                            #         'record_id': engagement_data['id'],
+                            #         'odoo_record_name': odoo_lead.name,
+                            #         'description': 'Coming engagement email type has no \'from\' that is why skipped',
+                            #         'skip': True,
+                            #         'model': 'Deal-crm.lead',
+                            #     })
+                            #     self.env.cr.commit()
+                            #     continue
                             try:
                                 author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])
                                 if len(author) > 1:
@@ -1141,11 +1141,11 @@ class HubspotImportIntegration(models.Model):
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'email',
-                                    'body': engagement_data['bodyPreview'],
+                                    'body': engagement_data['bodyPreview'] if engagement_data.get('bodyPreview') else meta_data['text'].rstrip(),
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
                                     'display_name': author.name if author.name else None,
-                                    'email_from': meta_data['from'],
+                                    'email_from': meta_data['from'] if meta_data.get('from') else engagement['sourceId'],
                                     # comment.author.email if comment.author.email else None,
                                     'author_id': author.id if author else None,
                                     'model': 'crm.lead',
@@ -1473,16 +1473,16 @@ class HubspotImportIntegration(models.Model):
                         association_data = engagement['associations']
                         meta_data = engagement['metadata']
                         if engagement_data['type'] in ['EMAIL', 'INCOMING_EMAIL']:
-                            if not meta_data.get('from'):
-                                self.env['log.engagements'].create({
-                                    'record_id': engagement_data['id'],
-                                    'odoo_record_name': odoo_ticket.name,
-                                    'description': 'Coming engagement email type has no \'from\' that is why skipped',
-                                    'skip': True,
-                                    'model': 'Ticket-helpdesk.ticket',
-                                })
-                                self.env.cr.commit()
-                                continue
+                            # if not meta_data.get('from'):
+                            #     self.env['log.engagements'].create({
+                            #         'record_id': engagement_data['id'],
+                            #         'odoo_record_name': odoo_ticket.name,
+                            #         'description': 'Coming engagement email type has no \'from\' that is why skipped',
+                            #         'skip': True,
+                            #         'model': 'Ticket-helpdesk.ticket',
+                            #     })
+                            #     self.env.cr.commit()
+                            #     continue
                             try:
                                 author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])
                                 if len(author) > 1:
@@ -1490,11 +1490,11 @@ class HubspotImportIntegration(models.Model):
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'email',
-                                    'body': engagement_data['bodyPreview'],
+                                    'body': engagement_data['bodyPreview'] if engagement_data.get('bodyPreview') else meta_data['text'].rstrip(),
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
                                     'display_name': author.name if author.name else None,
-                                    'email_from': meta_data['from'],
+                                    'email_from': meta_data['from'] if meta_data.get('from') else engagement['sourceId'],
                                     # comment.author.email if comment.author.email else None,
                                     'author_id': author.id if author else None,
                                     'model': 'helpdesk.ticket',
@@ -1819,16 +1819,16 @@ class HubspotImportIntegration(models.Model):
                         association_data = engagement['associations']
                         meta_data = engagement['metadata']
                         if engagement_data['type'] in ['EMAIL', 'INCOMING_EMAIL']:
-                            if not meta_data.get('from'):
-                                self.env['log.engagements'].create({
-                                    'record_id': engagement_data['id'],
-                                    'odoo_record_name': odoo_contact.name,
-                                    'description': 'Coming engagement email type has no \'from\' that is why skipped',
-                                    'skip': True,
-                                    'model': 'Contact-res.partner',
-                                })
-                                self.env.cr.commit()
-                                continue
+                            # if not meta_data.get('from'):
+                            #     self.env['log.engagements'].create({
+                            #         'record_id': engagement_data['id'],
+                            #         'odoo_record_name': odoo_contact.name,
+                            #         'description': 'Coming engagement email type has no \'from\' that is why skipped',
+                            #         'skip': True,
+                            #         'model': 'Contact-res.partner',
+                            #     })
+                            #     self.env.cr.commit()
+                            #     continue
                             try:
                                 author = self.env['res.partner'].search([('email', '=', meta_data['from']['email'])])
                                 if len(author) > 1:
@@ -1837,11 +1837,11 @@ class HubspotImportIntegration(models.Model):
                                 odoo_comment = self.env['mail.message'].create({
                                     'engagement_id': engagement_data['id'],
                                     'message_type': 'email',
-                                    'body': engagement_data['bodyPreview'],
+                                    'body': engagement_data['bodyPreview'] if engagement_data.get('bodyPreview') else meta_data['text'].rstrip(),
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
                                     'display_name': author.name if author.name else None,
-                                    'email_from': meta_data['from'],
+                                    'email_from': meta_data['from'] if meta_data.get('from') else engagement['sourceId'],
                                     # comment.author.email if comment.author.email else None,
                                     'author_id': author.id if author else None,
                                     'model': 'res.partner',
