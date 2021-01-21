@@ -8,7 +8,9 @@
                 
                 <field name="partner_id" position="after">
                     <field name="partner_bus_garage_address"/>
-                      <field name="partner_phone" /><field name="partner_main_contact" /><field name="partner_main_contact_phone" />
+                    <field name="partner_phone" />
+                    <field name="partner_main_contact" />
+                    <field name="partner_main_contact_phone" />
                 </field>
                
                 <!-- Hide fields -->
