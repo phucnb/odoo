@@ -9,8 +9,7 @@
                 <xpath expr="//field[@name='description']" position="before" >
                     <notebook>
 
-                        <page string="Ticket Lines" name="ticket_lines">
-                            <attribute name="invisible">1</attribute>
+                        <page string="Ticket Lines" name="ticket_lines" attrs="{'invisible''=','1'}">
                             <field name="line_ids" string="Ticket Lines">
                                 <tree editable="bottom">
                                     <field name="type_id" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
