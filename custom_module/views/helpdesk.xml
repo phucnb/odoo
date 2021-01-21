@@ -8,21 +8,10 @@
                 
                 <field name="partner_id" position="after">
                     <field name="partner_bus_garage_address"/>
-                    <field name="partner_phone" />
-                    <field name="partner_main_contact" />
-                    <field name="partner_main_contact_phone" />
+                      <field name="partner_phone" /><field name="partner_main_contact" /><field name="partner_main_contact_phone" />
                 </field>
                
                 <!-- Hide fields -->
-               <field name="product_id" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
-               <field name="partner_name" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
-                <field name="ticket_type_id" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
                 <field name="hs_ticket_company" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </field>
