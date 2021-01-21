@@ -882,7 +882,7 @@ class HubspotImportIntegration(models.Model):
                                         'summary': meta_data['subject'],
                                         'hubspot_status': meta_data['status'],
                                         'note': meta_data['body'] if meta_data.get('body') else None,
-                                        'forObjectType': meta_data['forObjectType'],
+                                        'forObjectType': meta_data['forObjectType'] if meta_data.get('forObjectType') else None,
                                         'res_model_id': partner_model.id,
                                         'date_deadline': datetime.datetime.fromtimestamp(
                                             int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
@@ -945,7 +945,7 @@ class HubspotImportIntegration(models.Model):
                                         'res_id': odoo_company.id,
                                         'activity_type_id': activity_type.id,
                                         'summary': meta_data['subject'] if meta_data.get('subject') else meta_data[
-                                            'body'] if meta_data.get('body') else None,
+                                            'body'] if meta_data.get('body') else "Call Summary",
                                         'hubspot_status': meta_data['status'],
                                         'note': html2text.html2text(meta_data['body']) if meta_data.get('body') else None,
                                         'toNumber': meta_data['toNumber'] if meta_data.get('toNumber') else None,
@@ -977,7 +977,7 @@ class HubspotImportIntegration(models.Model):
                                         'message_type': 'comment',
                                         'engagement_id': engagement_data['id'],
                                         'body': meta_data['body'] if meta_data.get('body') else meta_data[
-                                            'subject'] if meta_data.get('subject') else None,
+                                            'subject'] if meta_data.get('subject') else "Call Summary",
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
@@ -1007,8 +1007,7 @@ class HubspotImportIntegration(models.Model):
 
                         elif engagement_data['type'] == 'MEETING':
                             try:
-                                end_time = datetime.datetime.fromtimestamp(int(str(meta_data['endTime'])[:-3]))
-                                if end_time > datetime.datetime.now():
+                                if meta_data.get('endTime'):
                                     print(odoo_company.name)
                                     user_id = self.env['res.users'].search(
                                         [('hubspot_id', '=', engagement_data['ownerId'])])
@@ -1019,7 +1018,7 @@ class HubspotImportIntegration(models.Model):
                                         'res_id': odoo_company.id,
                                         'activity_type_id': activity_type.id,
                                         'summary': meta_data['title'] if meta_data.get('title') else meta_data[
-                                            'body'] if meta_data.get('body') else None,
+                                            'body'] if meta_data.get('body') else "Meeting Summary",
                                         'note': meta_data['body'] if meta_data.get('body') else None,
                                         'startTime': datetime.datetime.fromtimestamp(
                                             int(str(meta_data['startTime'])[:-3])) if meta_data.get(
@@ -1048,7 +1047,8 @@ class HubspotImportIntegration(models.Model):
                                     odoo_comment = self.env['mail.message'].create({
                                         'engagement_id': engagement_data['id'],
                                         'message_type': 'comment',
-                                        'body': meta_data['body'] if meta_data.get('body') else meta_data['title'],
+                                        'body': meta_data['body'] if meta_data.get('body') else meta_data['title']
+                                        if meta_data.get('title') else "Meeting Summary",
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
@@ -1219,7 +1219,7 @@ class HubspotImportIntegration(models.Model):
                                         'summary': meta_data['subject'],
                                         'hubspot_status': meta_data['status'],
                                         'note': meta_data['body'] if meta_data.get('body') else None,
-                                        'forObjectType': meta_data['forObjectType'],
+                                        'forObjectType': meta_data['forObjectType'] if meta_data.get('forObjectType') else None,
                                         'res_model_id': partner_model.id,
                                         'date_deadline': datetime.datetime.fromtimestamp(
                                             int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
@@ -1286,7 +1286,7 @@ class HubspotImportIntegration(models.Model):
                                         'res_id': odoo_lead.id,
                                         'activity_type_id': activity_type.id,
                                         'summary': meta_data['subject'] if meta_data.get('subject') else meta_data[
-                                            'body'] if meta_data.get('body') else None,
+                                            'body'] if meta_data.get('body') else "Call Summary",
                                         'hubspot_status': meta_data['status'],
                                         'note': html2text.html2text(meta_data['body']) if meta_data.get('body') else None,
                                         'toNumber': meta_data['toNumber'] if meta_data.get('toNumber') else None,
@@ -1322,7 +1322,7 @@ class HubspotImportIntegration(models.Model):
                                         'message_type': 'comment',
                                         'engagement_id': engagement_data['id'],
                                         'body': meta_data['body'] if meta_data.get('body') else meta_data[
-                                            'subject'] if meta_data.get('subject') else None,
+                                            'subject'] if meta_data.get('subject') else "Call Summary",
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
@@ -1352,8 +1352,7 @@ class HubspotImportIntegration(models.Model):
 
                         elif engagement_data['type'] == 'MEETING':
                             try:
-                                end_time = datetime.datetime.fromtimestamp(int(str(meta_data['endTime'])[:-3]))
-                                if end_time > datetime.datetime.now():
+                                if meta_data.get('endTime'):
                                     print(odoo_lead.name)
                                     user_id = self.env['res.users'].search(
                                         [('hubspot_id', '=', engagement_data['ownerId'])])
@@ -1364,7 +1363,7 @@ class HubspotImportIntegration(models.Model):
                                         'res_id': odoo_lead.id,
                                         'activity_type_id': activity_type.id,
                                         'summary': meta_data['title'] if meta_data.get('title') else meta_data[
-                                            'body'] if meta_data.get('body') else None,
+                                            'body'] if meta_data.get('body') else "Meeting Summary",
                                         'note': meta_data['body'] if meta_data.get('body') else None,
                                         'startTime': datetime.datetime.fromtimestamp(
                                             int(str(meta_data['startTime'])[:-3])) if meta_data.get(
@@ -1397,7 +1396,8 @@ class HubspotImportIntegration(models.Model):
                                     odoo_comment = self.env['mail.message'].create({
                                         'engagement_id': engagement_data['id'],
                                         'message_type': 'comment',
-                                        'body': meta_data['body'] if meta_data.get('body') else meta_data['title'],
+                                        'body': meta_data['body'] if meta_data.get('body') else meta_data['title']
+                                        if meta_data.get('title') else "Meeting Summary",
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
@@ -1569,7 +1569,7 @@ class HubspotImportIntegration(models.Model):
                                         'summary': meta_data['subject'],
                                         'hubspot_status': meta_data['status'],
                                         'note': meta_data['body'] if meta_data.get('body') else None,
-                                        'forObjectType': meta_data['forObjectType'],
+                                        'forObjectType': meta_data['forObjectType'] if meta_data.get('forObjectType') else None,
                                         'res_model_id': partner_model.id,
                                         'date_deadline': datetime.datetime.fromtimestamp(
                                             int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
@@ -1634,7 +1634,7 @@ class HubspotImportIntegration(models.Model):
                                         'res_id': odoo_ticket.id,
                                         'activity_type_id': activity_type.id,
                                         'summary': meta_data['subject'] if meta_data.get('subject') else meta_data[
-                                            'body'] if meta_data.get('body') else None,
+                                            'body'] if meta_data.get('body') else "Call Summary",
                                         'hubspot_status': meta_data['status'],
                                         'note': html2text.html2text(meta_data['body']) if meta_data.get('body') else None,
                                         'toNumber': meta_data['toNumber'] if meta_data.get('toNumber') else None,
@@ -1668,7 +1668,7 @@ class HubspotImportIntegration(models.Model):
                                         'message_type': 'comment',
                                         'engagement_id': engagement_data['id'],
                                         'body': meta_data['body'] if meta_data.get('body') else meta_data[
-                                            'subject'] if meta_data.get('subject') else None,
+                                            'subject'] if meta_data.get('subject') else "Call Summary",
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
@@ -1698,8 +1698,7 @@ class HubspotImportIntegration(models.Model):
 
                         elif engagement_data['type'] == 'MEETING':
                             try:
-                                end_time = datetime.datetime.fromtimestamp(int(str(meta_data['endTime'])[:-3]))
-                                if end_time > datetime.datetime.now():
+                                if meta_data.get('endTime'):
                                     print(odoo_ticket.name)
                                     user_id = self.env['res.users'].search(
                                         [('hubspot_id', '=', engagement_data['ownerId'])])
@@ -1710,7 +1709,7 @@ class HubspotImportIntegration(models.Model):
                                         'res_id': odoo_ticket.id,
                                         'activity_type_id': activity_type.id,
                                         'summary': meta_data['title'] if meta_data.get('title') else meta_data[
-                                            'body'] if meta_data.get('body') else None,
+                                            'body'] if meta_data.get('body') else "Meeting Summary",
                                         'note': meta_data['body'] if meta_data.get('body') else None,
                                         'startTime': datetime.datetime.fromtimestamp(
                                             int(str(meta_data['startTime'])[:-3])) if meta_data.get(
@@ -1741,7 +1740,8 @@ class HubspotImportIntegration(models.Model):
                                     odoo_comment = self.env['mail.message'].create({
                                         'engagement_id': engagement_data['id'],
                                         'message_type': 'comment',
-                                        'body': meta_data['body'] if meta_data.get('body') else meta_data['title'],
+                                        'body': meta_data['body'] if meta_data.get('body') else meta_data['title']
+                                        if meta_data.get('title') else "Meeting Summary",
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
@@ -1912,7 +1912,7 @@ class HubspotImportIntegration(models.Model):
                                         'summary': meta_data['subject'],
                                         'hubspot_status': meta_data['status'],
                                         'note': meta_data['body'] if meta_data.get('body') else None,
-                                        'forObjectType': meta_data['forObjectType'],
+                                        'forObjectType': meta_data['forObjectType'] if meta_data.get('forObjectType') else None,
                                         'res_model_id': partner_model.id,
                                         'date_deadline': datetime.datetime.fromtimestamp(
                                             int(str(meta_data['completionDate'])[:-3])) if meta_data.get(
@@ -1977,7 +1977,7 @@ class HubspotImportIntegration(models.Model):
                                             'body'] if meta_data.get('body') else None,
                                         'hubspot_status': meta_data['status'],
                                         'note': html2text.html2text(meta_data['body']) if meta_data.get('body') else None,
-                                        'toNumber': meta_data['toNumber'] if meta_data.get('toNumber') else None,
+                                        'toNumber': meta_data['toNumber'] if meta_data.get('toNumber') else 'Call Summary',
                                         'fromNumber': meta_data['fromNumber'] if meta_data.get('fromNumber') else None,
                                         'durationMilliseconds': str(meta_data['durationMilliseconds']) if meta_data.get(
                                             'durationMilliseconds') else None,
@@ -2005,7 +2005,7 @@ class HubspotImportIntegration(models.Model):
                                         'message_type': 'comment',
                                         'engagement_id': engagement_data['id'],
                                         'body': html2text.html2text(meta_data['body']) if meta_data.get('body') else
-                                        meta_data['subject'],
+                                        meta_data['subject'] if meta_data.get('subject') else "Call Summary",
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
@@ -2034,8 +2034,7 @@ class HubspotImportIntegration(models.Model):
                                 continue
                         elif engagement_data['type'] == 'MEETING':
                             try:
-                                end_time = datetime.datetime.fromtimestamp(int(str(meta_data['endTime'])[:-3]))
-                                if end_time > datetime.datetime.now():
+                                if meta_data.get('endTime'):
                                     print(odoo_contact.name)
                                     user_id = self.env['res.users'].search(
                                         [('hubspot_id', '=', engagement_data['ownerId'])])
@@ -2046,7 +2045,7 @@ class HubspotImportIntegration(models.Model):
                                         'res_id': odoo_contact.id,
                                         'activity_type_id': activity_type.id,
                                         'summary': meta_data['title'] if meta_data.get('title') else meta_data[
-                                            'body'] if meta_data.get('body') else None,
+                                            'body'] if meta_data.get('body') else "Meeting Summary",
                                         'note': meta_data['body'] if meta_data.get('body') else None,
                                         'startTime': datetime.datetime.fromtimestamp(
                                             int(str(meta_data['startTime'])[:-3])) if meta_data.get(
@@ -2074,7 +2073,8 @@ class HubspotImportIntegration(models.Model):
                                     odoo_comment = self.env['mail.message'].create({
                                         'engagement_id': engagement_data['id'],
                                         'message_type': 'comment',
-                                        'body': meta_data['body'] if meta_data.get('body') else meta_data['title'],
+                                        'body': meta_data['body'] if meta_data.get('body') else meta_data['title']
+                                        if meta_data.get('title') else "Call Summary",
                                         'create_date': datetime.datetime.fromtimestamp(
                                             int(str(engagement_data['createdAt'])[:-3])),
                                         'display_name': author_id.name if author_id.name else None,
