@@ -10,18 +10,10 @@
                     <field name="partner_bus_garage_address"/>
                       <field name="partner_phone" /><field name="partner_main_contact" /><field name="partner_main_contact_phone" />
                 </field>
-                 <xpath expr="//field[@name='description']" position="before" >
-                     <page string="Product Issues">
-                          <group>
-                              <group>
-
-                              </group>
-                              <group>
-
-                              </group>
-                          </group>
-                      </page>
-                 </xpath>
+               <notebook>
+                        <page string="Issue Products" name="issue_products">
+                        </page>
+               </notebook>
                 <!-- Hide fields -->
                 <field name="hs_ticket_company" position="attributes">
                     <attribute name="invisible">1</attribute>
