@@ -113,8 +113,8 @@ class TicketFields(models.Model):
     _inherit = 'helpdesk.ticket'
 
     partner_bus_garage_address = fields.Char(string='Bus Garage Address', compute='_compute_partner_contact', store=True, readonly=False)
-    partner_phone = fields.Char(string='Main Phone', compute='_compute_partner_contact', store=True, readonly=False)
-    partner_main_contact = fields.Char(string='Primary Contact', compute='_compute_partner_contact', store=True, readonly=False)
+    partner_phone = fields.Char(string='Main Company Phone', compute='_compute_partner_contact', store=True, readonly=False)
+    partner_main_contact = fields.Char(string='Primary Ticket Contact', compute='_compute_partner_contact', store=True, readonly=False)
     partner_main_contact_phone = fields.Char(string='Primary Contact Phone', compute='_compute_partner_contact', store=True, readonly=False)
     
 
