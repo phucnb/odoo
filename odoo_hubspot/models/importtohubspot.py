@@ -32,6 +32,7 @@ class HubspotImportIntegration(models.Model):
     company_last_offfssset = fields.Char("Company offset")
     contact_last_offsetss = fields.Char("Contact Offset")
     ticket_last_offsetss = fields.Char("Ticket Offset")
+    error_field = fields.Char("Error trapping")
 
     def read_file(self, file_name):
         try:
@@ -493,12 +494,17 @@ class HubspotImportIntegration(models.Model):
                     'connection': 'keep-Alive'
                 }
                 has_more = True
+                self.error_field = "I'm before while"
                 while has_more:
+                    self.error_field = "I'm in while before requesting"
                     parameters = urllib.parse.urlencode(parameter_dict)
                     get_url = get_all_deals_url + parameters + deal_properties
                     r = requests.get(url=get_url, headers=headers)
+                    self.error_field = "I'm in while after get"
                     response_dict = json.loads(r.text)
+                    self.error_field = "I'm in while after json"
                     hubspot_ids.extend(self.create_deals(response_dict['deals'], hubspot_keys))
+                    self.error_field = "I'm in while after getting hubspot_ids"
                     has_more = response_dict['hasMore']
                     parameter_dict['offset'] = response_dict['offset']
                 # return hubspot_ids
@@ -513,22 +519,30 @@ class HubspotImportIntegration(models.Model):
             deal_stage = None
             i = 0
             for deal in deals:
+                self.error_field = "I'm in deal loop"
                 contacts = []
                 companies = []
                 if len(deal['associations']['associatedVids']) > 0:
+                    self.error_field = "1"
                     contacts = self.get_contacts(deal['associations']['associatedVids'], hubspot_keys)
                 if len(deal['associations']['associatedCompanyIds']) > 0:
+                    self.error_field = "2"
                     companies = self.get_companies(deal['associations']['associatedCompanyIds'], hubspot_keys)
                 odoo_deal = self.env['crm.lead'].search([('hubspot_id', '=', str(deal['dealId']))])
+                self.error_field = "3"
                 if 'dealstage' in deal['properties'].keys():
+                    self.error_field = "4"
                     deal_stage = self.env['crm.stage'].search([('name', '=', deal['properties']['dealstage']['value'])])
                     if not deal_stage:
+                        self.error_field = "5"
                         deal_stage = self.env['crm.stage'].create({
                             'name': deal['properties']['dealstage']['value'],
                             'display_name': deal['properties']['dealstage']['value'],
                         })
                 if 'closedate' in deal['properties'].keys():
+                    self.error_field = "6"
                     if deal['properties']['closedate']['value'] != "":
+                        self.error_field = "7"
                         close_date = datetime.datetime.fromtimestamp(int(deal['properties']['closedate']['value'][:-3]))
 
                 deal_values = {
@@ -543,15 +557,20 @@ class HubspotImportIntegration(models.Model):
                     'hs_deal_companies': companies[0] if companies else None,
                     'type': 'opportunity'
                 }
-
+                self.error_field = "8"
                 self.add_properties(deal_values, deal, 'deals', 'crm.lead')
                 if not odoo_deal:
+                    self.error_field = "9"
                     self.env['crm.lead'].create(deal_values)
                 else:
+                    self.error_field = "10"
                     odoo_deal.write(deal_values)
+                self.error_field = "11"
                 self.env.cr.commit()
+                self.error_field = "12"
 
                 hubspot_ids.append(deal['dealId'])
+                self.env.cr.commit()
             return hubspot_ids
         except Exception as e:
             raise ValidationError(_(str(e)))
@@ -593,48 +612,48 @@ class HubspotImportIntegration(models.Model):
                 })
             contact_list.append(odoo_partner.id)
         return contact_list
-    #
-    # def get_companies(self, companiesIds, hubspot_keys):
-    #     company_list = []
-    #     get_single_company_url = "https://api.hubapi.com/companies/v2/companies/"
-    #     headers = {
-    #         'Accept': 'application/json',
-    #         'connection': 'keep-Alive'
-    #     }
-    #     for companyId in companiesIds:
-    #         odoo_country = None
-    #         get_url = get_single_company_url + str(companyId) + '?hapikey=' + hubspot_keys
-    #         company_response = requests.get(url=get_url, headers=headers)
-    #         company_profile = json.loads(company_response.content.decode('utf-8'))['properties']
-    #         odoo_company = self.env['res.partner'].search([('hubspot_id', '=', str(companyId))])
-    #         if 'country' in company_profile.keys():
-    #             odoo_country = self.env['res.country'].search([('name', '=', company_profile['country']['value'])]).id
-    #         if not odoo_company:
-    #             odoo_company = self.env['res.partner'].create({
-    #                 'name': company_profile['name']['value'] if 'name' in company_profile.keys() else '',
-    #                 'website': company_profile['website']['value'] if 'website' in company_profile.keys() else '',
-    #                 'street': company_profile['address']['value'] if 'address' in company_profile.keys() else '',
-    #                 'city': company_profile['city']['value'] if 'city' in company_profile.keys() else '',
-    #                 'phone': company_profile['phone']['value'] if 'phone' in company_profile.keys() else '',
-    #                 'zip': company_profile['zip']['value'] if 'zip' in company_profile.keys() else '',
-    #                 'country_id': odoo_country if odoo_country else None,
-    #                 'hubspot_id': str(companyId),
-    #                 'is_company': True,
-    #             })
-    #         else:
-    #             odoo_company.write({
-    #                 'name': company_profile['name']['value'] if 'name' in company_profile.keys() else '',
-    #                 'website': company_profile['website']['value'] if 'website' in company_profile.keys() else '',
-    #                 'street': company_profile['address']['value'] if 'address' in company_profile.keys() else '',
-    #                 'city': company_profile['city']['value'] if 'city' in company_profile.keys() else '',
-    #                 'phone': company_profile['phone']['value'] if 'phone' in company_profile.keys() else '',
-    #                 'zip': company_profile['zip']['value'] if 'zip' in company_profile.keys() else '',
-    #                 'country_id': odoo_country if odoo_country else None,
-    #                 'hubspot_id': str(companyId),
-    #                 'is_company': True,
-    #             })
-    #         company_list.append(odoo_company.id)
-    #     return company_list
+
+    def get_companies(self, companiesIds, hubspot_keys):
+        company_list = []
+        get_single_company_url = "https://api.hubapi.com/companies/v2/companies/"
+        headers = {
+            'Accept': 'application/json',
+            'connection': 'keep-Alive'
+        }
+        for companyId in companiesIds:
+            odoo_country = None
+            get_url = get_single_company_url + str(companyId) + '?hapikey=' + hubspot_keys
+            company_response = requests.get(url=get_url, headers=headers)
+            company_profile = json.loads(company_response.content.decode('utf-8'))['properties']
+            odoo_company = self.env['res.partner'].search([('hubspot_id', '=', str(companyId))])
+            if 'country' in company_profile.keys():
+                odoo_country = self.env['res.country'].search([('name', '=', company_profile['country']['value'])]).id
+            if not odoo_company:
+                odoo_company = self.env['res.partner'].create({
+                    'name': company_profile['name']['value'] if 'name' in company_profile.keys() else '',
+                    'website': company_profile['website']['value'] if 'website' in company_profile.keys() else '',
+                    'street': company_profile['address']['value'] if 'address' in company_profile.keys() else '',
+                    'city': company_profile['city']['value'] if 'city' in company_profile.keys() else '',
+                    'phone': company_profile['phone']['value'] if 'phone' in company_profile.keys() else '',
+                    'zip': company_profile['zip']['value'] if 'zip' in company_profile.keys() else '',
+                    'country_id': odoo_country if odoo_country else None,
+                    'hubspot_id': str(companyId),
+                    'is_company': True,
+                })
+            else:
+                odoo_company.write({
+                    'name': company_profile['name']['value'] if 'name' in company_profile.keys() else '',
+                    'website': company_profile['website']['value'] if 'website' in company_profile.keys() else '',
+                    'street': company_profile['address']['value'] if 'address' in company_profile.keys() else '',
+                    'city': company_profile['city']['value'] if 'city' in company_profile.keys() else '',
+                    'phone': company_profile['phone']['value'] if 'phone' in company_profile.keys() else '',
+                    'zip': company_profile['zip']['value'] if 'zip' in company_profile.keys() else '',
+                    'country_id': odoo_country if odoo_country else None,
+                    'hubspot_id': str(companyId),
+                    'is_company': True,
+                })
+            company_list.append(odoo_company.id)
+        return company_list
 
     def import_tickets(self):
         icpsudo = self.env['ir.config_parameter'].sudo()
