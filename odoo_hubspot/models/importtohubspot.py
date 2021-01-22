@@ -32,7 +32,6 @@ class HubspotImportIntegration(models.Model):
     company_last_offfssset = fields.Char("Company offset")
     contact_last_offsetss = fields.Char("Contact Offset")
     ticket_last_offsetss = fields.Char("Ticket Offset")
-    error_field = fields.Char("Error trapping")
 
     def read_file(self, file_name):
         try:
