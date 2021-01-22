@@ -557,8 +557,7 @@ class HubspotImportIntegration(models.Model):
                 self.env.cr.commit()
 
                 hubspot_ids.append(deal['dealId'])
-                i += 1
-                self.error_field = i
+                self.error_field = len(deals)
             self.env.cr.commit()
             return hubspot_ids
         except Exception as e:
