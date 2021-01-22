@@ -494,17 +494,12 @@ class HubspotImportIntegration(models.Model):
                     'connection': 'keep-Alive'
                 }
                 has_more = True
-                self.error_field = "I'm before while"
                 while has_more:
-                    self.error_field = "I'm in while before requesting"
                     parameters = urllib.parse.urlencode(parameter_dict)
                     get_url = get_all_deals_url + parameters + deal_properties
                     r = requests.get(url=get_url, headers=headers)
-                    self.error_field = "I'm in while after get"
                     response_dict = json.loads(r.text)
-                    self.error_field = "I'm in while after json"
                     hubspot_ids.extend(self.create_deals(response_dict['deals'], hubspot_keys))
-                    self.error_field = "I'm in while after getting hubspot_ids"
                     has_more = response_dict['hasMore']
                     parameter_dict['offset'] = response_dict['offset']
                 # return hubspot_ids
@@ -764,7 +759,7 @@ class HubspotImportIntegration(models.Model):
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             companies = self.env['res.partner'].search([('hubspot_id', '!=', False),
                                                         ('is_company', '=', True),
-                                                        ('engagement_done', '=', False)])
+                                                        ('engagement_done', '=', True)])
             for odoo_company in companies:
                 get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
                                                 "COMPANY/{0}/paged?".format(odoo_company.hubspot_id)
@@ -1086,7 +1081,7 @@ class HubspotImportIntegration(models.Model):
                     has_more = res_data['hasMore']
                     parameter_dict['offset'] = res_data['offset']
                 odoo_company.write({
-                    'engagement_done': True,
+                    'engagement_done': False,
                 })
                 self.env.cr.commit()
         except Exception as e:
@@ -1098,7 +1093,7 @@ class HubspotImportIntegration(models.Model):
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             leads = self.env['crm.lead'].search([('hubspot_id', '!=', False),
                                                  ('type', '=', 'opportunity'),
-                                                 ('engagement_done', '=', False)])
+                                                 ('engagement_done', '=', True)])
             for odoo_lead in leads:
                 get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
                                                 "DEAL/{0}/paged?".format(odoo_lead.hubspot_id)
@@ -1436,7 +1431,7 @@ class HubspotImportIntegration(models.Model):
                     parameter_dict['offset'] = res_data['offset']
 
                 odoo_lead.write({
-                    'engagement_done': True,
+                    'engagement_done': False,
                 })
                 self.env.cr.commit()
         except Exception as e:
@@ -1447,7 +1442,7 @@ class HubspotImportIntegration(models.Model):
             icpsudo = self.env['ir.config_parameter'].sudo()
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             tickets = self.env['helpdesk.ticket'].search([('hubspot_id', '!=', False),
-                                                          ('engagement_done', '=', False)])
+                                                          ('engagement_done', '=', True)])
             for odoo_ticket in tickets:
                 get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
                                                 "TICKET/{0}/paged?".format(odoo_ticket.hubspot_id)
@@ -1780,7 +1775,7 @@ class HubspotImportIntegration(models.Model):
                     parameter_dict['offset'] = res_data['offset']
 
                 odoo_ticket.write({
-                    'engagement_done': True,
+                    'engagement_done': False,
                 })
                 self.env.cr.commit()
         except Exception as e:
@@ -1792,7 +1787,7 @@ class HubspotImportIntegration(models.Model):
             hubspot_keys = icpsudo.get_param('odoo_hubspot.hubspot_key')
             contacts = self.env['res.partner'].search([('hubspot_id', '!=', False),
                                                        ('is_company', '=', False),
-                                                       ('engagement_done', '=', False)])
+                                                       ('engagement_done', '=', True)])
 
             for odoo_contact in contacts:
                 get_associated_engagement_url = "https://api.hubapi.com/engagements/v1/engagements/associated/" \
@@ -2112,7 +2107,7 @@ class HubspotImportIntegration(models.Model):
                     parameter_dict['offset'] = res_data['offset']
 
                 odoo_contact.write({
-                    'engagement_done': True,
+                    'engagement_done': False,
                 })
                 self.env.cr.commit()
         except:
