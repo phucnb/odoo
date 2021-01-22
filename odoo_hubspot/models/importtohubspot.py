@@ -811,7 +811,7 @@ class HubspotImportIntegration(models.Model):
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
                                     'display_name': author.name if author.name else None,
-                                    'email_from': meta_data['from'] if meta_data.get('from') else engagement['sourceId'],
+                                    'email_from': meta_data['from']['email'] if meta_data.get('from') else engagement['sourceId'],
                                     # comment.author.email if comment.author.email else None,
                                     'author_id': author.id if author else None,
                                     'model': 'res.partner',
@@ -1146,7 +1146,7 @@ class HubspotImportIntegration(models.Model):
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
                                     'display_name': author.name if author.name else None,
-                                    'email_from': meta_data['from'] if meta_data.get('from') else engagement['sourceId'],
+                                    'email_from': meta_data['from']['email'] if meta_data.get('from') else engagement['sourceId'],
                                     # comment.author.email if comment.author.email else None,
                                     'author_id': author.id if author else None,
                                     'model': 'crm.lead',
@@ -1495,7 +1495,7 @@ class HubspotImportIntegration(models.Model):
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
                                     'display_name': author.name if author.name else None,
-                                    'email_from': meta_data['from'] if meta_data.get('from') else engagement['sourceId'],
+                                    'email_from': meta_data['from']['email'] if meta_data.get('from') else engagement['sourceId'],
                                     # comment.author.email if comment.author.email else None,
                                     'author_id': author.id if author else None,
                                     'model': 'helpdesk.ticket',
@@ -1842,7 +1842,7 @@ class HubspotImportIntegration(models.Model):
                                     'create_date': datetime.datetime.fromtimestamp(
                                         int(str(engagement_data['createdAt'])[:-3])),
                                     'display_name': author.name if author.name else None,
-                                    'email_from': meta_data['from'] if meta_data.get('from') else engagement['sourceId'],
+                                    'email_from': meta_data['from']['email'] if meta_data.get('from') else engagement['sourceId'],
                                     # comment.author.email if comment.author.email else None,
                                     'author_id': author.id if author else None,
                                     'model': 'res.partner',
