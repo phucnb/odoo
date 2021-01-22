@@ -519,30 +519,22 @@ class HubspotImportIntegration(models.Model):
             deal_stage = None
             i = 0
             for deal in deals:
-                self.error_field = "I'm in deal loop"
                 contacts = []
                 companies = []
                 if len(deal['associations']['associatedVids']) > 0:
-                    self.error_field = "1"
                     contacts = self.get_contacts(deal['associations']['associatedVids'], hubspot_keys)
                 if len(deal['associations']['associatedCompanyIds']) > 0:
-                    self.error_field = "2"
                     companies = self.get_companies(deal['associations']['associatedCompanyIds'], hubspot_keys)
                 odoo_deal = self.env['crm.lead'].search([('hubspot_id', '=', str(deal['dealId']))])
-                self.error_field = "3"
                 if 'dealstage' in deal['properties'].keys():
-                    self.error_field = "4"
                     deal_stage = self.env['crm.stage'].search([('name', '=', deal['properties']['dealstage']['value'])])
                     if not deal_stage:
-                        self.error_field = "5"
                         deal_stage = self.env['crm.stage'].create({
                             'name': deal['properties']['dealstage']['value'],
                             'display_name': deal['properties']['dealstage']['value'],
                         })
                 if 'closedate' in deal['properties'].keys():
-                    self.error_field = "6"
                     if deal['properties']['closedate']['value'] != "":
-                        self.error_field = "7"
                         close_date = datetime.datetime.fromtimestamp(int(deal['properties']['closedate']['value'][:-3]))
 
                 deal_values = {
@@ -557,20 +549,17 @@ class HubspotImportIntegration(models.Model):
                     'hs_deal_companies': companies[0] if companies else None,
                     'type': 'opportunity'
                 }
-                self.error_field = "8"
                 self.add_properties(deal_values, deal, 'deals', 'crm.lead')
                 if not odoo_deal:
-                    self.error_field = "9"
                     self.env['crm.lead'].create(deal_values)
                 else:
-                    self.error_field = "10"
                     odoo_deal.write(deal_values)
-                self.error_field = "11"
                 self.env.cr.commit()
-                self.error_field = "12"
 
                 hubspot_ids.append(deal['dealId'])
-                self.env.cr.commit()
+                i += 1
+                self.error_field = i
+            self.env.cr.commit()
             return hubspot_ids
         except Exception as e:
             raise ValidationError(_(str(e)))
