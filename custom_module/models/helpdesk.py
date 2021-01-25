@@ -123,7 +123,7 @@ class TicketFields(models.Model):
     bridge_check = fields.Boolean("Bridge")
     td_check = fields.Boolean("Touchdown")
     dvrv_check = fields.Boolean("DVR Viewer")
-    cust_sys_check = fiels.Boolean("Customer Related")
+    cust_sys_check = fields.Boolean("Customer Related")
 
     def _compute_partner_contact(self):
         for ticket in self:
