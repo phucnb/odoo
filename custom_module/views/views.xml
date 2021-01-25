@@ -710,6 +710,7 @@
 				</field>
 				<!-- LEFT SIDE COMPANY CARD -->
 				<field name="vat" position="before">
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="phone"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact"
                            domain="[('id', 'in', child_ids), ('type', '=', 'contact')]"
                            context="{'main_contact': True}"
