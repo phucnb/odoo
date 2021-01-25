@@ -798,5 +798,18 @@
             <field name="time_format">%I:%M %p</field> 
         </record>
 
+        <record id="sale_customer_inherit_res_partner_filter" model="ir.ui.view">
+            <field name="name">sale.customer.inherit.res.partner.filter</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter" />
+            <field name="priority" eval="17"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <filter name="group_rsm" string="RSM" context="{'group_by': 'rsm'}"/>
+                    <filter name="group_sale_rep" string="Sales Rep" context="{'group_by': 'sales_rep'}"/>                    
+                </field>
+            </field>
+        </record>
+
 	</data>
 </odoo>
