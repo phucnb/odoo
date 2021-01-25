@@ -8,7 +8,7 @@
     'sequence': 185,
     'category': 'Activities',
     'description': "",
-    'depends': ['base', 'mail', 'contacts'],
+    'depends': ['base', 'sale', 'mail', 'contacts'],
     'data': [
         'security/activity_group.xml',
         'security/ir.model.access.csv',

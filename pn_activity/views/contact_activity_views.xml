@@ -18,7 +18,7 @@
                   parent="contacts.menu_contacts"/>
 
         <record id="contacts.res_partner_menu_config" model="ir.ui.menu">
-            <field name="sequence">5</field>
+            <field name="sequence">4</field>
         </record>
 
         <record id="pn_mail_activity_crm_act_action" model="ir.actions.act_window">
@@ -36,9 +36,5 @@
                   sequence="4"
                   groups="pn_activity.group_activity_own_document"
                   parent="crm.crm_menu_root"/>
-
-       
-
     </data>
 </odoo>
-

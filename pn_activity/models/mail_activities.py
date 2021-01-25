@@ -255,6 +255,10 @@ class MailActivityOverview(models.Model):
     user_id = fields.Many2one('res.users', 'Assigned to', related='mail_activity_id.user_id', index=True, readonly=True, store=True, related_sudo=True)
     request_partner_id = fields.Many2one('res.partner', string='Requesting Partner', related='mail_activity_id.request_partner_id', index=True, readonly=True, store=True, related_sudo=True)
     note = fields.Html('Note', related='mail_activity_id.note', readonly=True, store=True, related_sudo=True, sanitize_style=True)
+    partner_user_id = fields.Many2one(
+        'res.partner', string='Partner User ID',
+        compute='_compute_partner_user_id', compute_sudo=True, index=True, store=True
+    )
 
     # Code sync data via python, Cậu có thể xóa nó và thay bằng SQL.
     @api.model
@@ -275,6 +279,22 @@ class MailActivityOverview(models.Model):
             except Exception as e:
                 print(e)
                 continue
+
+    @api.depends('mail_activity_id', 'res_model', 'res_id')
+    def _compute_partner_user_id(self):
+        for record in self:
+            if record.res_model and record.res_id:
+                active_id = self.env[record.res_model].browse(record.res_id)
+                if active_id and active_id.exists():
+                    if 'partner_id' in active_id and active_id.partner_id:
+                        record.partner_user_id = active_id.partner_id.id
+                    else:
+                        record.partner_user_id = False
+                if record.res_model == 'res.partner':
+                    contact_id = self.env[record.res_model].browse(record.res_id)
+                    record.partner_user_id = contact_id.id
+            else:
+                record.partner_user_id = 'partner_id' in record.user_id and record.user_id.partner_id and record.user_id.partner_id.id or False
 
     @staticmethod
     def _set_action_user_id(user_id, mail_activity_id):
