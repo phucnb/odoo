@@ -116,9 +116,15 @@ class TicketFields(models.Model):
     partner_phone = fields.Char(string='Main Phone', compute='_compute_partner_contact', store=True, readonly=False)
     partner_main_contact = fields.Char(string='Primary Contact', compute='_compute_partner_contact', store=True, readonly=False)
     partner_main_contact_phone = fields.Char(string='Primary Contact Phone', compute='_compute_partner_contact', store=True, readonly=False)
-    
-
-    def _compute_partner_contact(self):
+    dvr_check = fields.Boolean("DVR")
+    cam_check = fields.Boolean("Camera")
+    storage_check = fields.Boolean("Storage")
+    ap_check = fields.Boolean("Access Point")
+    bridge_check = fields.Boolean("Bridge")
+    td_check = fields.Boolean("Touchdown")
+    dvrv_check = fields.Boolean("DVR Viewer")
+    cust_sys_check = fiels.Boolean("Customer Related")
+	def _compute_partner_contact(self):
         for ticket in self:
             if ticket.partner_id:
                 ticket.partner_bus_garage_address = ticket.partner_id.bus_garage_address
