@@ -124,6 +124,14 @@ class TicketFields(models.Model):
     td_check = fields.Boolean("Touchdown")
     dvrv_check = fields.Boolean("DVR Viewer")
     cust_sys_check = fields.Boolean("Customer Related")
+    dvr_type = fields.Selection(DVR_MAIN, "DVR Type")
+    cam_type = fields.Selection(CAMERA_MAIN, "Camera Type")
+    storage_type = fields.Selecetion(STORAGE_MAIN, "Storage Type")
+    ap_type = fields.Secletion(ACCESS_POINT_MAIN, "Access Point Type")
+    bridge_type = fields.Selection(BRIDGE_MAIN, "Bridge Type")
+    td_type = fields.Selection(WIRELESS_MAIN, "Touchdown Type")
+    dvrv_type = fields.Selection(DVR_VIEWER_MAIN, "DVR Viewer Version")
+    cust_sys_type = fields.Selection(SYSTEM_RELATED_MAIN, "Customer Related Type")
 
     def _compute_partner_contact(self):
         for ticket in self:
