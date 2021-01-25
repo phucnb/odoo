@@ -10,34 +10,6 @@
                        <page string="Issue Description">
                        </page>
                          <page string="Effected Products" name="issue_products">
-                             <group>
-                                 <group>
-                                     <field name="dvr_check" />
-                                     <field name="cam_check" />
-                                     <field name="storage_check" />
-                                     <field name="ap_check" />
-                                 </group>
-                                 <group>
-                                     <field name="bridge_check" />
-                                     <field name="td_check" />
-                                     <field name="dvrv_check" />
-                                     <field name="cust_sys_check" />
-                                 </group>
-                             </group>
-                             <group>
-                                 <group>
-                                     <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_type"/>
-                                     <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_type"/>
-                                     <field attrs="{'invisible':[('storage_check', '=', False)]}" name="storage_type" />
-                                     <field attrs="{'invisible':[('ap_check', '=', False)]}" name="ap_type" />
-                                 </group>
-                                 <group>
-                                     <field attrs="{'invisible':[('bridge_check', '=', False)]}" name="bridge_type" />
-                                     <field attrs="{'invisible':[('td_check', '=', False)]}" name="td_type" />
-                                     <field attrs="{'invisible':[('dvrv_check', '=', False)]}" name="dvrv_type" />
-                                     <field attrs="{'invisible':[('cust_sys_check', '=', False)]}" name="cust_sys_type" />
-                                 </group>
-                             </group>
                         </page>
                     </notebook>
                 </xpath>
