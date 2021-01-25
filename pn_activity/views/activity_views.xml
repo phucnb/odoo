@@ -35,7 +35,7 @@
                       decoration-success="date_deadline == current_date and state != 'done'"
                       decoration-muted="state == 'done'"
                       default_order="date_deadline"
-                      create="false" edit="false" delete="false">
+                      create="false" edit="false">
                     <field name="mail_activity_id" invisible="1"/>
                     <field name="res_name"/>
                     <button name="action_open_record" type="object" string="(View)" icon="fa-external-link" />
@@ -46,6 +46,7 @@
                     <field name="activity_ids" widget="list_activity" optional="show" string="Summary"/>
                     <field name="date_deadline"/>
                     <field name="state" optional="show"/>
+                    <field name="partner_user_id" optional="hide"/>
                 </tree>
             </field>
         </record>
@@ -79,6 +80,7 @@
                                 <field name="activity_type_id" string="Activity Type"/>
                                 <field name="activity_ids" widget="list_activity" optional="show" string="Summary"/>
                                 <field name="date_deadline"/>
+                                <field name="partner_user_id" invisible="1"/>
                                 <field name="force_next" invisible="1"/>
                             </group>
                         </group>

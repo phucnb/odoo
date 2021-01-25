@@ -11,4 +11,11 @@
             </button>
         </xpath>
     </t>
+
+    <t t-inherit="mail.Message" t-inherit-mode="extension">
+        <xpath expr="///div[hasclass('o_Message_core')]/t[@t-if='!props.isSquashed']/div[hasclass('o_Message_header')]/div" position="inside">
+            / <t t-esc="message.date"/>
+        </xpath>
+    </t>
+
 </templates>
