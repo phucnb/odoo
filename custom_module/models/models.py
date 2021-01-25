@@ -3,6 +3,22 @@ from odoo.exceptions import ValidationError
 import logging
 
 _logger  = logging.getLogger(__name__)
+
+SURVEY_BY = [
+       ('Brittany Wilkening', 'Brittany Wilkening'),
+    ('Brooke Evers', 'Brooke Evers'),
+    ('Eddie O\'Connell', 'Eddie O\'Connell'),
+    ('Mary Kohn', 'Mary Kohn'),
+    ('Rich Hyland', 'Rich Hyland'),
+    ('Brett Adoff', 'Brett Adoff'),
+    ('Carlos Ithier', 'Carlos Ithier'),
+    ('Christina Graham', 'Christina Graham'),
+    ('Larry Silba', 'Larry Silba'),
+    ('Syreeta Hill', 'Syreeta Hill'),
+    ('Theresa Jensen', 'Theresa Jensen'),
+    ('Tom Giglio', 'Tom Giglio')
+]
+
 NP_SCORE = [
     ('0', '0'),
     ('1', '1'),
@@ -320,10 +336,13 @@ class ResPartnerField(models.Model):
     previous_employment = fields.Char("Previous Employment")
 
     # New field for refarral tab in contact card
-    net_promoter_score_service = fields.Integer("Net promoter score Service")
-    net_promoter_score_referral = fields.Integer("Net promoter score Referral")
+    net_promoter_score_service = fields.Selection(NP_SCORE,"Net promoter score Service")
+    net_promoter_score_referral = fields.Selection(NP_SCORE,"Net promoter score Referral")
+    score_service_note = fields.Char("Service Note")
+    score_referral_note = fields.Char("Referral Note")
     reference = fields.Boolean("Reference")
     survey_date = fields.Date("Survey Date")
+    servey_by = fields.Selection(SURVEY_BY, "Survey By")
 
     # New fields for school district info
     type_of_district = fields.Char("Type of District")

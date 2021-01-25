@@ -99,11 +99,14 @@
 						<group>
 							<group>
 								<field name="net_promoter_score_service"/>
+								<field name="score_service_note"/>								
 								<field name="net_promoter_score_referral"/>
+								<field name="score_referral_note"/>
 							</group>
 							<group>
 								<field name="reference"/>
 								<field name="survey_date"/>
+								<field name="survey_by"/>
 							</group>
 						</group>
 					</page>
