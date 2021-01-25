@@ -124,7 +124,8 @@ class TicketFields(models.Model):
     td_check = fields.Boolean("Touchdown")
     dvrv_check = fields.Boolean("DVR Viewer")
     cust_sys_check = fiels.Boolean("Customer Related")
-	def _compute_partner_contact(self):
+
+    def _compute_partner_contact(self):
         for ticket in self:
             if ticket.partner_id:
                 ticket.partner_bus_garage_address = ticket.partner_id.bus_garage_address
