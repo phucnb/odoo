@@ -1,7 +1,7 @@
 from datetime import date, timedelta
 from collections import defaultdict
 
-from odoo import api, fields, models, tools, _
+from odoo import api, fields, models, tools, SUPERUSER_ID, _
 from odoo.exceptions import ValidationError
 from odoo.tools.misc import clean_context
 
@@ -31,6 +31,7 @@ class MailActivity(models.Model):
         help="Stop date of an event, without time for full days events"
     )
     duration = fields.Float('Duration', compute='_compute_duration', store=True, readonly=False)
+    active = fields.Boolean(string='Active', default=True)
 
     @api.depends('stop', 'start')
     def _compute_duration(self):
@@ -134,6 +135,11 @@ class MailActivity(models.Model):
             'target': 'new',
         }
 
+    def _set_action_user_id(self, user_id, mail_activity_id):
+        if user_id == SUPERUSER_ID or self.env.user.has_group('base.group_system'):
+            user_id = mail_activity_id.user_id and mail_activity_id.user_id.id or SUPERUSER_ID
+        return user_id
+
     def _action_done(self, feedback=False, attachment_ids=None):
         """ Private implementation of marking activity as done: posting a message, deleting activity
             (since done), and eventually create the automatical next activity (depending on config).
@@ -179,7 +185,8 @@ class MailActivity(models.Model):
 
             # post message on activity, before deleting it
             record = self.env[activity.res_model].browse(activity.res_id)
-            record.message_post_with_view(
+            user_id = self._set_action_user_id(self._uid, activity)
+            record.with_user(user_id).message_post_with_view(
                 'mail.message_activity_done',
                 values={
                     'activity': activity,
@@ -197,15 +204,14 @@ class MailActivity(models.Model):
             activity_message = record.message_ids[0]
             message_attachments = self.env['ir.attachment'].browse(activity_attachments[activity.id])
             if message_attachments:
-                message_attachments.write({
+                message_attachments.with_user(user_id).write({
                     'res_id': activity_message.id,
                     'res_model': activity_message._name,
                 })
                 activity_message.attachment_ids = message_attachments
             messages |= activity_message
-
+            activity.with_user(user_id).write({'state': 'done', 'active': False, 'date_done': date.today(), 'feedback': feedback})
         next_activities = self.env['mail.activity'].create(next_activities_values)
-        self.write({'state': 'done', 'date_done': date.today(), 'feedback': feedback})
         return messages, next_activities
 
     @api.model
@@ -234,7 +240,10 @@ class MailActivityOverview(models.Model):
     date_deadline = fields.Date('Due Date', index=True, related='mail_activity_id.date_deadline', related_sudo=True, readonly=True, store=True)
     res_model = fields.Char(string='Document Model', related='mail_activity_id.res_model', readonly=True, store=True, related_sudo=True)
     model_name = fields.Char(string='Document Model', related='mail_activity_id.res_model_id.name', readonly=True, store=True, related_sudo=True)
-    activity_ids = fields.Many2many('mail.activity', 'mail_activity_overview_rel', 'overview_id', 'mail_activity_id', string='Summary')
+    activity_ids = fields.Many2many(
+        'mail.activity', 'mail_activity_overview_rel', 'overview_id', 'mail_activity_id',
+        domain="['|',('active','=',False),('active','=',True)]", context={'active_test': False},
+        store=True, compute_sudo=True, string='Summary')
     res_id = fields.Many2oneReference(string='Related Document ID', related='mail_activity_id.res_id', index=True, related_sudo=True, readonly=True, store=True, model_field='res_model')
     state = fields.Selection([
         ('overdue', 'Overdue'),
@@ -267,21 +276,35 @@ class MailActivityOverview(models.Model):
                 print(e)
                 continue
 
+    @staticmethod
+    def _set_action_user_id(user_id, mail_activity_id):
+        if user_id == SUPERUSER_ID:
+            user_id = mail_activity_id.user_id and mail_activity_id.user_id.id or SUPERUSER_ID
+        return user_id
+
     def action_done_multi(self):
+        user_id = self._uid
         for record in self:
-            record.mail_activity_id.with_context(mail_activity_quick_update=True).action_done()
+            user_id = self._set_action_user_id(user_id, record.mail_activity_id)
+            record.mail_activity_id.with_user(user_id).with_context(mail_activity_quick_update=True).action_done()
 
     def action_done(self):
         self.ensure_one()
-        return self.mail_activity_id.with_context(mail_activity_quick_update=True).action_done()
+        user_id = self._uid
+        user_id = self._set_action_user_id(user_id, self.mail_activity_id)
+        return self.mail_activity_id.with_user(user_id).with_context(mail_activity_quick_update=True).action_done()
 
     def action_done_schedule_next(self):
         self.ensure_one()
-        return self.mail_activity_id.with_context(mail_activity_quick_update=True).action_done_schedule_next()
+        user_id = self._uid
+        user_id = self._set_action_user_id(user_id, self.mail_activity_id)
+        return self.mail_activity_id.with_user(user_id).with_context(mail_activity_quick_update=True).action_done_schedule_next()
 
     def action_done_schedule_next(self):
         self.ensure_one()
-        return self.mail_activity_id.with_context(mail_activity_quick_update=True).action_done_schedule_next()
+        user_id = self._uid
+        user_id = self._set_action_user_id(user_id, self.mail_activity_id)
+        return self.mail_activity_id.with_user(user_id).with_context(mail_activity_quick_update=True).action_done_schedule_next()
 
     def action_open_record(self):
         self.ensure_one()
