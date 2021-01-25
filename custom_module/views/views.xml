@@ -48,11 +48,15 @@
 					<page attrs="{'invisible':[('is_company','=',False)]}" string="Service / Installation">
 						<group>
 							<group>
-								<!-- <field domain="[('id', 'in', child_ids), ('type', '=', 'bus_address')]" name="bus_garage_main" options="{'no_create_edit': True}"/>-->
-								<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_address"/>
-								<!-- <field attrs="{'invisible':[('is_company','=',False)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="main_contact" options="{'no_create_edit': True}"/> -->
-								<!-- 	<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_address"/><field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_city"/><field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_phone"/>-->
-								<field name="service_note"/>
+								 
+								<field name="bus_garage_main"
+                           options="{'no_create': True, 'no_edit': True, 'no_create_edit': True}"
+                           domain="['&amp;',('type','=','bus_address'),('id','in',child_ids)]"
+                           attrs="{'invisible': [('is_company','=',False)]}"/>
+
+								<!-- <field attrs="{'invisible':[('is_company','=',False)]}" domain="[('id', 'in', child_ids), ('type', '=', 'contact')]" name="main_contact" options="{'no_create_edit': True}"/>
+								 	<field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_address"/><field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_city"/><field attrs="{'invisible':[('is_company','=',False)]}" name="bus_garage_phone"/>
+								<field name="service_note"/> -->
 							</group>
 							<group>
 								<field attrs="{'invisible':[('service_plan', '=', True)]}" name="fleet_inspection"/>

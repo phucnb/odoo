@@ -342,7 +342,7 @@ class ResPartnerField(models.Model):
     score_referral_note = fields.Char("Referral Note")
     reference = fields.Boolean("Reference")
     survey_date = fields.Date("Survey Date")
-    servey_by = fields.Selection(SURVEY_BY, "Survey By")
+    survey_by = fields.Selection(SURVEY_BY, "Survey By")
 
     # New fields for school district info
     type_of_district = fields.Char("Type of District")
