@@ -10,6 +10,20 @@
                        <page string="Issue Description">
                        </page>
                          <page string="Effected Products" name="issue_products">
+                             <group>
+                                 <group>
+                                     <field name="dvr_check" />
+                                     <field name="cam_check" />
+                                     <field name="storage_check" />
+                                     <field name="ap_check" />
+                                 </group>
+                                 <group>
+                                     <field name="bridge_check" />
+                                     <field name="td_check" />
+                                     <field name="dvrv_check" />
+                                     <field name="cust_sys_check" />
+                                 </group>
+                             </group>
                         </page>
                     </notebook>
                 </xpath>
