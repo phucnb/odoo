@@ -111,7 +111,24 @@ SYSTEM_RELATED_MAIN = [
 
 class TicketFields(models.Model):
     _inherit = 'helpdesk.ticket'
-
+	# ISSUE TYPE
+	dvr_check = fields.Boolean("DVR")
+	cam_check = fields.Boolean("Camera")
+	storage_check = fields.Boolean("Storage")
+	ap_check = fields.Boolean("Access Point")
+	bridge_check = fields.Boolean("Bridge")
+	td_check = fields.Boolean("Touchdown")
+	dvrv_check = fields.Boolean("DVR Viewer")
+	cust_sys_check = fields.Boolean("Customer Side Issue")
+	# PROD TYPE
+	dvr_type = fields.Selection(DVR_MAIN, "DVR Model")
+	cam_type = fields.Selection(CAMERA_MAIN, "Camera Model")
+	storage_type = fields.Selection(STORAGE_MAIN, "Storage Model")
+	ap_type = fields.Selection(ACCESS_POINT_MAIN, "Access Point Model")
+	bridge_type = fields.Selection(BRIDGE_MAIN, "Bridge Model")
+	td_type = fields.Selection(WIRELESS_MAIN, "Touchdown Type")
+	dvrv_type = fields.Selection(DVR_VIEWER_MAIN, "DVR Viewer Version")
+	customer_sys_type = fields.Selection(SYSTEM_RELATED_MAIN, "Customer System Type")
     partner_bus_garage_address = fields.Char(string='Bus Garage Address', compute='_compute_partner_contact', store=True, readonly=False)
     partner_phone = fields.Char(string='Main Company Phone', compute='_compute_partner_contact', store=True, readonly=False)
     partner_main_contact = fields.Char(string='Primary Ticket Contact', compute='_compute_partner_contact', store=True, readonly=False)
@@ -125,27 +142,7 @@ class TicketFields(models.Model):
                 ticket.partner_phone = ticket.partner_id.phone
                 ticket.partner_main_contact = ticket.partner_id.main_contact.partner_id
                 ticket.partner_main_contact_phone = ticket.partner_id.main_contact_phone
-	#ISSUE TYPE
-	dvr_check = fields.Boolean("DVR")
-	cam_check = fields.Boolean("Camera")
-	storage_check = fields.Boolean("Storage")
-	ap_check = fields.Boolean("Access Point")
-	bridge_check = fields.Boolean("Bridge")
-	td_check = fields.Boolean("Touchdown")
-	dvrv_check = fields.Boolean("DVR Viewer")
-	cust_sys_check = fields.Boolean("Customer Side Issue")
-	#PROD TYPE
-	dvr_type = fields.Selection(DVR_MAIN, "DVR Model")
-	cam_type = fields.Selection(CAMERA_MAIN, "Camera Model")
-	storage_type = fields.Selection(STORAGE_MAIN, "Storage Model")
-	ap_type = fields.Selection(ACCESS_POINT_MAIN, "Access Point Model")
-	bridge_type = fields.Selection(BRIDGE_MAIN, "Bridge Model")
-	td_type = fields.Selection(WIRELESS_MAIN, "Touchdown Type")
-	dvrv_type = fields.Selection(DVR_VIEWER_MAIN, "DVR Viewer Version")
-	customer_sys_type = fields.Selection(SYSTEM_RELATED_MAIN, "Customer System Type")
 
-
- 
 
     # @api.onchange('partner_id')
     # def onchange_partner_id(self):
