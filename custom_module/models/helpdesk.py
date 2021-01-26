@@ -114,15 +114,34 @@ class TicketFields(models.Model):
     partner_phone = fields.Char(string='Main Phone', compute='_compute_partner_contact', store=True, readonly=False)
     partner_main_contact = fields.Char(string='Primary Contact', compute='_compute_partner_contact', store=True, readonly=False)
     partner_main_contact_phone = fields.Char(string='Primary Contact Phone', compute='_compute_partner_contact', store=True, readonly=False)
+    #DVRs
     dvr_check = fields.Boolean("DVR")
+    dvr_type_1 = fields.Selection(DVR_TYPE, "DVR Type")
+    dvr_qty_1 = fields.Integer("Quantity")
+    add_dvr_1 = fields.Boolean("Add Another DVR")
+    dvr_type_2 = fields.Selection(DVRV_VERSION, "DVR Viewer Version")
+    dvr_qty_2 = fields.Integer("Quantity")
+    add_dvr_2 = fields.Boolean("Add Another DVR")
+    dvr_type_3 = fields.Selection(DVRV_VERSION, "DVR Viewer Version")
+    dvr_qty_3 = fields.Integer("Quantity")
+    dvr_notes = fields.Text("DVR Notes")
+    #CAMERAS
     cam_check = fields.Boolean("Camera")
+    cam_qty_1 = fields.Integer("Quantity")
+    add_cam_1 = fields.Boolean("Add Another Camera")
+    #STORAGE
     storage_check = fields.Boolean("Storage")
+    #APs
     ap_check = fields.Boolean("Access Point")
+    #BRIDGEs
     bridge_check = fields.Boolean("Bridge")
+    #TD
     td_check = fields.Boolean("Touchdown")
+    #DVRViewer
     dvrv_check = fields.Boolean("DVR Viewer")
+    #CUSTOMER SYSTEM
     cust_sys_check = fields.Boolean("Customer Related")
-    dvr_type = fields.Selection(DVR_TYPE, "DVR Type")
+
     cam_type = fields.Selection(CAM_TYPE, "Camera Type")
     storage_type = fields.Selection(STORAGE_TYPE, "Storage Type")
     ap_type = fields.Selection(AP_TYPE, "Access Point Type")
@@ -130,10 +149,8 @@ class TicketFields(models.Model):
     td_type = fields.Selection(TD_TYPE, "Touchdown Type")
     dvrv_type = fields.Selection(DVRV_VERSION, "DVR Viewer Version")
     cust_sys_type = fields.Selection(CUST_SYS_TYPE, "Customer Related Type")
-    dvr_qty_1 = fields.Integer("Quantity")
-    add_dvr_1 = fields.Boolean("Add Another DVR")
-    cam_qty_1 = fields.Integer("Quantity")
-    add_cam_1 = fields.Boolean("Add Another Camera")
+
+
 
     def _compute_partner_contact(self):
         for ticket in self:
