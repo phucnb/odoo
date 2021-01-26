@@ -13,7 +13,7 @@
                              <group>
                                 <group>
                                     <field name="dvr_check" />
-                                    <field attrs="{'invisible':[('dvrv_check', '=', False)]}" name="dvrv_type" />
+                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_type"/>
                                     <field attrs="{'invisible':[('dvr_type','=',False)]}" name="dvr_qty_1"/>
                                     <field attrs="{'invisible':[('dvr_type','=',False)]}" name="add_dvr_1"/>
                                 </group>
@@ -35,14 +35,12 @@
 
                              <group>
                                  <group>
-                                     <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_type"/>
-
-                                     <field attrs="{'invisible':[('storage_check', '=', False)]}" name="storage_type" />
-                                     <field attrs="{'invisible':[('ap_check', '=', False)]}" name="ap_type" />
-                                     <field attrs="{'invisible':[('bridge_check', '=', False)]}" name="bridge_type" />
-                                     <field attrs="{'invisible':[('td_check', '=', False)]}" name="td_type" />
-
-                                     <field attrs="{'invisible':[('cust_sys_check', '=', False)]}" name="cust_sys_type" />
+                                    <field attrs="{'invisible':[('dvrv_check', '=', False)]}" name="dvrv_type" />
+                                    <field attrs="{'invisible':[('storage_check', '=', False)]}" name="storage_type" />
+                                    <field attrs="{'invisible':[('ap_check', '=', False)]}" name="ap_type" />
+                                    <field attrs="{'invisible':[('bridge_check', '=', False)]}" name="bridge_type" />
+                                    <field attrs="{'invisible':[('td_check', '=', False)]}" name="td_type" />
+                                    <field attrs="{'invisible':[('cust_sys_check', '=', False)]}" name="cust_sys_type" />
                                 </group>
                                  <group>
 
