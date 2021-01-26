@@ -11,7 +11,7 @@ PRODUCT_TYPE = [
     ('System Related', 'System Related')
 ]
 
-DVR_MAIN = [
+DVR_TYPE = [
     ('Zeus 16', 'Zeus 16'),
    	('Zeus 8', 'Zeus 8'),
    	('Zeus 6s', 'Zeus 6s'),
@@ -23,7 +23,7 @@ DVR_MAIN = [
     ('300', '300')
 ]
 
-CAMERA_MAIN = [
+CAM_TYPE = [
 		('HDQ 2.1', 'HDQ 2.1'),
 		('HDQ 2.9', 'HDQ 2.9'),
 		('HDQ 3.6', 'HDQ 3.6'),
@@ -44,20 +44,20 @@ CAMERA_MAIN = [
 		('FHD SAC 1.6', 'FHD SAC 1.6')
 ]
 
-BRIDGE_MAIN = [
+BRIDGE_TYPE = [
 		('MikroTek 2.4Ghz', 'MikroTek 2.4Ghz'),
 		('Ubiquiti 2.4Ghz', 'Ubiquiti 2.4Ghz'),
 		('Ubiquiti 5Ghz', 'Ubiquiti 5Ghz')
 ]
 
-ACCESS_POINT_MAIN = [
+AP_TYPE = [
 		('MikroTek 2.4Ghz', 'MikroTek 2.4Ghz'),
 		('Ubiquiti 2.4Ghz Omni', 'Ubiquiti 2.4Ghz Omni'),
 		('Ubiquiti 5Ghz Omni', 'Ubiquiti 5Ghz Omni'),
 		('Ubiquiti Nanobeam', 'Ubiquiti Nanobeam')
 ]
 
-STORAGE_MAIN = [
+STORAGE_TYPE = [
 		('Infinity', 'Infinity'),
 		('DHD2', 'DHD2'),
 		('DHD', 'DHD'),
@@ -66,13 +66,13 @@ STORAGE_MAIN = [
 		('SD Card', 'SD Card')
 ]
 
-DVR_VIEWER_MAIN = [
+DVRV_VERSION = [
 		('v19.522 (Win10)', 'v19.522 (Win10)'),
 		('v17.1215 (Win7)', 'v17.1215 (Win7)'),
 		('Outdated Version', 'Outdated Version')
 ]
 
-WIRELESS_MAIN = [
+TD_TYPE = [
 		('Laptop Server', 'Laptop Server'),
 		('Rack Server', 'Rack Server'),
 		('HP ProLiant Server', 'HP ProLiant Server'),
@@ -83,9 +83,7 @@ WIRELESS_MAIN = [
 		('Windows Server 2016', 'Windows Server 2016'),
 		('Windows Server 2012R2', 'Windows Server 2012R2'),
 		('Windows 7', 'Windows 7'),
-		('Network Domain', 'Network Domain'),
-		('Windows Defender', 'Windows Defender'),
-		('3rd Party Antivirus', '3rd Party Antivirus')
+		('TD Cloud', 'TD Cloud')
 ]
 
 SYSTEM_RELATED_MAIN = [
@@ -120,13 +118,13 @@ class TicketFields(models.Model):
     td_check = fields.Boolean("Touchdown")
     dvrv_check = fields.Boolean("DVR Viewer")
     cust_sys_check = fields.Boolean("Customer Related")
-    dvr_type = fields.Selection(DVR_MAIN, "DVR Type")
-    cam_type = fields.Selection(CAMERA_MAIN, "Camera Type")
-    storage_type = fields.Selection(STORAGE_MAIN, "Storage Type")
-    ap_type = fields.Selection(ACCESS_POINT_MAIN, "Access Point Type")
-    bridge_type = fields.Selection(BRIDGE_MAIN, "Bridge Type")
-    td_type = fields.Selection(WIRELESS_MAIN, "Touchdown Type")
-    dvrv_type = fields.Selection(DVR_VIEWER_MAIN, "DVR Viewer Version")
+    dvr_type = fields.Selection(DVR_TYPE, "DVR Type")
+    cam_type = fields.Selection(CAM_TYPE, "Camera Type")
+    storage_type = fields.Selection(STORAGE_TYPE, "Storage Type")
+    ap_type = fields.Selection(AP_TYPE, "Access Point Type")
+    bridge_type = fields.Selection(BRIDGE_TYPE, "Bridge Type")
+    td_type = fields.Selection(TD_TYPE, "Touchdown Type")
+    dvrv_type = fields.Selection(DVRV_VERSION, "DVR Viewer Version")
     cust_sys_type = fields.Selection(SYSTEM_RELATED_MAIN, "Customer Related Type")
 
     def _compute_partner_contact(self):
