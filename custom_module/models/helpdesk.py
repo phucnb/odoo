@@ -86,7 +86,7 @@ TD_TYPE = [
 		('TD Cloud', 'TD Cloud')
 ]
 
-SYSTEM_RELATED_MAIN = [
+CUST_SYS_TYPE = [
 		('Laptop', 'Laptop'),
 		('PC', 'PC'),
 		('MAC', 'MAC'),
@@ -97,10 +97,14 @@ SYSTEM_RELATED_MAIN = [
 		('Windows 8', 'Windows 8'),
 		('Windows 7', 'Windows 7'),
 		('Windows XP', 'Windows XP'),
-		('Dell', 'Dell'),
-		('HP', 'HP'),
-		('Lenovo', 'Lenovo'),
 		('Network Domain', 'Network Domain')
+]
+
+CUST_SYS_MODEL = [
+	('Dell', 'Dell'),
+	('HP', 'HP'),
+	('Lenovo', 'Lenovo'),
+	('Other', 'Other')
 ]
 
 class TicketFields(models.Model):
@@ -118,14 +122,14 @@ class TicketFields(models.Model):
     td_check = fields.Boolean("Touchdown")
     dvrv_check = fields.Boolean("DVR Viewer")
     cust_sys_check = fields.Boolean("Customer Related")
-    dvr_type = fields.Selection(DVR_TYPE, "DVR Type")
+    dvr_type = fields.Many2Many('helpdesk.dvrTypeSelection', help='Please add/select the name of system')
     cam_type = fields.Selection(CAM_TYPE, "Camera Type")
     storage_type = fields.Selection(STORAGE_TYPE, "Storage Type")
     ap_type = fields.Selection(AP_TYPE, "Access Point Type")
     bridge_type = fields.Selection(BRIDGE_TYPE, "Bridge Type")
     td_type = fields.Selection(TD_TYPE, "Touchdown Type")
     dvrv_type = fields.Selection(DVRV_VERSION, "DVR Viewer Version")
-    cust_sys_type = fields.Selection(SYSTEM_RELATED_MAIN, "Customer Related Type")
+    cust_sys_type = fields.Selection(CUST_SYS_TYPE, "Customer Related Type")
 
     def _compute_partner_contact(self):
         for ticket in self:
