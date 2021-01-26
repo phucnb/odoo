@@ -53,7 +53,7 @@
                                     <field name="ap_check" />
                                     <field attrs="{'invisible':[('ap_check','=',False)]}" name="ap_type_1"/>
                                     <field attrs="{'invisible':[('ap_type_1','=',False)]}" name="ap_qty_1"/>
-                                    <field attrs="{'invisible':[('ap_type_1','=',False)]}" name="ap_cam_1"/>
+                                    <field attrs="{'invisible':[('ap_type_1','=',False)]}" name="add_ap_1"/>
                                     <field attrs="{'invisible':[('add_ap_1','=',False)]}" name="ap_type_2"/>
                                     <field attrs="{'invisible':[('ap_type_2','=',False)]}" name="ap_qty_2"/>
                                     <field attrs="{'invisible':[('ap_type_2','=',False)]}" name="add_ap_2"/>
