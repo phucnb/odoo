@@ -41,7 +41,7 @@
                                     <field name="storage_check" />
                                     <field attrs="{'invisible':[('storage_check','=',False)]}" name="storage_type_1"/>
                                     <field attrs="{'invisible':[('storage_type_1','=',False)]}" name="storage_qty_1"/>
-                                    <field attrs="{'invisible':[('storage_type_1','=',False)]}" name="storage_cam_1"/>
+                                    <field attrs="{'invisible':[('storage_type_1','=',False)]}" name="add_storage_1"/>
                                     <field attrs="{'invisible':[('add_storage_1','=',False)]}" name="storage_type_2"/>
                                     <field attrs="{'invisible':[('storage_type_2','=',False)]}" name="storage_qty_2"/>
                                     <field attrs="{'invisible':[('storage_type_2','=',False)]}" name="add_storage_2"/>
