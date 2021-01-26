@@ -119,10 +119,10 @@ class TicketFields(models.Model):
     dvr_type_1 = fields.Selection(DVR_TYPE, "DVR Type")
     dvr_qty_1 = fields.Integer("Quantity")
     add_dvr_1 = fields.Boolean("Add Another DVR")
-    dvr_type_2 = fields.Selection(DVRV_VERSION, "DVR Viewer Version")
+    dvr_type_2 = fields.Selection(DVR_TYPE, "DVR Type")
     dvr_qty_2 = fields.Integer("Quantity")
     add_dvr_2 = fields.Boolean("Add Another DVR")
-    dvr_type_3 = fields.Selection(DVRV_VERSION, "DVR Viewer Version")
+    dvr_type_3 = fields.Selection(DVR_TYPE, "DVR Type")
     dvr_qty_3 = fields.Integer("Quantity")
     dvr_notes = fields.Text("DVR Notes")
     #CAMERAS
