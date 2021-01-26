@@ -72,18 +72,28 @@ DVRV_VERSION = [
 		('Outdated Version', 'Outdated Version')
 ]
 
-TD_TYPE = [
+TD_SRVR_TYPE = [
 		('Laptop Server', 'Laptop Server'),
 		('Rack Server', 'Rack Server'),
 		('HP ProLiant Server', 'HP ProLiant Server'),
 		('Virtual Server', 'Virtual Server'),
 		('s247 Server', 's247 Server'),
-		('Windows 10', 'Windows 10'),
-		('Windows Server 2019', 'Windows Server 2019'),
-		('Windows Server 2016', 'Windows Server 2016'),
-		('Windows Server 2012R2', 'Windows Server 2012R2'),
-		('Windows 7', 'Windows 7'),
 		('TD Cloud', 'TD Cloud')
+]
+
+TD_VERSION = [
+	('v3.7.34', 'v3.7.34'),
+	('v3.7.38', 'v3.7.38'),
+	('v3.7.39', 'v3.7.39'),
+	('OTHER', 'Other Version: See Notes')
+]
+
+TD_OS = [
+	('Windows 10', 'Windows 10'),
+	('Windows Server 2019', 'Windows Server 2019'),
+	('Windows Server 2016', 'Windows Server 2016'),
+	('Windows Server 2012R2', 'Windows Server 2012R2'),
+	('Windows 7', 'Windows 7')
 ]
 
 CUST_SYS_TYPE = [
@@ -92,12 +102,14 @@ CUST_SYS_TYPE = [
 		('MAC', 'MAC'),
 		('All-In-One', 'All-In-One'),
 		('Other', 'Other'),
-		('Windows 10', 'Windows 10'),
-		('Windows 8.1', 'Windows 8.1'),
-		('Windows 8', 'Windows 8'),
-		('Windows 7', 'Windows 7'),
-		('Windows XP', 'Windows XP'),
-		('Network Domain', 'Network Domain')
+]
+
+CUST_SYS_OS = [
+	('Windows 10', 'Windows 10'),
+	('Windows 8.1', 'Windows 8.1'),
+	('Windows 8', 'Windows 8'),
+	('Windows 7', 'Windows 7'),
+	('Windows XP', 'Windows XP')
 ]
 
 CUST_SYS_MODEL = [
@@ -118,37 +130,75 @@ class TicketFields(models.Model):
     dvr_check = fields.Boolean("DVR")
     dvr_type_1 = fields.Selection(DVR_TYPE, "DVR Type")
     dvr_qty_1 = fields.Integer("Quantity")
-    add_dvr_1 = fields.Boolean("Add Another DVR")
+    add_dvr_1 = fields.Boolean("Add Additional DVR Type")
     dvr_type_2 = fields.Selection(DVR_TYPE, "DVR Type")
     dvr_qty_2 = fields.Integer("Quantity")
-    add_dvr_2 = fields.Boolean("Add Another DVR")
+    add_dvr_2 = fields.Boolean("Add Additional DVR Type")
     dvr_type_3 = fields.Selection(DVR_TYPE, "DVR Type")
     dvr_qty_3 = fields.Integer("Quantity")
     dvr_notes = fields.Text("DVR Notes")
     #CAMERAS
-    cam_type_1 = fields.Selection(CAM_TYPE, "Camera Type")
     cam_check = fields.Boolean("Camera")
+    cam_type_1 = fields.Selection(CAM_TYPE, "Camera Type")
     cam_qty_1 = fields.Integer("Quantity")
-    add_cam_1 = fields.Boolean("Add Another Camera")
+    add_cam_1 = fields.Boolean("Add Additional Camera Type")
+    cam_type_2 = fields.Selection(CAM_TYPE, "Camera Type")
+    cam_qty_2 = fields.Integer("Quantity")
+    add_cam_2 = fields.Boolean("Add Additional Camera Type")
+    cam_type_3 = fields.Selection(CAM_TYPE, "Camera Type")
+    cam_qty_3 = fields.Integer("Quantity")
+    cam_notes = fields.Text("Camera Notes")
     #STORAGE
-    storage_type = fields.Selection(STORAGE_TYPE, "Storage Type")
     storage_check = fields.Boolean("Storage")
+    storage_type_1 = fields.Selection(STORAGE_TYPE, "Storage Type")
+    storage_qty_1 = fields.Integer("Quantity")
+    add_storage_1 = fields.Boolean("Add Additional Storage Type")
+    storage_type_2 = fields.Selection(STORAGE_TYPE, "Storage Type")
+    storage_qty_2 = fields.Integer("Quantity")
+    add_storage_2 = fields.Boolean("Add Additional Storage Type")
+    storage_type_3 = fields.Selection(STORAGE_TYPE, "Storage Type")
+    storage_qty_3 = fields.Integer("Quantity")
+    storage_notes = fields.Text("Storage Notes")
     #APs
-    ap_type = fields.Selection(AP_TYPE, "Access Point Type")
     ap_check = fields.Boolean("Access Point")
+    ap_type_1 = fields.Selection(AP_TYPE, "Access Point Type")
+    ap_qty_1 = fields.Integer("Quantity")
+    add_ap_1 = fields.Boolean("Add Additional AP Type")
+    ap_type_2 = fields.Selection(AP_TYPE, "Access Point Type")
+    ap_qty_2 = fields.Integer("Quantity")
+    add_ap_2 = fields.Boolean("Add Additional AP Type")
+    ap_type_3 = fields.Selection(AP_TYPE, "Access Point Type")
+    ap_qty_3 = fields.Integer("Quantity")
+    add_ap_3 = fields.Boolean("Add Additional AP Type")
+    ap_notes = fields.Text("Access Point Notes")
     #BRIDGEs
-    bridge_type = fields.Selection(BRIDGE_TYPE, "Bridge Type")
     bridge_check = fields.Boolean("Bridge")
+    bridge_type_1 = fields.Selection(BRIDGE_TYPE, "Bridge Type")
+    bridge_qty_1 = fields.Integer("Quantity")
+    add_bridge_1 = fields.Boolean("Add Additional Bridge Type")
+    bridge_type_2 = fields.Selection(BRIDGE_TYPE, "Bridge Type")
+    bridge_qty_2 = fields.Integer("Quantity")
+    add_bridge_2 = fields.Boolean("Add Additional Bridge Type")
+    bridge_type_3 = fields.Selection(BRIDGE_TYPE, "Bridge Type")
+    bridge_qty_3 = fields.Integer("Quantity")
+    add_bridge_3 = fields.Boolean("Add Additional Bridge Type")
+    bridge_notes = fields.Text("Bridge Notes")
     #TD
-    td_type = fields.Selection(TD_TYPE, "Touchdown Type")
     td_check = fields.Boolean("Touchdown")
+    td_type = fields.Selection(TD_SRVR_TYPE, "Touchdown Type")
+    td_os = fields.Selection(TD_OS, "Operating System")
+    td_version = fields.Selection(TD_VERSION, "Version")
+    td_notes = fields.Text("Touchdown Notes")
     #DVRViewer
-    dvrv_type = fields.Selection(DVRV_VERSION, "DVR Viewer Version")
     dvrv_check = fields.Boolean("DVR Viewer")
+    dvrv_type = fields.Selection(DVRV_VERSION, "DVR Viewer Version")
+    dvrv_notes = fields.Text("DVRViewer Notes")
     #CUSTOMER SYSTEM
-    cust_sys_type = fields.Selection(CUST_SYS_TYPE, "Customer Related Type")
     cust_sys_check = fields.Boolean("Customer Related")
-
+    cust_sys_type = fields.Selection(CUST_SYS_TYPE, "Customer Related Type")
+    cust_sys_model = fields.Selection(CUST_SYS_MODEL, "Computer Model")
+    cust_sys_os = fields.Selection(CUST_SYS_OS, "Operating System")
+    cust_sys_notes = fields.Text("Customer Related System Notes")
 
     def _compute_partner_contact(self):
         for ticket in self:
