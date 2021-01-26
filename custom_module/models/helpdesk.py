@@ -73,10 +73,6 @@ DVR_VIEWER_MAIN = [
 ]
 
 WIRELESS_MAIN = [
-		('Touchdown', 'Touchdown'),
-		('v3.7.39', 'v3.7.39'),
-		('v3.7.38', 'v3.7.38'),
-		('v3.7.34', 'v3.7.34'),
 		('Laptop Server', 'Laptop Server'),
 		('Rack Server', 'Rack Server'),
 		('HP ProLiant Server', 'HP ProLiant Server'),
