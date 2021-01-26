@@ -80,8 +80,8 @@
                                  <group>
                                     <field name="cust_sys_check" />
                                     <field attrs="{'invisible':[('cust_sys_check','=',False)]}" name="cust_sys_type"/>
-                                    <field attrs="{'invisible':[('cust_sys_type','!=', Other)]}" name="cust_sys_model"/>
-                                    <field attrs="{'invisible':[('cust_sys_type','!=',Other)]}" name="cust_sys_os"/>
+                                    <field attrs="{'invisible':[('cust_sys_type','=',False)]}" name="cust_sys_model"/>
+                                    <field attrs="{'invisible':[('cust_sys_type','=',False)]}" name="cust_sys_os"/>
                                     <field attrs="{'invisible':[('cust_sys_check','=',False)]}" name="cust_sys_notes"/>
                                  </group>
                              </group>
