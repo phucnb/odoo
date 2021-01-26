@@ -13,15 +13,21 @@
                              <group>
                                 <group>
                                     <field name="dvr_check" />
-                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_type"/>
-                                    <field attrs="{'invisible':[('dvr_type','=',False)]}" name="dvr_qty_1"/>
-                                    <field attrs="{'invisible':[('dvr_type','=',False)]}" name="add_dvr_1"/>
+                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_type_1"/>
+                                    <field attrs="{'invisible':[('dvr_type_1','=',False)]}" name="dvr_qty_1"/>
+                                    <field attrs="{'invisible':[('dvr_type_1','=',False)]}" name="add_dvr_1"/>
+                                    <field attrs="{'invisible':[('add_dvr_1','=',False)]}" name="dvr_type_2"/>
+                                    <field attrs="{'invisible':[('dvr_type_2','=',False)]}" name="dvr_qty_2"/>
+                                    <field attrs="{'invisible':[('dvr_type_2','=',False)]}" name="add_dvr_2"/>
+                                    <field attrs="{'invisible':[('add_dvr_2','=',False)]}" name="dvr_type_3"/>
+                                    <field attrs="{'invisible':[('dvr_type_3','=',False)]}" name="dvr_qty_3"/>
+                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_notes"/>
                                 </group>
                                 <group>
-                                   <field name="cam_check" />
-                                    <field attrs="{'invisible':[('cam_type','=',False)]}" name="cam_type"/>
-                                    <field attrs="{'invisible':[('cam_type','=',False)]}" name="cam_qty_1"/>
-                                    <field attrs="{'invisible':[('dvr_type','=',False)]}" name="add_dvr_1"/>
+                                    <field name="cam_check" />
+                                    <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_type_1"/>
+                                    <field attrs="{'invisible':[('cam_type_1','=',False)]}" name="cam_qty_1"/>
+                                    <field attrs="{'invisible':[('cam_type_1','=',False)]}" name="add_cam_1"/>
                                 </group>
                              </group>
                              <group>
