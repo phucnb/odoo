@@ -32,14 +32,6 @@
                                      <field name="ap_check" />
                                  </group>
                              </group>
-
-                             <group>
-                                 <group>
-                                </group>
-                                 <group>
-
-                                 </group>
-                             </group>
                         </page>
                     </notebook>
                 </xpath>
