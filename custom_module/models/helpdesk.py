@@ -122,7 +122,7 @@ class TicketFields(models.Model):
     td_check = fields.Boolean("Touchdown")
     dvrv_check = fields.Boolean("DVR Viewer")
     cust_sys_check = fields.Boolean("Customer Related")
-    dvr_type = fields.Many2Many('helpdesk.dvrTypeSelection', help='Please add/select the name of system')
+    dvr_type = fields.Many2Many('helpdesk.dvrTypeSelection', 'DVR Type', help='Please add/select the name of system')
     cam_type = fields.Selection(CAM_TYPE, "Camera Type")
     storage_type = fields.Selection(STORAGE_TYPE, "Storage Type")
     ap_type = fields.Selection(AP_TYPE, "Access Point Type")
