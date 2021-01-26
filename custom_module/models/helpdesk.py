@@ -131,6 +131,9 @@ class TicketFields(models.Model):
     dvrv_type = fields.Selection(DVRV_VERSION, "DVR Viewer Version")
     cust_sys_type = fields.Selection(CUST_SYS_TYPE, "Customer Related Type")
     dvr_qty_1 = fields.Integer("Quantity")
+    add_dvr_1 = fields.Boolean("Add Another DVR")
+    cam_qty_1 = fields.Integer("Quantity")
+    add_cam_1 = fields.Boolean("Add Another Camera")
 
     def _compute_partner_contact(self):
         for ticket in self:
