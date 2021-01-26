@@ -126,30 +126,28 @@ class TicketFields(models.Model):
     dvr_qty_3 = fields.Integer("Quantity")
     dvr_notes = fields.Text("DVR Notes")
     #CAMERAS
+    cam_type_1 = fields.Selection(CAM_TYPE, "Camera Type")
     cam_check = fields.Boolean("Camera")
     cam_qty_1 = fields.Integer("Quantity")
     add_cam_1 = fields.Boolean("Add Another Camera")
     #STORAGE
+    storage_type = fields.Selection(STORAGE_TYPE, "Storage Type")
     storage_check = fields.Boolean("Storage")
     #APs
+    ap_type = fields.Selection(AP_TYPE, "Access Point Type")
     ap_check = fields.Boolean("Access Point")
     #BRIDGEs
+    bridge_type = fields.Selection(BRIDGE_TYPE, "Bridge Type")
     bridge_check = fields.Boolean("Bridge")
     #TD
+    td_type = fields.Selection(TD_TYPE, "Touchdown Type")
     td_check = fields.Boolean("Touchdown")
     #DVRViewer
+    dvrv_type = fields.Selection(DVRV_VERSION, "DVR Viewer Version")
     dvrv_check = fields.Boolean("DVR Viewer")
     #CUSTOMER SYSTEM
-    cust_sys_check = fields.Boolean("Customer Related")
-
-    cam_type = fields.Selection(CAM_TYPE, "Camera Type")
-    storage_type = fields.Selection(STORAGE_TYPE, "Storage Type")
-    ap_type = fields.Selection(AP_TYPE, "Access Point Type")
-    bridge_type = fields.Selection(BRIDGE_TYPE, "Bridge Type")
-    td_type = fields.Selection(TD_TYPE, "Touchdown Type")
-    dvrv_type = fields.Selection(DVRV_VERSION, "DVR Viewer Version")
     cust_sys_type = fields.Selection(CUST_SYS_TYPE, "Customer Related Type")
-
+    cust_sys_check = fields.Boolean("Customer Related")
 
 
     def _compute_partner_contact(self):
