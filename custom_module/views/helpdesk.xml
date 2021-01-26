@@ -28,14 +28,61 @@
                                     <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_type_1"/>
                                     <field attrs="{'invisible':[('cam_type_1','=',False)]}" name="cam_qty_1"/>
                                     <field attrs="{'invisible':[('cam_type_1','=',False)]}" name="add_cam_1"/>
+                                    <field attrs="{'invisible':[('add_cam_1','=',False)]}" name="cam_type_2"/>
+                                    <field attrs="{'invisible':[('cam_type_2','=',False)]}" name="cam_qty_2"/>
+                                    <field attrs="{'invisible':[('cam_type_2','=',False)]}" name="add_cam_2"/>
+                                    <field attrs="{'invisible':[('add_cam_2','=',False)]}" name="cam_type_3"/>
+                                    <field attrs="{'invisible':[('cam_type_3','=',False)]}" name="cam_qty_3"/>
+                                    <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_notes"/>
                                 </group>
                              </group>
                              <group>
                                  <group>
-                                     <field name="storage_check" />
+                                    <field name="storage_check" />
+                                    <field attrs="{'invisible':[('storage_check','=',False)]}" name="storage_type_1"/>
+                                    <field attrs="{'invisible':[('storage_type_1','=',False)]}" name="storage_qty_1"/>
+                                    <field attrs="{'invisible':[('storage_type_1','=',False)]}" name="storage_cam_1"/>
+                                    <field attrs="{'invisible':[('add_storage_1','=',False)]}" name="storage_type_2"/>
+                                    <field attrs="{'invisible':[('storage_type_2','=',False)]}" name="storage_qty_2"/>
+                                    <field attrs="{'invisible':[('storage_type_2','=',False)]}" name="add_storage_2"/>
+                                    <field attrs="{'invisible':[('add_storage_2','=',False)]}" name="storage_type_3"/>
+                                    <field attrs="{'invisible':[('storage_type_3','=',False)]}" name="storage_qty_3"/>
+                                    <field attrs="{'invisible':[('storage_check','=',False)]}" name="storage_notes"/>
                                  </group>
                                  <group>
-                                     <field name="ap_check" />
+                                    <field name="ap_check" />
+                                    <field attrs="{'invisible':[('ap_check','=',False)]}" name="ap_type_1"/>
+                                    <field attrs="{'invisible':[('ap_type_1','=',False)]}" name="ap_qty_1"/>
+                                    <field attrs="{'invisible':[('ap_type_1','=',False)]}" name="ap_cam_1"/>
+                                    <field attrs="{'invisible':[('add_ap_1','=',False)]}" name="ap_type_2"/>
+                                    <field attrs="{'invisible':[('ap_type_2','=',False)]}" name="ap_qty_2"/>
+                                    <field attrs="{'invisible':[('ap_type_2','=',False)]}" name="add_ap_2"/>
+                                    <field attrs="{'invisible':[('add_ap_2','=',False)]}" name="ap_type_3"/>
+                                    <field attrs="{'invisible':[('ap_type_3','=',False)]}" name="ap_qty_3"/>
+                                    <field attrs="{'invisible':[('ap_check','=',False)]}" name="ap_notes"/>
+                                 </group>
+                             </group>
+                             <group>
+                                 <group>
+                                    <field name="td_check" />
+                                    <field attrs="{'invisible':[('td_check','=',False)]}" name="td_type"/>
+                                    <field attrs="{'invisible':[('td_type','=',False)]}" name="td_os"/>
+                                    <field attrs="{'invisible':[('td_type','=',False)]}" name="td_version"/>
+                                    <field attrs="{'invisible':[('td_check','=',False)]}" name="td_notes"/>
+                                 </group>
+                                 <group>
+                                    <field name="dvrv_check" />
+                                    <field attrs="{'invisible':[('dvrv_check','=',False)]}" name="dvrv_type"/>
+                                    <field attrs="{'invisible':[('dvrv_check','=',False)]}" name="dvrv_notes"/>
+                                 </group>
+                             </group>
+                             <group>
+                                 <group>
+                                    <field name="cust_sys_check" />
+                                    <field attrs="{'invisible':[('cust_sys_check','=',False)]}" name="cust_sys_type"/>
+                                    <field attrs="{'invisible':[('cust_sys_type','!=', Other)]}" name="cust_sys_model"/>
+                                    <field attrs="{'invisible':[('cust_sys_type','!=',Other)]}" name="cust_sys_os"/>
+                                    <field attrs="{'invisible':[('cust_sys_check','=',False)]}" name="cust_sys_notes"/>
                                  </group>
                              </group>
                         </page>
