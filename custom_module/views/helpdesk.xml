@@ -109,7 +109,7 @@
                        <page string="Bridge Issues" name="bridge_issues">
 
                        </page>
-                       <page
+                       <page/>
                     </notebook>
                 </xpath>
                 <field name="partner_id" position="after">
