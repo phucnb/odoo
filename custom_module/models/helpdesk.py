@@ -122,6 +122,7 @@ CUST_SYS_MODEL = [
 class TicketFields(models.Model):
     _inherit = 'helpdesk.ticket'
 
+    issue_notes = fields.Text("Issue Description")
     #DVRs
     dvr_check = fields.Boolean("DVR")
     dvr_type_1 = fields.Selection(DVR_TYPE, "DVR Type")
