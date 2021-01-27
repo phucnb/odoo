@@ -7,7 +7,10 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='description']" position="before" >
                    <notebook>
-                       <page string="Issue Description">
+                       <page string="Issue Description" name="issue_desc">
+                           <group>
+                                <field name="issue_notes"/>
+                           </group>
                        </page>
                          <page string="DVR Issues" name="dvr_issues">
                              <group>
@@ -97,6 +100,16 @@
                                    <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_notes"/>
                                </group>
                        </page>
+                       <page string="Storage Issues" name="storage_issues">
+
+                       </page>
+                       <page string="Access Point Issues" name="ap_issues">
+
+                       </page>
+                       <page string="Bridge Issues" name="bridge_issues">
+
+                       </page>
+                       <page
                     </notebook>
                 </xpath>
                 <field name="partner_id" position="after">
