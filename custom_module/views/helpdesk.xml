@@ -15,25 +15,28 @@
                        </page>
                         <page string="DVR" name="dvr_issues">
                             <group>
-                                <field name="dvr_check" />
-                                <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_type_1"/>
-                                <field attrs="{'invisible':[('dvr_type_1','=',False)]}" name="dvr_qty_1"/>
-                                <field attrs="{'invisible':[('dvr_type_1','=',False)]}" name="add_dvr_1"/>
-                                <field attrs="{'invisible':[('add_dvr_1','=',False)]}" name="dvr_type_2"/>
-                                <field attrs="{'invisible':[('dvr_type_2','=',False)]}" name="dvr_qty_2"/>
-                                <field attrs="{'invisible':[('dvr_type_2','=',False)]}" name="add_dvr_2"/>
-                                <field attrs="{'invisible':[('add_dvr_2','=',False)]}" name="dvr_type_3"/>
-                                <field attrs="{'invisible':[('dvr_type_3','=',False)]}" name="dvr_qty_3"/>
+                                <group>
+                                    <field name="dvr_check" />
+                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_type_1"/>
+                                    <field attrs="{'invisible':[('dvr_type_1','=',False)]}" name="dvr_qty_1"/>
+                                    <field attrs="{'invisible':[('dvr_type_1','=',False)]}" name="add_dvr_1"/>
+                                    <field attrs="{'invisible':[('add_dvr_1','=',False)]}" name="dvr_type_2"/>
+                                    <field attrs="{'invisible':[('dvr_type_2','=',False)]}" name="dvr_qty_2"/>
+                                    <field attrs="{'invisible':[('dvr_type_2','=',False)]}" name="add_dvr_2"/>
+                                    <field attrs="{'invisible':[('add_dvr_2','=',False)]}" name="dvr_type_3"/>
+                                    <field attrs="{'invisible':[('dvr_type_3','=',False)]}" name="dvr_qty_3"/>
+                                </group>
+                                 <group>
+                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_sn"/>
+                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_edcMdc"/>
+                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_firmware"/>
+                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_mcu"/>
+                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_notes"/>
+                                 </group>
                             </group>
-                             <group>
-                                <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_sn"/>
-                                <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_edcMdc"/>
-                                <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_firmware"/>
-                                <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_mcu"/>
-                                <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_notes"/>
-                             </group>
                         </page>
                         <page string="Camera" name="cam_issues">
+                            <group>
                                 <group>
                                     <field name="cam_check" />
                                     <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_type_1"/>
@@ -44,26 +47,28 @@
                                     <field attrs="{'invisible':[('cam_type_2','=',False)]}" name="add_cam_2"/>
                                     <field attrs="{'invisible':[('add_cam_2','=',False)]}" name="cam_type_3"/>
                                     <field attrs="{'invisible':[('cam_type_3','=',False)]}" name="cam_qty_3"/>
-
                                 </group>
                                <group>
                                    <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_notes"/>
                                </group>
+                            </group>
                        </page>
                         <page string="Storage" name="storage_issues">
-                             <group>
-                                <field name="storage_check" />
-                                <field attrs="{'invisible':[('storage_check','=',False)]}" name="storage_type_1"/>
-                                <field attrs="{'invisible':[('storage_type_1','=',False)]}" name="storage_qty_1"/>
-                                <field attrs="{'invisible':[('storage_type_1','=',False)]}" name="add_storage_1"/>
-                                <field attrs="{'invisible':[('add_storage_1','=',False)]}" name="storage_type_2"/>
-                                <field attrs="{'invisible':[('storage_type_2','=',False)]}" name="storage_qty_2"/>
-                                <field attrs="{'invisible':[('storage_type_2','=',False)]}" name="add_storage_2"/>
-                                <field attrs="{'invisible':[('add_storage_2','=',False)]}" name="storage_type_3"/>
-                                <field attrs="{'invisible':[('storage_type_3','=',False)]}" name="storage_qty_3"/>
-                             </group>
                             <group>
-                                <field attrs="{'invisible':[('storage_check','=',False)]}" name="storage_notes"/>
+                                <group>
+                                    <field name="storage_check" />
+                                    <field attrs="{'invisible':[('storage_check','=',False)]}" name="storage_type_1"/>
+                                    <field attrs="{'invisible':[('storage_type_1','=',False)]}" name="storage_qty_1"/>
+                                    <field attrs="{'invisible':[('storage_type_1','=',False)]}" name="add_storage_1"/>
+                                    <field attrs="{'invisible':[('add_storage_1','=',False)]}" name="storage_type_2"/>
+                                    <field attrs="{'invisible':[('storage_type_2','=',False)]}" name="storage_qty_2"/>
+                                    <field attrs="{'invisible':[('storage_type_2','=',False)]}" name="add_storage_2"/>
+                                    <field attrs="{'invisible':[('add_storage_2','=',False)]}" name="storage_type_3"/>
+                                    <field attrs="{'invisible':[('storage_type_3','=',False)]}" name="storage_qty_3"/>
+                                </group>
+                                <group>
+                                    <field attrs="{'invisible':[('storage_check','=',False)]}" name="storage_notes"/>
+                                </group>
                             </group>
                        </page>
                         <page string="Access Point" name="ap_issues">
