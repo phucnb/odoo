@@ -7,9 +7,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='description']" position="before" >
                    <notebook>
-                       <page string="Issue Description">
-                       </page>
-                         <page string="Effected Products" name="issue_products">
+                         <page string="DVRs" name="DVRs">
                              <group>
                                 <group>
                                     <field name="dvr_check" />
@@ -21,24 +19,14 @@
                                     <field attrs="{'invisible':[('dvr_type_2','=',False)]}" name="add_dvr_2"/>
                                     <field attrs="{'invisible':[('add_dvr_2','=',False)]}" name="dvr_type_3"/>
                                     <field attrs="{'invisible':[('dvr_type_3','=',False)]}" name="dvr_qty_3"/>
+                                </group>
+                                 <group>
                                     <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_sn"/>
                                     <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_edcMdc"/>
                                     <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_firmware"/>
                                     <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_mcu"/>
                                     <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_notes"/>
-                                </group>
-                                <group>
-                                    <field name="cam_check" />
-                                    <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_type_1"/>
-                                    <field attrs="{'invisible':[('cam_type_1','=',False)]}" name="cam_qty_1"/>
-                                    <field attrs="{'invisible':[('cam_type_1','=',False)]}" name="add_cam_1"/>
-                                    <field attrs="{'invisible':[('add_cam_1','=',False)]}" name="cam_type_2"/>
-                                    <field attrs="{'invisible':[('cam_type_2','=',False)]}" name="cam_qty_2"/>
-                                    <field attrs="{'invisible':[('cam_type_2','=',False)]}" name="add_cam_2"/>
-                                    <field attrs="{'invisible':[('add_cam_2','=',False)]}" name="cam_type_3"/>
-                                    <field attrs="{'invisible':[('cam_type_3','=',False)]}" name="cam_qty_3"/>
-                                    <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_notes"/>
-                                </group>
+                                 </group>
                              </group>
                              <group>
                                  <group>
@@ -90,6 +78,23 @@
                                  </group>
                              </group>
                         </page>
+                        <page string="DVRs" name="DVRs">
+                                <group>
+                                    <field name="cam_check" />
+                                    <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_type_1"/>
+                                    <field attrs="{'invisible':[('cam_type_1','=',False)]}" name="cam_qty_1"/>
+                                    <field attrs="{'invisible':[('cam_type_1','=',False)]}" name="add_cam_1"/>
+                                    <field attrs="{'invisible':[('add_cam_1','=',False)]}" name="cam_type_2"/>
+                                    <field attrs="{'invisible':[('cam_type_2','=',False)]}" name="cam_qty_2"/>
+                                    <field attrs="{'invisible':[('cam_type_2','=',False)]}" name="add_cam_2"/>
+                                    <field attrs="{'invisible':[('add_cam_2','=',False)]}" name="cam_type_3"/>
+                                    <field attrs="{'invisible':[('cam_type_3','=',False)]}" name="cam_qty_3"/>
+
+                                </group>
+                               <group>
+                                   <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_notes"/>
+                               </group>
+                       </page>
                     </notebook>
                 </xpath>
                 <field name="partner_id" position="after">
