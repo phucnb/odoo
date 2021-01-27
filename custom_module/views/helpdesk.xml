@@ -12,7 +12,7 @@
                                 <field name="issue_notes"/>
                            </group>
                        </page>
-                        <page string="DVR Issues" name="dvr_issues">
+                        <page string="DVR" name="dvr_issues">
                              <group>
                                 <group>
                                     <field name="dvr_check" />
@@ -83,7 +83,7 @@
                                  </group>
                              </group>
                         </page>
-                        <page string="Camera Issues" name="cam_issues">
+                        <page string="Camera" name="cam_issues">
                                 <group>
                                     <field name="cam_check" />
                                     <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_type_1"/>
@@ -100,16 +100,24 @@
                                    <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_notes"/>
                                </group>
                        </page>
-                        <page string="Storage Issues" name="storage_issues">
+                        <page string="Storage" name="storage_issues">
 
                        </page>
-                       <page string="Access Point Issues" name="ap_issues">
+                       <page string="Access Point" name="ap_issues">
 
                        </page>
-                       <page string="Bridge Issues" name="bridge_issues">
+                       <page string="Bridge" name="bridge_issues">
 
                        </page>
-                       <page/>
+                       <page string="Touchdown" name="td_issues">
+
+                       </page>
+                       <page string="DVR Viewer">
+
+                       </page>
+                       <page string="Customer System" name="cust_sys_issue">
+                           
+                       </page>
                     </notebook>
                 </xpath>
                 <field name="partner_id" position="after">
