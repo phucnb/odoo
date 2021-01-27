@@ -122,10 +122,6 @@ CUST_SYS_MODEL = [
 class TicketFields(models.Model):
     _inherit = 'helpdesk.ticket'
 
-    partner_bus_garage_address = fields.Char(string='Bus Garage Address', compute='_compute_partner_contact', store=True, readonly=False)
-    partner_phone = fields.Char(string='Main Phone', compute='_compute_partner_contact', store=True, readonly=False)
-    partner_main_contact = fields.Char(string='Primary Contact', compute='_compute_partner_contact', store=True, readonly=False)
-    partner_main_contact_phone = fields.Char(string='Primary Contact Phone', compute='_compute_partner_contact', store=True, readonly=False)
     #DVRs
     dvr_check = fields.Boolean("DVR")
     dvr_type_1 = fields.Selection(DVR_TYPE, "DVR Type")
@@ -136,7 +132,11 @@ class TicketFields(models.Model):
     add_dvr_2 = fields.Boolean("Add Additional DVR Type")
     dvr_type_3 = fields.Selection(DVR_TYPE, "DVR Type")
     dvr_qty_3 = fields.Integer("Quantity")
-    dvr_notes = fields.Text("DVR Notes")
+    dvr_sn = fields.Text("Serial Numbers")
+    dvr_edcMdc = fields.Text("EDC / MDC")
+    dvr_firmware = fields.Text("Firmware")
+    dvr_mcu = fields.Text("MCU")
+    dvr_notes = fields.Text("Additional Notes")
     #CAMERAS
     cam_check = fields.Boolean("Camera")
     cam_type_1 = fields.Selection(CAM_TYPE, "Camera Type")
