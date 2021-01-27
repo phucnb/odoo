@@ -12,7 +12,7 @@
                                 <field name="issue_notes"/>
                            </group>
                        </page>
-                         <page string="DVR Issues" name="dvr_issues">
+                        <page string="DVR Issues" name="dvr_issues">
                              <group>
                                 <group>
                                     <field name="dvr_check" />
@@ -100,7 +100,7 @@
                                    <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_notes"/>
                                </group>
                        </page>
-                       <page string="Storage Issues" name="storage_issues">
+                        <page string="Storage Issues" name="storage_issues">
 
                        </page>
                        <page string="Access Point Issues" name="ap_issues">
@@ -124,7 +124,12 @@
 
                 </field>
                 <!-- Hide fields -->
-
+                <field name="tag_ids" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="ticket_type_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
                 <field name="partner_name" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </field>
