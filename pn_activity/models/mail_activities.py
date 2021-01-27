@@ -186,7 +186,9 @@ class MailActivity(models.Model):
             # post message on activity, before deleting it
             record = self.env[activity.res_model].browse(activity.res_id)
             user_id = self._set_action_user_id(self._uid, activity)
-            record.with_user(user_id).message_post_with_view(
+            company_ids = self.env['res.users'].browse(user_id).company_ids.ids
+            record.with_user(user_id).with_context(
+                allowed_company_ids=company_ids).message_post_with_view(
                 'mail.message_activity_done',
                 values={
                     'activity': activity,
@@ -204,13 +206,18 @@ class MailActivity(models.Model):
             activity_message = record.message_ids[0]
             message_attachments = self.env['ir.attachment'].browse(activity_attachments[activity.id])
             if message_attachments:
-                message_attachments.with_user(user_id).write({
+                message_attachments.with_user(user_id).with_context(
+                    allowed_company_ids=company_ids
+                ).write({
                     'res_id': activity_message.id,
                     'res_model': activity_message._name,
                 })
                 activity_message.attachment_ids = message_attachments
+            activity_message.activity_due_date = activity.date_deadline
             messages |= activity_message
-            activity.with_user(user_id).write({'state': 'done', 'active': False, 'date_done': date.today(), 'feedback': feedback})
+            activity.with_user(user_id).with_context(
+                allowed_company_ids=company_ids
+            ).write({'state': 'done', 'active': False, 'date_done': date.today(), 'feedback': feedback})
         next_activities = self.env['mail.activity'].create(next_activities_values)
         return messages, next_activities
 
@@ -306,25 +313,25 @@ class MailActivityOverview(models.Model):
         user_id = self._uid
         for record in self:
             user_id = self._set_action_user_id(user_id, record.mail_activity_id)
-            record.mail_activity_id.with_user(user_id).with_context(mail_activity_quick_update=True).action_done()
+            record.mail_activity_id.with_user(user_id).with_context(allowed_company_ids=self.env.user.company_ids.ids, mail_activity_quick_update=True).action_done()
 
     def action_done(self):
         self.ensure_one()
         user_id = self._uid
         user_id = self._set_action_user_id(user_id, self.mail_activity_id)
-        return self.mail_activity_id.with_user(user_id).with_context(mail_activity_quick_update=True).action_done()
+        return self.mail_activity_id.with_user(user_id).with_context(allowed_company_ids=self.env.user.company_ids.ids, mail_activity_quick_update=True).action_done()
 
     def action_done_schedule_next(self):
         self.ensure_one()
         user_id = self._uid
         user_id = self._set_action_user_id(user_id, self.mail_activity_id)
-        return self.mail_activity_id.with_user(user_id).with_context(mail_activity_quick_update=True).action_done_schedule_next()
+        return self.mail_activity_id.with_user(user_id).with_context(allowed_company_ids=self.env.user.company_ids.ids, mail_activity_quick_update=True).action_done_schedule_next()
 
     def action_done_schedule_next(self):
         self.ensure_one()
         user_id = self._uid
         user_id = self._set_action_user_id(user_id, self.mail_activity_id)
-        return self.mail_activity_id.with_user(user_id).with_context(mail_activity_quick_update=True).action_done_schedule_next()
+        return self.mail_activity_id.with_user(user_id).with_context(allowed_company_ids=self.env.user.company_ids.ids, mail_activity_quick_update=True).action_done_schedule_next()
 
     def action_open_record(self):
         self.ensure_one()
