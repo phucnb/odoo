@@ -73,52 +73,75 @@
                        </page>
                         <page string="Access Point" name="ap_issues">
                             <group>
-                                <field name="ap_check" />
-                                <field attrs="{'invisible':[('ap_check','=',False)]}" name="ap_type_1"/>
-                                <field attrs="{'invisible':[('ap_type_1','=',False)]}" name="ap_qty_1"/>
-                                <field attrs="{'invisible':[('ap_type_1','=',False)]}" name="add_ap_1"/>
-                                <field attrs="{'invisible':[('add_ap_1','=',False)]}" name="ap_type_2"/>
-                                <field attrs="{'invisible':[('ap_type_2','=',False)]}" name="ap_qty_2"/>
-                                <field attrs="{'invisible':[('ap_type_2','=',False)]}" name="add_ap_2"/>
-                                <field attrs="{'invisible':[('add_ap_2','=',False)]}" name="ap_type_3"/>
-                                <field attrs="{'invisible':[('ap_type_3','=',False)]}" name="ap_qty_3"/>
-                            </group>
-                            <group>
-                                <field attrs="{'invisible':[('ap_check','=',False)]}" name="ap_notes"/>
+                                <group>
+                                    <field name="ap_check" />
+                                    <field attrs="{'invisible':[('ap_check','=',False)]}" name="ap_type_1"/>
+                                    <field attrs="{'invisible':[('ap_type_1','=',False)]}" name="ap_qty_1"/>
+                                    <field attrs="{'invisible':[('ap_type_1','=',False)]}" name="add_ap_1"/>
+                                    <field attrs="{'invisible':[('add_ap_1','=',False)]}" name="ap_type_2"/>
+                                    <field attrs="{'invisible':[('ap_type_2','=',False)]}" name="ap_qty_2"/>
+                                    <field attrs="{'invisible':[('ap_type_2','=',False)]}" name="add_ap_2"/>
+                                    <field attrs="{'invisible':[('add_ap_2','=',False)]}" name="ap_type_3"/>
+                                    <field attrs="{'invisible':[('ap_type_3','=',False)]}" name="ap_qty_3"/>
+                                </group>
+                                <group>
+                                    <field attrs="{'invisible':[('ap_check','=',False)]}" name="ap_notes"/>
+                                </group>
                             </group>
                        </page>
                         <page string="Bridge" name="bridge_issues">
-
+                            <group>
+                                <group>
+                                    <field name="bridge_check" />
+                                    <field attrs="{'invisible':[('bridge_check','=',False)]}" name="bridge_type_1"/>
+                                    <field attrs="{'invisible':[('bridge_type_1','=',False)]}" name="bridge_qty_1"/>
+                                    <field attrs="{'invisible':[('bridge_type_1','=',False)]}" name="add_bridge_1"/>
+                                    <field attrs="{'invisible':[('add_bridge_1','=',False)]}" name="bridge_type_2"/>
+                                    <field attrs="{'invisible':[('bridge_type_2','=',False)]}" name="ap_qty_2"/>
+                                    <field attrs="{'invisible':[('bridge_type_2','=',False)]}" name="add_bridge_2"/>
+                                    <field attrs="{'invisible':[('add_bridge_2','=',False)]}" name="ap_type_3"/>
+                                    <field attrs="{'invisible':[('bridge_type_3','=',False)]}" name="bridge_qty_3"/>
+                                </group>
+                                <group>
+                                    <field attrs="{'invisible':[('ap_check','=',False)]}" name="ap_notes"/>
+                                </group>
+                            </group>
                         </page>
                         <page string="Touchdown" name="td_issues">
                             <group>
-                                <field name="td_check" />
-                                <field attrs="{'invisible':[('td_check','=',False)]}" name="td_type"/>
-                                <field attrs="{'invisible':[('td_type','=',False)]}" name="td_os"/>
-                                <field attrs="{'invisible':[('td_type','=',False)]}" name="td_version"/>
-                            </group>
-                            <group>
-                                <field attrs="{'invisible':[('td_check','=',False)]}" name="td_notes"/>
+                                <group>
+                                    <field name="td_check" />
+                                    <field attrs="{'invisible':[('td_check','=',False)]}" name="td_type"/>
+                                    <field attrs="{'invisible':[('td_type','=',False)]}" name="td_os"/>
+                                    <field attrs="{'invisible':[('td_type','=',False)]}" name="td_version"/>
+                                </group>
+                                <group>
+                                    <field attrs="{'invisible':[('td_check','=',False)]}" name="td_notes"/>
+                                </group>
                             </group>
                         </page>
                         <page string="DVR Viewer">
                             <group>
-                                    <field name="dvrv_check" />
-                                    <field attrs="{'invisible':[('dvrv_check','=',False)]}" name="dvrv_type"/>
-                            </group>
-                            <group>
-                                    <field attrs="{'invisible':[('dvrv_check','=',False)]}" name="dvrv_notes"/>
+                                <group>
+                                        <field name="dvrv_check" />
+                                        <field attrs="{'invisible':[('dvrv_check','=',False)]}" name="dvrv_type"/>
+                                </group>
+                                <group>
+                                        <field attrs="{'invisible':[('dvrv_check','=',False)]}" name="dvrv_notes"/>
+                                </group>
                             </group>
                         </page>
                         <page string="Customer System" name="cust_sys_issue">
                             <group>
-                                <field name="cust_sys_check" />
-                                <field attrs="{'invisible':[('cust_sys_check','=',False)]}" name="cust_sys_type"/>
-                                <field attrs="{'invisible':[('cust_sys_type','=', False)]}" name="cust_sys_model"/>
-                                <field attrs="{'invisible':[('cust_sys_type','=',False)]}" name="cust_sys_os"/>
-                            </group>
-                            <group>
-                                 <field attrs="{'invisible':[('cust_sys_check','=',False)]}" name="cust_sys_notes"/>
+                                <group>
+                                    <field name="cust_sys_check" />
+                                    <field attrs="{'invisible':[('cust_sys_check','=',False)]}" name="cust_sys_type"/>
+                                    <field attrs="{'invisible':[('cust_sys_type','=', False)]}" name="cust_sys_model"/>
+                                    <field attrs="{'invisible':[('cust_sys_type','=',False)]}" name="cust_sys_os"/>
+                                </group>
+                                <group>
+                                     <field attrs="{'invisible':[('cust_sys_check','=',False)]}" name="cust_sys_notes"/>
+                                </group>
                             </group>
                         </page>
                     </notebook>
