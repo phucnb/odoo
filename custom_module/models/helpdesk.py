@@ -170,7 +170,6 @@ class TicketFields(models.Model):
     add_ap_2 = fields.Boolean("Add Additional AP Type")
     ap_type_3 = fields.Selection(AP_TYPE, "Access Point Type")
     ap_qty_3 = fields.Integer("Quantity")
-    add_ap_3 = fields.Boolean("Add Additional AP Type")
     ap_notes = fields.Text("Access Point Notes")
     #BRIDGEs
     bridge_check = fields.Boolean("Bridge")
@@ -182,7 +181,6 @@ class TicketFields(models.Model):
     add_bridge_2 = fields.Boolean("Add Additional Bridge Type")
     bridge_type_3 = fields.Selection(BRIDGE_TYPE, "Bridge Type")
     bridge_qty_3 = fields.Integer("Quantity")
-    add_bridge_3 = fields.Boolean("Add Additional Bridge Type")
     bridge_notes = fields.Text("Bridge Notes")
     #TD
     td_check = fields.Boolean("Touchdown")
