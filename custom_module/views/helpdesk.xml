@@ -103,7 +103,7 @@
                                     <field attrs="{'invisible':[('bridge_type_3','=',False)]}" name="bridge_qty_3"/>
                                 </group>
                                 <group>
-                                    <field attrs="{'invisible':[('ap_check','=',False)]}" name="ap_notes"/>
+                                    <field attrs="{'invisible':[('bridge_check','=',False)]}" name="bridge_notes"/>
                                 </group>
                             </group>
                         </page>
