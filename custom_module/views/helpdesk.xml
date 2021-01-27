@@ -100,6 +100,15 @@
                     </notebook>
                 </xpath>
                 <field name="partner_id" position="after">
+                    <field name="dvr_check" readonly="1" />
+                    <field name="cam_check" readonly="1" />
+                    <field name="storage_check" readonly="1" />
+                    <field name="ap_check" readonly="1" />
+                    <field name="bridge_check" readonly="1" />
+                    <field name="td_check" readonly="1" />
+                    <field name="dvrv_check" readonly="1" />
+                    <field name="cust_sys_check" readonly="1" />
+
                 </field>
                 <!-- Hide fields -->
 
