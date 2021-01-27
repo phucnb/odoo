@@ -21,6 +21,10 @@
                                     <field attrs="{'invisible':[('dvr_type_2','=',False)]}" name="add_dvr_2"/>
                                     <field attrs="{'invisible':[('add_dvr_2','=',False)]}" name="dvr_type_3"/>
                                     <field attrs="{'invisible':[('dvr_type_3','=',False)]}" name="dvr_qty_3"/>
+                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_sn"/>
+                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_edcMdc"/>
+                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_firmware"/>
+                                    <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_mcu"/>
                                     <field attrs="{'invisible':[('dvr_check','=',False)]}" name="dvr_notes"/>
                                 </group>
                                 <group>
@@ -80,7 +84,7 @@
                                  <group>
                                     <field name="cust_sys_check" />
                                     <field attrs="{'invisible':[('cust_sys_check','=',False)]}" name="cust_sys_type"/>
-                                    <field attrs="{'invisible':[('cust_sys_type','=',False)]}" name="cust_sys_model"/>
+                                    <field attrs="{'invisible':[('cust_sys_type','=', False)]}" name="cust_sys_model"/>
                                     <field attrs="{'invisible':[('cust_sys_type','=',False)]}" name="cust_sys_os"/>
                                     <field attrs="{'invisible':[('cust_sys_check','=',False)]}" name="cust_sys_notes"/>
                                  </group>
@@ -89,10 +93,6 @@
                     </notebook>
                 </xpath>
                 <field name="partner_id" position="after">
-                    <field name="partner_bus_garage_address"/>
-                    <field name="partner_phone" />
-                    <field name="partner_main_contact" />
-                    <field name="partner_main_contact_phone" />
                 </field>
                 <!-- Hide fields -->
 
