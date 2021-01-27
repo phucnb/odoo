@@ -199,32 +199,3 @@ class TicketFields(models.Model):
     cust_sys_model = fields.Selection(CUST_SYS_MODEL, "Computer Model")
     cust_sys_os = fields.Selection(CUST_SYS_OS, "Operating System")
     cust_sys_notes = fields.Text("Customer Related System Notes")
-
-    def _compute_partner_contact(self):
-        for ticket in self:
-            if ticket.partner_id:
-                ticket.partner_bus_garage_address = ticket.partner_id.bus_garage_address
-                ticket.partner_phone = ticket.partner_id.phone
-                ticket.partner_main_contact = ticket.partner_id.main_contact.partner_id
-                ticket.partner_main_contact_phone = ticket.partner_id.main_contact_phone
-
-
- 
-
-    # @api.onchange('partner_id')
-    # def onchange_partner_id(self):
-    #     if self.partner_id:
-    #             self.name = partner_id
-                
-            
-
-
-    # @api.onchange('product_main')
-    # def onchange_product_main(self):
-    #     if self.product_main:
-    #         if self.product_issue \
-    #                 and self.product_issue.id not in self.product_main.child_ids.ids:
-    #             self.product_issue = False
-
-
-            
