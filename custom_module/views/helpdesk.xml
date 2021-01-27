@@ -7,6 +7,8 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='description']" position="before" >
                    <notebook>
+                       <page string="Issue Description">
+                       </page>
                          <page string="DVRs" name="DVRs">
                              <group>
                                 <group>
