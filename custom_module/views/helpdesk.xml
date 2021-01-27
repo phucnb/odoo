@@ -9,7 +9,7 @@
                    <notebook>
                        <page string="Issue Description">
                        </page>
-                         <page string="DVRs" name="DVRs">
+                         <page string="DVR Issues" name="dvr_issues">
                              <group>
                                 <group>
                                     <field name="dvr_check" />
@@ -80,7 +80,7 @@
                                  </group>
                              </group>
                         </page>
-                        <page string="Cameras" name="Cameras">
+                        <page string="Camera Issues" name="cam_issues">
                                 <group>
                                     <field name="cam_check" />
                                     <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_type_1"/>
