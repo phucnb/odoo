@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='description']" position="before" >
                    <notebook>
-                       <page string="Issue Description" name="issue_desc">
+                        <page string="Issue Description" name="issue_desc">
                            <group>
                                 <field name="issue_notes"/>
                            </group>
@@ -97,9 +97,9 @@
                                     <field attrs="{'invisible':[('bridge_type_1','=',False)]}" name="bridge_qty_1"/>
                                     <field attrs="{'invisible':[('bridge_type_1','=',False)]}" name="add_bridge_1"/>
                                     <field attrs="{'invisible':[('add_bridge_1','=',False)]}" name="bridge_type_2"/>
-                                    <field attrs="{'invisible':[('bridge_type_2','=',False)]}" name="ap_qty_2"/>
+                                    <field attrs="{'invisible':[('bridge_type_2','=',False)]}" name="bridge_qty_2"/>
                                     <field attrs="{'invisible':[('bridge_type_2','=',False)]}" name="add_bridge_2"/>
-                                    <field attrs="{'invisible':[('add_bridge_2','=',False)]}" name="ap_type_3"/>
+                                    <field attrs="{'invisible':[('add_bridge_2','=',False)]}" name="bridge_type_3"/>
                                     <field attrs="{'invisible':[('bridge_type_3','=',False)]}" name="bridge_qty_3"/>
                                 </group>
                                 <group>
