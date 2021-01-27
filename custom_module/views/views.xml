@@ -673,7 +673,9 @@
 				<field name="vat" position="before">
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="first_name"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="last_name"/>
-					<field attrs="{'invisible':[('is_company','=',True)]}" name="role" string="Title"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="role"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="job_title"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="job_title_secondary"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="phone"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="mobile"/>
 					<field name="report_to_id"
