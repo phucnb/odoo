@@ -80,7 +80,7 @@
                                  </group>
                              </group>
                         </page>
-                        <page string="DVRs" name="DVRs">
+                        <page string="Cameras" name="Cameras">
                                 <group>
                                     <field name="cam_check" />
                                     <field attrs="{'invisible':[('cam_check','=',False)]}" name="cam_type_1"/>
