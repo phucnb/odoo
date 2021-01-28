@@ -797,7 +797,7 @@
         </record>
 
         <record id="base.lang_en" model="res.lang">
-            <field name="date_format">%d-%m-%Y</field> 
+            <field name="date_format">%m-%d-%Y</field> 
             <field name="time_format">%I:%M %p</field> 
         </record>
 

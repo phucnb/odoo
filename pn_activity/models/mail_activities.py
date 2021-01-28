@@ -244,7 +244,7 @@ class MailActivityOverview(models.Model):
     res_name = fields.Char(string='Document Name', related='mail_activity_id.res_name', related_sudo=True, readonly=True, store=True)
     activity_type_id = fields.Many2one('mail.activity.type', related='mail_activity_id.activity_type_id', related_sudo=True, readonly=True, store=True)
     summary = fields.Char('Activity Summary', related='mail_activity_id.summary', related_sudo=True, readonly=True, store=True)
-    date_deadline = fields.Date('Due Date', index=True, related='mail_activity_id.date_deadline', related_sudo=True, readonly=True, store=True)
+    date_deadline = fields.Date('Due Date', index=True, related='mail_activity_id.date_deadline', related_sudo=True, readonly=False, store=True)
     res_model = fields.Char(string='Document Model', related='mail_activity_id.res_model', readonly=True, store=True, related_sudo=True)
     model_name = fields.Char(string='Document Model', related='mail_activity_id.res_model_id.name', readonly=True, store=True, related_sudo=True)
     activity_ids = fields.Many2many(
