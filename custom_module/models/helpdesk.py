@@ -151,8 +151,9 @@ class TicketFields(models.Model):
     #RESOLUTIONS
     resolution_main = fields.Selection(TICKET_RESOLUTION, "Resolution")
     resolution_resolved = fields.Selection(TICKET_RESOLUTION_RESOLVED, "Resolution Cont")
-    resolution_server_inspection = fields.Selection(TICKET_RESOLUTION_SERVER_INSPECTION)
-    resolution_cannot_resolve = fields.Selection(TICKET_RESOLUTION_CANNOT_RESOLVE)
+    resolution_server_inspection = fields.Selection(TICKET_RESOLUTION_SERVER_INSPECTION, "Resolution Cont")
+    resolution_cannot_resolve = fields.Selection(TICKET_RESOLUTION_CANNOT_RESOLVE, "Resolution Cont")
+    resolution_notes = fields.Text("Resolution Notes")
     issue_notes = fields.Text("Issue Description")
     #DVRs
     dvr_check = fields.Boolean("DVR")
