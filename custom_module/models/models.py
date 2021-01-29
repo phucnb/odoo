@@ -545,9 +545,3 @@ class CameraVendor(models.Model):
     name = fields.Char("Value")
 
 
-class DealFields(models.Model):
-    _inherit = 'crm.lead'
-
-deal_owner = fields.Many2one(
-        'res.users', string='Deal Owner'
-)

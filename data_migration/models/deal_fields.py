@@ -55,3 +55,6 @@ class DealFields(models.Model):
     quote_number = fields.Char("Quote Number")
     sales_number = fields.Char("Sales Number")
     state = fields.Char('State/Region')
+    deal_owner = fields.Many2one(
+        'res.users', string='Deal Owner'
+    )
