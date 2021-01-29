@@ -119,9 +119,40 @@ CUST_SYS_MODEL = [
 	('Other', 'Other')
 ]
 
+TICKET_RESOLUTION = [
+    ('RESOLVED', 'Resolved'),
+    ('NORESOLVE', 'Cannot Resolve'),
+    ('SERVER INSPECTION', 'Wireless Inspection Complete')
+]
+
+TICKET_RESOLUTION_RESOLVED = [
+    ('INSTRUCT', 'Instructions / Training'),
+    ('DVRVLink', 'DVR Viewer Link Sent'),
+    ('RMA', 'Equipment RMA Performed'),
+    ('SITE VISIT', 'Site Visit Scheduled'),
+    ('WIRELESS', 'Touchdown Software / Server Repaired'),
+    ('ZOOM', 'Zoom Cable Sent to Customer')
+]
+
+TICKET_RESOLUTION_SERVER_INSPECTION = [
+    ('COMPLETE', 'No Action Required'),
+    ('COMPELTE RMA', 'RMA Sent'),
+    ('COMPLETE SOFTWARE REP', 'TD Software Repaired'),
+    ('COMPLETE SERVER REP', 'TD Server to be Repaired'),
+    ('COMPLETE SITE VISIT', 'Site Visit Scheduled')
+]
+
+TICKET_RESOLUTION_CANNOT_RESOLVE = [
+    ('CANNOT CONTACT', 'Could not Contact Customer')
+]
+
 class TicketFields(models.Model):
     _inherit = 'helpdesk.ticket'
-
+    #RESOLUTIONS
+    resolution_main = fields.Selection(TICKET_RESOLUTION)
+    resolution_resolved = fields.Selection(TICKET_RESOLUTION_RESOLVED)
+    resolution_server_inspection = fields.Selection(TICKET_RESOLUTION_SERVER_INSPECTION)
+    resolution_cannot_resolve = fields.Selection(TICKET_RESOLUTION_CANNOT_RESOLVE)
     issue_notes = fields.Text("Issue Description")
     #DVRs
     dvr_check = fields.Boolean("DVR")
