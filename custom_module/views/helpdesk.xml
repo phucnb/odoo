@@ -151,7 +151,7 @@
                     <field attrs="{'invisible':[('resolution_main','!=', 'RESOLVED')]}" name="resolution_resolved"/>
                     <field attrs="{'invisible':[('resolution_main','!=', 'NORESOLVE')]}" name="resolution_cannot_resolve"/>
                     <field attrs="{'invisible':[('resolution_main','!=', 'SERVER INSPECTION')]}" name="resolution_server_inspection"/>
-                    <field attrs="{'invisible':[('resolution_main','=', False)]}" name="resolution_server_inspection"/>
+                    <field attrs="{'invisible':[('resolution_main','=', False)]}" name="resolution_notes"/>
                     <field name="dvr_check" readonly="1" />
                     <field name="cam_check" readonly="1" />
                     <field name="storage_check" readonly="1" />
