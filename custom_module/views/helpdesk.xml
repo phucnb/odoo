@@ -146,11 +146,17 @@
                         </page>
                     </notebook>
                 </xpath>
-                <field name="partner_id" position="after">
+                <field name="company_id" position="after">
+                    <field name="resolution_main" />
+                    <field name="resolution_resolved"/>
+                    <field name="resolution_cannot_resolve"/>
+                    <field name="resolution_server_inspection"/>
                     <field name="dvr_check" readonly="1" />
                     <field name="cam_check" readonly="1" />
                     <field name="storage_check" readonly="1" />
                     <field name="ap_check" readonly="1" />
+                </field>
+                <field name="partner_id" position="after">
                     <field name="bridge_check" readonly="1" />
                     <field name="td_check" readonly="1" />
                     <field name="dvrv_check" readonly="1" />
