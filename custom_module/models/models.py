@@ -218,6 +218,16 @@ class ResPartnerField(models.Model):
         domain=[('active', '=', True)]
     )  # force "active_test" domain to bypass _search() override
 
+    company_owner = fields.Many2one(
+        'res.users', string='Company Owner'
+    )
+
+    contact_owner = fields.Many2one(
+        'res.users', string='Contact Owner'
+    )
+
+    
+
     report_to = fields.Many2one(
         'res.partner', string='Report To'
     )
@@ -533,3 +543,11 @@ class CameraVendor(models.Model):
     _name = 'res.partner_camera_vendors'
 
     name = fields.Char("Value")
+
+
+class DealFields(models.Model):
+    _inherit = 'crm.lead'
+
+deal_owner = fields.Many2one(
+        'res.users', string='Deal Owner'
+)

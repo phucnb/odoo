@@ -198,3 +198,9 @@ class TicketFields(models.Model):
     cust_sys_model = fields.Selection(CUST_SYS_MODEL, "Computer Model")
     cust_sys_os = fields.Selection(CUST_SYS_OS, "Operating System")
     cust_sys_notes = fields.Text("Customer Related System Notes")
+
+    #ticket owner
+
+    ticket_owner = fields.Many2one(
+        'res.users', string='Ticket Owner'
+    )
