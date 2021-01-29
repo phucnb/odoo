@@ -148,7 +148,7 @@
                 </xpath>
                 <field name="company_id" position="after">
                     <field name="resolution_main" />
-                    <field name="resolution_resolved"/>
+                    <field attrs="{'invisible':[('resolution_main','=', 'RESOLVED')]}" name="resolution_resolved"/>
                     <field name="resolution_cannot_resolve"/>
                     <field name="resolution_server_inspection"/>
                     <field name="dvr_check" readonly="1" />
