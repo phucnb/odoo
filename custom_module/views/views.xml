@@ -811,7 +811,9 @@
             <field name="arch" type="xml">
                 <field name="user_id" position="after">
                     <filter name="group_rsm" string="RSM" context="{'group_by': 'rsm'}"/>
-                    <filter name="group_sale_rep" string="Sales Rep" context="{'group_by': 'sales_rep'}"/>                    
+                    <filter name="group_sale_rep" string="Sales Rep" context="{'group_by': 'sales_rep'}"/>
+                    <filter name="group_company_owner" string="Company Owner" context="{'group_by': 'company_owner'}"/>
+                    <filter name="group_contact_owner" string="Contact Owner" context="{'group_by': 'contact_owner'}"/>                    
                 </field>
             </field>
         </record>

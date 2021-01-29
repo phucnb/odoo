@@ -353,7 +353,7 @@ class CustomCompany(models.Model):
     prospect_status_s247 = fields.Selection(S247_PROSPECT_STATUS, "S247 Prospect Status")
     s247_title = fields.Char("S247 Title")
     wireless_s247 = fields.Selection(S247_WIRELESS, "S247 Wireless")
-    sales_rep = fields.Selection(SALE_REP, 'S247 Sale Rep')
+    sales_rep = fields.Selection(SALE_REP, 'Sales Rep')
     school_year_budget_begins = fields.Date('School Year Budget Begins')
     school_year_start = fields.Date('School Year Start')
     service_agreement = fields.Selection(SERVICE_PLAN, 'Service Plan')
