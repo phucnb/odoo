@@ -686,7 +686,7 @@
 				</field>
 				<!-- RIGHT SIDE CONTACT CARD -->
 				<field name="category_id" position="before">
-					<field attrs="{'invisible':[('is_company','=',True)]}" name="contact_owner"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="contact_owner" options="{'no_create': True, 'no_edit': True, 'no_create_edit': True}"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="primary_contact"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="date_of_birth"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="planned_retirement_date" string="Retirement Date"/>
@@ -704,7 +704,7 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="isr"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="rsm"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="crr"/>
-					<field attrs="{'invisible':[('is_company','=',False)]}" name="company_owner"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="company_owner" options="{'no_create': True, 'no_edit': True, 'no_create_edit': True}"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="fleet_size2"/>
 					<!-- <field attrs="{'invisible':[('is_company','=',False)]}" name="touchdown"/>-->
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="wireless_check" readonly='1' force_save="1"/>

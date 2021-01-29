@@ -7,6 +7,7 @@
             <field name="arch" type="xml">
                
                 <field name="team_id" position="after">
+                    <field name="deal_owner" options="{'no_create': True, 'no_edit': True, 'no_create_edit': True}" />
                     <field name="isr" />
                     <field name="opportunity_number"/>
                     <field name="opportunity_link" />
@@ -19,7 +20,7 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="mail_activity_form_inherit">
+        <!-- <record model="ir.ui.view" id="mail_activity_form_inherit">
             <field name="name">mail.activity.form.inherit</field>
             <field name="model">mail.activity</field>
             <field name="inherit_id" ref="mail.mail_activity_view_form_popup"/>
@@ -30,7 +31,7 @@
                     </group>
             </xpath>
             </field>
-        </record>
+        </record> -->
 
     </data>
 </odoo>
