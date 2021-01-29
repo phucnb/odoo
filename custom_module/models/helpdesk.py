@@ -149,8 +149,8 @@ TICKET_RESOLUTION_CANNOT_RESOLVE = [
 class TicketFields(models.Model):
     _inherit = 'helpdesk.ticket'
     #RESOLUTIONS
-    resolution_main = fields.Selection(TICKET_RESOLUTION)
-    resolution_resolved = fields.Selection(TICKET_RESOLUTION_RESOLVED)
+    resolution_main = fields.Selection(TICKET_RESOLUTION, "Resolution")
+    resolution_resolved = fields.Selection(TICKET_RESOLUTION_RESOLVED, "Resolution Cont")
     resolution_server_inspection = fields.Selection(TICKET_RESOLUTION_SERVER_INSPECTION)
     resolution_cannot_resolve = fields.Selection(TICKET_RESOLUTION_CANNOT_RESOLVE)
     issue_notes = fields.Text("Issue Description")
