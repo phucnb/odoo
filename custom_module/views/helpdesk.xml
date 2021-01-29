@@ -148,10 +148,10 @@
                 </xpath>
                 <field name="company_id" position="after">
                     <field name="resolution_main" />
-                    <field attrs="{'invisible':[('resolution_main','=', 'RESOLVED')]}" name="resolution_resolved"/>
-                    <field name="resolution_cannot_resolve"/>
-                    <field name="resolution_server_inspection"/>
-                    <field name="dvr_check" readonly="1" />
+                    <field attrs="{'invisible':[('resolution_main','!=', 'RESOLVED')]}" name="resolution_resolved"/>
+                    <field attrs="{'invisible':[('resolution_main','!=', 'NORESOLVE')]}" name="resolution_cannot_resolve"/>
+                    <field attrs="{'invisible':[('resolution_main','!=', 'SERVER INSPECTION')]}" name="resolution_server_inspection"/>
+                    <field name="dvr_check" attrs="{'invisible':[('dvr_check','=', False)]}" readonly="1" />
                     <field name="cam_check" readonly="1" />
                     <field name="storage_check" readonly="1" />
                     <field name="ap_check" readonly="1" />
