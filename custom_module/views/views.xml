@@ -397,7 +397,7 @@
 									<group>
 										<field name="hs_total_deal_value"/>
 										<field name="hubspot_team_id"/>
-										<field name="website"/>
+										<field name="website" widget="url"/>
 									</group>
 								</group>
 							</page>
@@ -723,7 +723,7 @@
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_title"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_phone"/>
 					<field attrs="{'invisible':[('is_company','=',False)]}" name="main_contact_email"/>
-					<field attrs="{'invisible':[('is_company','=',False)]}" name="website"/>
+					<field attrs="{'invisible':[('is_company','=',False)]}" name="website" widget="url" priority="100" string="Website"/>
 				</field>
 
 				<field name="company_type" position="attributes">
@@ -794,6 +794,10 @@
                 <xpath expr="//div[hasclass('flex-column')]/ul/li/t/field[@name='city']" position="after">
                     <t t-if="record.state_id.raw_value">, </t>
                     <t t-if="record.state_id.raw_value"><field name="state_id"/></t>
+                    <!-- <t t-if="record.job_title.raw_value"><field name="job_title"/></t> -->
+                </xpath>
+               <xpath expr="//div[hasclass('flex-column')]/ul/li/field[@name='parent_id']" position="replace">
+                    <t t-if="record.job_title.raw_value"><field name="job_title"/></t>
                 </xpath>
             </field>
         </record>
