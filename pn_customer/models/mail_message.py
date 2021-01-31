@@ -6,7 +6,7 @@ class MailMessageInherit(models.Model):
 
     mail_partner_id = fields.Many2one(
         'res.partner', string='Partner User ID',
-        compute='_compute_partner_user_id', compute_sudo=True, index=True, store=True,
+        compute='_compute_partner_user_id', compute_sudo=True, store=True,
         ondelete="set null"
     )
 
@@ -22,6 +22,9 @@ class MailMessageInherit(models.Model):
                     record.mail_partner_id = False
                 if record.model == 'res.partner':
                     contact_id = self.env[record.model].browse(record.res_id)
-                    record.mail_partner_id = contact_id.id
+                    if contact_id and contact_id.exists():
+                        record.mail_partner_id = contact_id.id
+                    else:
+                        record.mail_partner_id = False
                 continue
             record.mail_partner_id = False
