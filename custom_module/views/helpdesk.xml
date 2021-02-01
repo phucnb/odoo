@@ -146,15 +146,22 @@
                         </page>
                     </notebook>
                 </xpath>
-                <field name="partner_id" position="after">
+                <field name="company_id" position="after">
+                    <field name="resolution_main" />
+                    <field attrs="{'invisible':[('resolution_main','!=', 'RESOLVED')]}" name="resolution_resolved"/>
+                    <field attrs="{'invisible':[('resolution_main','!=', 'NORESOLVE')]}" name="resolution_cannot_resolve"/>
+                    <field attrs="{'invisible':[('resolution_main','!=', 'SERVER INSPECTION')]}" name="resolution_server_inspection"/>
+                    <field attrs="{'invisible':[('resolution_main','=', False)]}" name="resolution_notes"/>
                     <field name="dvr_check" readonly="1" />
                     <field name="cam_check" readonly="1" />
                     <field name="storage_check" readonly="1" />
                     <field name="ap_check" readonly="1" />
-                    <field name="bridge_check" readonly="1" />
+                </field>
+                <field name="partner_id" position="after">
                     <field name="td_check" readonly="1" />
                     <field name="dvrv_check" readonly="1" />
                     <field name="cust_sys_check" readonly="1" />
+                    <field name="bridge_check" readonly="1" />
                 </field>
                 <!-- Hide fields -->
                 <field name="tag_ids" position="attributes">
