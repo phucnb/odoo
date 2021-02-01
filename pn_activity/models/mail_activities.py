@@ -259,7 +259,7 @@ class MailActivityOverview(models.Model):
         ("done", "Done")
     ], 'State', related='mail_activity_id.state', readonly=True, store=True, related_sudo=True)
     force_next = fields.Boolean("Trigger Next Activity", related='mail_activity_id.force_next', readonly=True, store=True, related_sudo=True)
-    user_id = fields.Many2one('res.users', 'Assigned to', related='mail_activity_id.user_id', index=True, readonly=True, store=True, related_sudo=True)
+    user_id = fields.Many2one('res.users', 'Assigned to', related='mail_activity_id.user_id', index=True, readonly=False, store=True, related_sudo=True)
     request_partner_id = fields.Many2one('res.partner', string='Requesting Partner', related='mail_activity_id.request_partner_id', index=True, readonly=True, store=True, related_sudo=True)
     note = fields.Html('Note', related='mail_activity_id.note', readonly=True, store=True, related_sudo=True, sanitize_style=True)
     partner_user_id = fields.Many2one(
