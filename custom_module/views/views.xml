@@ -813,6 +813,17 @@
                     <attribute name="t-if">record.type.raw_value !== 'invoice' &amp;&amp; record.type.raw_value !== 'delivery' &amp;&amp; record.type.raw_value !== 'bus_address'</attribute>
                 </xpath>
                
+               <!-- Replace function in add contact popup form with job_title -->
+                <xpath expr="//field[@name='child_ids']/form/sheet/group/group/field[@name='function']"
+                       position="replace">
+                    <field name="job_title" />
+                </xpath>
+                <!-- Add job title into contact kanban view inside company -->
+                <xpath expr="//field[@name='child_ids']/kanban/templates/t/div/div[hasclass('oe_kanban_details')]/div[@t-if='record.function.raw_value']"
+                       position="replace">
+                     <t t-if="record.job_title.raw_value"><field name="job_title"/></t>
+                </xpath>
+
 
 
 			</field>
