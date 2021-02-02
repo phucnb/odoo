@@ -821,7 +821,7 @@
                 <!-- Add job title into contact kanban view inside company -->
                 <xpath expr="//field[@name='child_ids']/kanban/templates/t/div/div[hasclass('oe_kanban_details')]/div[@t-if='record.function.raw_value']"
                        position="replace">
-                     <t t-if="record.job_title.raw_value"><field name="job_title"/></t>
+                     <div t-if="record.job_title.raw_value"><field name="job_title"/></div>
                 </xpath>
 
 
