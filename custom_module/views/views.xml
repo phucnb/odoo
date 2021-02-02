@@ -189,7 +189,7 @@
 							</group>
 							<group>
 								<field name="recommend_scale" string="From a scale from 0 to 10 how likely will would you recommend us to another school district?"/>
-								<field name="rate_scale" string="From a scale from 0 to 10 how would you rate our after sales service and support?" >
+								<field name="rate_scale" string="From a scale from 0 to 10 how would you rate our after sales service and support?" />
 								<field name ="hs_last_sales_activity_timestamp" />
 							</group>
 							<group>
@@ -736,9 +736,9 @@
 				<field name="vat" position="before">
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="first_name"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="last_name"/>
-					<field attrs="{'invisible':[('is_company','=',True)]}" name="role"/>
+					<field attrs="{'invisible':[('is_company','=',True)]}" name="title"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="job_title"/>
-					<field attrs="{'invisible':[('is_company','=',True)]}" name="job_title_secondary"/>
+					<!-- <field attrs="{'invisible':[('is_company','=',True)]}" name="job_title_secondary"/> -->
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="phone"/>
 					<field attrs="{'invisible':[('is_company','=',True)]}" name="mobile"/>
 					<field name="report_to_id"
