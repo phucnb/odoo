@@ -208,7 +208,7 @@
 								<field name="gps" string="Do you currently utilize GPS?" />
 								<field name="student_tracking" string="Do you currently utilize Student Tracking?" />
 								<field name="parent_portal" string="Do you currently utilize Parent Notification?" />
-								<field name="wireles_check" string="Do you currently utilize Wireless Video download?" />
+								<field name="wireless_check" string="Do you currently utilize Wireless Video download?" />
 								<field name="routing" string="Do you currently utilize Routing / Planning?" />
 								<field name="is_tablets" string="Do you currently utilize Tablets on the bus?" />
 								<field name="driver_time_and_attendance" string="Do you currently utilize? [Driver time and attendance]" />						
