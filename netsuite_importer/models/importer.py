@@ -26,7 +26,8 @@ class NetSuiteImport(models.Model):
         """
         return ''.join([str(random.randint(0, 9)) for i in range(length)])
 
-    def _generateSignature(self, method, url, consumerKey, Nonce, currentTime, token, consumerSecret, tokenSecret, offset=0):
+    def _generateSignature(self, method, url, consumerKey, Nonce, currentTime, token, consumerSecret, 
+                           tokenSecret, offset):
         signature_method = 'HMAC-SHA256'
         version = '1.0'
         base_url = url
@@ -65,13 +66,12 @@ class NetSuiteImport(models.Model):
             token = icpsudo.get_param('netsuite_importer.token')
             tokenSecret = icpsudo.get_param('netsuite_importer.tokenSecret')
             base_url = "https://1056867.suitetalk.api.netsuite.com/services/rest/record/v1/customer"
-            url = base_url+"?"+self.last_imported_customer if self.last_imported_customer else base_url
             has_more = True
-            offset = 0
+            offset = self.last_imported_customer if self.last_imported_customer else 0
             while has_more:
                 Nonce = self._generateNonce(length=11)
                 currentTime = self._generateTimestamp()
-                signature = self._generateSignature('GET', url, consumerKey, Nonce, currentTime, token, consumerSecret,
+                signature = self._generateSignature('GET', base_url, consumerKey, Nonce, currentTime, token, consumerSecret,
                                                     tokenSecret, offset)
 
                 payload = ""
@@ -88,7 +88,7 @@ class NetSuiteImport(models.Model):
                     'Authorization': oauth,
                     'cache-control': "no-cache",
                 }
-                response = requests.request("GET", url+'?offset='+str(offset), data=payload, headers=headers)
+                response = requests.request("GET", base_url+'?offset='+str(offset), data=payload, headers=headers)
                 response_dict = json.loads(response.text)
                 self.create_customers(response_dict['items'], base_url)
                 self.last_imported_customer = str(offset)
