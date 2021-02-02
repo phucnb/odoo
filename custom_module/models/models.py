@@ -174,8 +174,8 @@ PROSPECT_CUSTOMER = [
 ]
 
 3RD_OPTION = [
-    ('Bus Patrol','Bus Patrol'),
-    ('ATS','ATS')
+    ('buspatrol','Bus Patrol'),
+    ('ats','ATS')
 ]
 
 class ResPartnerField(models.Model):
