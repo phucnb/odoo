@@ -15,12 +15,12 @@
                     <filter string="My Activities" name="my_activities" domain="[('user_id', '=', uid)]"/>
                     <filter string="Activity" name="fl_activity" domain="[('state', '!=', 'done')]"/>
                     <filter string="Done" name="fl_done" domain="[('state', '=', 'done')]"/>
-                    <filter string="Call" name="type_call" domain="[('activity_type_id', '=', 2)]"/>
+                    <!-- <filter string="Call" name="type_call" domain="[('activity_type_id', '=', 2)]"/>
                     <filter string="Email" name="type_email" domain="[('activity_type_id', '=', 1)]"/>
                     <filter string="To Do" name="type_todo" domain="[('activity_type_id', '=', 4)]"/>
                     <filter string="Meeting" name="type_meeting" domain="[('activity_type_id', '=', 3)]"/>
                     <seperator/>
-                    
+                     -->
                    
 
                     <group expand="0" string="Group By">
