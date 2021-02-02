@@ -20,15 +20,15 @@
 					<page attrs="{'invisible':[('is_company','=',False)]}" string="Cameras / DVRs">
 						<group>
 							<group>
-								<field name="camera_vendors" widget="many2many_tags"/>
+								<field name="camera_system" widget="many2many_tags"/>
 								<!-- <field name="camera_vendor"/> -->
-								<field attrs="{'invisible':[('camera_vendors','!=',['Other'])]}" name="camera_vendor_specify"/>
+								<field attrs="{'invisible':[('camera_system','!=',['Other'])]}" name="camera_vendor_specify"/>
 							</group>
 							<group>
-								<field attrs="{'invisible':[('camera_vendors','=',[])]}" name="camera_number"/>
-								<field attrs="{'invisible':[('camera_vendors','=',[])]}" name="camera_number_per_bus"/>
-								<field attrs="{'invisible':[('camera_vendors','=',[])]}" name="camera_type_shield"/>
-								<field attrs="{'invisible':[('camera_vendors','=',[])]}" name="camera_type_sac"/>
+								<field attrs="{'invisible':[('camera_system','=',[])]}" name="camera_number"/>
+								<field attrs="{'invisible':[('camera_system','=',[])]}" name="camera_number_per_bus"/>
+								<field attrs="{'invisible':[('camera_system','=',[])]}" name="camera_type_shield"/>
+								<field attrs="{'invisible':[('camera_system','=',[])]}" name="camera_type_sac"/>
 								<field attrs="{'invisible':[('camera_type_sac','=',False)]}" name="camera_type_sac_3rd_pt"/>
 								<field attrs="{'invisible':[('camera_type_sac_3rd_pt','=',False)]}" name="camera_type_sac_3rd_pt_vendor"/>
 								<field attrs="{'invisible':[('camera_type_sac_3rd_pt_vendor','!=','Other')]}" name="camera_type_sac_3rd_pt_specify"/>
@@ -177,6 +177,69 @@
 						</group>
 					</page>
 					<!-- END COMPANY SCHOOL DISTRICT INFO TAB -->
+
+					<!-- COMPANY SURVEY TAB -->
+					<page attrs="{'invisible':[('is_company','=',False)]}" string="Survey">
+						<group>
+							<group>
+								<field name="survey_date"/>
+								<field name="contact_taking_survey"/>
+								<field name="contact_taking_survey_email"/>
+								<field name="contact_taking_survey_phone"/>
+							</group>
+							<group>
+								<field name="recommend_scale" string="From a scale from 0 to 10 how likely will would you recommend us to another school district?"/>
+								<field name="rate_scale" string="From a scale from 0 to 10 how would you rate our after sales service and support?" >
+								<field name ="hs_last_sales_activity_timestamp" />
+							</group>
+							<group>
+								<field name="fleet_size2" string="Number of Buses" />
+								<field name="service_plan" string="Contracted Services?" />								
+								<field name="of_cameras_per_bus" string="Number of Cameras on your bus?" />
+								<field name="camera_system" string="Who is your camera vendor" />
+								<field name="preferred_camera_system" string="What camera system did you use before" />
+								<field name="multiple_camera" string="Do you Have Multiple Camera Vendors in your Fleet? [247 Security]" />
+								<field name="preferred_camera_vendor" string="Who is your preferred camera vendor?" />
+								<field name="when_replace" string="When do you plan on replacing your camera solution?" />
+							</group>
+							<group>
+								<field name="gps" string="Do you currently utilize GPS?" />
+								<field name="student_tracking" string="Do you currently utilize Student Tracking?" />
+								<field name="parent_portal" string="Do you currently utilize Parent Notification?" />
+								<field name="wireles_check" string="Do you currently utilize Wireless Video download?" />
+								<field name="routing" string="Do you currently utilize Routing / Planning?" />
+								<field name="is_tablets" string="Do you currently utilize Tablets on the bus?" />
+								<field name="driver_time_and_attendance" string="Do you currently utilize? [Driver time and attendance]" />						
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="gps"/>
+								<field attrs="{'invisible':[('gps','!=','Yes')]}" name="gps_vendor"/>
+								<field attrs="{'invisible':['|',('gps_vendor','!=','Other'),('gps','!=','Yes')]}" name="gps_vendor_other_"/>
+								<field attrs="{'invisible':[('gps','!=','Yes')]}" name="gps_contract_expires"/>
+							</group>
+							<group>
+								<field name="is_tablets"/>
+								<field name="driver_time_and_attendance"/>
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="student_tracking"/>
+								<field attrs="{'invisible':[('student_tracking','!=','Yes')]}" name="student_tracking_system"/>
+								<field attrs="{'invisible':['|',('student_tracking_system','!=','Other'),('student_tracking','!=','Yes')]}" name="student_tracking_system_other_"/>
+								<field attrs="{'invisible':[('student_tracking','!=','Yes')]}" name="student_tracking_contract_expires"/>
+							</group>
+							<group>
+								<field name="fleet_maintenance_system"/>
+								<field attrs="{'invisible':[('fleet_maintenance_system','!=','Other')]}" name="fleet_maintenance_system_other_"/>
+								<field name="parent_portal"/>
+								<field attrs="{'invisible':[('parent_portal','!=','Other')]}" name="parent_portal_other_"/>
+							</group>
+						</group>
+					</page>
+					<!-- END COMPANY SURVEY TAB -->
 				</xpath>
 				<xpath expr="//page[last()]" position="after">
 					<page attrs="{'invisible':[('is_company','=',True)]}" string="Marketing">

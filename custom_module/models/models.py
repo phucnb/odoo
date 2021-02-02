@@ -271,6 +271,25 @@ class ResPartnerField(models.Model):
         related='bus_garage_main.phone', related_sudo=True, compute_sudo=True,
         readonly=True, store=True, index=True
     )
+    contact_taking_survey = fields.Many2one(
+        'res.partner', string='Contact Taking Survey'
+    )
+
+    contact_taking_survey_phone = fields.Char(
+        string='Phone',
+        related='contact_taking_survey.phone', related_sudo=True, compute_sudo=True,
+        readonly=True, store=True, index=True
+    )
+    contact_taking_survey_email = fields.Char(
+        string='Email',
+        related='contact_taking_survey.email', related_sudo=True, compute_sudo=True,
+        readonly=True, store=True, index=True
+    )
+
+    # survey tab
+    recommend_scale = fields.Selection(NP_SCORE, "Recommed Scale")
+    rate_scale = fields.Selection(NP_SCORE, "Rate Scale")
+    multiple_camera = fields.Boolean("Multiple camera")
 
     # ***CAMERA TAB***
     camera_vendor = fields.Selection(OPTIONS2, "Camera Vendor")
