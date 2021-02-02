@@ -16,7 +16,7 @@ class NetSuiteImport(models.Model):
     _name = 'netsuite.import'
 
     field_name = fields.Char('NetSuite')
-    last_imported_customer = fields.Char("Last Imported URL")
+    last_imported_customers_offset = fields.Integer("Last Imported Offset")
 
     def _generateTimestamp(self):
         return str(int(time.time()))
@@ -26,7 +26,7 @@ class NetSuiteImport(models.Model):
         """
         return ''.join([str(random.randint(0, 9)) for i in range(length)])
 
-    def _generateSignature(self, method, url, consumerKey, Nonce, currentTime, token, consumerSecret, 
+    def _generateSignature(self, method, url, consumerKey, Nonce, currentTime, token, consumerSecret,
                            tokenSecret, offset):
         signature_method = 'HMAC-SHA256'
         version = '1.0'
@@ -67,7 +67,7 @@ class NetSuiteImport(models.Model):
             tokenSecret = icpsudo.get_param('netsuite_importer.tokenSecret')
             base_url = "https://1056867.suitetalk.api.netsuite.com/services/rest/record/v1/customer"
             has_more = True
-            offset = self.last_imported_customer if self.last_imported_customer else 0
+            offset = self.last_imported_customers_offset if self.last_imported_customers_offset else 0
             while has_more:
                 Nonce = self._generateNonce(length=11)
                 currentTime = self._generateTimestamp()
@@ -91,7 +91,7 @@ class NetSuiteImport(models.Model):
                 response = requests.request("GET", base_url+'?offset='+str(offset), data=payload, headers=headers)
                 response_dict = json.loads(response.text)
                 self.create_customers(response_dict['items'], base_url)
-                self.last_imported_customer = str(offset)
+                self.last_imported_customers_offset = str(offset)
                 offset += 1000
                 has_more = response_dict['hasMore']
         except Exception as e:
