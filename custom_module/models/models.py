@@ -173,6 +173,11 @@ PROSPECT_CUSTOMER = [
     ('customer', 'Customer')
 ]
 
+3RD_OPTION = [
+    ('Bus Patrol','Bus Patrol'),
+    ('ATS','ATS')
+]
+
 class ResPartnerField(models.Model):
 
     _inherit = 'res.partner'
@@ -287,9 +292,10 @@ class ResPartnerField(models.Model):
     )
 
     # survey tab
-    recommend_scale = fields.Selection(NP_SCORE, "Recommed Scale")
-    rate_scale = fields.Selection(NP_SCORE, "Rate Scale")
-    multiple_camera = fields.Boolean("Multiple camera")
+    recommend_scale = fields.Selection(NP_SCORE, "Recommed Scale",track_visibility='onchange')
+    rate_scale = fields.Selection(NP_SCORE, "Rate Scale",track_visibility='onchange')
+    multiple_camera = fields.Boolean("Multiple camera",track_visibility='onchange')
+    when_replace = fields.Date("When Replace",track_visibility='onchange')
 
     # ***CAMERA TAB***
     camera_vendor = fields.Selection(OPTIONS2, "Camera Vendor")
@@ -306,7 +312,7 @@ class ResPartnerField(models.Model):
     camera_type_sac = fields.Boolean("Stop Arm Camera")
     camera_type_sac_3rd_pt = fields.Boolean("SAC - 3rd Party")
     camera_type_sac_3rd_pt_vendor = fields.Selection(
-        OPTIONS2, "3rd Party Vendor")
+        3RD_OPTION, "3rd Party Vendor")
     camera_type_sac_3rd_pt_specify = fields.Char("Specify Vendor")
     camera_vendor_pref = fields.Selection(OPTIONS2, "Preferred Vendor")
     camera_vendor_pref_specify = fields.Char("Specify Vendor")

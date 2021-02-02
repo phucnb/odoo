@@ -20,9 +20,7 @@
                     <filter string="To Do" name="type_todo" domain="[('activity_type_id', '=', 4)]"/>
                     <filter string="Meeting" name="type_meeting" domain="[('activity_type_id', '=', 3)]"/>
                     <seperator/>
-                     -->
-                   
-
+                     -->                   
                     <group expand="0" string="Group By">
                         <filter string="Assign To" name="gb_assign_to" context="{'group_by': 'user_id'}"/>
                         <filter string="Deadline" name="date_deadline" context="{'group_by': 'date_deadline'}"/>
