@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="contact_fields_migrations">
+            <field name="name">NetSuite Customer Migration</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[1]" position='after'>
+                    <page string="NetSuite Information">
+                        <group>
+                            <group>
+                                <field name="custentityare_they_buying_new_busses" />
+                                <field name="custentity34"/>
+                                <field name="custentity43"/>
+                                <field name="custentity46"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+

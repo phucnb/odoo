@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="1">
+        <record id="my_record_02" model="netsuite.import">
+            <field name="field_name">NetSuite</field>
+        </record>
+    </data>
+    <data>
+        <record model="ir.ui.view" id="netsuite_import_form_view">
+            <field name="name">NetSuite Importer</field>
+            <field name="model">netsuite.import</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <button name="import_customer" string="Import Customer" type="object" class="oe_highlight"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="netsuite_action">
+            <field name="name">NetSuite Importer</field>
+            <field name="res_model">netsuite.import</field>
+            <field name="view_mode">form</field>
+            <field name="res_id" ref="netsuite_importer.my_record_02"/>
+            <field name="target">inline</field>
+        </record>
+
+
+
+        <menuitem id="netsuite_root" name="NetSuite" web_icon="netsuite_importer,static/description/icon.png"/>
+
+        <menuitem id="netsuite_import_integration" name="Dashboard" parent="netsuite_root" action="netsuite_action"
+                  sequence="1"/>
+    </data>
+</odoo>
