@@ -173,7 +173,7 @@ PROSPECT_CUSTOMER = [
     ('customer', 'Customer')
 ]
 
-3RD_OPTION = [
+THIRD_OPTION = [
     ('buspatrol','Bus Patrol'),
     ('ats','ATS')
 ]
@@ -312,7 +312,7 @@ class ResPartnerField(models.Model):
     camera_type_sac = fields.Boolean("Stop Arm Camera")
     camera_type_sac_3rd_pt = fields.Boolean("SAC - 3rd Party")
     camera_type_sac_3rd_pt_vendor = fields.Selection(
-        3RD_OPTION, "3rd Party Vendor")
+        THIRD_OPTION, "3rd Party Vendor")
     camera_type_sac_3rd_pt_specify = fields.Char("Specify Vendor")
     camera_vendor_pref = fields.Selection(OPTIONS2, "Preferred Vendor")
     camera_vendor_pref_specify = fields.Char("Specify Vendor")
