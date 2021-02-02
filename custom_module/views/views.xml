@@ -813,6 +813,10 @@
                     <attribute name="t-if">record.type.raw_value !== 'invoice' &amp;&amp; record.type.raw_value !== 'delivery' &amp;&amp; record.type.raw_value !== 'bus_address'</attribute>
                 </xpath>
                
+                <xpath expr="//field[@name='child_ids']/form/sheet/group/group/field[@name='function']"
+                       position="replace">
+                    <field name="job_title" />
+                </xpath>
 
 
 			</field>
