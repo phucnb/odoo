@@ -197,7 +197,7 @@
 								<field name="service_plan" string="Contracted Services?" />								
 								<field name="of_cameras_per_bus" string="Number of Cameras on your bus?" />
 								<field name="camera_system" string="Who is your camera vendor" />
-								<field name="preferred_camera_system" string="What camera system did you use before" />
+								<field name="preferred_camera_vendor" string="What camera system did you use before" />
 								<field name="multiple_camera" string="Do you Have Multiple Camera Vendors in your Fleet? [247 Security]" />
 								<field name="preferred_camera_vendor" string="Who is your preferred camera vendor?" />
 								<field name="when_replace" string="When do you plan on replacing your camera solution?" />
