@@ -13,6 +13,7 @@
                 <form>
                     <sheet>
                         <button name="import_customer" string="Import Customer" type="object" class="oe_highlight"/>
+                        <button name="import_contacts" string="Import Contact" type="object" class="oe_highlight"/>
                     </sheet>
                 </form>
             </field>

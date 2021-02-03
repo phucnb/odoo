@@ -17,6 +17,7 @@ class NetSuiteImport(models.Model):
 
     field_name = fields.Char('NetSuite')
     last_imported_customers_offset = fields.Integer("Last Imported Offset")
+    last_imported_contacts_offset = fields.Integer("Last Imported Offset")
 
     def _generateTimestamp(self):
         return str(int(time.time()))
@@ -153,3 +154,89 @@ class NetSuiteImport(models.Model):
         except Exception as e:
             raise ValidationError(_(str(e)))
 
+    def import_contacts(self):
+        try:
+            icpsudo = self.env['ir.config_parameter'].sudo()
+            nsAccountID = icpsudo.get_param('netsuite_importer.nsAccountID')
+            consumerKey = icpsudo.get_param('netsuite_importer.consumerKey')
+            consumerSecret = icpsudo.get_param('netsuite_importer.consumerSecret')
+            token = icpsudo.get_param('netsuite_importer.token')
+            tokenSecret = icpsudo.get_param('netsuite_importer.tokenSecret')
+            base_url = "https://1056867.suitetalk.api.netsuite.com/services/rest/record/v1/contact"
+            has_more = True
+            offset = self.last_imported_contacts_offset if self.last_imported_contacts_offset else 0
+            while has_more:
+                Nonce = self._generateNonce(length=11)
+                currentTime = self._generateTimestamp()
+                signature = self._generateSignature('GET', base_url, consumerKey, Nonce, currentTime, token, consumerSecret,
+                                                    tokenSecret, offset)
+
+                payload = ""
+                oauth = "OAuth realm=\"" + nsAccountID + "\"," \
+                        "oauth_consumer_key=\"" + consumerKey + "\"," \
+                        "oauth_token=\"" + token + "\"," \
+                        "oauth_signature_method=\"HMAC-SHA256\"," \
+                        "oauth_timestamp=\"" + currentTime + "\"," \
+                        "oauth_nonce=\"" + Nonce + "\"," \
+                        "oauth_version=\"1.0\"," \
+                        "oauth_signature=\"" + signature + "\""
+                headers = {
+                    'Content-Type': "application/json",
+                    'Authorization': oauth,
+                    'cache-control': "no-cache",
+                }
+                response = requests.request("GET", base_url+'?offset='+str(offset), data=payload, headers=headers)
+                response_dict = json.loads(response.text)
+                self.create_contacts(response_dict['items'], base_url)
+                self.last_imported_contacts_offset = str(offset)
+                offset += 1000
+                has_more = response_dict['hasMore']
+        except Exception as e:
+            raise ValidationError(_(str(e)))
+
+    def create_contacts(self, contacts, url):
+        try:
+            icpsudo = self.env['ir.config_parameter'].sudo()
+            nsAccountID = icpsudo.get_param('netsuite_importer.nsAccountID')
+            consumerKey = icpsudo.get_param('netsuite_importer.consumerKey')
+            consumerSecret = icpsudo.get_param('netsuite_importer.consumerSecret')
+            token = icpsudo.get_param('netsuite_importer.token')
+            tokenSecret = icpsudo.get_param('netsuite_importer.tokenSecret')
+            for new_contact in contacts:
+                odoo_contact = self.env['res.partner'].search([('netsuite_id', '=', new_contact['id'])])
+                if not odoo_contact:
+                    Nonce = self._generateNonce(length=11)
+                    currentTime = self._generateTimestamp()
+                    contact_url = url + "/" + new_contact['id']
+                    signature = self._generateSingleSignature('GET', contact_url, consumerKey, Nonce, currentTime, token,
+                                                        consumerSecret, tokenSecret)
+                    oauth = "OAuth realm=\"" + nsAccountID + "\"," \
+                            "oauth_consumer_key=\"" + consumerKey + "\"," \
+                            "oauth_token=\"" + token + "\"," \
+                            "oauth_signature_method=\"HMAC-SHA256\"," \
+                            "oauth_timestamp=\"" + currentTime + "\"," \
+                            "oauth_nonce=\"" + Nonce + "\"," \
+                            "oauth_version=\"1.0\"," \
+                            "oauth_signature=\"" + signature + "\""
+                    headers = {
+                        'Content-Type': "application/json",
+                        'Authorization': oauth,
+                        'cache-control': "no-cache",
+                    }
+                    contact_response = requests.request("GET", contact_url, headers=headers)
+                    contact = json.loads(contact_response.text)
+                    company_id = contact['company']['id']
+                    parent_id = self.env['res.partner'].search([('netsuite_id', '=', company_id)])
+                    contact_name = contact['firstName'] + " " + contact['lastName']
+                    self.env['res.partner'].create({
+                        'netsuite_id': contact['id'],
+                        'name': contact_name,
+                        'is_company': False,
+                        'email': contact['email'] if 'email' in contact else None,
+                        'phone': contact['phone'] if 'phone' in contact else None,
+                        'parent_id': parent_id.id if parent_id else None,
+                        'function': contact['title'] if 'title' in contact else None
+                    })
+                self.env.cr.commit()
+        except Exception as e:
+            raise ValidationError(_(str(e)))
