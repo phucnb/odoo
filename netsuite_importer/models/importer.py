@@ -225,8 +225,9 @@ class NetSuiteImport(models.Model):
                     }
                     contact_response = requests.request("GET", contact_url, headers=headers)
                     contact = json.loads(contact_response.text)
-                    company_id = contact['company']['id']
-                    parent_id = self.env['res.partner'].search([('netsuite_id', '=', company_id)])
+                    company_id = contact['company']['id'] if 'company' in contact else None
+                    parent_id = self.env['res.partner'].search(
+                        [('netsuite_id', '=', company_id)]) if company_id else None
                     contact_name = contact['firstName'] + " " + contact['lastName']
                     self.env['res.partner'].create({
                         'netsuite_id': contact['id'],
