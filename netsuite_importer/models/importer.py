@@ -228,7 +228,9 @@ class NetSuiteImport(models.Model):
                     company_id = contact['company']['id'] if 'company' in contact else None
                     parent_id = self.env['res.partner'].search(
                         [('netsuite_id', '=', company_id)]) if company_id else None
-                    contact_name = contact['firstName'] + " " + contact['lastName']
+                    firstname = contact['firstName'] if 'firstName' in contact else ""
+                    lastname = contact['lastName'] if 'lastName' in contact else ""
+                    contact_name = firstname + " " + lastname
                     self.env['res.partner'].create({
                         'netsuite_id': contact['id'],
                         'name': contact_name,
