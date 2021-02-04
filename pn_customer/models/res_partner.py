@@ -43,8 +43,7 @@ class ContactControlActivityMess(models.Model):
                 'view_mode': 'tree,form',
                 'res_model': 'mail.message',
                 'type': 'ir.actions.act_window',
-                'domain': [
-                    ('subject', '!=', False), ('message_type', 'in', ['email', 'comment']),
+                'domain': [('message_type', 'in', ['email', 'comment']),
                     '|', ('mail_partner_id', '=', self.id), ('mail_partner_id.parent_id', 'child_of', [self.id])
                 ],
                 'context': dict(self._context, search_default_fl_activity=True),
