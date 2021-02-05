@@ -816,6 +816,10 @@
                            context="{'gravatar_image': True}"
                            attrs="{'invisible': [('is_company', '=', 'True')], 'required': [('user_ids','!=', [])]}"/>
                 </field>
+                <field name="country_id" position="after">
+                    <field name="s247_county" 
+                           attrs="{'invisible': [('is_company', '=', 'False')], 'required': [('user_ids','!=', [])]}"/>
+                </field>
             </field>
         </record>
 
