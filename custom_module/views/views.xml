@@ -37,11 +37,11 @@
 						</group>
 						<group>
 							<group>
-								<field name="camera_vendor_pref"/>
+								<field name="preferred_camera_vendor"/>
 								<field name="camera_note"/>
 							</group>
 							<group>
-								<field attrs="{'invisible':[('camera_vendor_pref','!=','Other')]}" name="camera_vendor_pref_specify"/>
+								<field attrs="{'invisible':[('preferred_camera_vendor','!=','Other')]}" name="camera_vendor_pref_specify"/>
 							</group>
 						</group>
 					</page>
@@ -532,7 +532,8 @@
 										<field name="of_buses"/>
 									</group>
 									<group>
-										<field name="of_cameras_per_bus"/>
+										<field name="fleet_size2"/>
+										<field name="camera_number_per_bus"/>
 										<field name="of_students_transported"/>
 										<field name="of_students_total"/>
 										<field name="parent_portal"/>
@@ -548,7 +549,7 @@
 									</group>
 									<group>
 										<field name="school_year_start"/>
-										<field name="stop_arm_camera_s_"/>
+										<field name="camera_type_sac"/>
 										<field name="student_information_system"/>
 										<field name="student_information_system_other_"/>
 									</group>
@@ -811,10 +812,13 @@
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
                 <field name="first_name" position="before">
+                	<field name="s247_county" 
+                           attrs="{'invisible': [('is_company', '=', 'False')], 'required': [('user_ids','!=', [])]}" string="County"/>
                     <field name="email" widget="email"
                            context="{'gravatar_image': True}"
                            attrs="{'invisible': [('is_company', '=', 'True')], 'required': [('user_ids','!=', [])]}"/>
                 </field>
+               
             </field>
         </record>
 
