@@ -5,18 +5,9 @@ import logging
 _logger  = logging.getLogger(__name__)
 
 SURVEY_BY = [
-       ('Brittany Wilkening', 'Brittany Wilkening'),
-    ('Brooke Evers', 'Brooke Evers'),
-    ('Eddie O\'Connell', 'Eddie O\'Connell'),
-    ('Mary Kohn', 'Mary Kohn'),
-    ('Rich Hyland', 'Rich Hyland'),
-    ('Brett Adoff', 'Brett Adoff'),
-    ('Carlos Ithier', 'Carlos Ithier'),
-    ('Christina Graham', 'Christina Graham'),
-    ('Larry Silba', 'Larry Silba'),
-    ('Syreeta Hill', 'Syreeta Hill'),
-    ('Theresa Jensen', 'Theresa Jensen'),
-    ('Tom Giglio', 'Tom Giglio')
+       
+    ('Rick Oram', 'Rick Oram'),
+    ('Tristin Church', 'Tristin Church')
 ]
 
 NP_SCORE = [
