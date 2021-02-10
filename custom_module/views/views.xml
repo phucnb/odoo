@@ -794,6 +794,10 @@
                        position="replace">
                     <field name="job_title" placeholder="Director of Transportation"/>
                 </xpath>
+                <xpath expr="//field[@name='child_ids']/form/sheet/group/group/field[@name='title']"
+                       position="attributes">
+                    <attributes name="options">{'no_create': True, 'no_edit': True, 'no_create_edit': True}</attribute>
+                </xpath>
 
                 <!-- Add job title into contact kanban view inside company -->
                 <xpath expr="//field[@name='child_ids']/kanban/templates/t/div/div[hasclass('oe_kanban_details')]/div[@t-if='record.function.raw_value']"
