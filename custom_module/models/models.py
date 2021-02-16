@@ -38,7 +38,7 @@ ISR = [
 
 BUS_MFG = [
     ('Blue Bird', 'Blue Bird'),
-    ('IC Bu', 'IC Bu'),
+    ('IC Bus', 'IC Bus'),
     ('Thomas Built', 'Thomas Built'),
     ('Collins', 'Collins'),
     ('Micro Bird', 'Micro Bird'),
